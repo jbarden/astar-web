@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "AStar.Clean.V1.Files.WorkerService": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

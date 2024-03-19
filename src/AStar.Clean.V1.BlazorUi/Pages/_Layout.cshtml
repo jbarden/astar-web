@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace AStar.Clean.V1.BlazorUI.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Placeholder</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="~/" />
+    <link href="_content/BootstrapBlazor.FontAwesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="_content/BootstrapBlazor/css/bootstrap.blazor.bundle.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="AStar.Clean.V1.BlazorUI.styles.css" rel="stylesheet" />
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
+</head>
+<body class="bg-black">
+<script src="_content/BootstrapBlazor/js/bootstrap.blazor.bundle.min.js"></script>
+    @RenderBody()
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+<script src="_framework/blazor.server.js"></script>
+<script src="js/anchorLink.js"></script>
+</body>
+</html>

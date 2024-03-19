@@ -1,0 +1,33 @@
+﻿@using AStar.Clean.V1.BlazorUI.Models
+@using AStar.Clean.V1.BlazorUI.Components
+@using AStar.Clean.V1.BlazorUI.Pages.Images
+@using AStar.Clean.V1.BlazorUI.ApiClients
+@inject ImagesApiClient ImagesApiClient
+
+<div>
+    @if (Deleted)
+    {
+        <div class="@MessageClass">@Message</div>
+    }
+    else
+    {
+        <ImageThumbnail ImageFullName="@FullName" ImageName="@Name" ThumbnailSize="@MaximumSizeOfThumbnail" OnDelete="FileDeleted"></ImageThumbnail>
+
+        <br />
+        @*<span class="w-50 p-3"><ImageDetail Fullname="@FullName"></ImageDetail></span>*@
+        <span class="w-50 p-3"><FileDelete Fullname="@FullName" OnDelete="OnDeleted"></FileDelete></span>
+        <br />
+        <strong>Name: </strong>@Name
+        <br />
+        <div>
+            <strong>Size:</strong> @DisplayImageSize()<br />
+            <strong>Path:</strong> @(FullName.Replace(@Name, string.Empty))<br />
+            @if (Width > 0)
+            {
+                <div>
+                    <strong>Dimensions:</strong> @Width x @Height
+                </div>
+            }
+        </div>
+    }
+</div>
