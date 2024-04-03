@@ -1,5 +1,5 @@
 ﻿using System.IO.Abstractions;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;
@@ -9,9 +9,9 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 public class DeleteController : ControllerBase
 {
     private readonly IFileSystem fileSystem;
-    private readonly FilesDbContext context;
+    private readonly FilesContext context;
 
-    public DeleteController(IFileSystem fileSystem, FilesDbContext context)
+    public DeleteController(IFileSystem fileSystem, FilesContext context)
     {
         this.fileSystem = fileSystem;
         this.context = context;
@@ -38,7 +38,7 @@ public class DeleteController : ControllerBase
 
         if (hardDelete)
         {
-            context.Files.Remove(existing);
+            _=context.Files.Remove(existing);
         }
         else
         {
@@ -47,7 +47,7 @@ public class DeleteController : ControllerBase
             existing.SoftDeleted = true;
         }
 
-        context.SaveChanges();
+        _=context.SaveChanges();
 
         return NoContent();
     }

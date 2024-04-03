@@ -3,7 +3,7 @@ using AStar.Clean.V1.HealthChecks;
 using AStar.Clean.V1.Images.API.ApiClients;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -31,9 +31,7 @@ public static class Program
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
             .ReadFrom.Configuration(context.Configuration));
         _ = services.AddControllers();
-        _ = services.AddDbContext<FilesDbContext>(options =>
-            options.UseSqlite(
-                $@"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Files.db")}"));
+        _ = services.AddDbContext<FilesContext>();
         _ = services.AddEndpointsApiExplorer()
             .AddSwaggerGen()
             .AddHealthChecks();

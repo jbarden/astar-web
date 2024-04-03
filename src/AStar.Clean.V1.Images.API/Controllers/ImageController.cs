@@ -5,7 +5,8 @@ using System.IO.Abstractions;
 using AStar.Clean.V1.Images.API.Extensions;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Images.API.Controllers;
@@ -17,9 +18,9 @@ public class ImageController : ControllerBase
     private const int MaximumHeightAndWidthForThumbnail = 750;
     private readonly IFileSystem fileSystem;
     private readonly IImageService imageService;
-    private readonly FilesDbContext context;
+    private readonly FilesContext context;
 
-    public ImageController(IFileSystem fileSystem, IImageService imageService, FilesDbContext context)
+    public ImageController(IFileSystem fileSystem, IImageService imageService, FilesContext context)
     {
         this.fileSystem = fileSystem;
         this.imageService = imageService;
@@ -29,7 +30,7 @@ public class ImageController : ControllerBase
     [HttpGet("details", Name = "ImageDetail")]
     public IActionResult GetImageDetail(string imagePath)
     {
-        if (!imagePath.IsImage())
+        if(!imagePath.IsImage())
         {
             return StatusCode(StatusCodes.Status422UnprocessableEntity, "Unsupported file type");
         }
@@ -38,12 +39,12 @@ public class ImageController : ControllerBase
         var directory = imagePath[..index];
         var filename = imagePath[(index + 1)..];
         var fileInfoJb = ReadDb(directory, filename);
-        if (fileInfoJb is not null)
+        if(fileInfoJb is not null)
         {
             fileInfoJb.LastViewed = DateTime.UtcNow;
             try
             {
-                context.SaveChanges();
+                _=context.SaveChanges();
             }
             catch
             {
@@ -51,7 +52,7 @@ public class ImageController : ControllerBase
             }
         }
 
-        if (!fileSystem.File.Exists(imagePath))
+        if(!fileSystem.File.Exists(imagePath))
         {
             return NotFound();
         }
@@ -70,38 +71,29 @@ public class ImageController : ControllerBase
         });
     }
 
-    private DomainModel.FileDetail? ReadDb(string directory, string filename)
-    {
-        try
-        {
-            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
-        }
-        catch
-        {
-            Task.Delay(TimeSpan.FromSeconds(2));
-            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
-        }
-    }
-
     /// <summary>
-    ///     Somewhere in here, we rotate images, sometimes...
-    ///     need to dig to see why / where
+    /// Somewhere in here, we rotate images, sometimes... need to dig to see why / where
     /// </summary>
-    /// <param name="imagePath"></param>
-    /// <param name="thumbnail"></param>
-    /// <param name="maximumSizeInPixels"></param>
-    /// <param name="resize"></param>
-    /// <returns></returns>
+    /// <param name="imagePath">
+    /// </param>
+    /// <param name="thumbnail">
+    /// </param>
+    /// <param name="maximumSizeInPixels">
+    /// </param>
+    /// <param name="resize">
+    /// </param>
+    /// <returns>
+    /// </returns>
     [HttpGet(Name = "Image")]
     public IActionResult GetImage(string imagePath, bool thumbnail = true, int maximumSizeInPixels = 150,
         bool resize = false)
     {
-        if (!imagePath.IsImage())
+        if(!imagePath.IsImage())
         {
             return BadRequest("Unsupported file type.");
         }
 
-        if (!fileSystem.File.Exists(imagePath))
+        if(!fileSystem.File.Exists(imagePath))
         {
             return NotFound();
         }
@@ -109,7 +101,7 @@ public class ImageController : ControllerBase
         var extensionIndex = imagePath.LastIndexOf('.') + 1;
         var extension = imagePath[extensionIndex..];
         using var imageFromFile = imageService.GetImage(imagePath);
-        if (thumbnail)
+        if(thumbnail)
         {
             maximumSizeInPixels = RestrictMaximumSizeInPixels(maximumSizeInPixels);
             var dimensions = ImageDimensions(imageFromFile.Width, imageFromFile.Height, maximumSizeInPixels);
@@ -120,7 +112,7 @@ public class ImageController : ControllerBase
             return File(thumbnailMemoryStream, $"image/{extension}");
         }
 
-        if (resize)
+        if(resize)
         {
             maximumSizeInPixels = 1500;
             var dimensions = ImageDimensions(imageFromFile.Width, imageFromFile.Height, maximumSizeInPixels);
@@ -172,16 +164,16 @@ public class ImageController : ControllerBase
         var thumbnailWidth = width;
         var thumbnailHeight = height;
 
-        if (width < maximumSizeInPixels || height < maximumSizeInPixels)
+        if(width < maximumSizeInPixels || height < maximumSizeInPixels)
         {
             thumbnailWidth = width;
             thumbnailHeight = height;
         }
-        else if (maximumSizeInPixels != 0)
+        else if(maximumSizeInPixels != 0)
         {
             thumbnailWidth = maximumSizeInPixels;
             thumbnailHeight = maximumSizeInPixels;
-            if (width > height)
+            if(width > height)
             {
                 thumbnailHeight = SetProportionalDimension(width, height, maximumSizeInPixels);
             }
@@ -196,8 +188,21 @@ public class ImageController : ControllerBase
 
     private static int SetProportionalDimension(int widthOrHeight, int heightOrWidth, int maximumThumbnailInPixels) => Convert.ToInt32(heightOrWidth * maximumThumbnailInPixels / (double)widthOrHeight);
 
-    private static int RestrictMaximumSizeInPixels(int maximumSizeInPixels) =>
-        maximumSizeInPixels > MaximumHeightAndWidthForThumbnail
+    private static int RestrictMaximumSizeInPixels(int maximumSizeInPixels)
+        => maximumSizeInPixels > MaximumHeightAndWidthForThumbnail
             ? MaximumHeightAndWidthForThumbnail
             : maximumSizeInPixels;
+
+    private FileDetail? ReadDb(string directory, string filename)
+    {
+        try
+        {
+            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
+        }
+        catch
+        {
+            _=Task.Delay(TimeSpan.FromSeconds(2));
+            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
+        }
+    }
 }

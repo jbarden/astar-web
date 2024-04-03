@@ -2,7 +2,8 @@
 using AStar.Clean.V1.Files.API.Config;
 using AStar.Clean.V1.Files.API.Models;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;
@@ -11,9 +12,9 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 [ApiController]
 public class FilesControllerBase : ControllerBase
 {
-    private readonly FilesDbContext context;
+    private readonly FilesContext context;
 
-    public FilesControllerBase(IFileSystem fileSystem, IImageService imageService, FilesDbContext context, ILogger<FilesControllerBase> logger)
+    public FilesControllerBase(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
     {
         this.context = context;
         FileSystem = fileSystem;
@@ -27,8 +28,8 @@ public class FilesControllerBase : ControllerBase
 
     protected ILogger<FilesControllerBase> Logger { get; set; }
 
-    protected IQueryable<DomainModel.FileDetail> FileInfoFromContext(SearchParameters searchParameters) =>
-        context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories
+    protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)
+        => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories
                                             ? f.DirectoryName.ToUpper().StartsWith(searchParameters.SearchFolder.ToUpper())
                                             : f.DirectoryName.ToUpper().Equals(searchParameters.SearchFolder.ToUpper()));
 
@@ -42,14 +43,14 @@ public class FilesControllerBase : ControllerBase
                 .ToArray();
 
             var duplicates = new List<FileInfoDto>();
-            foreach (var fileGroup in duplicatesBySize)
+            foreach(var fileGroup in duplicatesBySize)
             {
                 duplicates.AddRange(fileGroup);
             }
 
             return duplicates;
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             Logger.LogError(ex, "Error: {error}", ex.Message);
             throw;

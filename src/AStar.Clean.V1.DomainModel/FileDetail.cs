@@ -24,15 +24,15 @@ public class FileDetail
     {
         var stringBuilder = new StringBuilder();
 
-        stringBuilder.Append($"FileName={FileName}&");
-        stringBuilder.Append($"DirectoryName={DirectoryName}&");
-        stringBuilder.Append($"IsImage={IsImage}&");
-        stringBuilder.Append($"DetailsLastUpdated={DetailsLastUpdated}&");
-        stringBuilder.Append($"LastViewed={LastViewed}&");
-        stringBuilder.Append($"Height={Height}&");
-        stringBuilder.Append($"Width={Width}&");
-        stringBuilder.Append($"FileSize={FileSize}&");
-        stringBuilder.Append($"SoftDeleted={SoftDeleted}");
+        _=stringBuilder.Append($"FileName={FileName}&");
+        _=stringBuilder.Append($"DirectoryName={DirectoryName}&");
+        _=stringBuilder.Append($"IsImage={IsImage}&");
+        _=stringBuilder.Append($"DetailsLastUpdated={DetailsLastUpdated}&");
+        _=stringBuilder.Append($"LastViewed={LastViewed}&");
+        _=stringBuilder.Append($"Height={Height}&");
+        _=stringBuilder.Append($"Width={Width}&");
+        _=stringBuilder.Append($"FileSize={FileSize}&");
+        _=stringBuilder.Append($"SoftDeleted={SoftDeleted}");
 
         return stringBuilder.ToString();
     }

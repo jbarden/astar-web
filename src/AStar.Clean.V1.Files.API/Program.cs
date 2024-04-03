@@ -1,7 +1,7 @@
 using System.IO.Abstractions;
 using AStar.Clean.V1.Files.API.Services;
 using AStar.Clean.V1.HealthChecks;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -34,8 +34,7 @@ public static class Program
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
             .ReadFrom.Configuration(context.Configuration));
 
-        _ = services.AddDbContext<FilesDbContext>(options =>
-            options.UseSqlite($@"Data Source={Path.Combine(@"c:\temp", "Files.db")}"));
+        _ = services.AddDbContext<FilesContext>();
         _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>()
             .AddSingleton<IImageService, ImageService>();

@@ -2,7 +2,7 @@
 using AStar.Clean.V1.Files.API.Config;
 using AStar.Clean.V1.Files.API.Models;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Clean.V1.Infrastructure.Data;
+using AStar.Infrastructure.Data.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;
@@ -11,7 +11,7 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 [ApiController]
 public class FilesListController : FilesControllerBase
 {
-    public FilesListController(IFileSystem fileSystem, IImageService imageService, FilesDbContext context, ILogger<FilesControllerBase> logger)
+    public FilesListController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
         : base(fileSystem, imageService, context, logger)
     {
     }
@@ -23,14 +23,14 @@ public class FilesListController : FilesControllerBase
         try
         {
             var filesList = FileInfoFromContext(searchParameters).ToList();
-            if (searchParameters.SearchType is SearchType.Images)
+            if(searchParameters.SearchType is SearchType.Images)
             {
                 filesList = filesList.Where(f => f.IsImage).ToList();
             }
 
-            var fileInfos = filesList.Select(f => new FileInfoDto { FullName = f.FullName, Size = f.FileSize, Name = f.FileName });
+            var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName });
             var skip = searchParameters.ItemsPerPage * (searchParameters.CurrentPage - 1);
-            if (searchParameters.SearchType is SearchType.Duplicates)
+            if(searchParameters.SearchType is SearchType.Duplicates)
             {
                 Logger.LogInformation("Starting duplicate search");
                 fileInfos = DuplicateFileInfoJbs(fileInfos);
@@ -51,7 +51,7 @@ public class FilesListController : FilesControllerBase
 
             return Ok(fileInfos);
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             Logger.LogError(0, ex, ex.Message);
             throw;

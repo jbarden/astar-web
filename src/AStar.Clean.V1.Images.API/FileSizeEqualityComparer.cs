@@ -11,8 +11,8 @@ internal class FileSizeEqualityComparer : IEqualityComparer<FileSize>
     /// <param name="leftFileSize">An instance of the <see cref="FileSize" /> class to compare.</param>
     /// <param name="rightFileSize">The other instance of the <see cref="FileSize" /> class to compare.</param>
     /// <returns><c>true</c> if the files are deemed to be the same size, <c>false</c> otherwise.</returns>
-    public bool Equals(FileSize? leftFileSize, FileSize? rightFileSize) =>
-        (rightFileSize == null && leftFileSize == null)
+    public bool Equals(FileSize? leftFileSize, FileSize? rightFileSize)
+        => (rightFileSize == null && leftFileSize == null)
         || (leftFileSize != null && rightFileSize != null && leftFileSize.Height == rightFileSize.Height &&
             leftFileSize.FileLength == rightFileSize.FileLength
             && leftFileSize.Width == rightFileSize.Width &&

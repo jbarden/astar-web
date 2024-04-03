@@ -35,13 +35,13 @@ public static class SubscriptionHeaderExtensions
 
     public static bool HasNoValue(this PageHeader pageHeader) => !pageHeader.HasValue();
 
-    private static int HeaderIndex(this PageHeader header, string searchType) =>
-        string.IsNullOrWhiteSpace(header.Value)
+    private static int HeaderIndex(this PageHeader header, string searchType)
+        => string.IsNullOrWhiteSpace(header.Value)
             ? 0
             : SetSearchType(header, searchType);
 
-    private static int SetSearchType(PageHeader header, string searchType) =>
-        searchType == "Search"
+    private static int SetSearchType(PageHeader header, string searchType)
+        => searchType == "Search"
             ? header.Value!.IndexOf("Wallpapers found  for", StringComparison.OrdinalIgnoreCase)
             : header.Value!.IndexOf("New", StringComparison.OrdinalIgnoreCase);
 }

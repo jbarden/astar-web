@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationInsightsResourceId>/subscriptions/dba5eec1-de38-4c06-82bd-839f5f2d744e/resourceGroups/rg-jb-ai/providers/microsoft.insights/components/jb-ai</ApplicationInsightsResourceId>
@@ -17,6 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AStar.Infrastructure.Data" Version="1.0.0" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="FluentValidation" Version="11.5.2" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
@@ -37,7 +38,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\AStar.Clean.V1.HealthChecks\AStar.Clean.V1.HealthChecks.csproj" />
-		<ProjectReference Include="..\AStar.Clean.V1.Infrastructure\AStar.Clean.V1.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

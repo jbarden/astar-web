@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<RootNamespace>AStar.Clean.V1.Architecture.Tests</RootNamespace>
@@ -38,7 +38,6 @@
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.DomainModel\AStar.Clean.V1.DomainModel.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Files.API\AStar.Clean.V1.Files.API.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Images.API\AStar.Clean.V1.Images.API.csproj" />
-		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Infrastructure\AStar.Clean.V1.Infrastructure.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Services\AStar.Clean.V1.Services.csproj" />
 	</ItemGroup>
 

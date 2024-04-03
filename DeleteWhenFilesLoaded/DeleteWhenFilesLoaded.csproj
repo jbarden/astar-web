@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\AStar.Clean.V1.Infrastructure\AStar.Clean.V1.Infrastructure.csproj" />
+    <PackageReference Include="AStar.Infrastructure.Data" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
