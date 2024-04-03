@@ -13,10 +13,12 @@ public class ImageService : IImageService
     }
 
     /// <summary>
-    ///     This feels like it should be on the files API
+    /// This feels like it should be on the files API
     /// </summary>
-    /// <param name="imagePath"></param>
-    /// <returns></returns>
+    /// <param name="imagePath">
+    /// </param>
+    /// <returns>
+    /// </returns>
     [SupportedOSPlatform("windows")]
     public Image GetImage(string imagePath)
     {

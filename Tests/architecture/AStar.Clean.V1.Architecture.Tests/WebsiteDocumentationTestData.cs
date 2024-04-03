@@ -6,8 +6,7 @@
 
 namespace AStar.Clean.V1.Architecture.Tests;
 
-// There are class definitions below that are commented out.
-// They exist to allow you to uncomment and see the effect (failure) on the tests,
+// There are class definitions below that are commented out. They exist to allow you to uncomment and see the effect (failure) on the tests,
 public interface ICar
 {
 }
@@ -114,4 +113,3 @@ internal class ModuleThreeClassTwo
 #pragma warning restore 169
 #pragma warning restore IDE0052
 #pragma warning restore CA1822
-

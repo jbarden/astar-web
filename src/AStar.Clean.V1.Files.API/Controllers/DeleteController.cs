@@ -38,7 +38,7 @@ public class DeleteController : ControllerBase
 
         if(hardDelete)
         {
-            _=context.Files.Remove(existing);
+            _ = context.Files.Remove(existing);
         }
         else
         {
@@ -47,7 +47,7 @@ public class DeleteController : ControllerBase
             existing.SoftDeleted = true;
         }
 
-        _=context.SaveChanges();
+        _ = context.SaveChanges();
 
         return NoContent();
     }
@@ -67,7 +67,6 @@ public class DeleteController : ControllerBase
             }
             catch
             {
-
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace AStar.Clean.V1.DomainModel;
 
 /// <summary>
-///     The dimensions class contains the height and width of the object it is attached to.
+/// The dimensions class contains the height and width of the object it is attached to.
 /// </summary>
 public class Dimensions
 {
@@ -11,10 +11,11 @@ public class Dimensions
     public int Id { get; set; }
 
     /// <summary>
-    ///     The height of the image (where applicable).
-    ///     The height cannot be set to null, less-than 0 or greater-than 9,999.
+    /// The height of the image (where applicable). The height cannot be set to null, less-than 0 or greater-than 9,999.
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the above conditions are not met.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the above conditions are not met.
+    /// </exception>
     public int? Height
     {
         get => height;
@@ -30,10 +31,11 @@ public class Dimensions
     }
 
     /// <summary>
-    ///     The width of the image (where applicable).
-    ///     The width cannot be set to null, less-than 0 or greater-than 9,999.
+    /// The width of the image (where applicable). The width cannot be set to null, less-than 0 or greater-than 9,999.
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the above conditions are not met.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the above conditions are not met.
+    /// </exception>
     public int? Width
     {
         get => width;

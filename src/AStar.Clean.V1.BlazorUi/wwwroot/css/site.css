@@ -32,11 +32,12 @@ a, .btn-link {
     text-decoration: none;
     cursor: auto;
 }
-a:hover {
-    color: white;
-    font-weight: bold;
-    cursor: auto;
-}
+
+    a:hover {
+        color: white;
+        font-weight: bold;
+        cursor: auto;
+    }
 
 .btn-primary {
     color: #fff;

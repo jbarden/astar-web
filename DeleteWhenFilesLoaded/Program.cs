@@ -47,5 +47,5 @@ void UpdateFilesInDatabase(IReadOnlyCollection<FileDetail> fileList, FilesContex
         }
     }
 
-    _=context.SaveChanges();
+    _ = context.SaveChanges();
 }

@@ -1,11 +1,9 @@
 ﻿namespace AStar.Clean.V1.DomainModel;
 
 /// <summary>
-/// The tests here do not cover every property - just those that are not covered elsewhere.
-/// Either the code or other tests achieve the desired 100% coverage when combined by these tests.
-/// It is not always necessary to write specific tests for each property - even in the Domain Model - as
-/// the code will fail to build / coverage will drop if refactorings affect this class.
-/// That said, if the domain model class contains logic, you should test it directly - as we do here.
+/// The tests here do not cover every property - just those that are not covered elsewhere. Either the code or other tests achieve the desired 100% coverage when combined by these tests. It is not
+/// always necessary to write specific tests for each property - even in the Domain Model - as the code will fail to build / coverage will drop if refactorings affect this class. That said, if the
+/// domain model class contains logic, you should test it directly - as we do here.
 /// </summary>
 public class FileInfoJbShould
 {

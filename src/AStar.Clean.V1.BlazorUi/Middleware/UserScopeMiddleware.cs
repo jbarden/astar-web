@@ -3,7 +3,7 @@
 namespace AStar.Clean.V1.BlazorUI.Middleware;
 
 /// <summary>
-/// The <see cref="UserScopeMiddleware"/> creates a logging scope that will be used throughout the request.
+/// The <see cref="UserScopeMiddleware" /> creates a logging scope that will be used throughout the request.
 /// </summary>
 public class UserScopeMiddleware
 {
@@ -18,12 +18,13 @@ public class UserScopeMiddleware
 
     /// <summary>
     /// The InvokeAsync method is called during the ASP.Net Core Lifecycle pipeline - hence VS shows "0 references".
-    /// <para>
-    /// As part of the scope, the Username (masked) and Sub (SubjectId) are automatically included in the log data.
-    /// </para>
+    /// <para>As part of the scope, the Username (masked) and Sub (SubjectId) are automatically included in the log data.</para>
     /// </summary>
-    /// <param name="context">This is the context applicable to the request being processed.</param>
-    /// <returns></returns>
+    /// <param name="context">
+    /// This is the context applicable to the request being processed.
+    /// </param>
+    /// <returns>
+    /// </returns>
     public async Task InvokeAsync(HttpContext context)
     {
         if(context.User.Identity is { IsAuthenticated: true })
