@@ -44,7 +44,7 @@ public class ImageController : ControllerBase
             fileInfoJb.LastViewed = DateTime.UtcNow;
             try
             {
-                _=context.SaveChanges();
+                _ = context.SaveChanges();
             }
             catch
             {
@@ -201,7 +201,7 @@ public class ImageController : ControllerBase
         }
         catch
         {
-            _=Task.Delay(TimeSpan.FromSeconds(2));
+            _ = Task.Delay(TimeSpan.FromSeconds(2));
             return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
         }
     }
