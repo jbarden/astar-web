@@ -29,11 +29,15 @@ public class ImageController : ControllerBase
     [HttpGet("details", Name = "ImageDetail")]
     public IActionResult GetImageDetail(string imagePath)
     {
+        if (!imagePath.IsImage())
+        {
+            return StatusCode(StatusCodes.Status422UnprocessableEntity, "Unsupported file type");
+        }
+
         var index = imagePath.LastIndexOf("\\");
         var directory = imagePath[..index];
         var filename = imagePath[(index + 1)..];
-
-        var fileInfoJb = context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
+        var fileInfoJb = ReadDb(directory, filename);
         if (fileInfoJb is not null)
         {
             fileInfoJb.LastViewed = DateTime.UtcNow;
@@ -45,11 +49,6 @@ public class ImageController : ControllerBase
             {
                 // Any error here is not important.
             }
-        }
-
-        if (!imagePath.IsImage())
-        {
-            return BadRequest("Unsupported file type");
         }
 
         if (!fileSystem.File.Exists(imagePath))
@@ -69,6 +68,19 @@ public class ImageController : ControllerBase
             Size = file.Length,
             Created = file.CreationTimeUtc
         });
+    }
+
+    private DomainModel.FileDetail? ReadDb(string directory, string filename)
+    {
+        try
+        {
+            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
+        }
+        catch
+        {
+            Task.Delay(TimeSpan.FromSeconds(2));
+            return context.Files.FirstOrDefault(f => f.FileName == filename && f.DirectoryName == directory);
+        }
     }
 
     /// <summary>

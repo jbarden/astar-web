@@ -53,7 +53,6 @@ public static class Program
     {
         _ = app.UseSwagger()
             .UseSwaggerUI()
-            .UseHttpsRedirection()
             .UseAuthentication()
             .UseAuthorization();
 
