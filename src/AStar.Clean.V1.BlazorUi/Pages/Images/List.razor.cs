@@ -42,7 +42,7 @@ public partial class List : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposing)
+        if(!disposing)
         {
             return;
         }
@@ -66,15 +66,15 @@ public partial class List : IDisposable
     {
         cancellationTokenSource = new();
         ErrorMessage = null;
-        ImageList = new List<FileInfoDto>();
+        ImageList = [];
         Loading = true;
-        if (CurrentPage is null or < 1)
+        if(CurrentPage is null or < 1)
         {
             NavigationManager.NavigateTo("/images/list/1");
             return;
         }
 
-        if (SearchParameters.ItemsPerPage == 0)
+        if(SearchParameters.ItemsPerPage == 0)
         {
             SearchParameters.ItemsPerPage = ItemsPerPage;
             SearchParameters.CurrentPage = 1;
@@ -85,7 +85,7 @@ public partial class List : IDisposable
             SearchParameters.CurrentPage = CurrentPage ?? 1;
         }
 
-        if (InitialLoadCompleted)
+        if(InitialLoadCompleted)
         {
             Logger.LogInformation("Starting search...SearchFolder: {SearchFolder}, CurrentPage: {CurrentPage}, ItemsPerPage: {ItemsPerPage}, SearchType: {SearchType}, RecursiveSubDirectories: {RecursiveSubDirectories}, SortOrder: {SortOrder}", SearchParameters.SearchFolder, SearchParameters.CurrentPage, SearchParameters.ItemsPerPage, SearchParameters.SearchType, SearchParameters.RecursiveSubDirectories, SearchParameters.SortOrder);
             ImageList = await FilesApiClient.GetFilesListAsync(SearchParameters, cancellationTokenSource.Token)
@@ -105,7 +105,7 @@ public partial class List : IDisposable
     private async Task HandleSubmit(bool isValid)
     {
         InitialLoadCompleted = true;
-        if (isValid)
+        if(isValid)
         {
             await HandleValidSubmit();
         }
@@ -117,7 +117,7 @@ public partial class List : IDisposable
 
     private async Task HandleValidSubmit()
     {
-        if (IsBusy)
+        if(IsBusy)
         {
             return;
         }
@@ -128,7 +128,7 @@ public partial class List : IDisposable
         {
             await LoadSearchResults();
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             Logger.LogError(0, ex, ex.Message);
             SuccessMessage = null;

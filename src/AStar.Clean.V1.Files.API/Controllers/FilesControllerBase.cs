@@ -37,7 +37,7 @@ public class FilesControllerBase : ControllerBase
     {
         try
         {
-            IGrouping<FileSize, FileInfoDto>[] duplicatesBySize = filesList.Where(fileInfoDto => fileInfoDto.IsImage())
+            var duplicatesBySize = filesList.Where(fileInfoDto => fileInfoDto.IsImage())
                 .GroupBy(file => FileSize.Create(file.Size, file.Height, file.Width),
                     new FileSizeEqualityComparer()).Where(files => files.Count() > 1)
                 .ToArray();

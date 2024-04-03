@@ -22,13 +22,13 @@ public class FilesListCountController : FilesControllerBase
         var filesList = FileInfoFromContext(searchParameters).ToList();
         filesList = filesList.Where(f => f.FileSize > 0).ToList();
 
-        if (searchParameters.SearchType is SearchType.Images)
+        if(searchParameters.SearchType is SearchType.Images)
         {
             filesList = filesList.Where(f => f.IsImage).ToList();
         }
 
         Logger.LogInformation("Starting search for {searchType}", searchParameters.SearchType);
-        if (searchParameters.SearchType is not SearchType.Duplicates)
+        if(searchParameters.SearchType is not SearchType.Duplicates)
         {
             return Ok(filesList.Count);
         }

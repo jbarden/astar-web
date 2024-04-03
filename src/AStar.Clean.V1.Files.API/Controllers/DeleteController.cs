@@ -22,7 +22,7 @@ public class DeleteController : ControllerBase
     {
         var filePathUpdated = filePath.Replace("__", @"\");
 
-        if (fileSystem.File.Exists(filePathUpdated))
+        if(fileSystem.File.Exists(filePathUpdated))
         {
             DeleteFile(filePathUpdated);
         }
@@ -31,12 +31,12 @@ public class DeleteController : ControllerBase
         var path = filePath[..lastIndex];
         var fileName = filePath[(lastIndex + 1)..];
         var existing = context.Files.FirstOrDefault(f => f.DirectoryName == path && f.FileName == fileName);
-        if (existing == null)
+        if(existing == null)
         {
             return NoContent();
         }
 
-        if (hardDelete)
+        if(hardDelete)
         {
             _=context.Files.Remove(existing);
         }
@@ -58,7 +58,7 @@ public class DeleteController : ControllerBase
         {
             fileSystem.File.Delete(filePathUpdated);
         }
-        catch 
+        catch
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
             try

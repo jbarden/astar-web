@@ -22,7 +22,7 @@ public class ImagesListController : ControllerBase
     {
         CheckParameters(searchParameters);
 
-        await foreach (var p in PerformImageGetAsync(searchParameters))
+        await foreach(var p in PerformImageGetAsync(searchParameters))
         {
             yield return p;
         }
@@ -30,12 +30,12 @@ public class ImagesListController : ControllerBase
 
     private static void CheckParameters(SearchParameters searchParameters)
     {
-        if (searchParameters.CountOnly)
+        if(searchParameters.CountOnly)
         {
             throw new ArgumentException("Controller cannot return the count only");
         }
 
-        if (!searchParameters.SearchType.Equals(SearchType.Images))
+        if(!searchParameters.SearchType.Equals(SearchType.Images))
         {
             throw new ArgumentException($"Unsupported file type - {searchParameters.SearchType}.");
         }
@@ -45,7 +45,7 @@ public class ImagesListController : ControllerBase
     {
         var fileList = await GetImageList(searchParameters);
 
-        foreach (var fileInfo in fileList)
+        foreach(var fileInfo in fileList)
         {
             yield return fileInfo;
         }
@@ -55,15 +55,15 @@ public class ImagesListController : ControllerBase
     {
         var filesResponse = await filesApiClient.GetFileListAsync(searchParameters);
 
-        if (!filesResponse.IsSuccessStatusCode)
+        if(!filesResponse.IsSuccessStatusCode)
         {
-            return new();
+            return [];
         }
 
         var files = await filesResponse.Content.ReadFromJsonAsync<IList<FileInfoDto>>();
 
         return files != null
             ? files.Where(filename => filename.IsImage()).ToList()
-            : new();
+            : [];
     }
 }

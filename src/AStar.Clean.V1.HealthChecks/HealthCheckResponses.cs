@@ -17,18 +17,18 @@ public static class HealthCheckResponses
         writer.WriteStartObject();
         writer.WriteString("status", report.Status.ToString());
 
-        if (report.Entries.Count > 0)
+        if(report.Entries.Count > 0)
         {
             writer.WriteStartArray("results");
 
-            foreach (var (key, value) in report.Entries)
+            foreach(var (key, value) in report.Entries)
             {
                 writer.WriteStartObject();
                 writer.WriteString("key", key);
                 writer.WriteString("status", value.Status.ToString());
                 writer.WriteString("description", value.Description);
                 writer.WriteStartArray("data");
-                foreach (var (dataKey, dataValue) in value.Data)
+                foreach(var (dataKey, dataValue) in value.Data)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName(dataKey);

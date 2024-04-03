@@ -24,7 +24,7 @@ public class ImageService : IImageService
         {
             return Image.FromFile(imagePath);
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             logger.LogError("An error occurred ({error}) whilst retrieving {fileName} - full stack: {stack}", e.Message,
                 imagePath, e.StackTrace);

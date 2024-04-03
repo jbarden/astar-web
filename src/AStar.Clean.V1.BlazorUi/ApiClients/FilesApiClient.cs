@@ -37,7 +37,7 @@ public class FilesApiClient
         searchParameters.CountOnly = true;
         var requestUri = $"/api/filesCount?{searchParameters}";
         var response = await httpClient.GetAsync(requestUri, cancellationToken);
-        if (!response.IsSuccessStatusCode)
+        if(!response.IsSuccessStatusCode)
         {
             return 0;
         }

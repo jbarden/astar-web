@@ -20,7 +20,7 @@ public class ImagesListCountController : ControllerBase
     [HttpGet(Name = "ImagesListCount")]
     public async Task<IActionResult> Get([FromQuery] SearchParameters searchParameters)
     {
-        if (!searchParameters.CountOnly)
+        if(!searchParameters.CountOnly)
         {
             return BadRequest();
         }
@@ -36,7 +36,7 @@ public class ImagesListCountController : ControllerBase
     {
         var filesResponse = await filesApiClient.GetFileListCountAsync(searchParameters);
 
-        if (!filesResponse.IsSuccessStatusCode)
+        if(!filesResponse.IsSuccessStatusCode)
         {
             return new();
         }

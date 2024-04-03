@@ -26,7 +26,7 @@ public class UserScopeMiddleware
     /// <returns></returns>
     public async Task InvokeAsync(HttpContext context)
     {
-        if (context.User.Identity is { IsAuthenticated: true })
+        if(context.User.Identity is { IsAuthenticated: true })
         {
             var user = context.User;
             const string pattern = @"(?<=[\w]{1})[\w-\._\+%]*(?=[\w]{1}@)";
@@ -34,7 +34,7 @@ public class UserScopeMiddleware
 
             var subjectId = user.Claims.First(c => c.Type == "sub")?.Value;
 
-            using (logger.BeginScope("User:{user}, SubjectId:{subject}", maskedUsername, subjectId))
+            using(logger.BeginScope("User:{user}, SubjectId:{subject}", maskedUsername, subjectId))
             {
                 await next(context);
             }

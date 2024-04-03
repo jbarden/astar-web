@@ -25,7 +25,7 @@ public class ImagesApiClient
         {
             response = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead);
         }
-        catch (Exception ex) 
+        catch(Exception ex)
         {
             logger.LogError(ex, ex.Message);
         }
@@ -67,6 +67,6 @@ public class ImagesApiClient
     private MemoryStream CreateNotFoundMemoryStream(string fileName)
     {
         _ = filesApiClient.DeleteFileAsync(fileName, true);
-        return new(File.ReadAllBytes(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),"404.jpg")));
+        return new(File.ReadAllBytes(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "404.jpg")));
     }
 }

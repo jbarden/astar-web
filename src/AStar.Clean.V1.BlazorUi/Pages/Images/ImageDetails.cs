@@ -21,7 +21,7 @@ public partial class ImageDetails
 
     protected override async Task OnParametersSetAsync()
     {
-        if (Fullname is not null)
+        if(Fullname is not null)
         {
             Fullname = Fullname?.Replace("__", @"\");
             Image = await GetImage(Fullname!);

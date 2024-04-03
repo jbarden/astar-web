@@ -11,8 +11,7 @@ namespace AStar.Clean.V1.Architecture.Tests;
 public interface ICar
 {
 }
-#pragma warning disable S4487
-#pragma warning disable S125
+
 //public class FastCar : ICar
 //{
 //    public void IllegalAccess(ICanvas canvas)
@@ -88,7 +87,6 @@ internal class StartButton
 //    }
 //}
 
-#pragma warning disable S2094
 internal class ModuleOneClassOne
 {
 }
@@ -117,6 +115,3 @@ internal class ModuleThreeClassTwo
 #pragma warning restore IDE0052
 #pragma warning restore CA1822
 
-#pragma warning restore S4487
-#pragma warning restore S2094
-#pragma warning restore S125

@@ -6,7 +6,7 @@ public static class SubscriptionHeaderExtensions
 {
     public static int PageCount(this PageHeader pageHeader)
     {
-        if (string.IsNullOrWhiteSpace(pageHeader.Value))
+        if(string.IsNullOrWhiteSpace(pageHeader.Value))
         {
             return 0;
         }
@@ -20,7 +20,7 @@ public static class SubscriptionHeaderExtensions
 
     public static string HeaderText(this PageHeader pageHeader, string searchType)
     {
-        if (string.IsNullOrWhiteSpace(pageHeader.Value))
+        if(string.IsNullOrWhiteSpace(pageHeader.Value))
         {
             return string.Empty;
         }

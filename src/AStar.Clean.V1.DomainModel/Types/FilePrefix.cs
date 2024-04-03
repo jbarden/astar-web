@@ -11,7 +11,7 @@ public record FilePrefix
         {
             value ??= string.Empty;
 
-            if (value.StartsWith('-'))
+            if(value.StartsWith('-'))
             {
                 value = value[1..];
             }

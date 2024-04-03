@@ -4,7 +4,6 @@ using AStar.Clean.V1.Images.API.ApiClients;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
 using AStar.Infrastructure.Data.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Serilog;
 

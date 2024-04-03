@@ -1,4 +1,4 @@
-﻿namespace FilesApp.Models;
+﻿namespace AStar.Clean.V1.Files.API.Models;
 
 public class FileDetail
 {

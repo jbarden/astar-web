@@ -17,7 +17,7 @@ public partial class Search
     protected override async Task OnParametersSetAsync()
     {
         var searchParameters = SearchParameters;
-        if (string.IsNullOrWhiteSpace(searchParameters.SearchFolder))
+        if(string.IsNullOrWhiteSpace(searchParameters.SearchFolder))
         {
             searchParameters.SearchFolder = @"F:\WallHaven";
         }
@@ -27,7 +27,7 @@ public partial class Search
 
     private async Task HandleValidSubmit()
     {
-        if (OnSubmit.HasDelegate)
+        if(OnSubmit.HasDelegate)
         {
             await OnSubmit.InvokeAsync(true);
         }
@@ -35,7 +35,7 @@ public partial class Search
 
     private async Task HandleInvalidSubmit()
     {
-        if (OnSubmit.HasDelegate)
+        if(OnSubmit.HasDelegate)
         {
             await OnSubmit.InvokeAsync(false);
         }

@@ -9,7 +9,7 @@ public record StartingPageNumber
         get => value;
         set
         {
-            if (value <= 0)
+            if(value <= 0)
             {
                 value = 1;
             }

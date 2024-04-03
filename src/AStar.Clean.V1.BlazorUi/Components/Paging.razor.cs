@@ -17,12 +17,12 @@ public partial class Paging
 
     public int Target { get; set; }
 
-    private List<SelectedItem> Items { get; } = new();
+    private List<SelectedItem> Items { get; } = [];
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        for (var i = 1; i <= TotalPages; i++)
+        for(var i = 1; i <= TotalPages; i++)
         {
             Items.Add(new() { Text = $"Page {i}", Value = i.ToString(), Active = i == CurrentPage });
         }
