@@ -12,10 +12,7 @@ public class ImagesListController : ControllerBase
 {
     private readonly FilesApiClient filesApiClient;
 
-    public ImagesListController(FilesApiClient filesApiClient)
-    {
-        this.filesApiClient = filesApiClient;
-    }
+    public ImagesListController(FilesApiClient filesApiClient) => this.filesApiClient = filesApiClient;
 
     [HttpGet(Name = "ImagesList")]
     public async IAsyncEnumerable<FileInfoDto> Get([FromQuery] SearchParameters searchParameters)

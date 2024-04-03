@@ -2,7 +2,7 @@
 using AStar.Clean.V1.Files.API.Config;
 using AStar.Clean.V1.Files.API.Models;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;

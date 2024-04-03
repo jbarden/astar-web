@@ -50,10 +50,7 @@ public class Steering
 {
     private readonly ICar _car;
 
-    public Steering(ICar car)
-    {
-        _car = car;
-    }
+    public Steering(ICar car) => _car = car;
 
     public void ApplySteering()
     {
@@ -70,10 +67,7 @@ internal class StartButton
 {
     private readonly ICanvas _startCanvas;
 
-    public StartButton()
-    {
-        _startCanvas = new StartCanvas();
-    }
+    public StartButton() => _startCanvas = new StartCanvas();
 }
 
 //internal class EndButton

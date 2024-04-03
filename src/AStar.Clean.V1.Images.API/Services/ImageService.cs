@@ -7,10 +7,7 @@ public class ImageService : IImageService
 {
     private readonly ILogger<ImageService> logger;
 
-    public ImageService(ILogger<ImageService> logger)
-    {
-        this.logger = logger;
-    }
+    public ImageService(ILogger<ImageService> logger) => this.logger = logger;
 
     /// <summary>
     /// This feels like it should be on the files API

@@ -1,5 +1,5 @@
 ﻿using System.IO.Abstractions;
-using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;

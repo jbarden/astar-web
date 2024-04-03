@@ -2,7 +2,7 @@
 using AStar.Clean.V1.Files.API.Config;
 using AStar.Clean.V1.Files.API.Models;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;
@@ -25,7 +25,7 @@ public class FilesListController : FilesControllerBase
             var filesList = FileInfoFromContext(searchParameters).ToList();
             if(searchParameters.SearchType is SearchType.Images)
             {
-                filesList = filesList.Where(f => f.IsImage).ToList();
+                filesList = filesList.Where(f => f.IsImage2).ToList();
             }
 
             var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName });

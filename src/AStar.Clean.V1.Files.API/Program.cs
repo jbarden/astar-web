@@ -1,7 +1,7 @@
 using System.IO.Abstractions;
 using AStar.Clean.V1.Files.API.Services;
 using AStar.Clean.V1.HealthChecks;
-using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data;
 using Serilog;
 
 namespace AStar.Clean.V1.Files.API;

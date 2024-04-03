@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using AStar.Infrastructure.Data.Data;
-using AStar.Infrastructure.Data.Models;
+using AStar.Infrastructure.Data;
+using AStar.Infrastructure.Models;
 
 Console.WriteLine(DateTime.UtcNow);
 

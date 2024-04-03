@@ -5,8 +5,8 @@ using System.IO.Abstractions;
 using AStar.Clean.V1.Images.API.Extensions;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
-using AStar.Infrastructure.Data.Data;
-using AStar.Infrastructure.Data.Models;
+using AStar.Infrastructure.Data;
+using AStar.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Images.API.Controllers;

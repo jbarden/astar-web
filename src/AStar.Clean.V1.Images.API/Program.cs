@@ -3,7 +3,7 @@ using AStar.Clean.V1.HealthChecks;
 using AStar.Clean.V1.Images.API.ApiClients;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
-using AStar.Infrastructure.Data.Data;
+using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Options;
 using Serilog;
 

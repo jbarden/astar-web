@@ -2,8 +2,8 @@
 using AStar.Clean.V1.Files.API.Config;
 using AStar.Clean.V1.Files.API.Models;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Infrastructure.Data.Data;
-using AStar.Infrastructure.Data.Models;
+using AStar.Infrastructure.Data;
+using AStar.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Files.API.Controllers;
@@ -30,7 +30,7 @@ public class FilesControllerBase : ControllerBase
 
     protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)
         => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories
-                                            ? f.DirectoryName.ToUpper().StartsWith(searchParameters.SearchFolder.ToUpper())
+                                            ? f.DirectoryName.StartsWith(searchParameters.SearchFolder, StringComparison.CurrentCultureIgnoreCase)
                                             : f.DirectoryName.ToUpper().Equals(searchParameters.SearchFolder.ToUpper()));
 
     protected List<FileInfoDto> DuplicateFileInfoJbs(IEnumerable<FileInfoDto> filesList)
