@@ -41,10 +41,11 @@ public static class Program
 
     private static void ConfigurePipeline(WebApplication app)
     {
-        _ = app.UseSwagger()
-            .UseSwaggerUI()
-            .UseAuthentication()
-            .UseAuthorization();
+        _ = app.UseMiddleware<GlobalExceptionMiddleware>()
+               .UseSwagger()
+               .UseSwaggerUI()
+               .UseAuthentication()
+               .UseAuthorization();
 
         _ = app.MapControllers();
         _ = app.MapHealthChecks("/health/live", new()

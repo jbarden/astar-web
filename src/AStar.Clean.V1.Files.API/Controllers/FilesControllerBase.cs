@@ -20,30 +20,22 @@ public class FilesControllerBase(IFileSystem fileSystem, IImageService imageServ
 
     protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)
         => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories
-                                            ? f.DirectoryName.StartsWith(searchParameters.SearchFolder, StringComparison.CurrentCultureIgnoreCase)
+                                            ? f.DirectoryName.ToUpper().StartsWith(searchParameters.SearchFolder.ToUpper())
                                             : f.DirectoryName.ToUpper().Equals(searchParameters.SearchFolder.ToUpper()));
 
     protected List<FileInfoDto> DuplicateFileInfoJbs(IEnumerable<FileInfoDto> filesList)
     {
-        try
-        {
-            var duplicatesBySize = filesList.Where(fileInfoDto => fileInfoDto.IsImage())
+        var duplicatesBySize = filesList.Where(fileInfoDto => fileInfoDto.IsImage())
                 .GroupBy(file => FileSize.Create(file.Size, file.Height, file.Width),
                     new FileSizeEqualityComparer()).Where(files => files.Count() > 1)
                 .ToArray();
 
-            var duplicates = new List<FileInfoDto>();
-            foreach(var fileGroup in duplicatesBySize)
-            {
-                duplicates.AddRange(fileGroup);
-            }
-
-            return duplicates;
-        }
-        catch(Exception ex)
+        var duplicates = new List<FileInfoDto>();
+        foreach(var fileGroup in duplicatesBySize)
         {
-            Logger.LogError(ex, "Error: {error}", ex.Message);
-            throw;
+            duplicates.AddRange(fileGroup);
         }
+
+        return duplicates;
     }
 }
