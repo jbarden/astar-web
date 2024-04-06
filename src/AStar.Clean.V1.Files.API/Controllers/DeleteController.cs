@@ -6,16 +6,10 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class DeleteController : ControllerBase
+public class DeleteController(IFileSystem fileSystem, FilesContext context) : ControllerBase
 {
-    private readonly IFileSystem fileSystem;
-    private readonly FilesContext context;
-
-    public DeleteController(IFileSystem fileSystem, FilesContext context)
-    {
-        this.fileSystem = fileSystem;
-        this.context = context;
-    }
+    private readonly IFileSystem fileSystem = fileSystem;
+    private readonly FilesContext context = context;
 
     [HttpDelete(Name = "Delete")]
     public IActionResult Delete([FromQuery] string filePath, bool hardDelete)

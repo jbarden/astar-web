@@ -9,13 +9,9 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class FilesListController : FilesControllerBase
+public class FilesListController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
+    : FilesControllerBase(fileSystem, imageService, context, logger)
 {
-    public FilesListController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
-        : base(fileSystem, imageService, context, logger)
-    {
-    }
-
     [HttpGet(Name = "FilesList")]
     public ActionResult<IAsyncEnumerable<FileInfoDto>> Get([FromQuery] SearchParameters searchParameters)
     {

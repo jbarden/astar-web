@@ -10,23 +10,13 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class FilesControllerBase : ControllerBase
+public class FilesControllerBase(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger) : ControllerBase
 {
-    private readonly FilesContext context;
+    protected IFileSystem FileSystem { get; set; } = fileSystem;
 
-    public FilesControllerBase(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
-    {
-        this.context = context;
-        FileSystem = fileSystem;
-        ImageService = imageService;
-        Logger = logger;
-    }
+    protected IImageService ImageService { get; set; } = imageService;
 
-    protected IFileSystem FileSystem { get; set; }
-
-    protected IImageService ImageService { get; set; }
-
-    protected ILogger<FilesControllerBase> Logger { get; set; }
+    protected ILogger<FilesControllerBase> Logger { get; set; } = logger;
 
     protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)
         => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories

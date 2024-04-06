@@ -4,19 +4,8 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace AStar.Clean.V1.BlazorUI.ApiClients;
 
-public class ImagesApiClient
+public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClient, ILogger<ImagesApiClient> logger)
 {
-    private readonly HttpClient httpClient;
-    private readonly FilesApiClient filesApiClient;
-    private readonly ILogger<ImagesApiClient> logger;
-
-    public ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClient, ILogger<ImagesApiClient> logger)
-    {
-        this.httpClient = httpClient;
-        this.filesApiClient = filesApiClient;
-        this.logger = logger;
-    }
-
     public async Task<Stream> GetImageThumbnailAsync(string imagePath, int maximumSizeInPixels)
     {
         var requestUri = $"/api/image?imagePath={imagePath}&thumbnail=true&maximumSizeInPixels={maximumSizeInPixels}";

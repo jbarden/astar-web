@@ -13,19 +13,9 @@ namespace AStar.Clean.V1.Images.API.Controllers;
 
 [Route("api/image")]
 [ApiController]
-public class ImageController : ControllerBase
+public class ImageController(IFileSystem fileSystem, IImageService imageService, FilesContext context) : ControllerBase
 {
     private const int MaximumHeightAndWidthForThumbnail = 750;
-    private readonly IFileSystem fileSystem;
-    private readonly IImageService imageService;
-    private readonly FilesContext context;
-
-    public ImageController(IFileSystem fileSystem, IImageService imageService, FilesContext context)
-    {
-        this.fileSystem = fileSystem;
-        this.imageService = imageService;
-        this.context = context;
-    }
 
     [HttpGet("details", Name = "ImageDetail")]
     public IActionResult GetImageDetail(string imagePath)

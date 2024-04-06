@@ -9,13 +9,8 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 
 [Route("api/filesCount")]
 [ApiController]
-public class FilesListCountController : FilesControllerBase
+public class FilesListCountController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger) : FilesControllerBase(fileSystem, imageService, context, logger)
 {
-    public FilesListCountController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger)
-    : base(fileSystem, imageService, context, logger)
-    {
-    }
-
     [HttpGet(Name = "FilesListCount")]
     public IActionResult Get([FromQuery] SearchParameters searchParameters)
     {

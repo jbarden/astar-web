@@ -6,17 +6,8 @@ namespace AStar.Clean.V1.Images.API.Controllers;
 
 [Route("api/imagesListCount")]
 [ApiController]
-public class ImagesListCountController : ControllerBase
+public class ImagesListCountController(FilesApiClient filesApiClient, ILogger<ImagesListController> logger) : ControllerBase
 {
-    private readonly FilesApiClient filesApiClient;
-    private readonly ILogger<ImagesListController> logger;
-
-    public ImagesListCountController(FilesApiClient filesApiClient, ILogger<ImagesListController> logger)
-    {
-        this.filesApiClient = filesApiClient;
-        this.logger = logger;
-    }
-
     [HttpGet(Name = "ImagesListCount")]
     public async Task<IActionResult> Get([FromQuery] SearchParameters searchParameters)
     {

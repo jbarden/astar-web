@@ -8,12 +8,8 @@ namespace AStar.Clean.V1.Images.API.Controllers;
 
 [Route("api/imagesList")]
 [ApiController]
-public class ImagesListController : ControllerBase
+public class ImagesListController(FilesApiClient filesApiClient) : ControllerBase
 {
-    private readonly FilesApiClient filesApiClient;
-
-    public ImagesListController(FilesApiClient filesApiClient) => this.filesApiClient = filesApiClient;
-
     [HttpGet(Name = "ImagesList")]
     public async IAsyncEnumerable<FileInfoDto> Get([FromQuery] SearchParameters searchParameters)
     {
