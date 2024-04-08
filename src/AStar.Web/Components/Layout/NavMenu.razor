@@ -1,0 +1,57 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid justify-content-center">
+        <a class="navbar-brand" href="">
+            <img src="assets/logo.JPG" class="logo" alt="AStar Web" />
+            <div class="logo">AStar Web</div>
+        </a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/images/list">
+                <span class="oi oi-person" aria-hidden="true"></span> Images
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/scrapper/index">
+                <span class="oi oi-infinity" aria-hidden="true"></span> Wallpaper Scrapper
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/random-image/index">
+                <span class="oi oi-random" aria-hidden="true" style="color: orange"></span> Random Images
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/directory-rename/index">
+                <span class="oi oi-dashboard" aria-hidden="true"></span> Directory Rename
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/file-rename/index">
+                <span class="oi oi-file" aria-hidden="true"></span> File Rename
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
