@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
+using AStar.Web.ApiClients;
 
 namespace AStar.Web.Models;
 
