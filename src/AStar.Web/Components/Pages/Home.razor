@@ -1,7 +1,38 @@
 ﻿@page "/"
+@using AStar.Web.ApiClients
+@inject FilesApiClient FilesApiClient
+@inject ImagesApiClient ImagesApiClient
 
-<PageTitle>Home</PageTitle>
+<PageTitle>A-Star Utilities</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>A-Star Utilities</h1>
 
-Welcome to your new app.
+@if (Loaded)
+{
+    @if (FilesApiHealthStatus == "Healthy")
+    {
+        <br />
+        <div class="alert alert-success">Files Api Health Status: @FilesApiHealthStatus</div>
+    }
+    else
+    {
+        <br />
+        <div class="alert alert-danger">Files Api Health Status: @FilesApiHealthStatus</div>
+    }
+
+    @if (ImagesApiHealthStatus == "Healthy")
+    {
+        <br />
+        <div class="alert alert-success">Images Api Health Status: @ImagesApiHealthStatus</div>
+    }
+    else
+    {
+        <br />
+        <div class="alert alert-danger">Images Api Health Status: @ImagesApiHealthStatus</div>
+    }
+}
+else
+{
+    <br />
+    <div class="alert alert-success">Checking Api Health Statuses</div>
+}

@@ -1,4 +1,5 @@
 using System.IO.Abstractions;
+using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions;
 using AStar.Clean.V1.Files.API.Services;
 using AStar.Clean.V1.HealthChecks;
@@ -24,8 +25,7 @@ public static class Program
     private static void ConfigureServices(WebApplicationBuilder builder)
     {
         var services = builder.Services;
-        _ = services
-            .AddControllers();
+        _ = services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         _ = services.AddEndpointsApiExplorer()
             .AddSwaggerGen()
             .AddHealthChecks();

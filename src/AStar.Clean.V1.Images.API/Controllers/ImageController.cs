@@ -18,7 +18,11 @@ public class ImageController(IFileSystem fileSystem, IImageService imageService,
     private const int MaximumHeightAndWidthForThumbnail = 750;
 
     [HttpGet("details", Name = "ImageDetail")]
-    public IActionResult GetImageDetail(string imagePath)
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<FileInfoDto> GetImageDetail(string imagePath)
     {
         if(!imagePath.IsImage())
         {
@@ -75,7 +79,11 @@ public class ImageController(IFileSystem fileSystem, IImageService imageService,
     /// <returns>
     /// </returns>
     [HttpGet(Name = "Image")]
-    public IActionResult GetImage(string imagePath, bool thumbnail = true, int maximumSizeInPixels = 150,
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<FileStream> GetImage(string imagePath, bool thumbnail = true, int maximumSizeInPixels = 150,
         bool resize = false)
     {
         if(!imagePath.IsImage())

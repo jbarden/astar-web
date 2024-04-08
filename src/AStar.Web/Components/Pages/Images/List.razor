@@ -1,8 +1,7 @@
 ﻿@page "/images/list/{currentPage:int?}"
 @inject NavigationManager NavigationManager
 @inject ILogger<List> Logger
-@* @inject FilesApiClient FilesApiClient
-@using AStar.Web.ApiClients *@
+@inject AStar.Web.ApiClients.FilesApiClient FilesApiClient
 @using AStar.Web.Components
 
 @inherits LayoutComponentBase
@@ -29,7 +28,7 @@
                 <a class="oi oi-chevron-left" @onclick="CloseNav"></a><a class="oi oi-chevron-left" @onclick="CloseNav">Search</a>
             </span>
         }
-        <AStar.Clean.V1.BlazorUI.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy"></AStar.Clean.V1.BlazorUI.Components.Search>
+        <AStar.Web.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy"></AStar.Web.Components.Search>
     }
 </div>
 
@@ -84,7 +83,7 @@
                 </tbody>
             </table>
 
-            <AStar.Clean.V1.BlazorUI.Components.AnchorLink href="#top">Back to top</AStar.Clean.V1.BlazorUI.Components.AnchorLink>
+            <AStar.Web.Components.AnchorLink href="#top">Back to top</AStar.Web.Components.AnchorLink>
             <div class="alert alert-success">Total Number of Images: @ImageCount Total Number of Pages: @TotalPages</div>
             <Paging CurrentPage="CurrentPage" TotalPages="TotalPages"></Paging>
         }

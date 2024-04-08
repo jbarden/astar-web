@@ -88,12 +88,12 @@ public partial class List : IDisposable
         if(InitialLoadCompleted)
         {
             Logger.LogInformation("Starting search...SearchFolder: {SearchFolder}, CurrentPage: {CurrentPage}, ItemsPerPage: {ItemsPerPage}, SearchType: {SearchType}, RecursiveSubDirectories: {RecursiveSubDirectories}, SortOrder: {SortOrder}", SearchParameters.SearchFolder, SearchParameters.CurrentPage, SearchParameters.ItemsPerPage, SearchParameters.SearchType, SearchParameters.RecursiveSubDirectories, SearchParameters.SortOrder);
-            //ImageList = await FilesApiClient.GetFilesListAsync(SearchParameters, cancellationTokenSource.Token)
-            //    .ConfigureAwait(false);
+            ImageList = await FilesApiClient.GetFilesListAsync(SearchParameters, cancellationTokenSource.Token)
+                .ConfigureAwait(false);
 
-            //Logger.LogInformation("Got file list. Getting total file count...");
+            Logger.LogInformation("Got file list. Getting total file count...");
 
-            //ImageCount = await FilesApiClient.GetFilesCountAsync(SearchParameters, cancellationTokenSource.Token).ConfigureAwait(false);
+            ImageCount = await FilesApiClient.GetFilesCountAsync(SearchParameters, cancellationTokenSource.Token).ConfigureAwait(false);
             TotalPages = (int)Math.Ceiling((decimal)ImageCount / SearchParameters.ItemsPerPage);
             Logger.LogInformation("Completed search...");
         }

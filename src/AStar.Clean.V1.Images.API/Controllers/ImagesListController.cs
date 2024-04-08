@@ -11,6 +11,10 @@ namespace AStar.Clean.V1.Images.API.Controllers;
 public class ImagesListController(FilesApiClient filesApiClient) : ControllerBase
 {
     [HttpGet(Name = "ImagesList")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async IAsyncEnumerable<FileInfoDto> Get([FromQuery] SearchParameters searchParameters)
     {
         CheckParameters(searchParameters);

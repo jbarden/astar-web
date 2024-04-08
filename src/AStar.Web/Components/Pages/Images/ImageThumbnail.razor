@@ -1,5 +1,5 @@
-﻿@using AStar.Web.APIClients.Images
-@inject Client ImagesApiClient
+﻿@using AStar.Web.ApiClients
+@inject AStar.Web.ApiClients.ImagesApiClient ImagesApiClient
 
 @if (@imageSource.Length > 0)
 {
@@ -29,7 +29,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var thumbnail = await ImagesApiClient.ImageDetailAsync(ImageFullName);
+        var thumbnail = await ImagesApiClient.GetImageAsync(ImageFullName, ThumbnailSize);
 
         imageSource = await PopulateImageFromStream(thumbnail);
     }

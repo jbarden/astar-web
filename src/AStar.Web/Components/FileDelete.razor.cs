@@ -1,4 +1,5 @@
-﻿using AStar.Web.Models;
+﻿using AStar.Web.ApiClients;
+using AStar.Web.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace AStar.Web.Components;
@@ -23,10 +24,10 @@ public partial class FileDelete
     private async Task DeleteAsync(bool deleteHard)
     {
         IsEnabled = false;
-        //var response = await FilesApiClient.DeleteFileAsync(Fullname!, deleteHard);
+        var response = await FilesApiClient.DeleteFileAsync(Fullname!, deleteHard);
 
-        //var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
+        var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
 
-        //await OnDelete.InvokeAsync(message);
+        await OnDelete.InvokeAsync(message);
     }
 }

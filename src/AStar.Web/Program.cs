@@ -1,3 +1,4 @@
+using AStar.Web.ApiClients;
 using AStar.Web.Components;
 using AStar.Web.Models;
 using Microsoft.Extensions.Options;
@@ -21,16 +22,17 @@ internal class Program
             .ReadFrom.Configuration(context.Configuration));
 
         _ = services.AddHttpContextAccessor();
+
         _ = builder.Services.Configure<FilesApiConfiguration>(
             builder.Configuration.GetSection("ApiConfiguration:FilesApiConfiguration"));
         _ = builder.Services.Configure<ImagesApiConfiguration>(
             builder.Configuration.GetSection("ApiConfiguration:ImagesApiConfiguration"));
-        _ = services.AddHttpClient<AStar.Web.APIClients.Files.IClient, AStar.Web.APIClients.Files.Client>().ConfigureHttpClient((serviceProvider, client) =>
+        _ = services.AddHttpClient<FilesApiClient>().ConfigureHttpClient((serviceProvider, client) =>
         {
             client.BaseAddress = serviceProvider.GetRequiredService<IOptions<FilesApiConfiguration>>().Value.BaseUrl;
             client.DefaultRequestHeaders.Accept.Add(new("application/json"));
         });
-        _ = services.AddHttpClient<AStar.Web.APIClients.Images.IClient, AStar.Web.APIClients.Images.Client>().ConfigureHttpClient((serviceProvider, client) =>
+        _ = services.AddHttpClient<ImagesApiClient>().ConfigureHttpClient((serviceProvider, client) =>
         {
             client.BaseAddress = serviceProvider.GetRequiredService<IOptions<ImagesApiConfiguration>>().Value.BaseUrl;
             client.DefaultRequestHeaders.Accept.Add(new("application/json"));

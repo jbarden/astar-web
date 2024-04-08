@@ -12,7 +12,11 @@ public class DeleteController(IFileSystem fileSystem, FilesContext context) : Co
     private readonly FilesContext context = context;
 
     [HttpDelete(Name = "Delete")]
-    public IActionResult Delete([FromQuery] string filePath, bool hardDelete)
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public ActionResult Delete([FromQuery] string filePath, bool hardDelete)
     {
         var filePathUpdated = filePath.Replace("__", @"\");
 

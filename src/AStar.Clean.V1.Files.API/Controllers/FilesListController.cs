@@ -13,6 +13,10 @@ public class FilesListController(IFileSystem fileSystem, IImageService imageServ
     : FilesControllerBase(fileSystem, imageService, context, logger)
 {
     [HttpGet(Name = "FilesList")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IAsyncEnumerable<FileInfoDto>> Get([FromQuery] SearchParameters searchParameters)
     {
         Logger.LogInformation("Starting search for {searchType}", searchParameters.SearchType);

@@ -12,7 +12,11 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 public class FilesListCountController(IFileSystem fileSystem, IImageService imageService, FilesContext context, ILogger<FilesControllerBase> logger) : FilesControllerBase(fileSystem, imageService, context, logger)
 {
     [HttpGet(Name = "FilesListCount")]
-    public IActionResult Get([FromQuery] SearchParameters searchParameters)
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<int> Get([FromQuery] SearchParameters searchParameters)
     {
         var filesList = FileInfoFromContext(searchParameters).ToList();
         filesList = filesList.Where(f => f.FileSize > 0).ToList();

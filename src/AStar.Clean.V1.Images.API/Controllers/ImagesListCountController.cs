@@ -9,7 +9,11 @@ namespace AStar.Clean.V1.Images.API.Controllers;
 public class ImagesListCountController(FilesApiClient filesApiClient, ILogger<ImagesListController> logger) : ControllerBase
 {
     [HttpGet(Name = "ImagesListCount")]
-    public async Task<IActionResult> Get([FromQuery] SearchParameters searchParameters)
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<int>> Get([FromQuery] SearchParameters searchParameters)
     {
         if(!searchParameters.CountOnly)
         {

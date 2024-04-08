@@ -28,7 +28,7 @@ public partial class ImageThumbnailWithDetails
 
     public string DisplayImageSize()
     {
-        if(Size < 1000000)
+        if(Size < 1_000_000)
         {
             return $"{Size / 1.0 / 1024:N2} Kb";
         }
@@ -48,12 +48,12 @@ public partial class ImageThumbnailWithDetails
 
     protected override async Task OnInitializedAsync()
     {
-        //var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
-        //if(details is not null)
-        //{
-        //    Height = details.Height;
-        //    Width = details.Width;
-        //}
+        var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
+        if(details is not null)
+        {
+            Height = details.Height;
+            Width = details.Width;
+        }
     }
 
     private void FileDeleted() => OnDeleted("File not found");

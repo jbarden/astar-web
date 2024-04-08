@@ -1,4 +1,5 @@
 using System.IO.Abstractions;
+using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions;
 using AStar.Clean.V1.HealthChecks;
 using AStar.Clean.V1.Images.API.ApiClients;
@@ -30,7 +31,7 @@ public static class Program
         _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
             .ReadFrom.Configuration(context.Configuration));
-        _ = services.AddControllers();
+        _ = services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         _ = services.AddDbContext<FilesContext>();
         _ = services.AddEndpointsApiExplorer()
             .AddSwaggerGen()
