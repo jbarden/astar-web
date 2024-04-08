@@ -48,12 +48,12 @@ public partial class ImageThumbnailWithDetails
 
     protected override async Task OnInitializedAsync()
     {
-        var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
-        if(details is not null)
-        {
-            Height = details.Height;
-            Width = details.Width;
-        }
+        //var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
+        //if(details is not null)
+        //{
+        //    Height = details.Height;
+        //    Width = details.Width;
+        //}
     }
 
     private void FileDeleted() => OnDeleted("File not found");

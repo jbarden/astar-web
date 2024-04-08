@@ -1,5 +1,6 @@
-﻿@    using AStar.Clean.V1.BlazorUI.Models
-@    using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+﻿@* @using AStar.Clean.V1.BlazorUI.Models *@
+@using AStar.Web.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 
 <EditForm Model="@SearchParameters" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
     <DataAnnotationsValidator />

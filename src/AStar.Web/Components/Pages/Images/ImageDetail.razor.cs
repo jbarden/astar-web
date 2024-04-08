@@ -25,12 +25,12 @@ public partial class ImageDetails
         {
             Fullname = Fullname?.Replace("__", @"\");
             Image = await GetImage(Fullname!);
-            var details = await ImagesApiClient.GetImageDetailsAsync(Fullname!);
-            CreatedDate = details?.Created;
-            Width = details?.Width;
-            Height = details?.Height;
-            Size = details?.Size;
-            Name = details?.Name;
+            //var details = await (new ApiClients.Images.ImagesApiClient("", new HttpClient())).ImageDetailAsync(Fullname!);
+            //CreatedDate = details?.Created;
+            //Width = details?.Width;
+            //Height = details?.Height;
+            //Size = details?.Size;
+            //Name = details?.Name;
         }
     }
 
@@ -44,7 +44,7 @@ public partial class ImageDetails
     }
 
     // Need to get the actual size we want to set
-    private async Task<Stream> GetImageStream(string imagePath) => await ImagesApiClient.GetImageAsync(imagePath, 1450);
+    private async Task<Stream> GetImageStream(string imagePath) => null!; //await ImagesApiClient.GetImageAsync(imagePath, 1450);
 
     private async Task<string> GetImage(string imagePath) => PopulateImageFromStream(await GetImageStream(imagePath));
 }

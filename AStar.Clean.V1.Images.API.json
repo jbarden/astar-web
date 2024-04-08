@@ -360,21 +360,19 @@
       },
       "SearchType": {
         "enum": [
-          0,
-          1
+          "Images",
+          "All"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "SortOrder": {
         "enum": [
-          0,
-          1,
-          2,
-          3
+          "SizeDescending",
+          "SizeAscending",
+          "NameDescending",
+          "NameAscending"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       }
     }
   }
