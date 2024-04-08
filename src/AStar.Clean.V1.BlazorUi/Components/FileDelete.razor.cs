@@ -14,18 +14,16 @@ public partial class FileDelete
     [Parameter]
     public EventCallback<string> OnDelete { get; set; }
 
-    private async Task DeleteImageAsync()
+    private bool IsEnabled { get; set; } = true;
+
+    private async Task DeleteImageAsync() => await DeleteAsync(deleteHard: false);
+
+    private async Task DeleteImageHardAsync() => await DeleteAsync(deleteHard: true);
+
+    private async Task DeleteAsync(bool deleteHard)
     {
-        var response = await FilesApiClient.DeleteFileAsync(Fullname!, false);
-
-        var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
-
-        await OnDelete.InvokeAsync(message);
-    }
-
-    private async Task DeleteImageHardAsync()
-    {
-        var response = await FilesApiClient.DeleteFileAsync(Fullname!, true);
+        IsEnabled = false;
+        var response = await FilesApiClient.DeleteFileAsync(Fullname!, deleteHard);
 
         var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
 

@@ -1,5 +1,5 @@
 ﻿@using AStar.Clean.V1.BlazorUI.ApiClients
 @inject FilesApiClient FilesApiClient
 
-<button type="submit" class="btn btn-danger btn-lg oi oi-delete" onclick="@DeleteImageAsync">  Delete</button>
-<button type="submit" class="btn btn-danger btn-lg oi oi-delete" onclick="@DeleteImageHardAsync">  Delete Permanetly</button>
+<button type="submit" class="btn btn-danger btn-lg oi oi-delete" onclick="@DeleteImageAsync" IsEnabled="@IsEnabled">  Delete</button>
+<button type="submit" class="btn btn-danger btn-lg oi oi-delete" onclick="@DeleteImageHardAsync" IsEnabled="@IsEnabled">  Delete Permanetly</button>

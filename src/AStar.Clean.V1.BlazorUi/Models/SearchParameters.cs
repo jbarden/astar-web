@@ -16,7 +16,7 @@ public class SearchParameters
     public int CurrentPage { get; set; } = 1;
 
     [Required]
-    public int ItemsPerPage { get; set; } = 30;
+    public int ItemsPerPage { get; set; } = 10;
 
     [Range(50, 750, ErrorMessage = "Please specify a thumbnail size between 50 and 750 pixels.")]
     public int MaximumSizeOfThumbnail { get; set; } = 750;

@@ -1,4 +1,5 @@
 using System.IO.Abstractions;
+using AStar.ASPNet.Extensions;
 using AStar.Clean.V1.HealthChecks;
 using AStar.Clean.V1.Images.API.ApiClients;
 using AStar.Clean.V1.Images.API.Models;
@@ -48,7 +49,9 @@ public static class Program
 
     private static void ConfigurePipeline(WebApplication app)
     {
-        _ = app.UseSwagger()
+        _ = app
+            .UseMiddleware<GlobalExceptionMiddleware>()
+            .UseSwagger()
             .UseSwaggerUI()
             .UseAuthentication()
             .UseAuthorization();

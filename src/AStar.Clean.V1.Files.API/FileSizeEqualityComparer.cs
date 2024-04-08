@@ -30,9 +30,7 @@ internal class FileSizeEqualityComparer : IEqualityComparer<FileSize>
     /// The hash-code.
     /// </returns>
     public int GetHashCode(FileSize fileSize)
-    {
-        var hashCode = fileSize.Height.GetHashCode() ^ fileSize.FileLength.GetHashCode() ^ fileSize.Width.GetHashCode();
-
-        return hashCode.GetHashCode();
-    }
+                    => fileSize.Height.GetHashCode()
+                     ^ fileSize.FileLength.GetHashCode()
+                     ^ fileSize.Width.GetHashCode();
 }
