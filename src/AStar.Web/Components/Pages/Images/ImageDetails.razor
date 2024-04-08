@@ -1,0 +1,29 @@
+﻿@page "/images/details/{fullname?}"
+@using AStar.Clean.V1.BlazorUI.ApiClients
+@inject ImagesApiClient ImagesApiClient
+
+
+<PageTitle>Image Details</PageTitle>
+
+<h1>Image Details - @Fullname</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr class="text-white">
+        <td>Name</td>
+        <td>Created Date</td>
+        <td>Dimensions</td>
+        <td>Size</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr class="text-white">
+            <td>@Name</td>
+            <td>@CreatedDate</td>
+            <td>@Width x @Height (W x H)</td>
+            <td>@Size</td>
+        </tr>
+    </tbody>
+</table>
+
+<img src="@Image" alt="@Fullname" />

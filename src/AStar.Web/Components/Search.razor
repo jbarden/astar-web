@@ -1,0 +1,60 @@
+﻿@    using AStar.Clean.V1.BlazorUI.Models
+@    using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+
+<EditForm Model="@SearchParameters" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th scope="col"><label for="searchFolder" class="form-label">Search Folder</label></th>
+                <th scope="col"><label for="itemsPerPage" class="form-label">Items Per Page</label></th>
+                <th scope="col"><label for="maximumSizeOfImage" class="form-label">Max Image Size</label></th>
+                <th scope="col"><label for="maximumSizeOfThumbnail" class="form-label">Max Thumbnail Size</label></th>
+                <th scope="col"><label for="searchPattern" class="form-label">Search Pattern</label></th>
+                <th scope="col"><label for="RecursiveSubDirectories" class="form-label">Recurse Sub-Directories?</label></th>
+                <th scope="col"><label for="IncludeDimensions" class="form-label">Include Dimensions?</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <InputText id="searchFolder" class="form-control" style="width: 300px"
+                               @bind-Value="SearchParameters.SearchFolder" />
+                </th>
+                <td>
+                    <InputNumber id="itemsPerPage" class="form-control w-75"
+                                 @bind-Value="SearchParameters.ItemsPerPage" />
+                </td>
+                <td>
+                    <InputNumber id="maximumSizeOfImage" class="form-control"
+                                 @bind-Value="SearchParameters.MaximumSizeOfImage" />
+                </td>
+                <td>
+                    <InputNumber id="maximumSizeOfThumbnail" class="form-control"
+                                 @bind-Value="SearchParameters.MaximumSizeOfThumbnail" />
+                </td>
+                <td>
+                    <InputSelect id="searchPattern" class="form-control w-125"
+                                 @bind-Value="SearchParameters.SearchType">
+                        @foreach (var item in Enum.GetValues(typeof(SearchType)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </InputSelect>
+                </td>
+                <td>
+                    <InputCheckbox id="RecursiveSubDirectories" class="form-check"
+                                   @bind-Value="SearchParameters.RecursiveSubDirectories" />
+                </td>
+                <td>
+                    <InputCheckbox id="IncludeDimensions" class="form-check"
+                                   @bind-Value="SearchParameters.IncludeDimensions" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7"><button type="submit" class="btn btn-primary" disabled="@IsBusy">Search</button></td>
+            </tr>
+        </tbody>
+    </table>
+</EditForm>

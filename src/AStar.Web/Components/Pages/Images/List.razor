@@ -1,0 +1,92 @@
+﻿@page "/images/list/{currentPage:int?}"
+@inject NavigationManager NavigationManager
+@inject ILogger<List> Logger
+@inject FilesApiClient FilesApiClient
+@using AStar.Clean.V1.BlazorUI.ApiClients
+@using AStar.Clean.V1.BlazorUI.Components
+
+@inherits LayoutComponentBase
+
+<PageTitle>Images: @PageTitle()</PageTitle>
+
+<h1 id="top">Images</h1>
+
+<div style="@SidebarWidth">
+    @if (width != InitialPageWidth || CurrentPage > 1)
+    {
+        @if (InitialLoadCompleted)
+        {
+            <span>
+                <a class="oi oi-chevron-right" @onclick="OpenNav"></a><a class="oi oi-chevron-right" @onclick="OpenNav"></a>
+            </span>
+        }
+    }
+    else
+    {
+        @if (InitialLoadCompleted)
+        {
+            <span>
+                <a class="oi oi-chevron-left" @onclick="CloseNav"></a><a class="oi oi-chevron-left" @onclick="CloseNav">Search</a>
+            </span>
+        }
+        <AStar.Clean.V1.BlazorUI.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy"></AStar.Clean.V1.BlazorUI.Components.Search>
+    }
+</div>
+
+@if (SuccessMessage is not null)
+{
+    <br />
+    <div class="alert alert-success">@SuccessMessage</div>
+}
+
+@if (ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+@if (InitialLoadCompleted)
+{
+    if (string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        @if (ImageList is null || @Loading)
+        {
+            <div class="text-white">Loading...please wait...</div>
+            <div align="center" vertical-align="middle" >
+                <img src="assets/loading-gif-orange-8.gif" alt="Loading...please wait..." height="600px" width="600px" padding="5px" />
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">Total Number of Images: @ImageCount Total Number of Pages: @TotalPages</div>
+            <Paging CurrentPage="CurrentPage" TotalPages="TotalPages" CancellationTokenSource="cancellationTokenSource"></Paging>
+
+            <table>
+                <thead>
+                <tr class="text-white">
+                    <td style="width: 50%; text-align: center">Image</td>
+                    <td style="width: 50%; text-align: center">Image</td>
+                </tr>
+                </thead>
+                <tbody>
+                @for (var i = 0; i < ImageList.Count; i++)
+                {
+                    <tr class="text-white">
+                    @foreach (var image in ImageList.Skip(i*2).Take(2))
+                    {
+                        <td>
+                            <ImageThumbnailWithDetails Name="@image.Name" FullName="@image.FullName" MaximumSizeOfThumbnail="@SearchParameters.MaximumSizeOfThumbnail" Size="@image.Size"></ImageThumbnailWithDetails>
+                        </td>
+                    }
+                    </tr>
+                }
+                
+                </tbody>
+            </table>
+
+            <AStar.Clean.V1.BlazorUI.Components.AnchorLink href="#top">Back to top</AStar.Clean.V1.BlazorUI.Components.AnchorLink>
+            <div class="alert alert-success">Total Number of Images: @ImageCount Total Number of Pages: @TotalPages</div>
+            <Paging CurrentPage="CurrentPage" TotalPages="TotalPages"></Paging>
+        }
+    }
+}
