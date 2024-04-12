@@ -11,6 +11,8 @@ public class SearchParameters
 
     public SearchType SearchType { get; set; }
 
+    public ForecastType ForecastType { get; set; }
+
     public bool RecursiveSubDirectories { get; set; } = true;
 
     [Required]

@@ -26,7 +26,7 @@ public class FilesListCountController(IFileSystem fileSystem, IImageService imag
             filesList = filesList.Where(f => f.IsImage).ToList();
         }
 
-        Logger.LogInformation("Starting search for {searchType}", searchParameters.SearchType);
+        Logger.LogInformation("Starting search for {SearchType}", searchParameters.SearchType);
         if(searchParameters.SearchType is not SearchType.Duplicates)
         {
             return Ok(filesList.Count);
@@ -34,7 +34,7 @@ public class FilesListCountController(IFileSystem fileSystem, IImageService imag
 
         Logger.LogInformation("Starting duplicate search");
         var duplicateFileInfoJbs = DuplicateFileInfoJbs(filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName }));
-        Logger.LogInformation("Found {duplicateCount} for {searchParameters}", duplicateFileInfoJbs.Count,
+        Logger.LogInformation("Found {DuplicateCount} for {SearchParameters}", duplicateFileInfoJbs.Count,
             searchParameters);
 
         return Ok(duplicateFileInfoJbs.Count);

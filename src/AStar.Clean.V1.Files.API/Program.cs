@@ -25,10 +25,12 @@ public static class Program
     private static void ConfigureServices(WebApplicationBuilder builder)
     {
         var services = builder.Services;
-        _ = services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-        _ = services.AddEndpointsApiExplorer()
-            .AddSwaggerGen()
-            .AddHealthChecks();
+        _ = builder.Services.AddControllers()
+                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        _ = builder.Services.AddEndpointsApiExplorer();
+        _ = builder.Services.AddSwaggerGen();
+        _ = builder.Services.AddHealthChecks();
 
         _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
