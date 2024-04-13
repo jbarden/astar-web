@@ -19,7 +19,7 @@ public class FilesListController(IFileSystem fileSystem, IImageService imageServ
     [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IAsyncEnumerable<FileInfoDto>> Get([FromQuery] SearchParameters searchParameters)
     {
-        Logger.LogInformation("Starting search for {searchType}", searchParameters.SearchType);
+        Logger.LogInformation("Starting search for {SearchType}", searchParameters.SearchType);
         var filesList = FileInfoFromContext(searchParameters).ToList();
         if(searchParameters.SearchType is SearchType.Images)
         {
@@ -32,7 +32,7 @@ public class FilesListController(IFileSystem fileSystem, IImageService imageServ
         {
             Logger.LogInformation("Starting duplicate search");
             fileInfos = DuplicateFileInfoJbs(fileInfos);
-            Logger.LogInformation("Found {duplicateCount} duplicates for {searchParameters}", fileInfos.Count(), searchParameters);
+            Logger.LogInformation("Found {DuplicateCount} duplicates for {SearchParameters}", fileInfos.Count(), searchParameters);
         }
 
         Logger.LogInformation("Setting Sort Order");

@@ -20,7 +20,7 @@ public class ImagesListCountController(FilesApiClient filesApiClient, ILogger<Im
             return BadRequest();
         }
 
-        logger.LogInformation("Starting GetImageList @ {startTime}", DateTime.UtcNow);
+        logger.LogInformation("Starting GetImageList @ {StartTime}", DateTime.UtcNow);
 
         var filesCount = await GetImageList(searchParameters);
 

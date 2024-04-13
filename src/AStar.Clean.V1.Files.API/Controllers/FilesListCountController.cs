@@ -23,7 +23,7 @@ public class FilesListCountController(IFileSystem fileSystem, IImageService imag
 
         if(searchParameters.SearchType is SearchType.Images)
         {
-            filesList = filesList.Where(f => f.IsImage).ToList();
+            filesList = filesList.Where(f => f.IsImage2).ToList();
         }
 
         Logger.LogInformation("Starting search for {SearchType}", searchParameters.SearchType);

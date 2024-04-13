@@ -21,8 +21,7 @@ public class ImageService(ILogger<ImageService> logger) : IImageService
         }
         catch(Exception e)
         {
-            logger.LogError("An error occurred ({error}) whilst retrieving {fileName} - full stack: {stack}", e.Message,
-                imagePath, e.StackTrace);
+            logger.LogError(e, "An error occurred ({Error}) whilst retrieving {FileName} - full stack: {Stack}", e.Message, imagePath, e.StackTrace);
             var bmp = new Bitmap(100, 50);
             var g = Graphics.FromImage(bmp);
             g.Clear(Color.DarkRed);

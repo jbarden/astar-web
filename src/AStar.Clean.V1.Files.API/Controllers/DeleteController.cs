@@ -6,7 +6,7 @@ namespace AStar.Clean.V1.Files.API.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class DeleteController(IFileSystem fileSystem, FilesContext context) : ControllerBase
+public class DeleteController(IFileSystem fileSystem, FilesContext context, ILogger<DeleteController> logger) : ControllerBase
 {
     private readonly IFileSystem fileSystem = fileSystem;
     private readonly FilesContext context = context;
@@ -63,8 +63,9 @@ public class DeleteController(IFileSystem fileSystem, FilesContext context) : Co
             {
                 fileSystem.File.Delete(filePathUpdated);
             }
-            catch
+            catch(Exception e)
             {
+                logger.LogError(e, "An error occurred ({Error}) whilst retrieving {FileName} - full stack: {Stack}", e.Message, filePathUpdated, e.StackTrace);
             }
         }
     }
