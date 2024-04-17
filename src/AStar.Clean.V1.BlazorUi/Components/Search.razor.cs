@@ -14,6 +14,9 @@ public partial class Search
     [Parameter]
     public bool IsBusy { get; set; }
 
+    [Parameter]
+    public bool Duplicates { get; set; }
+
     protected override async Task OnParametersSetAsync()
     {
         var searchParameters = SearchParameters;

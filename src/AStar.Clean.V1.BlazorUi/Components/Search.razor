@@ -39,7 +39,14 @@
                                  @bind-Value="SearchParameters.SearchType">
                         @foreach (var item in Enum.GetValues(typeof(SearchType)))
                         {
-                            <option value="@item">@item</option>
+                            @* if(Duplicates && item.ToString() == "Duplicates")
+                            {
+                                <option value="@item">@item</option>
+                            }
+                            else if(item.ToString() != "Duplicates")
+                            { *@
+                                <option value="@item">@item</option>
+                            @* } *@
                         }
                     </InputSelect>
                 </td>

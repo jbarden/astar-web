@@ -1,17 +1,17 @@
 ﻿<ul class="pagination mt-3 float-md-start">
     <li class="page-item @(CurrentPage == 1 ? "disabled" : "")">
-        <a class="page-link link-success" href="/images/list/1">First</a>
+        <a class="page-link link-success" href="@FirstPage">First</a>
     </li>
     <li class="page-item @(CurrentPage == 1 ? "disabled" : "")">
-        <a class="page-link link-success" href="/images/list/@(CurrentPage - 1)">Previous</a>
+        <a class="page-link link-success" href="@PreviousPage">Previous</a>
     </li>
     <li>
         <Dropdown TValue="string" Items="Items" OnSelectedItemChanged="@Navigate" Color="Color.Primary" />
     </li>
     <li class="page-item @(CurrentPage == TotalPages ? "disabled" : string.Empty)">
-        <a class="page-link link-success" href="/images/list/@(CurrentPage + 1)">Next</a>
+        <a class="page-link link-success" href="@NextPage">Next</a>
     </li>
     <li class="page-item @(CurrentPage == TotalPages ? "disabled" : string.Empty)">
-        <a class="page-link link-success" href="/images/list/@TotalPages">Last</a>
+        <a class="page-link link-success" href="@LastPage">Last</a>
     </li>
 </ul>

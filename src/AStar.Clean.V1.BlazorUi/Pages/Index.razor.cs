@@ -8,7 +8,7 @@ public partial class Index
 
     public string ImagesApiHealthStatus { get; set; } = "unknown";
 
-    public bool Loaded { get; set; }
+    public bool Loaded { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {

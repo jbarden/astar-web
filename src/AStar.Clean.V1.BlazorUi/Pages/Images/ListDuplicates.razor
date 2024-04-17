@@ -1,6 +1,90 @@
-﻿@page "/images/list-duplicates/{currentPage:int?}"
-<h3>List Duplicates</h3>
+﻿@page "/images/list-duplicates"
+@inject NavigationManager NavigationManager
+@inject ILogger<List> Logger
+@inject FilesApiClient FilesApiClient
+@using AStar.Clean.V1.BlazorUI.ApiClients
+@using AStar.Clean.V1.BlazorUI.Components
 
-@code {
+@inherits LayoutComponentBase
 
+<PageTitle>Duplicate Images: @PageTitle()</PageTitle>
+
+<h1 id="top">Duplicate Images</h1>
+
+<div style="@SidebarWidth">
+    @if(width != InitialPageWidth || CurrentPage > 1)
+    {
+        <span>
+            <a class="oi oi-chevron-right" @onclick="OpenNav"></a><a class="oi oi-chevron-right" @onclick="OpenNav"></a>
+        </span>
+    }
+    else
+    {
+        <span>
+            <a class="oi oi-chevron-left" @onclick="CloseNav"></a><a class="oi oi-chevron-left" @onclick="CloseNav">Search</a>
+        </span>
+        <AStar.Clean.V1.BlazorUI.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy" Duplicates="true"></AStar.Clean.V1.BlazorUI.Components.Search>
+    }
+</div>
+
+@if(SuccessMessage is not null)
+{
+    <br />
+    <div class="alert alert-success">@SuccessMessage</div>
+}
+
+@if(ErrorMessage is not null)
+{
+    <br />
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+
+@if(Loading)
+{
+    @if(string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <div class="text-white">Loading...please wait...</div>
+        <div align="center" vertical-align="middle">
+            <img src="assets/loading-gif-orange-8.gif" alt="Loading...please wait..." height="600px" width="600px" padding="5px" />
+        </div>
+    }
+}
+else if(SearchCompleted)
+{
+    <div class="alert alert-info">Total Number of Images: @ImageCount Total Number of Pages: @TotalPages</div>
+    <Paging CurrentPage="CurrentPage" TotalPages="TotalPages" CancellationTokenSource="cancellationTokenSource" SearchParameters="SearchParameters"></Paging>
+
+    <table>
+        <thead>
+            <tr class="text-white">
+                <td style="width: 50%; text-align: center">Image</td>
+                <td style="width: 50%; text-align: center">Image</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var previousGroup = ImageList.First().Item1;
+                previousGroup.width = 0;
+                previousGroup.height = 0;
+                previousGroup.size = 0;
+                foreach(var group in ImageList)
+                {
+                    <tr>
+                        @foreach(var image in group.Item2)
+                        {
+                            <td>
+                                <ImageThumbnailWithDetails FileDetails="@image" Name="@image.Name" FullName="@image.FullName" MaximumSizeOfThumbnail="@SearchParameters.MaximumSizeOfThumbnail" Size="@image.Size"></ImageThumbnailWithDetails>
+                            </td>
+                        }                        
+
+                    </tr>
+                    previousGroup = group.Item1;
+                }                
+            }
+        </tbody>
+    </table>
+
+    <AStar.Clean.V1.BlazorUI.Components.AnchorLink href="#top">Back to top</AStar.Clean.V1.BlazorUI.Components.AnchorLink>
+    <div class="alert alert-success">Total Number of Images: @ImageCount Total Number of Pages: @TotalPages</div>
+    <Paging CurrentPage="CurrentPage" TotalPages="TotalPages" CancellationTokenSource="cancellationTokenSource" SearchParameters="SearchParameters"></Paging>
 }

@@ -6,7 +6,7 @@ namespace AStar.Clean.V1.BlazorUI.Models;
 public class SearchParameters
 {
     [Required]
-    public string SearchFolder { get; set; } = string.Empty;
+    public string SearchFolder { get; set; } = "F:\\Wallhaven";
 
     public SearchType SearchType { get; set; } = SearchType.Duplicates;
 

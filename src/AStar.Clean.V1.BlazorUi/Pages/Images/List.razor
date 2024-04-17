@@ -1,4 +1,4 @@
-﻿@page "/images/list/{currentPage:int?}"
+﻿@page "/images/list"
 @inject NavigationManager NavigationManager
 @inject ILogger<List> Logger
 @inject FilesApiClient FilesApiClient
@@ -29,7 +29,7 @@
                 <a class="oi oi-chevron-left" @onclick="CloseNav"></a><a class="oi oi-chevron-left" @onclick="CloseNav">Search</a>
             </span>
         }
-        <AStar.Clean.V1.BlazorUI.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy"></AStar.Clean.V1.BlazorUI.Components.Search>
+        <AStar.Clean.V1.BlazorUI.Components.Search SearchParameters="@SearchParameters" OnSubmit="@HandleSubmit" IsBusy="@IsBusy" Duplicates="false"></AStar.Clean.V1.BlazorUI.Components.Search>
     }
 </div>
 

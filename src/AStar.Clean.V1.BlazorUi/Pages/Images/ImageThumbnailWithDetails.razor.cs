@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AStar.Clean.V1.BlazorUI.Models;
+using Microsoft.AspNetCore.Components;
 
 namespace AStar.Clean.V1.BlazorUI.Pages.Images;
 
@@ -16,6 +17,9 @@ public partial class ImageThumbnailWithDetails
     [Parameter]
     public long Size { get; set; }
 
+    [Parameter]
+    public FileInfoDto FileDetails { get; set; } = new();
+
     public long Width { get; set; }
 
     public long Height { get; set; }
@@ -28,7 +32,7 @@ public partial class ImageThumbnailWithDetails
 
     public string DisplayImageSize()
     {
-        if(Size < 1000000)
+        if(Size < 1_000_000)
         {
             return $"{Size / 1.0 / 1024:N2} Kb";
         }
@@ -48,11 +52,19 @@ public partial class ImageThumbnailWithDetails
 
     protected override async Task OnInitializedAsync()
     {
-        var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
-        if(details is not null)
+        if(FileDetails.Width == 0)
         {
-            Height = details.Height;
-            Width = details.Width;
+            var details = await ImagesApiClient.GetImageDetailsAsync(FullName);
+            if(details is not null)
+            {
+                Height = details.Height;
+                Width = details.Width;
+            }
+        }
+        else
+        {
+            Height = FileDetails.Height;
+            Width = FileDetails.Width;
         }
     }
 

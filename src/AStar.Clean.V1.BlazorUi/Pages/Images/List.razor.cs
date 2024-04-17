@@ -6,17 +6,14 @@ namespace AStar.Clean.V1.BlazorUI.Pages.Images;
 
 public partial class List : IDisposable
 {
-    private const int ItemsPerPage = 4;
     private const int InitialPageWidth = 1450;
     private int width = InitialPageWidth;
     private CancellationTokenSource cancellationTokenSource = new();
-
-    [Parameter]
     public int? CurrentPage { get; set; }
 
-    public SearchParameters SearchParameters { get; set; } = new();
+    public SearchParameters SearchParameters { get; set; } = new() { SearchType = SearchType.Images };
 
-    public IList<FileInfoDto>? ImageList { get; set; }
+    public IList<FileInfoDto> ImageList { get; set; } = [];
 
     public bool Loading { get; set; }
 
@@ -54,49 +51,99 @@ public partial class List : IDisposable
 
     protected override async Task OnParametersSetAsync()
     {
-        await LoadSearchResults();
+        await LoadSearchResultsAsync();
         OpenNav();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query; // Get the entire query string
+        var parsedQuery = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(queryString);
+        if(parsedQuery.Count == 0)
+        {
+            NavigationManager.NavigateTo($"/images/list?{SearchParameters}");
+        }
+        else
+        {
+            await LoadSearchResultsAsync();
+        }
     }
 
     private void OpenNav() => width = InitialPageWidth;
 
     private void CloseNav() => width = 50;
 
-    private async Task LoadSearchResults()
+    private async Task LoadSearchResultsAsync()
     {
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query; // Get the entire query string
+        var parsedQuery = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(queryString);
+        if(parsedQuery.Count == 0 || ImageList.Count > 0)
+        {
+            return;
+        }
+
+        foreach(var param in parsedQuery)
+        {
+            Console.WriteLine(param);
+            if(param.Key == "SearchFolder")
+            {
+                SearchParameters.SearchFolder = param.Value!;
+            }
+            else if(param.Key == "SearchType")
+            {
+                SearchParameters.SearchType = Enum.Parse<SearchType>(param.Value!);
+            }
+            else if(param.Key == "RecursiveSubDirectories")
+            {
+                SearchParameters.RecursiveSubDirectories = bool.Parse(param.Value!);
+            }
+            else if(param.Key == "CurrentPage")
+            {
+                SearchParameters.CurrentPage = int.Parse(param.Value!);
+                CurrentPage = int.Parse(param.Value!);
+            }
+            else if(param.Key == "ItemsPerPage")
+            {
+                SearchParameters.ItemsPerPage = int.Parse(param.Value!);
+            }
+            else if(param.Key == "MaximumSizeOfThumbnail")
+            {
+                SearchParameters.MaximumSizeOfThumbnail = int.Parse(param.Value!);
+            }
+            else if(param.Key == "MaximumSizeOfImage")
+            {
+                SearchParameters.MaximumSizeOfImage = int.Parse(param.Value!);
+            }
+            else if(param.Key == "SortOrder")
+            {
+                SearchParameters.SortOrder = Enum.Parse<SortOrder>(param.Value!);
+            }
+            else if(param.Key == "CountOnly")
+            {
+                SearchParameters.CountOnly = bool.Parse(param.Value!);
+            }
+            else if(param.Key == "IncludeDimensions")
+            {
+                SearchParameters.IncludeDimensions = bool.Parse(param.Value!);
+            }
+        }
+
         cancellationTokenSource = new();
         ErrorMessage = null;
         ImageList = [];
         Loading = true;
-        if(CurrentPage is null or < 1)
-        {
-            NavigationManager.NavigateTo("/images/list/1");
-            return;
-        }
 
-        if(SearchParameters.ItemsPerPage == 0)
-        {
-            SearchParameters.ItemsPerPage = ItemsPerPage;
-            SearchParameters.CurrentPage = 1;
-            SearchParameters.RecursiveSubDirectories = true;
-        }
-        else
-        {
-            SearchParameters.CurrentPage = CurrentPage ?? 1;
-        }
-
-        if(InitialLoadCompleted)
-        {
-            Logger.LogInformation("Starting search...SearchFolder: {SearchFolder}, CurrentPage: {CurrentPage}, ItemsPerPage: {ItemsPerPage}, SearchType: {SearchType}, RecursiveSubDirectories: {RecursiveSubDirectories}, SortOrder: {SortOrder}", SearchParameters.SearchFolder, SearchParameters.CurrentPage, SearchParameters.ItemsPerPage, SearchParameters.SearchType, SearchParameters.RecursiveSubDirectories, SearchParameters.SortOrder);
-            ImageList = await FilesApiClient.GetFilesListAsync(SearchParameters, cancellationTokenSource.Token)
-                .ConfigureAwait(false);
-
-            Logger.LogInformation("Got file list. Getting total file count...");
-
-            ImageCount = await FilesApiClient.GetFilesCountAsync(SearchParameters, cancellationTokenSource.Token).ConfigureAwait(false);
-            TotalPages = (int)Math.Ceiling((decimal)ImageCount / SearchParameters.ItemsPerPage);
-            Logger.LogInformation("Completed search...");
-        }
+        InitialLoadCompleted = false;
+        Logger.LogInformation("Starting search...SearchFolder: {SearchFolder}, CurrentPage: {CurrentPage}, ItemsPerPage: {ItemsPerPage}, SearchType: {SearchType}, RecursiveSubDirectories: {RecursiveSubDirectories}, SortOrder: {SortOrder}", SearchParameters.SearchFolder, SearchParameters.CurrentPage, SearchParameters.ItemsPerPage, SearchParameters.SearchType, SearchParameters.RecursiveSubDirectories, SearchParameters.SortOrder);
+        ImageList = await FilesApiClient.GetFilesListAsync(SearchParameters, cancellationTokenSource.Token).ConfigureAwait(false);
+        Logger.LogInformation("Completed search...{ListCount}", ImageList.Count);
+        Logger.LogInformation("Got file list. Getting total file count...");
+        ImageCount = await FilesApiClient.GetFilesCountAsync(SearchParameters, cancellationTokenSource.Token).ConfigureAwait(false);
+        TotalPages = (int)Math.Ceiling((decimal)ImageCount / SearchParameters.ItemsPerPage);
+        Logger.LogInformation("Completed search...");
+        InitialLoadCompleted = true;
 
         CloseNav();
         Loading = false;
@@ -126,7 +173,7 @@ public partial class List : IDisposable
 
         try
         {
-            await LoadSearchResults();
+            await LoadSearchResultsAsync();
         }
         catch(Exception ex)
         {

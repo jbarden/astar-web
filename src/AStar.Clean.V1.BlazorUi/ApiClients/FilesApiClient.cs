@@ -32,6 +32,48 @@ public class FilesApiClient
         return (await response.Content.ReadFromJsonAsync<IList<FileInfoDto>>(cancellationToken: cancellationToken))!;
     }
 
+    public async Task<IList<((long width, long height, long size), IList<FileInfoDto>)>> GetDuplicateFilesListAsync(SearchParameters searchParameters, CancellationToken cancellationToken)
+    {
+        searchParameters.CountOnly = false;
+        var requestUri = $"/api/files?{searchParameters}";
+        using var response = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+        _ = response.EnsureSuccessStatusCode();
+
+        var fileInfoDtos = (await response.Content.ReadFromJsonAsync<IList<FileInfoDto>>(cancellationToken: cancellationToken))!;
+        List< ((long width, long height, long size) key, IList<FileInfoDto> files) > fileGroups = [];
+        var previousFile = new FileInfoDto();
+        foreach(var fileInfo in fileInfoDtos)
+        {
+            var key = (fileInfo.Width,fileInfo.Height,fileInfo.Size);
+            if(previousFile.Width == fileInfo.Width && previousFile.Height == fileInfo.Height && previousFile.Size == fileInfo.Size)
+            {
+                if(fileGroups.Exists(x => x.key == key))
+                {
+                    fileGroups.First(x => x.key == key).files.Add(fileInfo);
+                }
+                else
+                {
+                    fileGroups.Add((key, new List<FileInfoDto> { fileInfo }));
+                }
+            }
+            else
+            {
+                if(fileGroups.Exists(x => x.key == key))
+                {
+                    fileGroups.First(x => x.key == key).files.Add(fileInfo);
+                }
+                else
+                {
+                    fileGroups.Add((key, new List<FileInfoDto> { fileInfo }));
+                }
+            }
+
+            previousFile = fileInfo;
+        }
+
+        return fileGroups!;
+    }
+
     public async Task<int> GetFilesCountAsync(SearchParameters searchParameters, CancellationToken cancellationToken)
     {
         searchParameters.CountOnly = true;

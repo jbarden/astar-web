@@ -26,7 +26,7 @@ public class FilesListController(IFileSystem fileSystem, IImageService imageServ
             filesList = filesList.Where(f => f.IsImage2).ToList();
         }
 
-        var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName });
+        var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName, Height = f.Height, Width = f.Width });
         var skip = searchParameters.ItemsPerPage * (searchParameters.CurrentPage - 1);
         if(searchParameters.SearchType is SearchType.Duplicates)
         {
