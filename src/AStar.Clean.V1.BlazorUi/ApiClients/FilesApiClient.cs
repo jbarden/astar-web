@@ -41,34 +41,18 @@ public class FilesApiClient
 
         var fileInfoDtos = (await response.Content.ReadFromJsonAsync<IList<FileInfoDto>>(cancellationToken: cancellationToken))!;
         List< ((long width, long height, long size) key, IList<FileInfoDto> files) > fileGroups = [];
-        var previousFile = new FileInfoDto();
         foreach(var fileInfo in fileInfoDtos)
         {
             var key = (fileInfo.Width,fileInfo.Height,fileInfo.Size);
-            if(previousFile.Width == fileInfo.Width && previousFile.Height == fileInfo.Height && previousFile.Size == fileInfo.Size)
+
+            if(fileGroups.Exists(x => x.key == key))
             {
-                if(fileGroups.Exists(x => x.key == key))
-                {
-                    fileGroups.First(x => x.key == key).files.Add(fileInfo);
-                }
-                else
-                {
-                    fileGroups.Add((key, new List<FileInfoDto> { fileInfo }));
-                }
+                fileGroups.First(x => x.key == key).files.Add(fileInfo);
             }
             else
             {
-                if(fileGroups.Exists(x => x.key == key))
-                {
-                    fileGroups.First(x => x.key == key).files.Add(fileInfo);
-                }
-                else
-                {
-                    fileGroups.Add((key, new List<FileInfoDto> { fileInfo }));
-                }
+                fileGroups.Add((key, new List<FileInfoDto> { fileInfo }));
             }
-
-            previousFile = fileInfo;
         }
 
         return fileGroups!;

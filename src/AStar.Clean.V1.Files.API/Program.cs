@@ -1,8 +1,8 @@
 using System.IO.Abstractions;
 using System.Text.Json.Serialization;
-using AStar.ASPNet.Extensions;
+using AStar.ASPNet.Extensions.Handlers;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.Clean.V1.HealthChecks;
+using AStar.FilesApi.HealthChecks;
 using AStar.Infrastructure.Data;
 using Serilog;
 
@@ -44,7 +44,7 @@ public static class Program
 
     private static void ConfigurePipeline(WebApplication app)
     {
-        _ = app.UseMiddleware<GlobalExceptionMiddleware>()
+        _ = app.UseMiddleware<GlobalExceptionHandler>()
                .UseSwagger()
                .UseSwaggerUI()
                .UseAuthentication()

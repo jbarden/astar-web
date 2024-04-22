@@ -1,10 +1,10 @@
 using System.IO.Abstractions;
 using System.Text.Json.Serialization;
-using AStar.ASPNet.Extensions;
-using AStar.Clean.V1.HealthChecks;
+using AStar.ASPNet.Extensions.Handlers;
 using AStar.Clean.V1.Images.API.ApiClients;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
+using AStar.FilesApi.HealthChecks;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -53,7 +53,7 @@ public static class Program
     private static void ConfigurePipeline(WebApplication app)
     {
         _ = app
-            .UseMiddleware<GlobalExceptionMiddleware>()
+            .UseMiddleware<GlobalExceptionHandler>()
             .UseSwagger()
             .UseSwaggerUI()
             .UseAuthentication()

@@ -37,28 +37,4 @@ public class FileInfoJbShould
 
         _ = sut.IsImage.Should().BeTrue();
     }
-
-    //[Fact]
-    //public void ReturnTheFullNameAsTheConcatenatedDirectoryAndFileNameProperties()
-    //{
-    //    var sut = new FileDetail { DirectoryName = @"c:\temp", FileName = "test.txt" };
-
-    //    _ = sut.FullName.Should().Be(@"c:\temp\test.txt");
-    //}
-
-    //[Fact]
-    //public void ReturnNullForDimensionsWhenNotSpecified()
-    //{
-    //    var sut = new FileDetail();
-
-    //    _ = sut.Dimensions.Should().BeNull();
-    //}
-
-    //[Fact]
-    //public void ReturnSpecifiedDimensionsForDimensionsWhenSpecified()
-    //{
-    //    var sut = new FileDetail { Dimensions = new() { Height = 1, Width = 2 } };
-
-    //    _ = sut.Dimensions.Should().BeEquivalentTo(new Dimensions { Height = 1, Width = 2 });
-    //}
 }
