@@ -1,10 +1,10 @@
 using System.IO.Abstractions;
 using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions.Handlers;
+using AStar.ASPNet.Extensions.PipelineExtensions;
+using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Clean.V1.Files.API.Services;
-using AStar.FilesApi.HealthChecks;
 using AStar.Infrastructure.Data;
-using Serilog;
 
 namespace AStar.Clean.V1.Files.API;
 
@@ -13,52 +13,22 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        ConfigureServices(builder);
+
+        _ = builder.AddLogging();
+        _ = builder.Services.ConfigurePipeline();
+        ConfigureServices(builder.Services);
 
         var app = builder.Build();
-
-        ConfigurePipeline(app);
+        _ = app.ConfigurePipeline();
 
         app.Run();
     }
 
-    private static void ConfigureServices(WebApplicationBuilder builder)
+    private static void ConfigureServices(IServiceCollection services)
     {
-        var services = builder.Services;
-        _ = builder.Services.AddControllers()
-                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        _ = builder.Services.AddEndpointsApiExplorer();
-        _ = builder.Services.AddSwaggerGen();
-        _ = builder.Services.AddHealthChecks();
-
-        _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
-            .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
-            .ReadFrom.Configuration(context.Configuration));
-
         _ = services.AddDbContext<FilesContext>();
         _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>()
-            .AddSingleton<IImageService, ImageService>();
-    }
-
-    private static void ConfigurePipeline(WebApplication app)
-    {
-        _ = app.UseMiddleware<GlobalExceptionHandler>()
-               .UseSwagger()
-               .UseSwaggerUI()
-               .UseAuthentication()
-               .UseAuthorization();
-
-        _ = app.MapControllers();
-        _ = app.MapHealthChecks("/health/live", new()
-        {
-            Predicate = _ => false,
-            ResponseWriter = HealthCheckResponses.WriteJsonResponse
-        });
-        _ = app.MapHealthChecks("/health/ready", new()
-        {
-            ResponseWriter = HealthCheckResponses.WriteJsonResponse
-        });
+                    .AddSingleton<IImageService, ImageService>();
     }
 }

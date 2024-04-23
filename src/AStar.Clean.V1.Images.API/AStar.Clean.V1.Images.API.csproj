@@ -19,8 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AStar.ASPNet.Extensions" Version="0.2.0" />
-		<PackageReference Include="AStar.Api.HealthChecks" Version="0.1.0-alpha" />
+		<PackageReference Include="AStar.ASPNet.Extensions" Version="0.3.0" />
 		<PackageReference Include="AStar.Infrastructure" Version="1.0.0" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />

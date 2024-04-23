@@ -38,6 +38,7 @@ public static class Program
         _ = builder.Services.AddEndpointsApiExplorer();
         _ = builder.Services.AddSwaggerGen();
         _ = builder.Services.AddHealthChecks();
+        _ = builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         _ = services
             .AddSingleton<IFileSystem, FileSystem>()
             .AddSingleton<IImageService, ImageService>();
@@ -53,7 +54,6 @@ public static class Program
     private static void ConfigurePipeline(WebApplication app)
     {
         _ = app
-            .UseMiddleware<GlobalExceptionHandler>()
             .UseSwagger()
             .UseSwaggerUI()
             .UseAuthentication()
