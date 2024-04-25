@@ -2,11 +2,11 @@
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO.Abstractions;
+using AStar.Clean.V1.DomainModel;
 using AStar.Clean.V1.Images.API.Extensions;
 using AStar.Clean.V1.Images.API.Models;
 using AStar.Clean.V1.Images.API.Services;
 using AStar.Infrastructure.Data;
-using AStar.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.Clean.V1.Images.API.Controllers;
@@ -104,7 +104,7 @@ public class ImageController(IFileSystem fileSystem, IImageService imageService,
             maximumSizeInPixels = RestrictMaximumSizeInPixels(maximumSizeInPixels);
             var dimensions = ImageDimensions(imageFromFile.Width, imageFromFile.Height, maximumSizeInPixels);
 
-            using var imageThumbnail = ResizeImage(imageFromFile, dimensions.Width, dimensions.Height);
+            using var imageThumbnail = ResizeImage(imageFromFile, (int)dimensions.Width!, (int)dimensions.Height!);
             var thumbnailMemoryStream = ToMemoryStream(imageThumbnail);
 
             return File(thumbnailMemoryStream, $"image/{extension}");
@@ -115,7 +115,7 @@ public class ImageController(IFileSystem fileSystem, IImageService imageService,
             maximumSizeInPixels = 1500;
             var dimensions = ImageDimensions(imageFromFile.Width, imageFromFile.Height, maximumSizeInPixels);
 
-            using var imageThumbnail = ResizeImage(imageFromFile, dimensions.Width, dimensions.Height);
+            using var imageThumbnail = ResizeImage(imageFromFile, (int)dimensions.Width!, (int)dimensions.Height!);
             var thumbnailMemoryStream = ToMemoryStream(imageThumbnail);
 
             return File(thumbnailMemoryStream, $"image/{extension}");

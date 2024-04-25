@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AStar.ASPNet.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:AStar.ASPNet.Extensions.Handlers.GlobalExceptionHandler">
+            <summary>
+            The <see ref="GlobalExceptionMiddleware"></see> class contains the code to process any unhandled exceptions in a consistent, cross-solution, approach.
+            </summary>
+            <param name="logger">
+            An instance of <see href="ILogger"></see> used to log the error.
+            </param>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.Handlers.GlobalExceptionHandler.#ctor(Microsoft.Extensions.Logging.ILogger{AStar.ASPNet.Extensions.Handlers.GlobalExceptionHandler})">
+            <summary>
+            The <see ref="GlobalExceptionMiddleware"></see> class contains the code to process any unhandled exceptions in a consistent, cross-solution, approach.
+            </summary>
+            <param name="logger">
+            An instance of <see href="ILogger"></see> used to log the error.
+            </param>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.Handlers.GlobalExceptionHandler.TryHandleAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception,System.Threading.CancellationToken)">
+            <summary>
+            </summary>
+            <param name="httpContext">
+            </param>
+            <param name="exception">
+            </param>
+            <param name="cancellationToken">
+            </param>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:AStar.ASPNet.Extensions.PipelineExtensions.PipelineExtensions">
+            <summary>
+            The <see cref="N:AStar.ASPNet.Extensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner. 
+            </summary>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.PipelineExtensions.PipelineExtensions.ConfigurePipeline(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            The <see cref="M:AStar.ASPNet.Extensions.PipelineExtensions.PipelineExtensions.ConfigurePipeline(Microsoft.AspNetCore.Builder.WebApplication)"/> will configure the pipeline to include Swagger, Authentication, Authorisation and basic live/ready health check endpoints
+            </summary>
+            <param name="webApplication"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions">
+            <summary>
+            The <see cref="T:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner. 
+            </summary>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigurePipeline(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigurePipeline(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin... 
+            </summary>
+            <param name="services">An instance of the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> interface that will be configured with the current methods.</param>
+            <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.   </returns>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.AddLogging(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String)">
+            <summary>
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.AddLogging(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String)"/> will do exactly what it says on the tin... 
+            </summary>
+            <param name="builder">An instance of the <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> class that will be configured with the current methods.</param>
+            <param name="externalSettingsFile">
+            The name (including extension) of the file containing the Serilog Configuration settings.
+            </param>
+            <returns>The original <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> to facilitate method chaining.</returns>
+        </member>
+    </members>
+</doc>

@@ -2,6 +2,7 @@
   "Serilog": {
     "Enrich": [
       "FromLogContext",
+      "WithMachineName",
       "WithSpan",
       "WithExceptionDetails"
     ],
@@ -15,19 +16,12 @@
       "Default": "Information",
       "Override": {
         "Microsoft.AspNetCore": "Warning",
-        "System.Net.Http": "Warning",
+        "System.Net.Http": "Information",
         "AStar": "Debug"
       }
     }
   },
   "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning",
-      "Microsoft.Identity": "Warning",
-      "Microsoft.AspNetCore.HttpLogging": "Warning",
-      "CarvedRock": "Debug"
-    },
     "Console": {
       "FormatterName": "json",
       "FormatterOptions": {
@@ -44,25 +38,8 @@
       "LogLevel": {
         "Default": "Information",
         "Microsoft.AspNetCore": "Warning",
-        "CarvedRock": "Debug"
-      }
-    },
-    "Debug": {
-      "LogLevel": {
-        "Default": "Critical"
+        "AStar": "Debug"
       }
     }
-  },
-  "AllowedHosts": "*",
-  "apiConfiguration": {
-    "filesApiConfiguration": {
-      "baseUrl": "https://localhost:7138/"
-    },
-    "imagesApiConfiguration": {
-      "baseUrl": "https://localhost:7008/"
-    }
-  },
-  "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=dc879023-3390-4ca0-a507-84c2a5685023;IngestionEndpoint=https://uksouth-1.in.applicationinsights.azure.com/;LiveEndpoint=https://uksouth.livediagnostics.monitor.azure.com/"
   }
 }

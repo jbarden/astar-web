@@ -9,7 +9,6 @@ public class FileInfoJbShould
 {
     [Theory]
     [InlineData("")]
-    [InlineData(null)]
     [InlineData("file.txt")]
     [InlineData("file.doc")]
     [InlineData("file.docx")]

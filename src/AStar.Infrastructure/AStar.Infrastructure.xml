@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AStar.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:AStar.Infrastructure.Data.FilesContext">
+            <summary>
+            The FileContext class/
+            </summary>
+        </member>
+        <member name="P:AStar.Infrastructure.Data.FilesContext.Files">
+            <summary>
+            The list of files in the dB.
+            </summary>
+        </member>
+        <member name="P:AStar.Infrastructure.Data.FilesContext.TagsToIgnore">
+            <summary>
+            The list of tags to ignore.
+            </summary>
+        </member>
+        <member name="P:AStar.Infrastructure.Data.FilesContext.TagsToIgnoreCompletely">
+            <summary>
+            The list of tags to ignore completely.
+            </summary>
+        </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            The overriden OnConfiguring method.
+            </summary>
+            <param name="optionsBuilder">
+            </param>
+        </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            The overriden OnModelCreating method.
+            </summary>
+            <param name="modelBuilder">
+            </param>
+        </member>
+        <member name="T:AStar.Infrastructure.Migrations.AddTagTables">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.AddTagTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.AddTagTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.AddTagTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

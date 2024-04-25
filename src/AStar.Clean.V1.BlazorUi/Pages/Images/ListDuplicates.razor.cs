@@ -39,6 +39,7 @@ public partial class ListDuplicates : IDisposable
         Dispose(true);
         GC.SuppressFinalize(this);
     }
+
     protected override async Task OnParametersSetAsync()
     {
         await LoadSearchResultsAsync();
@@ -185,7 +186,7 @@ public partial class ListDuplicates : IDisposable
     private string PageTitle()
     {
         var textInfo = new CultureInfo("en-US", false).TextInfo;
-        var title = textInfo.ToTitleCase(SearchParameters.SearchFolder.Split('\\').Last().Replace('-', ' '));
+        var title = textInfo.ToTitleCase(SearchParameters.SearchFolder.Split('\\')[^1].Replace('-', ' '));
 
         return title;
     }

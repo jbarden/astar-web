@@ -36,7 +36,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.BlazorUI\AStar.Clean.V1.BlazorUI.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.DomainModel\AStar.Clean.V1.DomainModel.csproj" />
-		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Files.API\AStar.Clean.V1.Files.API.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Images.API\AStar.Clean.V1.Images.API.csproj" />
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Services\AStar.Clean.V1.Services.csproj" />
 	</ItemGroup>

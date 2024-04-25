@@ -196,7 +196,7 @@ public partial class List : IDisposable
     private string PageTitle()
     {
         var textInfo = new CultureInfo("en-US", false).TextInfo;
-        var title = textInfo.ToTitleCase(SearchParameters.SearchFolder.Split('\\').Last().Replace('-', ' '));
+        var title = textInfo.ToTitleCase(SearchParameters.SearchFolder.Split('\\')[^1].Replace('-', ' '));
 
         return title;
     }

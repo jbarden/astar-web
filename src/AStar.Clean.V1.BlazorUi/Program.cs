@@ -39,7 +39,7 @@ public static class Program
         _ = services.AddRazorPages();
         _ = services.AddServerSideBlazor();
         _ = services.AddBootstrapBlazor();
-
+        _ = services.AddApplicationInsightsTelemetry();
         _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
             .ReadFrom.Configuration(context.Configuration));
