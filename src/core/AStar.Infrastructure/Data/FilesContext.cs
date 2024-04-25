@@ -29,7 +29,11 @@ public class FilesContext : DbContext
     /// <param name="optionsBuilder">
     /// </param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Filename=c:\\temp\\Files.db");
+    {
+        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        var dbPath = Path.Combine(desktopPath, "Files.db");
+        _ = optionsBuilder.UseSqlite($"Filename={dbPath}");
+    }
 
     /// <summary>
     /// The overriden OnModelCreating method.

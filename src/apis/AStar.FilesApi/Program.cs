@@ -14,14 +14,13 @@ public static class Program
 
         _ = builder.AddLogging("astar-logging-settings.json");
         _ = builder.Services.ConfigurePipeline();
-        var configuration = builder.Configuration;
-        var config = configuration.GetDebugView();
-        Console.WriteLine(config);
+
         _ = ConfigureServices(builder.Services);
 
         var app = builder.Build();
         _ = app.ConfigurePipeline();
         _ = ConfigurePipeline(app);
+
         app.Run();
     }
 

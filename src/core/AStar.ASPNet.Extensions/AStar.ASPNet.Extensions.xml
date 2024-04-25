@@ -34,7 +34,7 @@
         </member>
         <member name="T:AStar.ASPNet.Extensions.PipelineExtensions.PipelineExtensions">
             <summary>
-            The <see cref="N:AStar.ASPNet.Extensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner. 
+            The <see cref="N:AStar.ASPNet.Extensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner.
             </summary>
         </member>
         <member name="M:AStar.ASPNet.Extensions.PipelineExtensions.PipelineExtensions.ConfigurePipeline(Microsoft.AspNetCore.Builder.WebApplication)">

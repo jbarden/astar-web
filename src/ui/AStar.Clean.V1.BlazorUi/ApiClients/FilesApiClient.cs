@@ -6,20 +6,33 @@ namespace AStar.Clean.V1.BlazorUI.ApiClients;
 public class FilesApiClient
 {
     private readonly HttpClient httpClient;
+    private readonly ILogger<FilesApiClient> logger;
 
-    public FilesApiClient(HttpClient httpClient)
+    public FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logger)
     {
         this.httpClient = httpClient;
+        this.logger = logger;
         this.httpClient.Timeout = TimeSpan.FromMinutes(4);
     }
 
     public async Task<HealthStatusResponse> GetHealthAsync()
     {
-        var response = await httpClient.GetAsync("/health/live");
+        HttpResponseMessage response;
 
-        return response.IsSuccessStatusCode
-            ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!
-            : new() { Status = "Health Check failed" }!;
+        try
+        {
+            response = await httpClient.GetAsync("/health/live");
+
+            return response.IsSuccessStatusCode
+                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!
+                : new() { Status = "Health Check failed" }!;
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+        }
+
+        return new() { Status = "Health Check failed" }!;
     }
 
     public async Task<IList<FileInfoDto>> GetFilesListAsync(SearchParameters searchParameters, CancellationToken cancellationToken)

@@ -40,4 +40,8 @@
 		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Services\AStar.Clean.V1.Services.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\AStar.Utilities\AStar.Utilities.csproj" />
+	</ItemGroup>
+
 </Project>

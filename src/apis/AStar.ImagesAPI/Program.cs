@@ -1,13 +1,11 @@
 using System.IO.Abstractions;
-using System.Text.Json.Serialization;
-using AStar.ASPNet.Extensions.Handlers;
-using AStar.FilesApi.HealthChecks;
+using AStar.ASPNet.Extensions.PipelineExtensions;
+using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.ImagesAPI.ApiClients;
 using AStar.ImagesAPI.Models;
 using AStar.ImagesAPI.Services;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Options;
-using Serilog;
 
 namespace AStar.ImagesAPI;
 
@@ -16,58 +14,37 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        ConfigureServices(builder);
+
+        _ = builder.AddLogging("astar-logging-settings.json");
+        _ = builder.Services.ConfigurePipeline();
+
+        _ = ConfigureServices(builder.Services, builder.Configuration);
 
         var app = builder.Build();
-
-        ConfigurePipeline(app);
+        _ = app.ConfigurePipeline();
+        _ = ConfigurePipeline(app);
 
         app.Run();
     }
 
-    private static void ConfigureServices(WebApplicationBuilder builder)
+    private static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
     {
-        var services = builder.Services;
-        _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
-            .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
-            .ReadFrom.Configuration(context.Configuration));
         _ = services.AddDbContext<FilesContext>();
-        _ = builder.Services.AddControllers()
-                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        _ = builder.Services.AddEndpointsApiExplorer();
-        _ = builder.Services.AddSwaggerGen();
-        _ = builder.Services.AddHealthChecks();
-        _ = builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         _ = services
-            .AddSingleton<IFileSystem, FileSystem>()
-            .AddSingleton<IImageService, ImageService>();
-        _ = builder.Services.Configure<FilesApiConfiguration>(
-            builder.Configuration.GetSection("ApiConfiguration:FilesApiConfiguration"));
+                .AddSingleton<IFileSystem, FileSystem>()
+                .AddSingleton<IImageService, ImageService>();
+
+        _ = services.Configure<FilesApiConfiguration>(configuration.GetSection("ApiConfiguration:FilesApiConfiguration"));
         _ = services.AddHttpClient<FilesApiClient>().ConfigureHttpClient((serviceProvider, client) =>
-        {
-            client.BaseAddress = serviceProvider.GetRequiredService<IOptions<FilesApiConfiguration>>().Value.BaseUrl;
-            client.DefaultRequestHeaders.Accept.Add(new("application/json"));
-        });
+                        {
+                            client.BaseAddress = serviceProvider.GetRequiredService<IOptions<FilesApiConfiguration>>().Value.BaseUrl;
+                            client.DefaultRequestHeaders.Accept.Add(new("application/json"));
+                        });
+
+        return services;
     }
 
-    private static void ConfigurePipeline(WebApplication app)
-    {
-        _ = app
-            .UseSwagger()
-            .UseSwaggerUI()
-            .UseAuthentication()
-            .UseAuthorization();
-
-        _ = app.MapControllers();
-        _ = app.MapHealthChecks("/health/live", new()
-        {
-            Predicate = _ => false,
-            ResponseWriter = HealthCheckResponses.WriteJsonResponse
-        });
-        _ = app.MapHealthChecks("/health/ready", new()
-        {
-            ResponseWriter = HealthCheckResponses.WriteJsonResponse
-        });
-    }
+    private static WebApplication ConfigurePipeline(WebApplication app)
+        // Additional configuration can be performed here
+        => app;
 }

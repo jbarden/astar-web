@@ -20,6 +20,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
 	  <ProjectReference Include="..\..\core\AStar.Infrastructure\AStar.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\core\AStar.Utilities\AStar.Utilities.csproj" />
 	</ItemGroup>
 
 	<Target Name="CopyFiles" BeforeTargets="PrepareForBuild">
@@ -36,4 +37,5 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>
+	
 </Project>

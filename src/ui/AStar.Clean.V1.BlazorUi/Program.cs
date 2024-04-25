@@ -1,4 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
+using AStar.ASPNet.Extensions.PipelineExtensions;
+using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Clean.V1.BlazorUI.ApiClients;
 using AStar.Clean.V1.BlazorUI.Models;
 using Microsoft.Extensions.Options;
@@ -13,11 +15,15 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        _ = builder.AddLogging("astar-logging-settings.json");
+        _ = builder.Services.ConfigurePipeline();
         ConfigureServices(builder);
 
         var app = builder.Build();
 
         ConfigurePipeline(app);
+        _ = app.ConfigurePipeline();
 
         app.Run();
     }
@@ -26,7 +32,6 @@ public static class Program
     {
         _ = app.UseExceptionHandler("/Error");
         _ = app.UseHsts();
-
         _ = app.UseHttpsRedirection();
         _ = app.UseStaticFiles();
         _ = app.MapBlazorHub();
@@ -40,9 +45,6 @@ public static class Program
         _ = services.AddServerSideBlazor();
         _ = services.AddBootstrapBlazor();
         _ = services.AddApplicationInsightsTelemetry();
-        _ = builder.Host.UseSerilog((context, loggerConfig) => loggerConfig
-            .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {Message:lj}{NewLine}{Exception}")
-            .ReadFrom.Configuration(context.Configuration));
         JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
         _ = services.AddHttpContextAccessor();

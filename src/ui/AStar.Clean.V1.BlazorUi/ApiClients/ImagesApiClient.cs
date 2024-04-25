@@ -6,6 +6,26 @@ namespace AStar.Clean.V1.BlazorUI.ApiClients;
 
 public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClient, ILogger<ImagesApiClient> logger)
 {
+    public async Task<HealthStatusResponse> GetHealthAsync()
+    {
+        HttpResponseMessage response;
+
+        try
+        {
+            response = await httpClient.GetAsync("/health/live");
+
+            return response.IsSuccessStatusCode
+                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!
+                : new() { Status = "Health Check failed" }!;
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+        }
+
+        return new() { Status = "Health Check failed" }!;
+    }
+
     public async Task<Stream> GetImageThumbnailAsync(string imagePath, int maximumSizeInPixels)
     {
         var requestUri = $"/api/image?imagePath={imagePath}&thumbnail=true&maximumSizeInPixels={maximumSizeInPixels}";
@@ -32,15 +52,6 @@ public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClien
         return response.IsSuccessStatusCode
             ? await response.Content.ReadAsStreamAsync()
             : CreateNotFoundMemoryStream(imagePath);
-    }
-
-    public async Task<HealthStatusResponse> GetHealthAsync()
-    {
-        var response = await httpClient.GetAsync("/health/live");
-
-        return !response.IsSuccessStatusCode
-            ? new() { Status = $"{nameof(ImagesApiClient)} - Health Check failed" }
-            : (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!;
     }
 
     public async Task<FileInfoDto?> GetImageDetailsAsync(string imagePath)
