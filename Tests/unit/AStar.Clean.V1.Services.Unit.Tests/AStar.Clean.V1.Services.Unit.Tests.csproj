@@ -30,8 +30,4 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Services\AStar.Clean.V1.Services.csproj" />
-	</ItemGroup>
-
 </Project>

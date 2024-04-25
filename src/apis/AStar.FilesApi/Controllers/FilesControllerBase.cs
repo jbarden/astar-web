@@ -1,8 +1,8 @@
 ﻿using System.IO.Abstractions;
-using AStar.Clean.V1.DomainModel;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
+using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesApi.Controllers;

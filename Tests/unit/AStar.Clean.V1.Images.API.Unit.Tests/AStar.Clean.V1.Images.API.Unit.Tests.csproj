@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\AStar.Clean.V1.Images.API\AStar.Clean.V1.Images.API.csproj" />
+	  <ProjectReference Include="..\..\..\src\apis\AStar.ImagesAPI\AStar.ImagesAPI.csproj" />
 	</ItemGroup>
 
 </Project>
