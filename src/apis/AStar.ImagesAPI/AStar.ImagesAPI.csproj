@@ -26,6 +26,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
+	  <ProjectReference Include="..\..\core\AStar.GuardClauses\AStar.GuardClauses.csproj" />
 	  <ProjectReference Include="..\..\core\AStar.Infrastructure\AStar.Infrastructure.csproj" />
 	  <ProjectReference Include="..\..\core\AStar.Utilities\AStar.Utilities.csproj" />
 	</ItemGroup>

@@ -52,6 +52,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <ProjectReference Include="..\AStar.GuardClauses\AStar.GuardClauses.csproj" />
 	  <ProjectReference Include="..\AStar.Web.Domain\AStar.Web.Domain.csproj" />
 	</ItemGroup>
 

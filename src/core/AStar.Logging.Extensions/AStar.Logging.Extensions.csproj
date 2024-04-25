@@ -62,6 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\AStar.GuardClauses\AStar.GuardClauses.csproj" />
 	  <ProjectReference Include="..\AStar.Utilities\AStar.Utilities.csproj" />
 	</ItemGroup>
 

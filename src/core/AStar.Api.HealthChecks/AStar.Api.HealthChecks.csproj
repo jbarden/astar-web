@@ -54,4 +54,8 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\AStar.GuardClauses\AStar.GuardClauses.csproj" />
+	</ItemGroup>
+
 </Project>

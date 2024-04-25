@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\AStar.Api.HealthChecks\AStar.Api.HealthChecks.csproj" />
+	  <ProjectReference Include="..\AStar.GuardClauses\AStar.GuardClauses.csproj" />
 	  <ProjectReference Include="..\AStar.Logging.Extensions\AStar.Logging.Extensions.csproj" />
 	</ItemGroup>
 

@@ -39,6 +39,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\core\AStar.Api.HealthChecks\AStar.Api.HealthChecks.csproj" />
 	  <ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
 	  <ProjectReference Include="..\..\core\AStar.Utilities\AStar.Utilities.csproj" />
 	</ItemGroup>
