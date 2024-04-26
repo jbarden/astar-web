@@ -25,4 +25,8 @@
 	  <Folder Include="ImagesApi\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
+	</ItemGroup>
+
 </Project>

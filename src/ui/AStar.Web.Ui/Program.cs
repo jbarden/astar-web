@@ -1,3 +1,4 @@
+using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
 
@@ -9,22 +10,37 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-        _ = builder.Services.AddRazorPages();
-        _ = builder.Services.AddServerSideBlazor();
+        _ = builder.AddLogging("astar-logging-settings.json");
+        _ = builder.Services.ConfigurePipeline();
 
-        AddBlazorise(builder.Services);
+        _ = ConfigureServices(builder.Services);
 
         var app = builder.Build();
+        _ = ConfigurePipeline(app);
 
-        // Configure the HTTP request pipeline.
+        app.Run();
+    }
+
+    private static IServiceCollection ConfigureServices(IServiceCollection services)
+    {
+        _ = services.AddRazorPages();
+        _ = services.AddServerSideBlazor();
+
+        _ = services.AddBlazorise();
+        _ = services.AddBootstrap5Providers()
+            .AddFontAwesomeIcons();
+
+        return services;
+    }
+
+    private static WebApplication ConfigurePipeline(WebApplication app)
+    {
         if(!app.Environment.IsDevelopment())
         {
-            _ = app.UseExceptionHandler("/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             _ = app.UseHsts();
         }
 
+        _ = app.UseExceptionHandler("/Error");
         _ = app.UseHttpsRedirection();
 
         _ = app.UseStaticFiles();
@@ -34,15 +50,6 @@ internal static class Program
         _ = app.MapBlazorHub();
         _ = app.MapFallbackToPage("/_Host");
 
-        app.Run();
-
-        static void AddBlazorise(IServiceCollection services)
-        {
-            _ = services
-                .AddBlazorise();
-            _ = services
-                .AddBootstrap5Providers()
-                .AddFontAwesomeIcons();
-        }
+        return app;
     }
 }
