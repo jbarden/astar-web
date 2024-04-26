@@ -1,6 +1,6 @@
-﻿namespace AStar.Web.Ui.Models;
+﻿namespace AStar.Web.UI.Models;
 
 public class FilesApiConfiguration
 {
-    public Uri BaseUrl { get; set; } = new("http://not.set.com");
+    public string BaseUrl { get; set; } = string.Empty;
 }

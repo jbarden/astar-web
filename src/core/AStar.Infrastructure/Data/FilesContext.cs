@@ -30,8 +30,9 @@ public class FilesContext : DbContext
     /// </param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        var dbPath = Path.Combine(desktopPath, "Files.db");
+#pragma warning disable S1075 // URIs should not be hardcoded
+        var dbPath = Path.Combine(@"c:\db", "Files.db");
+#pragma warning restore S1075 // URIs should not be hardcoded
         _ = optionsBuilder.UseSqlite($"Filename={dbPath}");
     }
 

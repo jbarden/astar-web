@@ -34,7 +34,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\src\ui\AStar.Web.Ui\AStar.Web.Ui.csproj" />
+	  <ProjectReference Include="..\..\..\src\ui\AStar.Web.UI\AStar.Web.UI.csproj" />
 	</ItemGroup>
 	
   <ItemGroup>

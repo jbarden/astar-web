@@ -1,7 +1,4 @@
-﻿using AStar.GuardClauses;
-using AStar.Web.Ui.Models;
-
-namespace AStar.Web.Ui.ApiClients;
+﻿namespace AStar.Web.UI.ApiClients;
 
 public class FilesApiClient
 {
@@ -10,14 +7,9 @@ public class FilesApiClient
 
     public FilesApiClient(HttpClient httpClient, ILogger<FilesApiClient> logger)
     {
-        this.httpClient = GuardAgainst.Null(httpClient);
-        this.logger = GuardAgainst.Null(logger);
+        this.httpClient = httpClient;
+        this.logger = logger;
     }
 
-    public async Task<HealthStatusResponse> GetHealthAsync()
-    {
-        await Task.Delay(1);
-
-        return new HealthStatusResponse() { Status = "Could not get a response from the Files API." };
-    }
+    public async Task<string> GetHealthAsync() => throw new NotImplementedException();
 }

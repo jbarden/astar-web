@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,17 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Blazor.Bootstrap" Version="2.2.1" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Blazor.Bootstrap" Version="2.2.1" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\core\AStar.Api.HealthChecks\AStar.Api.HealthChecks.csproj" />
-	  <ProjectReference Include="..\..\core\AStar.GuardClauses\AStar.GuardClauses.csproj" />
-		<ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
-		<ProjectReference Include="..\..\core\AStar.GuardClauses\AStar.GuardClauses.csproj" />
-		<ProjectReference Include="..\..\core\AStar.Infrastructure\AStar.Infrastructure.csproj" />
-		<ProjectReference Include="..\..\core\AStar.Utilities\AStar.Utilities.csproj" />
-	</ItemGroup>
-		
 </Project>

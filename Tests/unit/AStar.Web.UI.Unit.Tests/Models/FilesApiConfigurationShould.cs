@@ -1,4 +1,4 @@
-﻿using AStar.Web.Ui.Models;
+﻿using AStar.Web.UI.Models;
 using FluentAssertions;
 
 namespace AStar.Web.UI.Unit.Tests.Models;

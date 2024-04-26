@@ -4,7 +4,7 @@
 
     <Sidebar @ref="sidebar"
              IconName="IconName.BootstrapFill"
-             Title="AStar Web"
+             Title="Blazor Bootstrap"
              DataProvider="SidebarDataProvider" />
 
     <main>
@@ -13,15 +13,21 @@
         </div>
 
         <article class="content px-4">
-            <div class="py-2">@Body</div>
+            <div class="py-2">
+                @Body
+            </div>
         </article>
     </main>
 
 </div>
 
+<Modal IsServiceModal="true" />
+<Preload />
+<Toasts class="p-3" AutoHide="true" Delay="4000" Placement="ToastsPlacement.TopRight" />
+
 @code {
-    Sidebar sidebar;
-    IEnumerable<NavItem> navItems;
+    private Sidebar sidebar = default!;
+    private IEnumerable<NavItem> navItems = default!;
 
     private async Task<SidebarDataProviderResult> SidebarDataProvider(SidebarDataProviderRequest request)
     {
@@ -36,20 +42,10 @@
         navItems = new List<NavItem>
         {
             new NavItem { Id = "1", Href = "/", IconName = IconName.HouseDoorFill, Text = "Home", Match=NavLinkMatch.All},
-            new NavItem { Id = "2", Href = "/images/list", IconName = IconName.Person, Text = "Images", IconColor = IconColor.Success },
-            new NavItem { Id = "3", Href = "/images/list-duplicates", IconName = IconName.PeopleFill, Text = "Duplicates", IconColor = IconColor.Success },
-            new NavItem { Id = "4", Href = "/scrapper/index", IconName = IconName.PostageHeart, Text = "Scrape", IconColor = IconColor.Primary },
-            new NavItem { Id = "5", Href = "/random-image/index", IconName = IconName.FileImage, Text = "Random Image", IconColor = IconColor.Warning },
-            new NavItem { Id = "6", Href = "/directory-rename/index", IconName = IconName.Folder, Text = "Rename Directories", IconColor = IconColor.Info },
-            new NavItem { Id = "7", Href = "/file-rename/index", IconName = IconName.FileEarmarkImage, Text = "Rename Images", IconColor = IconColor.Info },
+            new NavItem { Id = "2", Href = "/counter", IconName = IconName.PlusSquareFill, Text = "Counter"},
+            new NavItem { Id = "3", Href = "/weather", IconName = IconName.Table, Text = "Weather"},
         };
 
         return navItems;
     }
 }
-
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>

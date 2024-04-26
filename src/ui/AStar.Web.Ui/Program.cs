@@ -1,33 +1,33 @@
-using AStar.ASPNet.Extensions.PipelineExtensions;
-using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
-using AStar.Web.Ui.Models;
+using AStar.Web.UI.Components;
 
-namespace AStar.Web.Ui;
-
-internal static class Program
+internal class Program
 {
-    public static void Main(string[] args)
+    private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.ConfigurePipeline();
-
-        _ = ConfigureServices(builder.Services, builder.Configuration);
-
+        // Add services to the container.
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
+        builder.Services.AddBlazorBootstrap();
         var app = builder.Build();
-        _ = app.ConfigurePipeline();
-        _ = ConfigurePipeline(app);
+
+        // Configure the HTTP request pipeline.
+        if(!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error", createScopeForErrors: true);
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseStaticFiles();
+        app.UseAntiforgery();
+
+        app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode();
 
         app.Run();
     }
-
-    private static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
-    {
-        _ = services.Configure<FilesApiConfiguration>(configuration.GetSection("ApiConfiguration:FilesApiConfiguration"));
-
-        return services;
-    }
-
-    private static WebApplication ConfigurePipeline(WebApplication app) => app;
 }
