@@ -1,11 +1,10 @@
 using System.Text.Json;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace AStar.Api.HealthChecks;
 
 /// <summary>
-/// The <see cref="HealthCheckResponses"/> class contains the available extension methods for writing Health Checks. 
+/// The <see cref="HealthCheckResponses"/> class contains the available extension methods for writing Health Checks.
 /// </summary>
 public static class HealthCheckResponses
 {

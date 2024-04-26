@@ -1,5 +1,4 @@
 ﻿using AStar.Web.UI.FilesApi;
-using FluentAssertions;
 
 namespace AStar.Web.UI.Unit.Tests.FilesApi;
 

@@ -9,24 +9,24 @@ namespace AStar.Logging.Extensions;
 /// </summary>
 public static class LoggingExtensions
 {
-
-/// <summary>
-/// 
-/// </summary>
-/// <param name="services"></param>
-/// <returns></returns>
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSerilogLogging(this IServiceCollection services)
     {
-        _=services.AddApplicationInsightsTelemetry();
+        _ = services.AddApplicationInsightsTelemetry();
         var serviceProvider = services.BuildServiceProvider();
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.ApplicationInsights(
-        serviceProvider.GetRequiredService<TelemetryConfiguration>(),
-	TelemetryConverter.Traces)
-    .CreateLogger();
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.ApplicationInsights(
+                serviceProvider.GetRequiredService<TelemetryConfiguration>(),
+            TelemetryConverter.Traces)
+            .CreateLogger();
 
-    return services;
+        return services;
     }
+
     /// <summary>
     /// The <see cref="UseSerilogLogging" /> method will add Serilog to the logging providers.
     /// </summary>

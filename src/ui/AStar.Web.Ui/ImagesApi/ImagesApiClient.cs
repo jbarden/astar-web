@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using AStar.Web.UI.Shared;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.Web.UI.ImagesApi;
 
@@ -20,7 +19,7 @@ public class ImagesApiClient
     {
         try
         {
-            HttpResponseMessage response = await httpClient.GetAsync("/health/live");
+            var response = await httpClient.GetAsync("/health/live");
 
             return response.IsSuccessStatusCode
                 ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!

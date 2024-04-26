@@ -1,9 +1,8 @@
 using AStar.Web.UI.ImagesApi;
 using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
-using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.Web.UI.Unit.Tests.ApiClients;
+namespace AStar.Web.UI.Unit.Tests.ImagesApi;
 
 public class ImagesApiClientShould
 {
@@ -12,12 +11,10 @@ public class ImagesApiClientShould
     {
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 
@@ -31,12 +28,10 @@ public class ImagesApiClientShould
     {
         var handler = new MockInternalServerErrorHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 
@@ -50,12 +45,10 @@ public class ImagesApiClientShould
     {
         var handler = new MockSuccessHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 

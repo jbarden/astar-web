@@ -6,7 +6,6 @@ using AStar.Clean.V1.BlazorUI.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Serilog;
 
 namespace AStar.Clean.V1.BlazorUI;
 

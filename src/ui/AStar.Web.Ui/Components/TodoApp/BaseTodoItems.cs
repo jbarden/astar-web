@@ -10,12 +10,12 @@ public abstract class BaseTodoItems : ComponentBase
 
     protected Filter filter = Filter.All;
 
-    protected List<Todo> todos = new()
-        {
+    protected List<Todo> todos =
+        [
             new() { Description = "Buy milk" },
             new() { Description = "Call John regarding the meeting" },
             new() { Description = "Walk a dog" },
-        };
+        ];
 
     protected IEnumerable<Todo> Todos
     {

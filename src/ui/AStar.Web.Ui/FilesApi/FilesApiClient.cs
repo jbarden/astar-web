@@ -19,7 +19,7 @@ public class FilesApiClient
     {
         try
         {
-            HttpResponseMessage response = await httpClient.GetAsync("/health/live");
+            var response = await httpClient.GetAsync("/health/live");
 
             return response.IsSuccessStatusCode
                 ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!

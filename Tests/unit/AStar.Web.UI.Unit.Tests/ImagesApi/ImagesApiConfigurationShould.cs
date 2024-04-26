@@ -1,5 +1,4 @@
 ﻿using AStar.Web.UI.ImagesApi;
-using FluentAssertions;
 
 namespace AStar.Web.UI.Unit.Tests.ImagesApi;
 

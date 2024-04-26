@@ -1,9 +1,8 @@
 using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
-using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.Web.UI.Unit.Tests.ApiClients;
+namespace AStar.Web.UI.Unit.Tests.FilesApi;
 
 public class FilesApiClientShould
 {
@@ -12,12 +11,10 @@ public class FilesApiClientShould
     {
         var handler = new MockHttpRequestExceptionErrorHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
@@ -31,12 +28,10 @@ public class FilesApiClientShould
     {
         var handler = new MockInternalServerErrorHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
@@ -50,12 +45,10 @@ public class FilesApiClientShould
     {
         var handler = new MockSuccessHttpMessageHandler();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
         var httpClient = new HttpClient(handler)
         {
             BaseAddress = new Uri("https://doesnot.matter.com")
         };
-#pragma warning restore S1075 // URIs should not be hardcoded
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 

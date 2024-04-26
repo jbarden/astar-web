@@ -1,5 +1,4 @@
-﻿using Blazorise;
-using Blazorise.Localization;
+﻿using Blazorise.Localization;
 
 using Microsoft.AspNetCore.Components;
 

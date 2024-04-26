@@ -1,7 +1,6 @@
 ﻿using AStar.Clean.V1.BlazorUI.Models;
 using BootstrapBlazor.Components;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Primitives;
 
 namespace AStar.Clean.V1.BlazorUI.Components;
 

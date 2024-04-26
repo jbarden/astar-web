@@ -2,7 +2,6 @@ using System.IO.Abstractions;
 using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Infrastructure.Data;
-using Microsoft.Extensions.Configuration;
 
 namespace AStar.FilesApi;
 
