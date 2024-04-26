@@ -1,4 +1,4 @@
-using AStar.Web.UI.ApiClients;
+using AStar.Web.UI.FilesApi;
 using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -14,6 +14,6 @@ public class FilesApiClientShould
 
         var response = await sut.GetHealthAsync();
 
-        response.Should().Be("Could not get a response from the Files API.");
+        response.Status.Should().Be("Could not get a response from the Files API.");
     }
 }

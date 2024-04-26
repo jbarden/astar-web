@@ -1,7 +1,7 @@
-﻿using AStar.Web.UI.Models;
+﻿using AStar.Web.UI.FilesApi;
 using FluentAssertions;
 
-namespace AStar.Web.UI.Unit.Tests.Models;
+namespace AStar.Web.UI.Unit.Tests.FilesApi;
 
 public class FilesApiConfigurationShould
 {
