@@ -1,9 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
-using Blazorise.Bootstrap5;
-using Blazorise.Icons.FontAwesome;
 
 namespace AStar.Web.UI;
 
+[ExcludeFromCodeCoverage]
 internal static class Program
 {
     private static void Main(string[] args)
@@ -13,24 +13,12 @@ internal static class Program
         _ = builder.AddLogging("astar-logging-settings.json");
         _ = builder.Services.ConfigurePipeline();
 
-        _ = ConfigureServices(builder.Services);
+        _ = StartupConfiguration.Services.ConfigureServices(builder.Services, builder.Configuration);
 
         var app = builder.Build();
         _ = ConfigurePipeline(app);
 
         app.Run();
-    }
-
-    private static IServiceCollection ConfigureServices(IServiceCollection services)
-    {
-        _ = services.AddRazorPages();
-        _ = services.AddServerSideBlazor();
-
-        _ = services.AddBlazorise();
-        _ = services.AddBootstrap5Providers()
-            .AddFontAwesomeIcons();
-
-        return services;
     }
 
     private static WebApplication ConfigurePipeline(WebApplication app)

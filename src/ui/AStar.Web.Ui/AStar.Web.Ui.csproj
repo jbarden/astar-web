@@ -14,15 +14,22 @@
 		<Copyright>Copyright 2018-2024 Megabit</Copyright>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <NoWarn>1701;1702;IDE0290;</NoWarn>
+	  <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <NoWarn>1701;1702;IDE0290;</NoWarn>
+	  <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Blazorise" Version="1.5.*" />
 		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.*" />
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.*" />
 		<PackageReference Include="Blazorise.DataGrid" Version="1.5.*" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ImagesApi\" />
+		<PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.2" />
 	</ItemGroup>
 
 	<ItemGroup>

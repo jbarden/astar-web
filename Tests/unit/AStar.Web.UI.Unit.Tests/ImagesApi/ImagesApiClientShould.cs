@@ -1,11 +1,11 @@
-using AStar.Web.UI.FilesApi;
+using AStar.Web.UI.ImagesApi;
 using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
 using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.Web.UI.Unit.Tests.ApiClients;
 
-public class FilesApiClientShould
+public class ImagesApiClientShould
 {
     [Fact]
     public async Task ReturnExpectedFailureFromGetHealthAsyncWhenTheApIsiUnreachable()
@@ -19,11 +19,11 @@ public class FilesApiClientShould
         };
 #pragma warning restore S1075 // URIs should not be hardcoded
 
-        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
-        response.Status.Should().Be("Could not get a response from the Files API.");
+        response.Status.Should().Be("Could not get a response from the Images API.");
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public class FilesApiClientShould
         };
 #pragma warning restore S1075 // URIs should not be hardcoded
 
-        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
@@ -57,7 +57,7 @@ public class FilesApiClientShould
         };
 #pragma warning restore S1075 // URIs should not be hardcoded
 
-        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
