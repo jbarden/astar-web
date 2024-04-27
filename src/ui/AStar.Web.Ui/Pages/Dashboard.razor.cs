@@ -1,5 +1,6 @@
 ﻿using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.ImagesApi;
+using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
 using Microsoft.AspNetCore.Components;
 
@@ -7,17 +8,18 @@ namespace AStar.Web.UI.Pages;
 
 public partial class Dashboard
 {
+    private const string NotChecked = "Not yet checked...";
+    private const string CheckingText = "Checking...please wait...";
+    private static readonly string WarningClass = "alert alert-warning";
     private readonly string healthCheckFailure = "alert alert-danger";
     private readonly string healthCheckSuccess = "alert alert-success";
-    private readonly string healthCheckWarning = "alert alert-warning";
-    private string ImagesApiHealthCheckClass = "alert alert-warning";
-    private string FilesApiHealthCheckClass = "alert alert-warning";
+    private readonly string healthCheckWarning = WarningClass;
+    private string ImagesApiHealthCheckClass = WarningClass;
+    private string FilesApiHealthCheckClass = WarningClass;
+    private string FilesApiHealthStatus = NotChecked;
+    private string ImagesApiHealthStatus = NotChecked;
 
     private LoadingIndicator loadingIndicator = new();
-
-    private string FilesApiHealthStatus = "Not yet checked...";
-
-    private string ImagesApiHealthStatus = "Not yet checked...";
 
     [Inject]
     private FilesApiClient FilesApiClient { get; set; } = default!;
@@ -30,28 +32,33 @@ public partial class Dashboard
         if(!firstRender)
         {
             return;
-            
         }
-        
+
         await CheckApiStatuses();
     }
 
     private async Task CheckApiStatuses()
     {
         await loadingIndicator.Show();
-        FilesApiHealthCheckClass = healthCheckWarning;
-        ImagesApiHealthCheckClass = healthCheckWarning;
-        FilesApiHealthStatus = "Checking...please wait...";
-        ImagesApiHealthStatus = "Checking...please wait...";
+        SetStatusCheckingDetails();
 
         var filesApiStatus = await FilesApiClient.GetHealthAsync();
         var imagesApiStatus = await ImagesApiClient.GetHealthAsync();
-        FilesApiHealthCheckClass = filesApiStatus.Status == "Healthy" ? healthCheckSuccess : healthCheckFailure;
-        ImagesApiHealthCheckClass = imagesApiStatus.Status == "Healthy" ? healthCheckSuccess : healthCheckFailure;
-        await Task.Delay(3000); // Do work ...
+        FilesApiHealthCheckClass = SetHealthCheckClass(filesApiStatus);
+        ImagesApiHealthCheckClass = SetHealthCheckClass(imagesApiStatus);
         FilesApiHealthStatus = filesApiStatus.Status;
         ImagesApiHealthStatus = imagesApiStatus.Status;
 
         await loadingIndicator.Hide();
+    }
+
+    private string SetHealthCheckClass(HealthStatusResponse healthStatusResponse) => healthStatusResponse.Status == "Healthy" ? healthCheckSuccess : healthCheckFailure;
+
+    private void SetStatusCheckingDetails()
+    {
+        FilesApiHealthCheckClass = healthCheckWarning;
+        ImagesApiHealthCheckClass = healthCheckWarning;
+        FilesApiHealthStatus = CheckingText;
+        ImagesApiHealthStatus = CheckingText;
     }
 }
