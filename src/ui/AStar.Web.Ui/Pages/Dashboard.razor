@@ -1,38 +1,28 @@
 ﻿@page "/"
 @inject IVersionProvider VersionProvider
-<Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">API Statuses</Heading>
+<Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">Welcome!</Heading>
 
 <LoadingIndicator @ref="loadingIndicator">
     <Paragraph>
-        Blazorise is a component library built on top of Blazor and CSS frameworks like <Anchor To="https://getbootstrap.com/" Target="Target.Blank">Bootstrap</Anchor>, <Anchor To="https://fluent2.microsoft.design/" Target="Target.Blank">FluentUI2</Anchor>, <Anchor To="https://tailwindcss.com/" Target="Target.Blank">Tailwind</Anchor>, <Anchor To="https://bulma.io/" Target="Target.Blank">Bulma</Anchor>, <Anchor To="https://ant.design/" Target="Target.Blank">Ant Design</Anchor>, and <Anchor To="http://daemonite.github.io/material/" Target="Target.Blank">Material</Anchor>. It can be used to build responsive, single-page web applications.
+        Welcome to AStar Development's Web site. This site is intended as a coding playground and is not a serious site!
     </Paragraph>
 
+    <Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">API Statuses</Heading>
     <Alert Color="Color.Info" Visible>
         <Paragraph>
-            This is a Blazorise Starting Template allowing you to quickly get started building your project!
+            Below are the results of some basic checks to the backend APIs. Over time, the checks will be extended.
         </Paragraph>
 
+        <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Files API Status</Heading>
         <Paragraph>
-            The following Blazorise packages have been installed for you:
+            <br />
+            <div class="@FilesApiHealthCheckClass">Files Api Health Status: @FilesApiHealthStatus</div>
         </Paragraph>
 
-        <UnorderedList>
-            <UnorderedListItem>Blazorise @($"v{VersionProvider.MilestoneVersion}")</UnorderedListItem>
-            <UnorderedListItem>The <Anchor To="https://blazorise.com/docs/usage/bootstrap5">Blazorise Bootstrap5</Anchor> Provider</UnorderedListItem>
-            <UnorderedListItem>The Blazorise FontAwesome Icon Provider</UnorderedListItem>
-            <UnorderedListItem>The <Anchor To="https://blazorise.com/docs/extensions/datagrid/getting-started">Blazorise DataGrid</Anchor> extension</UnorderedListItem>
-        </UnorderedList>
-
+        <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Images API Status</Heading>
         <Paragraph>
-            However Blazorise has many more extensions at your disposal.
-            You can find them <Anchor To="https://blazorise.com/docs/extensions" Target="Target.Blank">here</Anchor>.
-        </Paragraph>
-
-        <Paragraph>
-            Please visit the official <Anchor To="https://bootstrapdemo.blazorise.com/" Target="Target.Blank">Blazorise Demo</Anchor> for component examples.
-        </Paragraph>
-        <Paragraph>
-            Please visit the official <Anchor To="https://blazorise.com/docs/" Target="Target.Blank">Blazorise Documentation</Anchor> to learn more about the available components.
+            <br />
+            <div class="@ImagesApiHealthCheckClass">Images Api Health Status: @ImagesApiHealthStatus</div>
         </Paragraph>
     </Alert>
 </LoadingIndicator>

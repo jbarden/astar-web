@@ -11,7 +11,7 @@ public static class Services
     public static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
     {
         _ = services.Configure<FilesApiConfiguration>(configuration.GetSection(FilesApiConfiguration.SectionLocation));
-        _ = services.Configure<ImagesApiClient>(configuration.GetSection(ImagesApiConfiguration.SectionLocation));
+        _ = services.Configure<ImagesApiConfiguration>(configuration.GetSection(ImagesApiConfiguration.SectionLocation));
         _ = services.AddRazorPages();
         _ = services.AddServerSideBlazor();
 
