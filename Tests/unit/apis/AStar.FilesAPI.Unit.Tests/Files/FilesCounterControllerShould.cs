@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Controllers;
 using AStar.FilesApi.Files;
@@ -13,34 +14,35 @@ namespace AStar.FilesAPI.Unit.Tests.Files;
 public class FilesCounterControllerShould
 {
     [Fact]
-    public async Task GetTheExpectedCountWhenNoFiltersApplied()
+    public async Task ReturnZeroWhenNoCriteriaSpecified()
     {
-        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var mockFilesContext = new MockFilesContext().CreateContext();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
         var response = (await sut.Get(new())).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(340);
+        _ = response!.Value.Should().Be(0);
     }
 
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllKnownFiles()
     {
-        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var mockFilesContext = new MockFilesContext().CreateContext();
+
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"d:\"})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"c:\"})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(340);
+        _ = response!.Value.Should().Be(mockFilesContext.Files.Count());
     }
 
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
     {
-        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var mockFilesContext = new MockFilesContext().CreateContext();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
@@ -48,22 +50,49 @@ public class FilesCounterControllerShould
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
-        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var mockFilesContext = new MockFilesContext().CreateContext();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"d:\Slideshow", RecursiveSubDirectories = true})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(296);
+        _ = response!.Value.Should().Be(95);
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypes()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
-        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var mockFilesContext = new MockFilesContext().CreateContext();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = true, SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"c:\", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(232);
+        _ = response!.Value.Should().Be(288);
+    }
+
+    [Fact]
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderRecursively()
+    {
+        var mockFilesContext = new MockFilesContext().CreateContext();
+        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
+
+        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true, SearchType = SearchType.Images})).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(95);
+    }
+
+    [Fact]
+    public void GetTheFileList()
+    {
+        var files = Directory.EnumerateFiles(@"c:\temp", "*.*", new EnumerationOptions(){IgnoreInaccessible=true,RecurseSubdirectories = true });
+        var fileList = new List<FileDetail>();
+        foreach(var file in files)
+        {
+            var detail = new FileInfo(file);
+            var fileDetail = new FileDetail(detail);
+            fileList.Add(fileDetail);
+        }
+
+        var listAsJson = JsonSerializer.Serialize(fileList);
+        File.WriteAllText(@"C:\repos\astar-web\Tests\unit\apis\AStar.FilesAPI.Unit.Tests\TestFiles\files.json", listAsJson);
     }
 }

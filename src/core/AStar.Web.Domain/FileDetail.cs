@@ -25,6 +25,13 @@ public class FileDetail
         FileName = fileInfo.Name;
         DirectoryName = fileInfo.DirectoryName!;
         FileSize = fileInfo.Length;
+        IsImage = FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("jpeg", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("bmp", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("jfif", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("jif", StringComparison.OrdinalIgnoreCase)
+        || FileName.EndsWith("gif", StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>

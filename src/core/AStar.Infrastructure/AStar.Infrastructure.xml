@@ -9,12 +9,6 @@
             The FileContext class/
             </summary>
         </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(System.String)">
-             <summary>
-            
-             </summary>
-             <param name="connectionString"></param>
-        </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{AStar.Infrastructure.Data.FilesContext})">
              <summary>
             
@@ -41,13 +35,6 @@
             The overriden OnModelCreating method.
             </summary>
             <param name="modelBuilder">
-            </param>
-        </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            The overriden OnConfiguring method.
-            </summary>
-            <param name="optionsBuilder">
             </param>
         </member>
         <member name="T:AStar.Infrastructure.Migrations.AddTagTables">

@@ -8,19 +8,11 @@ namespace AStar.Infrastructure.Data;
 /// </summary>
 public class FilesContext : DbContext
 {
-    private readonly string connectionString;
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="connectionString"></param>
-    public FilesContext(string connectionString) => this.connectionString = connectionString;
-
     /// <summary>
     ///
     /// </summary>
     /// <param name="options"></param>
-    public FilesContext(DbContextOptions<FilesContext> options) : base(options) => connectionString = "DataSource=:memory:";
+    public FilesContext(DbContextOptions<FilesContext> options) : base(options) { }
 
     /// <summary>
     /// The list of files in the dB.
@@ -58,25 +50,11 @@ public class FilesContext : DbContext
         }
     }
 
-    /// <summary>
-    /// The overriden OnConfiguring method.
-    /// </summary>
-    /// <param name="optionsBuilder">
-    /// </param>
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if(connectionString.StartsWith("Test"))
-        {
-            var options = new DbContextOptionsBuilder<FilesContext>()
-                                    .UseInMemoryDatabase(databaseName: $"Test{Guid.NewGuid()}")
-                                    .Options;
-
-            var mockFilesContext = new FilesContext(options);
-            _ = mockFilesContext.Database.EnsureCreated();
-        }
-        else
-        {
-            _ = optionsBuilder.UseSqlite(connectionString);
-        }
-    }
+    ///// <summary>
+    ///// The overriden OnConfiguring method.
+    ///// </summary>
+    ///// <param name="optionsBuilder">
+    ///// </param>
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //                               => optionsBuilder.UseSqlite(connectionString);
 }

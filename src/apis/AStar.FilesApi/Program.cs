@@ -2,6 +2,7 @@ using System.IO.Abstractions;
 using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AStar.FilesApi;
 
@@ -25,7 +26,11 @@ public static class Program
 
     private static IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddScoped(_ => new FilesContext(configuration.GetConnectionString("FilesDb")!));
+        var  contextOptions = new DbContextOptionsBuilder<FilesContext>()
+            .UseSqlite(configuration.GetConnectionString("FilesDb")!)
+            .Options;
+
+        _ = services.AddScoped(_ => new FilesContext(contextOptions));
         _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>();
 
