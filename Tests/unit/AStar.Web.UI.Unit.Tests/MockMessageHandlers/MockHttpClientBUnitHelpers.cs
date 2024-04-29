@@ -13,8 +13,8 @@ public static class MockHttpClientBunitHelpers
     {
         var mockHttpHandler = new MockHttpMessageHandler();
         var httpClient = mockHttpHandler.ToHttpClient();
-        httpClient.BaseAddress = new Uri("http://localhost");
-        services.AddSingleton<HttpClient>(httpClient);
+        httpClient.BaseAddress = new("http://localhost");
+        services.AddSingleton(httpClient);
         return mockHttpHandler;
     }
 
@@ -26,7 +26,7 @@ public static class MockHttpClientBunitHelpers
             {
                 Content = new StringContent(JsonSerializer.Serialize(content))
             };
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            response.Content.Headers.ContentType = new("application/json");
             return response;
         });
         return request;
@@ -40,7 +40,7 @@ public static class MockHttpClientBunitHelpers
             {
                 Content = new StringContent(JsonSerializer.Serialize(contentProvider()))
             };
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            response.Content.Headers.ContentType = new("application/json");
             return response;
         });
         return request;

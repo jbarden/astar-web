@@ -1,5 +1,4 @@
-﻿using System.IO.Abstractions;
-using AStar.FilesApi.Config;
+﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 
 using AStar.Infrastructure.Data;
@@ -9,8 +8,8 @@ namespace AStar.FilesApi.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class FilesListController(IFileSystem fileSystem, FilesContext context, ILogger<FilesControllerBase> logger)
-    : FilesControllerBase(fileSystem, context, logger)
+public class FilesListController(FilesContext context, ILogger<FilesControllerBase> logger)
+    : FilesControllerBase(context, logger)
 {
     [HttpGet(Name = "FilesList")]
     [Produces("application/json")]

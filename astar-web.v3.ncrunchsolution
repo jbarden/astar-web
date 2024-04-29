@@ -1,12 +1,14 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <EnableRDI>False</EnableRDI>
     <MetricsExclusionList>
       <Value>src\ui\AStar.Web.UI\AStar.Web.UI.csproj\obj</Value>
       <Value>GlobalUsings.cs:src\ui\AStar.Web.UI\AStar.Web.UI.csproj</Value>
       <Value>App.razor:src\ui\AStar.Web.UI\AStar.Web.UI.csproj</Value>
       <Value>_Imports.razor:src\ui\AStar.Web.UI\AStar.Web.UI.csproj</Value>
     </MetricsExclusionList>
+    <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
 </SolutionConfiguration>

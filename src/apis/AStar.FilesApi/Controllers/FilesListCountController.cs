@@ -1,5 +1,4 @@
-﻿using System.IO.Abstractions;
-using AStar.FilesApi.Config;
+﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ namespace AStar.FilesApi.Controllers;
 
 [Route("api/filesCount")]
 [ApiController]
-public class FilesListCountController(IFileSystem fileSystem, FilesContext context, ILogger<FilesControllerBase> logger) : FilesControllerBase(fileSystem, context, logger)
+public class FilesListCountController(FilesContext context, ILogger<FilesControllerBase> logger) : FilesControllerBase(context, logger)
 {
     [HttpGet(Name = "FilesListCount")]
     [Produces("application/json")]

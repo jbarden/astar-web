@@ -13,7 +13,7 @@ public class FilesApiClientShould
 
         var httpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("https://doesnot.matter.com")
+            BaseAddress = new("https://doesnot.matter.com")
         };
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
@@ -30,7 +30,7 @@ public class FilesApiClientShould
 
         var httpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("https://doesnot.matter.com")
+            BaseAddress = new("https://doesnot.matter.com")
         };
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
@@ -47,7 +47,7 @@ public class FilesApiClientShould
 
         var httpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("https://doesnot.matter.com")
+            BaseAddress = new("https://doesnot.matter.com")
         };
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);

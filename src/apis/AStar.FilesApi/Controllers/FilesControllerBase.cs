@@ -1,5 +1,4 @@
-﻿using System.IO.Abstractions;
-using AStar.FilesApi.Config;
+﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Web.Domain;
@@ -9,10 +8,8 @@ namespace AStar.FilesApi.Controllers;
 
 [Route("api/files")]
 [ApiController]
-public class FilesControllerBase(IFileSystem fileSystem, FilesContext context, ILogger<FilesControllerBase> logger) : ControllerBase
+public class FilesControllerBase(FilesContext context, ILogger<FilesControllerBase> logger) : ControllerBase
 {
-    protected IFileSystem FileSystem { get; set; } = fileSystem;
-
     protected ILogger<FilesControllerBase> Logger { get; set; } = logger;
 
     protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)

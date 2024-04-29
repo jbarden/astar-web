@@ -25,3 +25,17 @@ the renames if the original project suffixes more closely fit your project struc
 In the tests\architecture solution (and actual) folder, there is an AStar.Clean.V1.Architecture.Tests project that, as you can probably deduce from the name,
 is intended to enforce the project structure and hierarchy - specifically, the higher-level projects can depend on lower-level projects but, not the other
 way around.
+
+## Database Creation
+
+To add the initial (or any) migration:
+
+```add-migration InitialSetupFroSqlServer -Project AStar.Infrastructure -StartupProject AStar.FilesApi```
+
+EF Migrations are used but, as the context is not in the API Project, below is an example of the relevant ```update-database``` command:
+
+```
+update-database -Project AStar.Infrastructure -StartupProject AStar.FilesApi -Connection "Server=(localdb)\MSSQLLocalDb;Database=FilesDb;Trusted_Connection=true;"
+```
+
+Specifying both the -Project and -StartupProject mean the solution default project does not have to be the, in this example, AStar.FilesApi project - it could be any project within the solution. We could also set the Context explicitly.

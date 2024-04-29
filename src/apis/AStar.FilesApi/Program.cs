@@ -14,7 +14,7 @@ public static class Program
         _ = builder.AddLogging("astar-logging-settings.json");
         _ = builder.Services.ConfigurePipeline();
 
-        _ = ConfigureServices(builder.Services);
+        _ = ConfigureServices(builder.Services, builder.Configuration);
 
         var app = builder.Build();
         _ = app.ConfigurePipeline();
@@ -23,9 +23,9 @@ public static class Program
         app.Run();
     }
 
-    private static IServiceCollection ConfigureServices(IServiceCollection services)
+    private static IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddDbContext<FilesContext>();
+        _ = services.AddScoped(_ => new FilesContext(configuration["FilesDb"]!));
         _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>();
 
