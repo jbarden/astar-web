@@ -50,6 +50,6 @@ public class FilesCounterControllerShould
 
         var response = (await sut.Get(new(){SearchFolder = @"c:\", RecursiveSubDirectories = true})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(0);
+        _ = response!.Value.Should().Be(12);
     }
 }

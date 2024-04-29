@@ -11,13 +11,11 @@
         </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(System.String)">
              <summary>
-            
              </summary>
              <param name="connectionString"></param>
         </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{AStar.Infrastructure.Data.FilesContext})">
              <summary>
-            
              </summary>
              <param name="options"></param>
         </member>
