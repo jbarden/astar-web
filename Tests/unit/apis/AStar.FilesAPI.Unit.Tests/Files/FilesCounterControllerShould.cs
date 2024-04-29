@@ -1,6 +1,9 @@
+using System.Text;
+using AStar.FilesApi.Config;
 using AStar.FilesApi.Controllers;
 using AStar.FilesApi.Files;
 using AStar.FilesAPI.Unit.Tests.Helpers;
+using AStar.Web.Domain;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -17,7 +20,7 @@ public class FilesCounterControllerShould
 
         var response = (await sut.Get(new())).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(12);
+        _ = response!.Value.Should().Be(340);
     }
 
     [Fact]
@@ -26,9 +29,9 @@ public class FilesCounterControllerShould
         var mockFilesContext =await MockFilesContext.CreateAsync();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\"})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"d:\"})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(12);
+        _ = response!.Value.Should().Be(340);
     }
 
     [Fact]
@@ -43,13 +46,24 @@ public class FilesCounterControllerShould
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderRecursively()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
         var mockFilesContext =await MockFilesContext.CreateAsync();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\", RecursiveSubDirectories = true})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"d:\Slideshow", RecursiveSubDirectories = true})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(12);
+        _ = response!.Value.Should().Be(296);
+    }
+
+    [Fact]
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypes()
+    {
+        var mockFilesContext =await MockFilesContext.CreateAsync();
+        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
+
+        var response = (await sut.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = true, SearchType = SearchType.Images})).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(232);
     }
 }

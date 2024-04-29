@@ -11,11 +11,13 @@
         </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(System.String)">
              <summary>
+            
              </summary>
              <param name="connectionString"></param>
         </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{AStar.Infrastructure.Data.FilesContext})">
              <summary>
+            
              </summary>
              <param name="options"></param>
         </member>
@@ -34,6 +36,12 @@
             The list of tags to ignore completely.
             </summary>
         </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+             <summary>
+            
+             </summary>
+             <param name="optionsBuilder"></param>
+        </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             The overriden OnModelCreating method.
@@ -51,6 +59,18 @@
             <inheritdoc />
         </member>
         <member name="M:AStar.Infrastructure.Migrations.AddTagTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

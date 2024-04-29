@@ -15,7 +15,7 @@ public class FileDetail
     }
 
     /// <summary>
-    /// The copy constuctor that allows for passing an instance of FileInfo to this class, simplifying consumer code.
+    /// The copy constructor that allows for passing an instance of FileInfo to this class, simplifying consumer code.
     /// </summary>
     /// <param name="fileInfo">
     /// The instance of FileInfo to use.
@@ -38,7 +38,7 @@ public class FileDetail
     public bool IsImage { get; set; }
 
     /// <summary>
-    /// Returns trur when the file is of a supported image type.
+    /// Returns true when the file is of a supported image type.
     /// </summary>
     [NotMapped]
     public bool IsImage2 => FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)

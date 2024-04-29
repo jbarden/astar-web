@@ -1,6 +1,7 @@
 ﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Controllers;
 using AStar.Infrastructure.Data;
+using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesApi.Files;
@@ -18,9 +19,15 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
     {
         ArgumentNullException.ThrowIfNull(searchParameters);
 
+        var fileCountAsQueryable = context.Files as IQueryable<FileDetail>;
+        if(searchParameters.SearchType == SearchType.Images)
+        {
+            fileCountAsQueryable = fileCountAsQueryable.Where(file => file.IsImage);
+        }
+
         var fileCount = searchParameters.RecursiveSubDirectories
-            ? context.Files.Count(file => file.DirectoryName.StartsWith(searchParameters.SearchFolder))
-            : context.Files.Count(file => file.DirectoryName.Equals(searchParameters.SearchFolder));
+            ? fileCountAsQueryable.Count(file => file.DirectoryName.StartsWith(searchParameters.SearchFolder))
+            : fileCountAsQueryable.Count(file => file.DirectoryName.Equals(searchParameters.SearchFolder));
 
         logger.LogDebug("File Count: {FileCount}", fileCount);
         await Task.Delay(1);

@@ -47,5 +47,14 @@ public class FilesContext : DbContext
         _ = modelBuilder.Entity<FileDetail>().HasKey(vf => new { vf.FileName, vf.DirectoryName });
         _ = modelBuilder.Entity<TagToIgnore>().HasKey(tag => tag.Value);
         _ = modelBuilder.Entity<TagToIgnoreCompletely>().HasKey(tag => tag.Value);
+
+        _ = modelBuilder.UseCollation("NOCASE");
+
+        foreach(var property in modelBuilder.Model.GetEntityTypes()
+                    .SelectMany(t => t.GetProperties())
+                    .Where(p => p.ClrType == typeof(string)))
+        {
+            property.SetCollation("NOCASE");
+        }
     }
 }
