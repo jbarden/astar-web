@@ -57,4 +57,26 @@ public class FilesContext : DbContext
             property.SetCollation("NOCASE");
         }
     }
+
+    /// <summary>
+    /// The overriden OnConfiguring method.
+    /// </summary>
+    /// <param name="optionsBuilder">
+    /// </param>
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if(connectionString.StartsWith("Test"))
+        {
+            var options = new DbContextOptionsBuilder<FilesContext>()
+                                    .UseInMemoryDatabase(databaseName: $"Test{Guid.NewGuid()}")
+                                    .Options;
+
+            var mockFilesContext = new FilesContext(options);
+            _ = mockFilesContext.Database.EnsureCreated();
+        }
+        else
+        {
+            _ = optionsBuilder.UseSqlite(connectionString);
+        }
+    }
 }

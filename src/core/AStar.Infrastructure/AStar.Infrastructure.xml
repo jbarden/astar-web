@@ -36,17 +36,18 @@
             The list of tags to ignore completely.
             </summary>
         </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-             <summary>
-            
-             </summary>
-             <param name="optionsBuilder"></param>
-        </member>
         <member name="M:AStar.Infrastructure.Data.FilesContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             The overriden OnModelCreating method.
             </summary>
             <param name="modelBuilder">
+            </param>
+        </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            The overriden OnConfiguring method.
+            </summary>
+            <param name="optionsBuilder">
             </param>
         </member>
         <member name="T:AStar.Infrastructure.Migrations.AddTagTables">

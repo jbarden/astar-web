@@ -10,7 +10,7 @@ namespace AStar.FilesApi.Files;
 [ApiController]
 public class FilesCounterController(FilesContext context, ILogger<FilesControllerBase> logger) : ControllerBase
 {
-    [HttpGet(Name = "FilesListCount")]
+    [HttpGet(Name = "FilesCount")]
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

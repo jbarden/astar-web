@@ -25,7 +25,7 @@ public static class Program
 
     private static IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddScoped(_ => new FilesContext(configuration["FilesDb"]!));
+        _ = services.AddScoped(_ => new FilesContext(configuration.GetConnectionString("FilesDb")!));
         _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>();
 
