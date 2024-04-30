@@ -25,13 +25,13 @@ public class FilesCounterControllerShould
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllKnownFiles()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
     {
         var mockFilesContext = new MockFilesContext().CreateContext();
 
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\"})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(mockFilesContext.Files.Count());
     }
@@ -64,9 +64,9 @@ public class FilesCounterControllerShould
         var mockFilesContext = new MockFilesContext().CreateContext();
         var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(288);
+        _ = response!.Value.Should().Be(4);
     }
 
     [Fact]

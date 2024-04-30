@@ -13,15 +13,19 @@
         </Paragraph>
 
         <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Files API Status</Heading>
-        <Paragraph>
+        <Paragraph Id="FilesApiHealthStatus">
             <br />
-            <div class="@FilesApiHealthCheckClass">Files Api Health Status: @FilesApiHealthStatus</div>
+            <small class="@FilesApiHealthCheckClass">
+                Files Api Health Status: @FilesApiHealthStatus
+            </small>
         </Paragraph>
 
         <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Images API Status</Heading>
-        <Paragraph>
+        <Paragraph Id="ImagesApiHealthStatus">
             <br />
-            <div class="@ImagesApiHealthCheckClass">Images Api Health Status: @ImagesApiHealthStatus</div>
+            <small class="@ImagesApiHealthCheckClass">
+                Images Api Health Status: @ImagesApiHealthStatus
+            </small>
         </Paragraph>
     </Alert>
 </LoadingIndicator>
