@@ -3,6 +3,7 @@ using AStar.FilesApi.Config;
 using AStar.FilesAPI.Unit.Tests.Helpers;
 using AStar.Web.Domain;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Unit.Tests.Files;
@@ -62,17 +63,41 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     }
 
     [Fact]
+    public void ReturnBadRequestForDuplicates()
+    {
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as BadRequestObjectResult;
+
+        _ = response!.Value.Should().Be("Duplicate searches are not supported by this endpoint, please call the duplicate-specific endpoint.");
+    }
+
+    [Fact]
+    public void ReturnBadRequestForAllFileCountWhenCallingDuplicatesEndpoint()
+    {
+        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.All})).Result as BadRequestObjectResult;
+
+        _ = response!.Value.Should().Be("Only Duplicate searches are supported by this endpoint, please call the non-duplicate-specific endpoint for any other count.");
+    }
+
+    [Fact]
+    public void ReturnBadRequestForImageFileCountWhenCallingDuplicatesEndpoint()
+    {
+        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.Images})).Result as BadRequestObjectResult;
+
+        _ = response!.Value.Should().Be("Only Duplicate searches are supported by this endpoint, please call the non-duplicate-specific endpoint for any other count.");
+    }
+
+    [Fact]
     public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtTheRootFolder()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(39);
+        _ = response!.Value.Should().Be(18);
     }
 
     [Fact]
     public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtSubFolder()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(17);
     }

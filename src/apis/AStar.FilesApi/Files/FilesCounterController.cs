@@ -1,10 +1,8 @@
 ﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Controllers;
-using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
-using static AStar.Utilities.StringExtensions;
 
 namespace AStar.FilesApi.Files;
 
@@ -14,39 +12,45 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
 {
     [HttpGet(Name = "FilesCount")]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<int> Get([FromQuery] SearchParameters searchParameters)
     {
         ArgumentNullException.ThrowIfNull(searchParameters);
-        if(searchParameters.SearchFolder.IsNullOrWhiteSpace())
-        {
-            return Ok(0);
-        }
-
-        var fileCountAsQueryable = context.Files as IQueryable<FileDetail>;
-        if(searchParameters.SearchType == SearchType.Images)
-        {
-            fileCountAsQueryable = fileCountAsQueryable.Where(file => file.IsImage);
-        }
-
-        fileCountAsQueryable = searchParameters.RecursiveSubDirectories
-            ? fileCountAsQueryable.Where(file => file.DirectoryName.StartsWith(searchParameters.SearchFolder))
-            : fileCountAsQueryable.Where(file => file.DirectoryName.Equals(searchParameters.SearchFolder));
-
         if(searchParameters.SearchType == SearchType.Duplicates)
         {
-            var duplicatesBySize = fileCountAsQueryable.AsEnumerable()
-                .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
-                    new FileSizeEqualityComparer()).Where(files => files.Count() > 1)
-                .ToArray();
-
-            return Ok(duplicatesBySize.Count());
+            return BadRequest("Duplicate searches are not supported by this endpoint, please call the duplicate-specific endpoint.");
         }
 
-        logger.LogDebug("File Count: {FileCount}", fileCountAsQueryable.Count());
+        var matchingFiles = GetMatchingFiles(context, searchParameters);
 
-        return Ok(fileCountAsQueryable.Count());
+        logger.LogDebug("File Count: {FileCount}", matchingFiles.Count());
+
+        return Ok(matchingFiles.Count());
     }
+
+    [HttpGet(Name = "DuplicatesCount")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<int> GetDuplicates([FromQuery] SearchParameters searchParameters)
+    {
+        ArgumentNullException.ThrowIfNull(searchParameters);
+        if(searchParameters.SearchType != SearchType.Duplicates)
+        {
+            return BadRequest("Only Duplicate searches are supported by this endpoint, please call the non-duplicate-specific endpoint for any other count.");
+        }
+
+        var matchingFiles = GetMatchingFiles(context, searchParameters)
+                          .GroupDuplicates();
+
+        logger.LogDebug("Duplicate File Groups Count: {DuplicateFileGroupsCount}", matchingFiles);
+
+        return Ok(matchingFiles);
+    }
+
+    private static IEnumerable<FileDetail> GetMatchingFiles(FilesContext context, SearchParameters searchParameters)
+        => context.Files
+                  .FilterBySearchFolder(searchParameters.SearchFolder, searchParameters.RecursiveSubDirectories)
+                  .FilterImagesIfApplicable(searchParameters.SearchType);
 }
