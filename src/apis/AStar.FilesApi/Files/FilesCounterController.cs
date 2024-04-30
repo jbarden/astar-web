@@ -1,5 +1,6 @@
 ﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Controllers;
+using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<int>> Get([FromQuery] SearchParameters searchParameters)
+    public ActionResult<int> Get([FromQuery] SearchParameters searchParameters)
     {
         ArgumentNullException.ThrowIfNull(searchParameters);
         if(searchParameters.SearchFolder.IsNullOrWhiteSpace())
@@ -30,13 +31,22 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
             fileCountAsQueryable = fileCountAsQueryable.Where(file => file.IsImage);
         }
 
-        var fileCount = searchParameters.RecursiveSubDirectories
-            ? fileCountAsQueryable.Where(file => file.DirectoryName.StartsWith(searchParameters.SearchFolder)).Count()
-            : fileCountAsQueryable.Where(file => file.DirectoryName.Equals(searchParameters.SearchFolder)).Count();
+        fileCountAsQueryable = searchParameters.RecursiveSubDirectories
+            ? fileCountAsQueryable.Where(file => file.DirectoryName.StartsWith(searchParameters.SearchFolder))
+            : fileCountAsQueryable.Where(file => file.DirectoryName.Equals(searchParameters.SearchFolder));
 
-        logger.LogDebug("File Count: {FileCount}", fileCount);
-        await Task.Delay(1);
+        if(searchParameters.SearchType == SearchType.Duplicates)
+        {
+            var duplicatesBySize = fileCountAsQueryable.AsEnumerable()
+                .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
+                    new FileSizeEqualityComparer()).Where(files => files.Count() > 1)
+                .ToArray();
 
-        return Ok(fileCount);
+            return Ok(duplicatesBySize.Count());
+        }
+
+        logger.LogDebug("File Count: {FileCount}", fileCountAsQueryable.Count());
+
+        return Ok(fileCountAsQueryable.Count());
     }
 }

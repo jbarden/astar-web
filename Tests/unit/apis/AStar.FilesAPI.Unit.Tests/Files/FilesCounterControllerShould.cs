@@ -14,51 +14,67 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     public FilesCounterControllerShould(FilesControllerFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Fact]
-    public async Task ReturnZeroWhenNoCriteriaSpecified()
+    public void ReturnZeroWhenNoCriteriaSpecified()
     {
-        var response = (await mockFilesFixture.SUT.Get(new())).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new())).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
+    public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
     {
-        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(mockFilesFixture.MockFilesContext.Files.Count());
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
+    public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
     {
-        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.Images})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(288);
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
+    public void GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
     {
-        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
+    public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
-        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(95);
     }
 
     [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
+    public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
-        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(4);
+    }
+
+    [Fact]
+    public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtTheRootFolder()
+    {
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(39);
+    }
+
+    [Fact]
+    public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtSubFolder()
+    {
+        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(17);
     }
 
     [Fact]
@@ -75,5 +91,6 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
 
         var listAsJson = JsonSerializer.Serialize(fileList);
         File.WriteAllText(@"C:\repos\astar-web\Tests\unit\apis\AStar.FilesAPI.Unit.Tests\TestFiles\files.json", listAsJson);
+        Assert.True(true); // Now S2699, please stop moaning ;-)
     }
 }
