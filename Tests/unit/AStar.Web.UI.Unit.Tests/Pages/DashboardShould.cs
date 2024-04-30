@@ -40,16 +40,16 @@ public class DashboardShould : TestContext
 
         filesApiStatus.MarkupMatches(@"<p  id=""FilesApiHealthStatus"" >
   <br>
-  <small class=""alert alert-warning"">
-    Files Api Health Status: Checking...please wait...</small>
+  <medium class=""alert alert-warning"">
+    Files Api Health Status: Checking...please wait...</medium>
 </p>");
 
         var imagesApiStatus = cut.Find("#ImagesApiHealthStatus");
 
         imagesApiStatus.MarkupMatches(@"<p  id=""ImagesApiHealthStatus"" >
   <br>
-  <small class=""alert alert-warning"">
-    Images Api Health Status: Checking...please wait...</small>
+  <medium class=""alert alert-warning"">
+    Images Api Health Status: Checking...please wait...</medium>
 </p>");
     }
 
@@ -65,16 +65,16 @@ public class DashboardShould : TestContext
 
         cut.WaitForAssertion(() => filesApiStatus.MarkupMatches(@"<p  id=""FilesApiHealthStatus"" >
   <br>
-  <small class=""alert alert-success"">
-    Files Api Health Status: Healthy</small>
+  <medium class=""alert alert-success"">
+    Files Api Health Status: Healthy</medium>
 </p>"), TimeSpan.FromSeconds(2));
 
         var imagesApiStatus = cut.Find("#ImagesApiHealthStatus");
 
         cut.WaitForAssertion(() => imagesApiStatus.MarkupMatches(@"<p  id=""ImagesApiHealthStatus"" >
   <br>
-  <small class=""alert alert-success"">
-    Images Api Health Status: Healthy</small>
+  <medium class=""alert alert-success"">
+    Images Api Health Status: Healthy</medium>
 </p>"), TimeSpan.FromSeconds(2));
     }
 
@@ -90,16 +90,16 @@ public class DashboardShould : TestContext
 
         cut.WaitForAssertion(() => filesApiStatus.MarkupMatches(@"<p  id=""FilesApiHealthStatus"" >
       <br>
-      <small class=""alert alert-danger"">
-        Files Api Health Status: Does.Not.Matter</small>
+      <medium class=""alert alert-danger"">
+        Files Api Health Status: Does.Not.Matter</medium>
     </p>"), TimeSpan.FromSeconds(2));
 
         var imagesApiStatus = cut.Find("#ImagesApiHealthStatus");
 
         cut.WaitForAssertion(() => imagesApiStatus.MarkupMatches(@"<p  id=""ImagesApiHealthStatus"" >
   <br>
-  <small class=""alert alert-danger"">
-    Images Api Health Status: Does.Not.Matter</small>
+  <medium class=""alert alert-danger"">
+    Images Api Health Status: Does.Not.Matter</medium>
 </p>"), TimeSpan.FromSeconds(2));
     }
 }

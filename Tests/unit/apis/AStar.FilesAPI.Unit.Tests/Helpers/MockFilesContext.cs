@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AStar.FilesAPI.Unit.Tests.Helpers;
 
-internal class MockFilesContext : IDisposable
+public class MockFilesContext : IDisposable
 {
-    private SqliteConnection connection;
-    private DbContextOptions<FilesContext> contextOptions;
+    private readonly SqliteConnection connection;
+    private readonly DbContextOptions<FilesContext> contextOptions;
     private bool disposedValue;
 
     public MockFilesContext()
@@ -30,13 +30,10 @@ internal class MockFilesContext : IDisposable
         _ = context.Database.EnsureCreated();
 
         AddMockFiles(context);
-        context.SaveChanges();
+        _ = context.SaveChanges();
     }
 
-    public FilesContext CreateContext()
-    {
-        return new(contextOptions);
-    }
+    public FilesContext CreateContext() => new(contextOptions);
 
     public void Dispose()
     {
@@ -64,6 +61,6 @@ internal class MockFilesContext : IDisposable
 
         var listFromJson = JsonSerializer.Deserialize<IEnumerable<FileDetail>>(filesAsJson);
 
-        mockFilesContext.AddRange(listFromJson);
+        mockFilesContext.AddRange(listFromJson!);
     }
 }

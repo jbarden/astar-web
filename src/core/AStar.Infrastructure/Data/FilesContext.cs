@@ -49,12 +49,4 @@ public class FilesContext : DbContext
             property.SetCollation("NOCASE");
         }
     }
-
-    ///// <summary>
-    ///// The overriden OnConfiguring method.
-    ///// </summary>
-    ///// <param name="optionsBuilder">
-    ///// </param>
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //                               => optionsBuilder.UseSqlite(connectionString);
 }

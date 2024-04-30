@@ -1,25 +1,22 @@
-using System.Text;
 using System.Text.Json;
 using AStar.FilesApi.Config;
-using AStar.FilesApi.Controllers;
-using AStar.FilesApi.Files;
 using AStar.FilesAPI.Unit.Tests.Helpers;
 using AStar.Web.Domain;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.FilesAPI.Unit.Tests.Files;
 
-public class FilesCounterControllerShould
+public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture>
 {
+    private readonly FilesControllerFixture mockFilesFixture;
+
+    public FilesCounterControllerShould(FilesControllerFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
+
     [Fact]
     public async Task ReturnZeroWhenNoCriteriaSpecified()
     {
-        var mockFilesContext = new MockFilesContext().CreateContext();
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
-
-        var response = (await sut.Get(new())).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.Get(new())).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
@@ -27,22 +24,23 @@ public class FilesCounterControllerShould
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
     {
-        var mockFilesContext = new MockFilesContext().CreateContext();
+        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
 
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
+        _ = response!.Value.Should().Be(mockFilesFixture.MockFilesContext.Files.Count());
+    }
 
-        var response = (await sut.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
+    [Fact]
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
+    {
+        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.Images})).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(mockFilesContext.Files.Count());
+        _ = response!.Value.Should().Be(288);
     }
 
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
     {
-        var mockFilesContext = new MockFilesContext().CreateContext();
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
-
-        var response = (await sut.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"d:\", RecursiveSubDirectories = false})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
@@ -50,10 +48,7 @@ public class FilesCounterControllerShould
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
-        var mockFilesContext = new MockFilesContext().CreateContext();
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
-
-        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true})).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(95);
     }
@@ -61,23 +56,9 @@ public class FilesCounterControllerShould
     [Fact]
     public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
-        var mockFilesContext = new MockFilesContext().CreateContext();
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
-
-        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", RecursiveSubDirectories = false, SearchType = SearchType.Images})).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(4);
-    }
-
-    [Fact]
-    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderRecursively()
-    {
-        var mockFilesContext = new MockFilesContext().CreateContext();
-        var sut = new FilesCounterController(mockFilesContext, NullLogger<FilesControllerBase>.Instance);
-
-        var response = (await sut.Get(new(){SearchFolder = @"C:\Temp\Famous", RecursiveSubDirectories = true, SearchType = SearchType.Images})).Result as OkObjectResult;
-
-        _ = response!.Value.Should().Be(95);
     }
 
     [Fact]
