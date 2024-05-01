@@ -25,11 +25,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AStar.CodeGenerators" Version="0.2.0" />
 		<PackageReference Include="Blazorise" Version="1.5.*" />
 		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.*" />
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.*" />
 		<PackageReference Include="Blazorise.DataGrid" Version="1.5.*" />
 		<PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.2" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
 	</ItemGroup>
 
 	<ItemGroup>

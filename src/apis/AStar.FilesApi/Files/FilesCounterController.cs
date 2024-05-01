@@ -51,6 +51,6 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
 
     private static IEnumerable<FileDetail> GetMatchingFiles(FilesContext context, SearchParameters searchParameters)
         => context.Files
-                  .FilterBySearchFolder(searchParameters.SearchFolder, searchParameters.RecursiveSubDirectories)
+                  .FilterBySearchFolder(searchParameters.SearchFolder, searchParameters.Recursive)
                   .FilterImagesIfApplicable(searchParameters.SearchType);
 }

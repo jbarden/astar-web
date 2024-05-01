@@ -70,7 +70,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI", "src\ui\ASta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{D5FA4F07-086A-458C-9C39-E5A7A79F1A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.FilesAPI.Unit.Tests", "Tests\unit\apis\AStar.FilesAPI.Unit.Tests\AStar.FilesAPI.Unit.Tests.csproj", "{12C0321A-22AD-46D2-A8BC-DEEE29C59EDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FilesAPI.Unit.Tests", "Tests\unit\apis\AStar.FilesAPI.Unit.Tests\AStar.FilesAPI.Unit.Tests.csproj", "{12C0321A-22AD-46D2-A8BC-DEEE29C59EDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

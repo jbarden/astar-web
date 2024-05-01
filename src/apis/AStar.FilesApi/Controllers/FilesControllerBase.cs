@@ -1,4 +1,4 @@
-﻿using AStar.FilesApi.Config;
+﻿using AStar.FilesApi.Files;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Web.Domain;
@@ -13,7 +13,7 @@ public class FilesControllerBase(FilesContext context, ILogger<FilesControllerBa
     protected ILogger<FilesControllerBase> Logger { get; set; } = logger;
 
     protected IQueryable<FileDetail> FileInfoFromContext(SearchParameters searchParameters)
-        => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.RecursiveSubDirectories
+        => context.Files.Where(f => f.FileSize > 0 && !f.SoftDeleted && searchParameters.Recursive
                                             ? f.DirectoryName.ToUpper().StartsWith(searchParameters.SearchFolder.ToUpper())
                                             : f.DirectoryName.ToUpper().Equals(searchParameters.SearchFolder.ToUpper()));
 
