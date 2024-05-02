@@ -7,7 +7,6 @@
 		<RootNamespace>AStar.Web.Domain</RootNamespace>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <AssemblyName>AStar.Web.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
