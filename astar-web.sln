@@ -54,7 +54,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.GuardClauses", "src\c
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI", "src\ui\AStar.Web.UI\AStar.Web.UI.csproj", "{6140EFDB-F48E-49DE-ADBA-6A68B0F2F57F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{D5FA4F07-086A-458C-9C39-E5A7A79F1A95}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apis", "apis", "{D5FA4F07-086A-458C-9C39-E5A7A79F1A95}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FilesAPI.Unit.Tests", "Tests\unit\apis\AStar.FilesAPI.Unit.Tests\AStar.FilesAPI.Unit.Tests.csproj", "{12C0321A-22AD-46D2-A8BC-DEEE29C59EDF}"
 EndProject
@@ -62,39 +62,41 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI.Acceptance.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apis", "apis", "{52EC86D2-C8A3-4F11-8D51-77C3C176C8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.FilesApi.Integration.Tests", "Tests\integration\apis\AStar.FilesApi.Integration.Tests\AStar.FilesApi.Integration.Tests.csproj", "{9B3C51CD-DC99-466D-8119-957CB959F33E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FilesApi.Integration.Tests", "Tests\integration\apis\AStar.FilesApi.Integration.Tests\AStar.FilesApi.Integration.Tests.csproj", "{9B3C51CD-DC99-466D-8119-957CB959F33E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.ImagesApi.Integration.Tests", "Tests\integration\apis\AStar.ImagesApi.Integration.Tests\AStar.ImagesApi.Integration.Tests.csproj", "{D4B18DFE-4AE4-4235-94DB-A25DEF6C4B6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.ImagesApi.Integration.Tests", "Tests\integration\apis\AStar.ImagesApi.Integration.Tests\AStar.ImagesApi.Integration.Tests.csproj", "{D4B18DFE-4AE4-4235-94DB-A25DEF6C4B6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{74AA914C-EA3D-485F-90C4-D4CB9339ECFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Infrastructure.Integration.Tests", "Tests\integration\core\AStar.Infrastructure.Integration.Tests\AStar.Infrastructure.Integration.Tests.csproj", "{768F7D11-7270-4BBA-B3D2-036B6F726CA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Infrastructure.Integration.Tests", "Tests\integration\core\AStar.Infrastructure.Integration.Tests\AStar.Infrastructure.Integration.Tests.csproj", "{768F7D11-7270-4BBA-B3D2-036B6F726CA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{8B14CA13-5891-49FF-8786-FAE45EDFB756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Web.UI.Integration.Tests", "Tests\integration\ui\AStar.Web.UI.Integration.Tests\AStar.Web.UI.Integration.Tests.csproj", "{63CCBAC0-813D-4AFA-97A2-1D854E122B9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI.Integration.Tests", "Tests\integration\ui\AStar.Web.UI.Integration.Tests\AStar.Web.UI.Integration.Tests.csproj", "{63CCBAC0-813D-4AFA-97A2-1D854E122B9A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{2BBD9AA1-A10D-4B0F-A085-A15AFB8750D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{8BFDC661-E615-4D86-BCA1-8552E45A6392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.ImagesAPI.Unit.Tests", "Tests\unit\apis\AStar.ImagesAPI.Unit.Tests\AStar.ImagesAPI.Unit.Tests.csproj", "{C67A1796-DD05-48CB-AAF5-0A76E5002AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.ImagesAPI.Unit.Tests", "Tests\unit\apis\AStar.ImagesAPI.Unit.Tests\AStar.ImagesAPI.Unit.Tests.csproj", "{C67A1796-DD05-48CB-AAF5-0A76E5002AEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.FunctionalExtensions.Unit.Tests", "Tests\unit\core\AStar.FunctionalExtensions.Unit.Tests\AStar.FunctionalExtensions.Unit.Tests.csproj", "{51895867-CB9E-4918-BB86-EE1F70AADF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FunctionalExtensions.Unit.Tests", "Tests\unit\core\AStar.FunctionalExtensions.Unit.Tests\AStar.FunctionalExtensions.Unit.Tests.csproj", "{51895867-CB9E-4918-BB86-EE1F70AADF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Api.HealthChecks.Unit.Tests", "Tests\unit\core\AStar.Api.HealthChecks.Unit.Tests\AStar.Api.HealthChecks.Unit.Tests.csproj", "{D4F738E0-BD56-4204-86FE-B232F3109576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Api.HealthChecks.Unit.Tests", "Tests\unit\core\AStar.Api.HealthChecks.Unit.Tests\AStar.Api.HealthChecks.Unit.Tests.csproj", "{D4F738E0-BD56-4204-86FE-B232F3109576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.ASPNet.Extensions.Unit.Tests", "Tests\unit\core\AStar.ASPNet.Extensions.Unit.Tests\AStar.ASPNet.Extensions.Unit.Tests.csproj", "{695A6617-924F-4853-A136-6D6F6986FE53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.ASPNet.Extensions.Unit.Tests", "Tests\unit\core\AStar.ASPNet.Extensions.Unit.Tests\AStar.ASPNet.Extensions.Unit.Tests.csproj", "{695A6617-924F-4853-A136-6D6F6986FE53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.GuardClauses.Unit.Tests", "Tests\unit\core\AStar.GuardClauses.Unit.Tests\AStar.GuardClauses.Unit.Tests.csproj", "{C05221CF-3DE5-4EDC-B715-E55C3493CE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.GuardClauses.Unit.Tests", "Tests\unit\core\AStar.GuardClauses.Unit.Tests\AStar.GuardClauses.Unit.Tests.csproj", "{C05221CF-3DE5-4EDC-B715-E55C3493CE90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Infrastructure.Unit.Tests", "Tests\unit\core\AStar.Infrastructure.Unit.Tests\AStar.Infrastructure.Unit.Tests.csproj", "{7F609794-FDC3-4F12-9EA8-F4A042B9BE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Infrastructure.Unit.Tests", "Tests\unit\core\AStar.Infrastructure.Unit.Tests\AStar.Infrastructure.Unit.Tests.csproj", "{7F609794-FDC3-4F12-9EA8-F4A042B9BE90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Logging.Extensions.Unit.Tests", "Tests\unit\core\AStar.Logging.Extensions.Unit.Tests\AStar.Logging.Extensions.Unit.Tests.csproj", "{E04C7145-D202-43A5-B657-A57A36A758EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Logging.Extensions.Unit.Tests", "Tests\unit\core\AStar.Logging.Extensions.Unit.Tests\AStar.Logging.Extensions.Unit.Tests.csproj", "{E04C7145-D202-43A5-B657-A57A36A758EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Utilities.Unit.Tests", "Tests\unit\core\AStar.Utilities.Unit.Tests\AStar.Utilities.Unit.Tests.csproj", "{F0E5B104-C4E7-47E0-A826-985A5535D763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Utilities.Unit.Tests", "Tests\unit\core\AStar.Utilities.Unit.Tests\AStar.Utilities.Unit.Tests.csproj", "{F0E5B104-C4E7-47E0-A826-985A5535D763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Web.Domain.Unit.Tests", "Tests\unit\core\AStar.Web.Domain.Unit.Tests\AStar.Web.Domain.Unit.Tests.csproj", "{174D85ED-4AAB-4155-B08C-D47E8A129987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.Domain.Unit.Tests", "Tests\unit\core\AStar.Web.Domain.Unit.Tests\AStar.Web.Domain.Unit.Tests.csproj", "{174D85ED-4AAB-4155-B08C-D47E8A129987}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI.Unit.Tests", "tests\unit\ui\AStar.Web.UI.Unit.Tests\AStar.Web.UI.Unit.Tests.csproj", "{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,6 +212,10 @@ Global
 		{174D85ED-4AAB-4155-B08C-D47E8A129987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{174D85ED-4AAB-4155-B08C-D47E8A129987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{174D85ED-4AAB-4155-B08C-D47E8A129987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,6 +261,7 @@ Global
 		{E04C7145-D202-43A5-B657-A57A36A758EB} = {2BBD9AA1-A10D-4B0F-A085-A15AFB8750D4}
 		{F0E5B104-C4E7-47E0-A826-985A5535D763} = {2BBD9AA1-A10D-4B0F-A085-A15AFB8750D4}
 		{174D85ED-4AAB-4155-B08C-D47E8A129987} = {2BBD9AA1-A10D-4B0F-A085-A15AFB8750D4}
+		{ED02501B-2B5F-4BF0-AFDF-924D053BDD5E} = {8BFDC661-E615-4D86-BCA1-8552E45A6392}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A4E9B7A-7302-4CE4-A187-FC4AEEF15AF3}
