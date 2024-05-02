@@ -14,6 +14,9 @@ public partial class FileDelete
     [Parameter]
     public EventCallback<string> OnDelete { get; set; }
 
+    [Inject]
+    public NavigationManager MyNavigationManager { get; set; } = default!;
+
     private bool IsEnabled { get; set; } = true;
 
     private async Task DeleteImageAsync() => await DeleteAsync(deleteHard: false);
@@ -23,10 +26,20 @@ public partial class FileDelete
     private async Task DeleteAsync(bool deleteHard)
     {
         IsEnabled = false;
+        deleteHard = TemporaryHackToOverrideHardDeleteFromListPage(deleteHard);
+
         var response = await FilesApiClient.DeleteFileAsync(Fullname!, deleteHard);
 
         var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
 
         await OnDelete.InvokeAsync(message);
+    }
+
+    private bool TemporaryHackToOverrideHardDeleteFromListPage(bool deleteHard)
+    {
+        if(MyNavigationManager.Uri.Contains("images/list"))
+        { deleteHard = false; }
+
+        return deleteHard;
     }
 }

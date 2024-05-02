@@ -5,6 +5,7 @@ using AStar.ImagesAPI.ApiClients;
 using AStar.ImagesAPI.Models;
 using AStar.ImagesAPI.Services;
 using AStar.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace AStar.ImagesAPI;
@@ -29,7 +30,11 @@ public static class Program
 
     private static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
     {
-        _ = services.AddDbContext<FilesContext>();
+        var  contextOptions = new DbContextOptionsBuilder<FilesContext>()
+            .UseSqlite(configuration.GetConnectionString("FilesDb")!)
+            .Options;
+
+        _ = services.AddScoped(_ => new FilesContext(contextOptions));
         _ = services
                 .AddSingleton<IFileSystem, FileSystem>()
                 .AddSingleton<IImageService, ImageService>();
