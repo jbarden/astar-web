@@ -12,6 +12,7 @@
 			Blazorise is a component library built on top of Blazor and CSS frameworks like Bootstrap, FluentUI2, Tailwind, Bulma and Material.
 		</Description>
 		<Copyright>Copyright 2018-2024 Megabit</Copyright>
+		<UserSecretsId>27751ab7-9701-4ebb-a663-5b874b3594a3</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

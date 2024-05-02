@@ -1,11 +1,11 @@
 ﻿@using Blazorise.Localization
 
-<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.Primary" ThemeContrast="ThemeContrast.Light">
+<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.Primary">
     <BarBrand>
         <BarItem>
             <BarLink To="">
-                <BarIcon Margin="Margin.Is2.FromEnd" IconName="IconName.Dashboard" />
-                AStar Development
+                <img src="/brand-logo.png" style="width:32px; height: 32px" />
+                AStar Web UI
             </BarLink>
         </BarItem>
     </BarBrand>
@@ -13,46 +13,40 @@
     <BarMenu>
         <BarStart>
             <BarItem>
-                <BarLink To="/">Home</BarLink>
-            </BarItem>
-            <BarItem>
                 <BarDropdown>
-                    <BarDropdownToggle>More</BarDropdownToggle>
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Image" TextColor="TextColor.Success" />
+                        Images
+                    </BarDropdownToggle>
                     <BarDropdownMenu>
-                        <BarDropdownItem To="https://blazorise.com/docs/start/">
-                            TBC
-                        </BarDropdownItem>
+                        <BarDropdownItem To="/simple-form"><span class="oi oi-person" aria-hidden="true" style="color: green;"> Images</span></BarDropdownItem>
                         <BarDropdownDivider />
-                        <BarDropdownItem To="https://blazorise.com/docs/usage/">
-                            TBC
-                        </BarDropdownItem>
+                        <BarDropdownItem To="/simple-datagrid"><span class="oi oi-people" aria-hidden="true" style="color: green;"> Duplicates</span></BarDropdownItem>
                     </BarDropdownMenu>
                 </BarDropdown>
             </BarItem>
+            <BarItem TextColor="TextColor.Info">
+                <BarLink To="/">
+                    <span class="oi oi-random" aria-hidden="true" style="color: blue;"> Random Images</span>
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarLink To="/">
+                    <span class="oi oi-globe" aria-hidden="true" style="color: orange;"> Scrape</span>
+                </BarLink>
+            </BarItem>
             <BarItem>
                 <BarDropdown>
-                    <BarDropdownToggle>Layout</BarDropdownToggle>
+                    <BarDropdownToggle>
+                        <span class="oi oi-folder" aria-hidden="true" style="color: purple;"> Rename</span>
+                    </BarDropdownToggle>
                     <BarDropdownMenu>
-                        <BarDropdownItem Clicked="@(()=>OnLayoutTypeChecked("fixed-header"))">
-                            @if ( LayoutType == "fixed-header" )
-                            {
-                                <Icon Name="IconName.CheckCircle" TextColor="TextColor.Success" />
-                            }
-                            Fixed Header
+                        <BarDropdownItem To="/apps/todo">
+                            <span class="oi oi-folder" aria-hidden="true" style="color: purple;"> Directory Rename</span>
                         </BarDropdownItem>
-                        <BarDropdownItem Clicked="@(()=>OnLayoutTypeChecked("fixed-header-footer-only"))">
-                            @if ( LayoutType == "fixed-header-footer-only" )
-                            {
-                                <Icon Name="IconName.CheckCircle" TextColor="TextColor.Success" />
-                            }
-                            Fixed Header and Footer only
-                        </BarDropdownItem>
-                        <BarDropdownItem Clicked="@(()=>OnLayoutTypeChecked("sider-with-header-on-top"))">
-                            @if ( LayoutType == "sider-with-header-on-top" )
-                            {
-                                <Icon Name="IconName.CheckCircle" TextColor="TextColor.Success" />
-                            }
-                            Sider with Header on top
+                    <BarDropdownDivider />
+                        <BarDropdownItem To="/apps/todo">
+                            <span class="oi oi-file" aria-hidden="true" style="color: purple;"> File Rename</span>
                         </BarDropdownItem>
                     </BarDropdownMenu>
                 </BarDropdown>
@@ -60,55 +54,73 @@
         </BarStart>
         <BarEnd>
             <BarItem>
-                <BarDropdown RightAligned>
-                    <BarDropdownToggle><Icon Name="IconName.Tint" /> Theme</BarDropdownToggle>
-                    <BarDropdownMenu Style="padding: 15px; min-width:550px;">
-                        <Row>
-                            <Column Margin="Margin.Is2.FromBottom">
-                                <Field>
-                                    <Switch TValue="bool" Checked="@(Theme?.Enabled == true)" CheckedChanged="@ThemeEnabledChanged">Theme enabled</Switch>
-                                </Field>
-                            </Column>
-                        </Row>
-                        <Row>
-                            <Column Margin="Margin.Is2.FromBottom">
-                                <Field>
-                                    <Check TValue="bool" Checked="@(Theme?.IsGradient == true)" CheckedChanged="@ThemeGradientChanged">Gradient colors</Check>
-                                </Field>
-                                <Field>
-                                    <Check TValue="bool" Checked="@(Theme?.IsRounded == true)" CheckedChanged="@ThemeRoundedChanged">Rounded elements</Check>
-                                </Field>
-                            </Column>
-                        </Row>
-                        <Row>
-                            <Column>
-                                <Container Fluid>
-                                    <ThemeColorSelector Value="@(Theme?.ColorOptions?.Primary)" ValueChanged="@ThemeColorChanged"></ThemeColorSelector>
-                                </Container>
-                            </Column>
-                        </Row>
+                <BarDropdown>
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Smartphone" />
+                        Admin
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/apps/todo">
+                            Tag Admin
+                        </BarDropdownItem>
+                    <BarDropdownDivider />
+                        <BarDropdownItem To="/apps/todo">
+                            Tag Admin 2
+                        </BarDropdownItem>
                     </BarDropdownMenu>
                 </BarDropdown>
             </BarItem>
             <BarItem>
-                <BarLink To="https://github.com/Megabit/Blazorise">GitHub</BarLink>
+                <Button Clicked="@(()=>ChangeTheme())">Change theme</Button>
             </BarItem>
         </BarEnd>
     </BarMenu>
 </Bar>
+
 @code {
-    protected override async Task OnInitializedAsync()
+    RenderFragment customIcon =@<img src="/brand-logo.png" style="width:32px; height: 32px" />;
+
+    private Task ChangeTheme()
     {
-        await SelectCulture( "en-GB" );
+        if(Theme?.ColorOptions != null)
+        {
+            if(Theme.ColorOptions.Primary == "#45B1E8")
+        {
+            Theme.ColorOptions = new()
+                {
+                    Primary = "#FFFFFF",
+                        Secondary = "#45B1E8",
+                        Info = "#123456"
+                    // other
+                };
+            Theme.BackgroundOptions = new()
+                    {
+                        Primary = "#FFFFFF",
+                        Secondary = "#45B1E8",
+                        Info = "#654321"
+                };
+        }
+        else
+        {
+            Theme.ColorOptions = new()
+                {
+                        Primary = "#45B1E8",
+                        Secondary = "#FFFFFF",
+                        Info = "#123456"
+                    // other
+                };
+            Theme.BackgroundOptions = new()
+                {
+                        Primary = "#45B1E8",
+                        Secondary = "#FFFFFF",
+                        Info = "#654321"
+                };
+        }
+        }
 
-        await base.OnInitializedAsync();
-    }
+         Theme?.ThemeHasChanged();
 
-    Task SelectCulture( string name )
-    {
-        LocalizationService!.ChangeLanguage( name );
-
-        return Task.CompletedTask;
+         return Task.CompletedTask;
     }
 
     private bool topbarVisible = false;
@@ -134,5 +146,5 @@
 
     [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
 
-    [CascadingParameter] protected Theme? Theme { get; set; }
+    [CascadingParameter] protected Theme Theme { get; set; } = default!;
 }

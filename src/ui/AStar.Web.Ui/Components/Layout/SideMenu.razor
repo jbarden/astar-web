@@ -1,5 +1,8 @@
-﻿<Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
-     Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
+﻿<Bar Mode="BarMode.VerticalInline"
+     CollapseMode="BarCollapseMode.Small"
+     Breakpoint="Breakpoint.Desktop"
+     NavigationBreakpoint="Breakpoint.Tablet"
+     ThemeContrast="ThemeContrast.Dark">
     <BarToggler />
     <BarBrand>
         <BarItem>
@@ -20,27 +23,26 @@
             <BarItem>
                 <BarDropdown @bind-Visible="pagesBarVisible">
                     <BarDropdownToggle>
-                        <BarIcon IconName="IconName.Image" TextColor="TextColor.Warning" />
+                        <BarIcon IconName="IconName.Image" TextColor="TextColor.Success" />
                         Images
                     </BarDropdownToggle>
                     <BarDropdownMenu>
-                        <BarDropdownItem To="/simple-form"><BarIcon IconName="IconName.Image" TextColor="TextColor.Warning" />Images</BarDropdownItem>
+                        <BarDropdownItem To="/simple-form"><span class="oi oi-person" aria-hidden="true" style="color: green;"> Images</span></BarDropdownItem>
                     </BarDropdownMenu>
                     <BarDropdownMenu>
-                        <BarDropdownItem To="/simple-datagrid"><BarIcon IconName="IconName.Images" TextColor="TextColor.Warning" />Duplicates</BarDropdownItem>
+                        <BarDropdownItem To="/simple-datagrid"><span class="oi oi-people" aria-hidden="true" style="color: green;"> Duplicates</span></BarDropdownItem>
                     </BarDropdownMenu>
                 </BarDropdown>
             </BarItem>
-            <BarItem>
+            <BarItem TextColor="TextColor.Info">
                 <BarLink To="/">
-                    <BarIcon IconName="IconName.Image" />
-                    Random
+                    <span class="oi oi-random" aria-hidden="true" style="color: blue;"> Random Images</span>
                 </BarLink>
             </BarItem>
             <BarItem>
                 <BarLink To="/">
                     <BarIcon IconName="IconName.Globe" />
-                    Scrape
+                    Scrape <span class="oi oi-world" aria-hidden="true" style="color: purple;"> File Rename</span>
                 </BarLink>
             </BarItem>
             <BarItem>
@@ -51,12 +53,12 @@
                     </BarDropdownToggle>
                     <BarDropdownMenu>
                         <BarDropdownItem To="/apps/todo">
-                            <BarIcon IconName="IconName.FolderOpen" />Directories
+                            <span class="oi oi-folder" aria-hidden="true" style="color: purple;"> Directory Rename</span>
                         </BarDropdownItem>
                     </BarDropdownMenu>
                     <BarDropdownMenu>
                         <BarDropdownItem To="/apps/todo">
-                            <BarIcon IconName="IconName.File" />Files
+                            <span class="oi oi-file" aria-hidden="true" style="color: purple;"> File Rename</span>
                         </BarDropdownItem>
                     </BarDropdownMenu>
                 </BarDropdown>
