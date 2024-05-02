@@ -1,6 +1,6 @@
 ﻿@using Blazorise.Localization
 
-<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.Primary">
+<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.Primary" >
     <BarBrand>
         <BarItem>
             <BarLink To="">
@@ -15,7 +15,7 @@
             <BarItem>
                 <BarDropdown>
                     <BarDropdownToggle>
-                        <BarIcon IconName="IconName.Image" TextColor="TextColor.Success" />
+                        <BarIcon IconName="IconName.Image"  />
                         Images
                     </BarDropdownToggle>
                     <BarDropdownMenu>
@@ -25,9 +25,10 @@
                     </BarDropdownMenu>
                 </BarDropdown>
             </BarItem>
-            <BarItem TextColor="TextColor.Info">
+            <BarItem >
                 <BarLink To="/">
                     <span class="oi oi-random" aria-hidden="true" style="color: blue;"> Random Images</span>
+                    Dummy Text
                 </BarLink>
             </BarItem>
             <BarItem>
@@ -74,76 +75,8 @@
                 <Button Clicked="@(()=>OnThemeColorChanged())" Color="Color.Success">Change theme</Button>
             </BarItem>
             <BarItem>
-                <Button Clicked="@(()=>OnThemeColorReset())" Color="Color.Success">Reset theme</Button>
+                <Button Clicked="@(()=>OnThemeColorReset())" Color="Color.Success">Light / Dark</Button>
             </BarItem>
         </BarEnd>
     </BarMenu>
 </Bar>
-
-@code {
-
-    Task SelectCulture(string name)
-    {
-        LocalizationService!.ChangeLanguage(name);
-
-        return Task.CompletedTask;
-    }
-
-    private bool topbarVisible = false;
-
-    Task OnLayoutTypeChecked(string layoutType)
-    {
-        LayoutType = layoutType;
-
-        return LayoutTypeChanged.InvokeAsync(layoutType);
-    }
-
-    [Parameter] public EventCallback<bool> ThemeEnabledChanged { get; set; }
-
-    [Parameter] public EventCallback<bool> ThemeGradientChanged { get; set; }
-
-    [Parameter] public EventCallback<bool> ThemeRoundedChanged { get; set; }
-
-    [Parameter] public EventCallback<string> ThemeColorChanged { get; set; }
-
-    [Parameter] public string? LayoutType { get; set; }
-
-    [Parameter] public EventCallback<string> LayoutTypeChanged { get; set; }
-
-    [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
-
-    [CascadingParameter] protected Theme? Theme { get; set; }
-    Task OnThemeColorChanged()
-    {
-        if(Theme is not null)
-        {
-            if(Theme.ColorOptions.Primary == "#d16f9e")
-            {
-                Theme.BackgroundOptions.Primary = "#e87c45";
-                Theme.ColorOptions.Primary = "#e87c45";
-            }
-            else
-            {
-                Theme.BackgroundOptions.Primary = "#d16f9e";
-                Theme.ColorOptions.Primary = "#d16f9e";
-            }
-        }
-
-        Theme?.ThemeHasChanged();
-
-        return Task.CompletedTask;
-    }
-
-    Task OnThemeColorReset()
-    {
-        if(Theme is not null)
-        {
-            Theme.BackgroundOptions.Primary = "#000000";
-            Theme.ColorOptions.Primary = "#FFFFFF";
-        }
-
-        Theme?.ThemeHasChanged();
-
-        return Task.CompletedTask;
-    }
-}
