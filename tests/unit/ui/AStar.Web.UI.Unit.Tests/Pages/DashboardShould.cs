@@ -1,8 +1,7 @@
 ﻿using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.ImagesApi;
-using AStar.Web.UI.Pages;
+using AStar.Web.UI.MockMessageHandlers;
 using AStar.Web.UI.Shared;
-using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
 using Blazorise;
 using Blazorise.Bootstrap5;
 using Blazorise.Tests.bUnit;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using RichardSzalay.MockHttp;
 
-namespace AStar.Web.UI.Unit.Tests.Pages;
+namespace AStar.Web.UI.Pages;
 
 public class DashboardShould : TestContext
 {

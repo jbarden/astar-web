@@ -1,6 +1,4 @@
-﻿using AStar.Web.UI.FilesApi;
-
-namespace AStar.Web.UI.Unit.Tests.FilesApi;
+﻿namespace AStar.Web.UI.FilesApi;
 
 public class FilesApiConfigurationShould
 {

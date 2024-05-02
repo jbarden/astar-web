@@ -2,7 +2,7 @@
 using System.Text.Json;
 using AStar.Web.UI.Shared;
 
-namespace AStar.Web.UI.Unit.Tests.MockMessageHandlers;
+namespace AStar.Web.UI.MockMessageHandlers;
 
 public class MockSuccessHttpMessageHandler : HttpMessageHandler
 {

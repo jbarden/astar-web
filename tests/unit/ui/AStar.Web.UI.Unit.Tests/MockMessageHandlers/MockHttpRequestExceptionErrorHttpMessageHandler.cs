@@ -1,4 +1,4 @@
-﻿namespace AStar.Web.UI.Unit.Tests.MockMessageHandlers;
+﻿namespace AStar.Web.UI.MockMessageHandlers;
 
 public class MockHttpRequestExceptionErrorHttpMessageHandler : HttpMessageHandler
 {

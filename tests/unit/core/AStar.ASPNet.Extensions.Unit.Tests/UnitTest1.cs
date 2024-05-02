@@ -1,10 +1,10 @@
-namespace AStar.ASPNet.Extensions.Unit.Tests;
+namespace AStar.ASPNet.Extensions;
 
 public class UnitTest1
 {
     [Fact]
     public void Test1()
     {
-
+        // Method intentionally left empty.
     }
 }

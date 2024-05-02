@@ -1,6 +1,6 @@
 ﻿using AStar.FilesApi.Files;
 
-namespace AStar.FilesAPI.Unit.Tests.Files;
+namespace AStar.FilesAPI.Files;
 
 public class SearchParametersShould
 {

@@ -1,8 +1,6 @@
-using AStar.Web.UI.FilesApi;
-using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.Web.UI.Unit.Tests.FilesApi;
+namespace AStar.Web.UI.FilesApi;
 
 public class FilesApiClientShould
 {

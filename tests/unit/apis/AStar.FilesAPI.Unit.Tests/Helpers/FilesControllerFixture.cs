@@ -3,9 +3,9 @@ using AStar.FilesApi.Files;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.FilesAPI.Unit.Tests.Helpers;
+namespace AStar.FilesAPI.Helpers;
 
-public class FilesControllerFixture: IDisposable
+public class FilesControllerFixture : IDisposable
 {
     private bool disposedValue;
 
@@ -19,6 +19,12 @@ public class FilesControllerFixture: IDisposable
 
     public FilesCounterController SUT { get; }
 
+    public void Dispose()
+    {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
+
     protected virtual void Dispose(bool disposing)
     {
         if(!disposedValue)
@@ -30,11 +36,5 @@ public class FilesControllerFixture: IDisposable
 
             disposedValue = true;
         }
-    }
-
-    public void Dispose()
-    {
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
     }
 }

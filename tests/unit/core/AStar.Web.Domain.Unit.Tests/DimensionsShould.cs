@@ -1,6 +1,4 @@
-using AStar.Web.Domain;
-
-namespace AStar.Clean.V1.DomainModel;
+namespace AStar.Web.Domain;
 
 public class DimensionsShould
 {

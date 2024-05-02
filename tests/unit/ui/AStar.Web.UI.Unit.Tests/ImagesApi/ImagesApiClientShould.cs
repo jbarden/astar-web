@@ -1,8 +1,6 @@
-using AStar.Web.UI.ImagesApi;
-using AStar.Web.UI.Unit.Tests.MockMessageHandlers;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.Web.UI.Unit.Tests.ImagesApi;
+namespace AStar.Web.UI.ImagesApi;
 
 public class ImagesApiClientShould
 {

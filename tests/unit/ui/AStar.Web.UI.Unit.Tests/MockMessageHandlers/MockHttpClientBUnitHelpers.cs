@@ -4,7 +4,7 @@ using Bunit;
 using Microsoft.Extensions.DependencyInjection;
 using RichardSzalay.MockHttp;
 
-namespace AStar.Web.UI.Unit.Tests.MockMessageHandlers;
+namespace AStar.Web.UI.MockMessageHandlers;
 
 public static class MockHttpClientBunitHelpers
 {

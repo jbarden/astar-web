@@ -3,7 +3,7 @@ using AStar.Web.UI.ImagesApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AStar.Web.UI.Unit.Tests.StartupConfiguration;
+namespace AStar.Web.UI.StartupConfiguration;
 
 public class ServicesShould
 {
@@ -12,7 +12,7 @@ public class ServicesShould
     {
         var builder = WebApplication.CreateBuilder([]);
 
-        _ = UI.StartupConfiguration.Services.ConfigureServices(builder.Services, builder.Configuration);
+        _ = Services.ConfigureServices(builder.Services, builder.Configuration);
         var provider = builder.Services.BuildServiceProvider();
 
         provider.GetService<FilesApiClient>().Should().NotBeNull();
@@ -23,7 +23,7 @@ public class ServicesShould
     {
         var builder = WebApplication.CreateBuilder([]);
 
-        _ = UI.StartupConfiguration.Services.ConfigureServices(builder.Services, builder.Configuration);
+        _ = Services.ConfigureServices(builder.Services, builder.Configuration);
         var provider = builder.Services.BuildServiceProvider();
 
         provider.GetService<ImagesApiClient>().Should().NotBeNull();

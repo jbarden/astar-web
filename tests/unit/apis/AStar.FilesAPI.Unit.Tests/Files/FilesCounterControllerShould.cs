@@ -1,12 +1,10 @@
 using System.Text.Json;
 using AStar.FilesApi.Config;
-using AStar.FilesAPI.Unit.Tests.Helpers;
+using AStar.FilesAPI.Helpers;
 using AStar.Web.Domain;
-using FluentAssertions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AStar.FilesAPI.Unit.Tests.Files;
+namespace AStar.FilesAPI.Files;
 
 public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture>
 {
@@ -17,7 +15,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void ReturnZeroWhenNoCriteriaSpecified()
     {
-        var response = (mockFilesFixture.SUT.Get(new())).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new()).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
@@ -25,7 +23,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.All}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(mockFilesFixture.MockFilesContext.Files.Count());
     }
@@ -33,7 +31,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(288);
     }
@@ -41,7 +39,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"d:\", Recursive = false})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"d:\", Recursive = false}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(0);
     }
@@ -49,7 +47,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(95);
     }
@@ -57,7 +55,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(4);
     }
@@ -65,7 +63,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void ReturnBadRequestForDuplicates()
     {
-        var response = (mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates})).Result as BadRequestObjectResult;
+        var response = mockFilesFixture.SUT.Get(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates}).Result as BadRequestObjectResult;
 
         _ = response!.Value.Should().Be("Duplicate searches are not supported by this endpoint, please call the duplicate-specific endpoint.");
     }
@@ -73,7 +71,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void ReturnBadRequestForAllFileCountWhenCallingDuplicatesEndpoint()
     {
-        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.All})).Result as BadRequestObjectResult;
+        var response = mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.All}).Result as BadRequestObjectResult;
 
         _ = response!.Value.Should().Be("Only Duplicate searches are supported by this endpoint, please call the non-duplicate-specific endpoint for any other count.");
     }
@@ -81,7 +79,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void ReturnBadRequestForImageFileCountWhenCallingDuplicatesEndpoint()
     {
-        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Images})).Result as BadRequestObjectResult;
+        var response = mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Images}).Result as BadRequestObjectResult;
 
         _ = response!.Value.Should().Be("Only Duplicate searches are supported by this endpoint, please call the non-duplicate-specific endpoint for any other count.");
     }
@@ -89,7 +87,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtTheRootFolder()
     {
-        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(18);
     }
@@ -97,7 +95,7 @@ public class FilesCounterControllerShould : IClassFixture<FilesControllerFixture
     [Fact]
     public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtSubFolder()
     {
-        var response = (mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, SearchType = SearchType.Duplicates})).Result as OkObjectResult;
+        var response = mockFilesFixture.SUT.GetDuplicates(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(17);
     }

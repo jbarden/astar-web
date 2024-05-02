@@ -1,6 +1,4 @@
-﻿using AStar.Web.Domain;
-
-namespace AStar.Clean.V1.DomainModel;
+﻿namespace AStar.Web.Domain;
 
 /// <summary>
 /// The tests here do not cover every property - just those that are not covered elsewhere. Either the code or other tests achieve the desired 100% coverage when combined by these tests. It is not

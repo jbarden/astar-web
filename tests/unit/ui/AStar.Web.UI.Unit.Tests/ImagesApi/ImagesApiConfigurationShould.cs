@@ -1,6 +1,4 @@
-﻿using AStar.Web.UI.ImagesApi;
-
-namespace AStar.Web.UI.Unit.Tests.ImagesApi;
+﻿namespace AStar.Web.UI.ImagesApi;
 
 public class ImagesApiConfigurationShould
 {
