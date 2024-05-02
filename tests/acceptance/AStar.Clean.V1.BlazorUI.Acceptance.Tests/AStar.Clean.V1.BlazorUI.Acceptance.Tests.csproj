@@ -40,4 +40,9 @@
 	  <Folder Include="Features\Login\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Using Include="FluentAssertions" />
+		<Using Include="Xunit" />
+	</ItemGroup>
+
 </Project>

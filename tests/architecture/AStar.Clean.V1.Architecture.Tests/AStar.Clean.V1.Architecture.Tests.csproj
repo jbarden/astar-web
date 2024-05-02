@@ -44,4 +44,9 @@
 	  <ProjectReference Include="..\AStar.Utilities\AStar.Utilities.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Using Include="FluentAssertions" />
+		<Using Include="Xunit" />
+	</ItemGroup>
+
 </Project>
