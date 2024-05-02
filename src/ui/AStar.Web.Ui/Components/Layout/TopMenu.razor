@@ -71,65 +71,31 @@
                 </BarDropdown>
             </BarItem>
             <BarItem>
-                <Button Clicked="@(()=>ChangeTheme())">Change theme</Button>
+                <Button Clicked="@(()=>OnThemeColorChanged())" Color="Color.Success">Change theme</Button>
+            </BarItem>
+            <BarItem>
+                <Button Clicked="@(()=>OnThemeColorReset())" Color="Color.Success">Reset theme</Button>
             </BarItem>
         </BarEnd>
     </BarMenu>
 </Bar>
 
 @code {
-    RenderFragment customIcon =@<img src="/brand-logo.png" style="width:32px; height: 32px" />;
 
-    private Task ChangeTheme()
+    Task SelectCulture(string name)
     {
-        if(Theme?.ColorOptions != null)
-        {
-            if(Theme.ColorOptions.Primary == "#45B1E8")
-        {
-            Theme.ColorOptions = new()
-                {
-                    Primary = "#FFFFFF",
-                        Secondary = "#45B1E8",
-                        Info = "#123456"
-                    // other
-                };
-            Theme.BackgroundOptions = new()
-                    {
-                        Primary = "#FFFFFF",
-                        Secondary = "#45B1E8",
-                        Info = "#654321"
-                };
-        }
-        else
-        {
-            Theme.ColorOptions = new()
-                {
-                        Primary = "#45B1E8",
-                        Secondary = "#FFFFFF",
-                        Info = "#123456"
-                    // other
-                };
-            Theme.BackgroundOptions = new()
-                {
-                        Primary = "#45B1E8",
-                        Secondary = "#FFFFFF",
-                        Info = "#654321"
-                };
-        }
-        }
+        LocalizationService!.ChangeLanguage(name);
 
-         Theme?.ThemeHasChanged();
-
-         return Task.CompletedTask;
+        return Task.CompletedTask;
     }
 
     private bool topbarVisible = false;
 
-    Task OnLayoutTypeChecked( string layoutType )
+    Task OnLayoutTypeChecked(string layoutType)
     {
         LayoutType = layoutType;
 
-        return LayoutTypeChanged.InvokeAsync( layoutType );
+        return LayoutTypeChanged.InvokeAsync(layoutType);
     }
 
     [Parameter] public EventCallback<bool> ThemeEnabledChanged { get; set; }
@@ -146,5 +112,38 @@
 
     [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
 
-    [CascadingParameter] protected Theme Theme { get; set; } = default!;
+    [CascadingParameter] protected Theme? Theme { get; set; }
+    Task OnThemeColorChanged()
+    {
+        if(Theme is not null)
+        {
+            if(Theme.ColorOptions.Primary == "#d16f9e")
+            {
+                Theme.BackgroundOptions.Primary = "#e87c45";
+                Theme.ColorOptions.Primary = "#e87c45";
+            }
+            else
+            {
+                Theme.BackgroundOptions.Primary = "#d16f9e";
+                Theme.ColorOptions.Primary = "#d16f9e";
+            }
+        }
+
+        Theme?.ThemeHasChanged();
+
+        return Task.CompletedTask;
+    }
+
+    Task OnThemeColorReset()
+    {
+        if(Theme is not null)
+        {
+            Theme.BackgroundOptions.Primary = "#000000";
+            Theme.ColorOptions.Primary = "#FFFFFF";
+        }
+
+        Theme?.ThemeHasChanged();
+
+        return Task.CompletedTask;
+    }
 }

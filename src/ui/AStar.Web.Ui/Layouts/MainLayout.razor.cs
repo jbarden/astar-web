@@ -6,7 +6,6 @@ namespace AStar.Web.UI.Layouts;
 
 public partial class MainLayout
 {
-    protected string layoutType = "fixed-header";
     [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
 
     [CascadingParameter] protected Theme? Theme { get; set; }
@@ -23,42 +22,6 @@ public partial class MainLayout
         LocalizationService!.ChangeLanguage(name);
 
         return Task.CompletedTask;
-    }
-
-    private Task OnThemeEnabledChanged(bool value)
-    {
-        if(Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        Theme.Enabled = value;
-
-        return InvokeAsync(Theme.ThemeHasChanged);
-    }
-
-    private Task OnThemeGradientChanged(bool value)
-    {
-        if(Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        Theme.IsGradient = value;
-
-        return InvokeAsync(Theme.ThemeHasChanged);
-    }
-
-    private Task OnThemeRoundedChanged(bool value)
-    {
-        if(Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        Theme.IsRounded = value;
-
-        return InvokeAsync(Theme.ThemeHasChanged);
     }
 
     private Task OnThemeColorChanged(string value)
