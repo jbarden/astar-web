@@ -5,6 +5,7 @@ using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace AStar.FilesApi.Files;
@@ -20,7 +21,7 @@ public class List(FilesContext context, ILogger<List> logger)
         Summary = "List the matching files",
         Description = "List the files matching the criteria",
         OperationId = "Files_List",
-        Tags = new[] { "Files" })
+        Tags = ["Files"])
 ]
     public override ActionResult<IReadOnlyCollection<FileInfoDto>> Handle([FromQuery] SearchParameters request)
     {
@@ -30,7 +31,7 @@ public class List(FilesContext context, ILogger<List> logger)
             return BadRequest("A Search folder must be specified.");
         }
 
-        logger.LogTrace("Starting search...");
+        logger.LogDebug("Starting {SearchType} search...{FullParameters}", request.SearchType, request);
         if(request.SearchFolder.IsNullOrWhiteSpace())
         {
             return BadRequest("A Search folder must be specified.");

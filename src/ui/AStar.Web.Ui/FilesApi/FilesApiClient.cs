@@ -21,6 +21,7 @@ public class FilesApiClient
         {
             var response = await httpClient.GetAsync("/health/live");
 
+            logger.LogWarning("This had better work.");
             return response.IsSuccessStatusCode
                 ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!
                 : new() { Status = "Health Check failed." }!;

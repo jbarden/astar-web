@@ -37,6 +37,50 @@
             <param name="modelBuilder">
             </param>
         </member>
+        <member name="T:AStar.Infrastructure.Data.FilesContextExtensions">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.FilterBySearchFolder(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="files"></param>
+             <param name="startingFolder"></param>
+             <param name="recursive"></param>
+             <returns></returns>
+        </member>
+        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="files"></param>
+             <param name="startingFolder"></param>
+             <param name="recursive"></param>
+             <param name="searchType"></param>
+             <returns></returns>
+        </member>
+        <member name="T:AStar.Infrastructure.EnumerableExtensions">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.FilterImagesIfApplicable(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},System.String)">
+             <summary>
+            
+             </summary>
+             <param name="files"></param>
+             <param name="searchType"></param>
+             <returns></returns>
+        </member>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.GroupDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
+             <summary>
+            
+             </summary>
+             <param name="files"></param>
+             <returns></returns>
+        </member>
         <member name="T:AStar.Infrastructure.Migrations.AddTagTables">
             <inheritdoc />
         </member>

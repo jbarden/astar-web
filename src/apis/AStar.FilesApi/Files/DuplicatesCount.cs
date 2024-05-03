@@ -20,7 +20,7 @@ public class DuplicatesCount(FilesContext context, ILogger<DuplicatesCount> logg
         Summary = "Get duplicate files count",
         Description = "Get the count of duplicate files matching the criteria",
         OperationId = "Duplicates_Count",
-        Tags = new[] { "Files" })
+        Tags = ["Files"])
 ]
     public override ActionResult<int> Handle([FromQuery] SearchParameters request)
     {

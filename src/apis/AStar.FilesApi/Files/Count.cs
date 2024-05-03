@@ -20,7 +20,7 @@ public class Count(FilesContext context, ILogger<Count> logger)
         Summary = "Get the count of files",
         Description = "Get the count of files matching the criteria",
         OperationId = "Files_Count",
-        Tags = new[] { "Files" })
+        Tags = ["Files"])
 ]
     public override ActionResult<int> Handle([FromQuery] SearchParameters request)
     {

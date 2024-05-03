@@ -18,8 +18,8 @@ public static class FilesContextExtensions
     /// <returns></returns>
     public static IEnumerable<FileDetail> FilterBySearchFolder(this DbSet<FileDetail> files, string startingFolder, bool recursive)
         => startingFolder.IsNullOrWhiteSpace()
-            ? Enumerable.Empty<FileDetail>()
-            : GetFiles(files, startingFolder, recursive);
+                ? Enumerable.Empty<FileDetail>()
+                : GetFiles(files, startingFolder, recursive);
 
     /// <summary>
     ///
@@ -31,8 +31,8 @@ public static class FilesContextExtensions
     /// <returns></returns>
     public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType)
         => files
-                  .FilterBySearchFolder(startingFolder, recursive)
-                  .FilterImagesIfApplicable(searchType);
+                .FilterBySearchFolder(startingFolder, recursive)
+                .FilterImagesIfApplicable(searchType);
 
     private static IEnumerable<FileDetail> GetFiles(DbSet<FileDetail> files, string startingFolder, bool recursive)
         => recursive
