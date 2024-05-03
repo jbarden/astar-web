@@ -1,3 +1,4 @@
+using AStar.Web.UI.MockMessageHandlers;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.Web.UI.ImagesApi;

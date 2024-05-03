@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions.Handlers;
 using AStar.Logging.Extensions;
+using Microsoft.OpenApi.Models;
 
 namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 
@@ -20,7 +21,11 @@ public static class ServiceCollectionExtensions
         _ = services.AddControllers()
                     .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         _ = services.AddEndpointsApiExplorer();
-        _ = services.AddSwaggerGen();
+        _ = services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            c.EnableAnnotations();
+        });
         _ = services.AddHealthChecks();
         _ = services.AddSwaggerGenNewtonsoftSupport();
 

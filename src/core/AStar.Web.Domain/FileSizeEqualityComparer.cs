@@ -1,8 +1,9 @@
-﻿using AStar.FilesApi.Models;
+﻿namespace AStar.Web.Domain;
 
-namespace AStar.FilesApi;
-
-internal class FileSizeEqualityComparer : IEqualityComparer<FileSize>
+/// <summary>
+///
+/// </summary>
+public class FileSizeEqualityComparer : IEqualityComparer<FileSize>
 {
     /// <summary>
     /// The Equals method has been overridden to perform the equality check currently required. The equality check is for Height, Width and Length - making this more of an ImageComparer...

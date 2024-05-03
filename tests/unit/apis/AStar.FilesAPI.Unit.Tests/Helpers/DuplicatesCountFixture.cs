@@ -1,23 +1,22 @@
-﻿using AStar.FilesApi.Controllers;
-using AStar.FilesApi.Files;
+﻿using AStar.FilesApi.Files;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.FilesAPI.Helpers;
 
-public class FilesControllerFixture : IDisposable
+public class DuplicatesCountFixture : IDisposable
 {
     private bool disposedValue;
 
-    public FilesControllerFixture()
+    public DuplicatesCountFixture()
     {
         MockFilesContext = new MockFilesContext().CreateContext();
-        SUT = new FilesCounterController(MockFilesContext, NullLogger<FilesControllerBase>.Instance);
+        SUT = new DuplicatesCount(MockFilesContext, NullLogger<DuplicatesCount>.Instance);
     }
 
     public FilesContext MockFilesContext { get; }
 
-    public FilesCounterController SUT { get; }
+    public DuplicatesCount SUT { get; }
 
     public void Dispose()
     {

@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Ardalis.ApiEndpoints.Swashbuckle" Version="4.1.0" />
 		<PackageReference Include="AStar.CodeGenerators" Version="0.2.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />

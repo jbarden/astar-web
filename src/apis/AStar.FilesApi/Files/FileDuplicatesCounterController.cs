@@ -1,6 +1,7 @@
 ﻿using AStar.FilesApi.Config;
-using AStar.FilesApi.Controllers;
+using AStar.Infrastructure;
 using AStar.Infrastructure.Data;
+using AStar.Utilities;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,31 +9,13 @@ namespace AStar.FilesApi.Files;
 
 [Route("api/[controller]")]
 [ApiController]
-public class FilesCounterController(FilesContext context, ILogger<FilesControllerBase> logger) : ControllerBase
+public class FileDuplicatesCounterController(FilesContext context, ILogger<FileDuplicatesCounterController> logger) : ControllerBase
 {
-    [HttpGet(Name = "FilesCount")]
+    [HttpGet()]
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public ActionResult<int> Get([FromQuery] SearchParameters searchParameters)
-    {
-        ArgumentNullException.ThrowIfNull(searchParameters);
-        if(searchParameters.SearchType == SearchType.Duplicates)
-        {
-            return BadRequest("Duplicate searches are not supported by this endpoint, please call the duplicate-specific endpoint.");
-        }
-
-        var matchingFiles = GetMatchingFiles(context, searchParameters);
-
-        logger.LogDebug("File Count: {FileCount}", matchingFiles.Count());
-
-        return Ok(matchingFiles.Count());
-    }
-
-    [HttpGet(Name = "DuplicatesCount")]
-    [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ApiExplorerSettings(GroupName = "FilesJB")]
     public ActionResult<int> GetDuplicates([FromQuery] SearchParameters searchParameters)
     {
         ArgumentNullException.ThrowIfNull(searchParameters);
@@ -52,5 +35,5 @@ public class FilesCounterController(FilesContext context, ILogger<FilesControlle
     private static IEnumerable<FileDetail> GetMatchingFiles(FilesContext context, SearchParameters searchParameters)
         => context.Files
                   .FilterBySearchFolder(searchParameters.SearchFolder, searchParameters.Recursive)
-                  .FilterImagesIfApplicable(searchParameters.SearchType);
+                  .FilterImagesIfApplicable(searchParameters.SearchType.ToString());
 }

@@ -1,4 +1,4 @@
-﻿namespace AStar.FilesApi.Models;
+﻿namespace AStar.Web.Domain;
 
 public class FileSize
 {
