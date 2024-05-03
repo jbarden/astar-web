@@ -2,13 +2,15 @@
 
 @inherits LayoutComponentBase
 
-<Layout Sider>
-    <Layout Background="Background.Primary">
-        <LayoutHeader Fixed>
-            <TopMenu ThemeColorChanged="@OnThemeColorChanged" />
-        </LayoutHeader>
-        <LayoutContent Padding="Padding.Is4.OnX.Is4.FromTop">
-            @Body
-        </LayoutContent>
-    </Layout>
+<Layout Background="Background.Primary">
+    <LayoutHeader Fixed>
+        <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
+                    ThemeGradientChanged="@OnThemeGradientChanged"
+                    ThemeRoundedChanged="@OnThemeRoundedChanged"
+                    ThemeColorChanged="@OnThemeColorChanged"
+                    @bind-LayoutType="@layoutType" />
+    </LayoutHeader>
+    <LayoutContent Padding="Padding.Is4.OnX.Is4.FromTop">
+        @Body
+    </LayoutContent>
 </Layout>

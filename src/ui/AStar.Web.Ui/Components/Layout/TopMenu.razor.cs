@@ -6,8 +6,6 @@ namespace AStar.Web.UI.Components.Layout;
 
 public partial class TopMenu
 {
-    private bool topbarVisible = false;
-
     [Parameter] public EventCallback<bool> ThemeEnabledChanged { get; set; }
 
     [Parameter] public EventCallback<bool> ThemeGradientChanged { get; set; }
@@ -28,15 +26,19 @@ public partial class TopMenu
     {
         if(Theme is not null)
         {
-            if(Theme.ColorOptions.Primary == SupportedColours.Pink)
+            if(Theme.BackgroundOptions.Primary == SupportedColours.Orange)
             {
-                Theme.BackgroundOptions.Primary = SupportedColours.Orange;
-                Theme.ColorOptions.Primary = SupportedColours.Orange;
+                Theme.BackgroundOptions.Primary = SupportedColours.Pink;
+                Theme.ColorOptions.Primary = SupportedColours.Black;
+                Theme.BodyOptions.BackgroundColor = SupportedColours.White;
+                Theme.BodyOptions.TextColor = SupportedColours.Black;
             }
             else
             {
-                Theme.BackgroundOptions.Primary = SupportedColours.Pink;
-                Theme.ColorOptions.Primary = SupportedColours.Pink;
+                Theme.BackgroundOptions.Primary = SupportedColours.Orange;
+                Theme.ColorOptions.Primary = SupportedColours.White;
+                Theme.BodyOptions.BackgroundColor = SupportedColours.Black;
+                Theme.BodyOptions.TextColor = SupportedColours.White;
             }
         }
 
@@ -45,7 +47,7 @@ public partial class TopMenu
         return Task.CompletedTask;
     }
 
-    private Task OnThemeColorReset()
+    private Task SwapLightAndDarkThemes()
     {
         if(Theme is not null)
         {
@@ -53,11 +55,15 @@ public partial class TopMenu
             {
                 Theme.BackgroundOptions.Primary = SupportedColours.White;
                 Theme.ColorOptions.Primary = SupportedColours.Black;
+                Theme.BodyOptions.BackgroundColor = SupportedColours.White;
+                Theme.BodyOptions.TextColor = SupportedColours.Black;
             }
             else
             {
                 Theme.BackgroundOptions.Primary = SupportedColours.Black;
                 Theme.ColorOptions.Primary = SupportedColours.White;
+                Theme.BodyOptions.BackgroundColor = SupportedColours.Black;
+                Theme.BodyOptions.TextColor = SupportedColours.White;
             }
         }
 

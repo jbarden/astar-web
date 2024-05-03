@@ -1,6 +1,6 @@
 ﻿@using Blazorise.Localization
 
-<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.Primary" >
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Primary" ThemeContrast="ThemeContrast.Light">
     <BarBrand>
         <BarItem>
             <BarLink To="">
@@ -16,7 +16,7 @@
                 <BarDropdown>
                     <BarDropdownToggle>
                         <BarIcon IconName="IconName.Image"  />
-                        Images
+                        <span aria-hidden="true" style="color: green;"> Images</span>
                     </BarDropdownToggle>
                     <BarDropdownMenu>
                         <BarDropdownItem To="/simple-form"><span class="oi oi-person" aria-hidden="true" style="color: green;"> Images</span></BarDropdownItem>
@@ -28,7 +28,6 @@
             <BarItem >
                 <BarLink To="/">
                     <span class="oi oi-random" aria-hidden="true" style="color: blue;"> Random Images</span>
-                    Dummy Text
                 </BarLink>
             </BarItem>
             <BarItem>
@@ -73,9 +72,7 @@
             </BarItem>
             <BarItem>
                 <Button Clicked="@(()=>OnThemeColorChanged())" Color="Color.Success">Change theme</Button>
-            </BarItem>
-            <BarItem>
-                <Button Clicked="@(()=>OnThemeColorReset())" Color="Color.Success">Light / Dark</Button>
+                <Button Clicked="@(()=>SwapLightAndDarkThemes())"><span class="oi oi-sun" aria-hidden="true" style="color: purple;" /> / <span class="oi oi-moon" aria-hidden="true" style="color: purple;" /></Button>
             </BarItem>
         </BarEnd>
     </BarMenu>
