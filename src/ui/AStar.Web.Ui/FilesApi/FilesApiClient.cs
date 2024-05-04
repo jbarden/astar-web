@@ -15,13 +15,24 @@ public class FilesApiClient
         this.logger = logger;
     }
 
+    public async Task<int> GetFilesCountAsync(SearchParameters searchParameters)
+    {
+        var response = await httpClient.GetAsync($"api/files/count?{searchParameters}");
+
+        logger.LogWarning("Getting the count of matching files.");
+
+        return response.IsSuccessStatusCode
+            ? int.Parse(await response.Content.ReadAsStringAsync())
+            : -1;
+    }
+
     public async Task<HealthStatusResponse> GetHealthAsync()
     {
         try
         {
             var response = await httpClient.GetAsync("/health/live");
 
-            logger.LogWarning("This had better work.");
+            logger.LogWarning("Checking the FilesAPI Health.");
             return response.IsSuccessStatusCode
                 ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!
                 : new() { Status = "Health Check failed." }!;

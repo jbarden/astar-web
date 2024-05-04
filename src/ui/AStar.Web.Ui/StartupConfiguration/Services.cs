@@ -8,7 +8,7 @@ namespace AStar.Web.UI.StartupConfiguration;
 
 public static class Services
 {
-    public static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
+    public static IServiceCollection Configure(IServiceCollection services, ConfigurationManager configuration)
     {
         _ = services.Configure<FilesApiConfiguration>(configuration.GetSection(FilesApiConfiguration.SectionLocation));
         _ = services.Configure<ImagesApiConfiguration>(configuration.GetSection(ImagesApiConfiguration.SectionLocation));

@@ -11,11 +11,11 @@ namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// The <see cref="ConfigurePipeline"/> will do exactly what it says on the tin...
+    /// The <see cref="Configure"/> will do exactly what it says on the tin...
     /// </summary>
     /// <param name="services">An instance of the <see cref="IServiceCollection"/> interface that will be configured with the current methods.</param>
     /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.   </returns>
-    public static IServiceCollection ConfigurePipeline(this IServiceCollection services)
+    public static IServiceCollection Configure(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
         _ = services.AddControllers()

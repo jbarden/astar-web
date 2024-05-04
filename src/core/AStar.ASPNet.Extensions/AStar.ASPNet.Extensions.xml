@@ -49,9 +49,9 @@
             The <see cref="T:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner.
             </summary>
         </member>
-        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigurePipeline(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.Configure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigurePipeline(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin...
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.Configure(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin...
             </summary>
             <param name="services">An instance of the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> interface that will be configured with the current methods.</param>
             <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.   </returns>

@@ -17,7 +17,7 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.ConfigurePipeline();
+        _ = builder.Services.Configure();
 
         _ = ConfigureServices(builder.Services, builder.Configuration);
 

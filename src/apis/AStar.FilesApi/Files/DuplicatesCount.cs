@@ -39,7 +39,7 @@ public class DuplicatesCount(FilesContext context, ILogger<DuplicatesCount> logg
                                    .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString())
                                    .GroupDuplicates();
 
-        logger.LogDebug("File Count: {FileCount}", matchingFiles);
+        logger.LogDebug("Duplicate File Count: {FileCount}", matchingFiles);
 
         return Ok(matchingFiles);
     }

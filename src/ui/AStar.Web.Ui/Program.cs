@@ -11,9 +11,9 @@ internal static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.ConfigurePipeline();
+        _ = builder.Services.Configure();
 
-        _ = StartupConfiguration.Services.ConfigureServices(builder.Services, builder.Configuration);
+        _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
         var app = builder.Build();
         _ = ConfigurePipeline(app);

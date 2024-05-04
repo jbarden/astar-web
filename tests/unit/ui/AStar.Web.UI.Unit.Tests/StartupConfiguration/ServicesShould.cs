@@ -12,7 +12,7 @@ public class ServicesShould
     {
         var builder = WebApplication.CreateBuilder([]);
 
-        _ = Services.ConfigureServices(builder.Services, builder.Configuration);
+        _ = Services.Configure(builder.Services, builder.Configuration);
         var provider = builder.Services.BuildServiceProvider();
 
         provider.GetService<FilesApiClient>().Should().NotBeNull();
@@ -23,7 +23,7 @@ public class ServicesShould
     {
         var builder = WebApplication.CreateBuilder([]);
 
-        _ = Services.ConfigureServices(builder.Services, builder.Configuration);
+        _ = Services.Configure(builder.Services, builder.Configuration);
         var provider = builder.Services.BuildServiceProvider();
 
         provider.GetService<ImagesApiClient>().Should().NotBeNull();
