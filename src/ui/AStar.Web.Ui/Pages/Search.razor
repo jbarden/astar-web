@@ -66,7 +66,7 @@
         <AccordionBody>
                 <Pagination Background="Background.Primary">
                 <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                        <PaginationLink Background="Background.Primary">
+                        <PaginationLink Background="Background.Success">
                         <span aria-hidden="true">«</span>
                     </PaginationLink>
                 </PaginationItem>
@@ -77,7 +77,7 @@
                     {
                         var pageNumberAsString = i.ToString();
                         <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Primary">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
                                 @pageNumberAsString
                             </PaginationLink>
                         </PaginationItem>
@@ -87,7 +87,7 @@
                     {
                         var pageNumberAsString = i.ToString();
                         <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="@BackgroundColour">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
                                 @pageNumberAsString
                             </PaginationLink>
                         </PaginationItem>
@@ -95,7 +95,7 @@
                     }
                 }
                 <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                        <PaginationLink Background="Background.Primary">
+                        <PaginationLink Background="Background.Success">
                         <span aria-hidden="true">»</span>
                     </PaginationLink>
                 </PaginationItem>
@@ -115,7 +115,6 @@
     int finalPages;
     string startingFolder = @"f:\";
     private LoadingIndicator loadingIndicator = new();
-    Background BackgroundColour = Background.Primary;
 
     [Inject]
     private FilesApiClient FilesApiClient { get; set; } = default!;
@@ -185,5 +184,5 @@
     }
 
     private void SetActive(string page)
-        => currentPage = page; // The re-query will happen here
+                    => currentPage = page; // The re-query will happen here
 }
