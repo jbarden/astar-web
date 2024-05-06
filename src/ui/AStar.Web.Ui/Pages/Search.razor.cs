@@ -1,4 +1,5 @@
 ﻿using AStar.Web.UI.FilesApi;
+using AStar.Web.UI.Services;
 using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
 using Microsoft.AspNetCore.Components;
@@ -14,18 +15,18 @@ public partial class Search
     private int searchType;
     private int sortOrder;
     private int pages;
-    private int initialPages;
-    private int finalPages;
+    private IReadOnlyCollection<int> pagesForPagination = [];
     private LoadingIndicator loadingIndicator = new();
-
     private bool accordionItem1Visible = true;
-
     private bool accordionItem3Visible = false;
-
     private string currentPage = "1";
+    private bool recursiveSearch = true;
 
     [Inject]
     private FilesApiClient FilesApiClient { get; set; } = default!;
+
+    [Inject]
+    private PaginationService PaginationService { get; set; } = default!;
 
     [Inject]
     private ILogger<Search> Logger { get; set; } = default!;
@@ -34,17 +35,9 @@ public partial class Search
     {
         await loadingIndicator.Show();
         var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Images,SortOrder = SortOrder.SizeDescending });
-
         pages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
-        if(pages > 5)
-        {
-            initialPages = 5;
-        }
+        pagesForPagination = PaginationService.GetPaginationInformation(pages);
 
-        if(pages - 5 > 0)
-        {
-            finalPages = pages - 5;
-        }
         Logger.LogInformation("FilesApiClient fileCount: {FileCount}", filesCount);
         accordionItem1Visible = false;
         accordionItem3Visible = true;
@@ -63,6 +56,7 @@ public partial class Search
         {
             return currentPage.Equals(itemsPerPage.ToString());
         }
+
         return false;
     }
 

@@ -1,5 +1,6 @@
 ﻿using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.ImagesApi;
+using AStar.Web.UI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,5 +28,16 @@ public class ServicesShould
         var provider = builder.Services.BuildServiceProvider();
 
         provider.GetService<ImagesApiClient>().Should().NotBeNull();
+    }
+
+    [Fact]
+    public void AddExpectedPaginationService()
+    {
+        var builder = WebApplication.CreateBuilder([]);
+
+        _ = Services.Configure(builder.Services, builder.Configuration);
+        var provider = builder.Services.BuildServiceProvider();
+
+        provider.GetService<PaginationService>().Should().NotBeNull();
     }
 }

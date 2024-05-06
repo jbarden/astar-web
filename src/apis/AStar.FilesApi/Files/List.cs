@@ -1,11 +1,8 @@
 ﻿using Ardalis.ApiEndpoints;
-using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
-using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace AStar.FilesApi.Files;

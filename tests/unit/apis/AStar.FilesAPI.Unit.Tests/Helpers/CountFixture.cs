@@ -1,5 +1,4 @@
-﻿using AStar.FilesApi.Controllers;
-using AStar.FilesApi.Files;
+﻿using AStar.FilesApi.Files;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Logging.Abstractions;
 

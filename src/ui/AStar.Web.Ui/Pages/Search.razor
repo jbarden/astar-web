@@ -49,6 +49,7 @@
                                 <Field Horizontal JustifyContent="JustifyContent.End">
                                     <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
                                         <Button Color="Color.Success" Clicked="SubmitHorizontalForm">Submit</Button>
+                                        <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?</Switch>
                                     </FieldBody>
                                 </Field>
                         </CardBody>
@@ -70,30 +71,17 @@
                         <span aria-hidden="true">«</span>
                     </PaginationLink>
                 </PaginationItem>
-                @{
-                    if(pages>0)
-                    {
-                    for(var i = 1; i <= initialPages; i++)
-                    {
-                        var pageNumberAsString = i.ToString();
-                        <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
-                                @pageNumberAsString
-                            </PaginationLink>
-                        </PaginationItem>
+                    @{
+                        foreach(var pageOrdinal in pagesForPagination)
+                        {
+                            var pageNumberAsString = pageOrdinal.ToString();
+                            <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                    @pageNumberAsString
+                                </PaginationLink>
+                            </PaginationItem>
+                        }
                     }
-
-                    for(var i = finalPages; i <= pages; i++)
-                    {
-                        var pageNumberAsString = i.ToString();
-                        <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
-                                @pageNumberAsString
-                            </PaginationLink>
-                        </PaginationItem>
-                    }
-                    }
-                }
                 <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
                         <PaginationLink Background="Background.Success">
                         <span aria-hidden="true">»</span>

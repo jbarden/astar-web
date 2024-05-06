@@ -1,8 +1,6 @@
-using System.Text.Json;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.FilesAPI.Helpers;
-using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;
@@ -27,7 +25,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", Recursive=false}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(0);
     }
@@ -37,7 +35,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(ExpectedResultCountWithDefaultSearchParameters);
     }
@@ -47,7 +45,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(mockFilesFixture.MockFilesContext.Files.Count());
     }
@@ -57,7 +55,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "_Host.cshtml", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages\\_Host.cshtml", Size = 2228L });
         _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "z20080523 003.jpg", FullName = "c:\\temp\\Home\\month03\\z20080523 003.jpg", Size = 211127L, Height = 1234L, Width = 5678L });
@@ -68,7 +66,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(ExpectedResultCountWithDefaultSearchParameters);
     }
@@ -78,7 +76,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "_Host.cshtml", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages\\_Host.cshtml", Size = 2228L });
         _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = ".gitignore", FullName = "c:\\temp\\Famous\\.gitignore", Size = 6352L });
@@ -89,7 +87,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(ExpectedResultCountWithDefaultSearchParameters);
     }
@@ -99,7 +97,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = ".editorconfig", FullName = "c:\\temp\\Famous\\.editorconfig", Size = 12756L });
         _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-1pmqr3.jpg", FullName = "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate\\lingerie\\sideboob\\ass\\wallhaven-1pmqr3.jpg", Size = 2688298L });
@@ -110,7 +108,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.Count.Should().Be(4);
     }
@@ -120,7 +118,7 @@ public class ListShould : IClassFixture<ListFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        var value = ((IReadOnlyCollection<FileInfoDto>)response!.Value!);
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
         _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-3k313y.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-3k313y.jpg", Size = 387073L });
         _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-yxre17.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-yxre17.jpg", Size = 179564L });

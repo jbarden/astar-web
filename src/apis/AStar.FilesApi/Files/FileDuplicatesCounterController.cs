@@ -1,7 +1,6 @@
 ﻿using AStar.FilesApi.Config;
 using AStar.Infrastructure;
 using AStar.Infrastructure.Data;
-using AStar.Utilities;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 

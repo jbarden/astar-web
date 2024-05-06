@@ -2,7 +2,6 @@
 using AStar.CodeGenerators;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AStar.FilesApi.Files;
 

@@ -1,4 +1,3 @@
-using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 
 namespace AStar.ASPNet.Extensions;

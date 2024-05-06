@@ -1,7 +1,5 @@
-using System.Text.Json;
 using AStar.FilesApi.Config;
 using AStar.FilesAPI.Helpers;
-using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;

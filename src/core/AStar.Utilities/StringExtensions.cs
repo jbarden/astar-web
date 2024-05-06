@@ -43,4 +43,13 @@ public static class StringExtensions
     /// <param name="json">The JSON representation of the object.</param>
     /// <returns>A deserialised object based on the original JSON.</returns>
     public static T FromJson<T>(this string json) => JsonSerializer.Deserialize<T>(json)!;
+
+    /// <summary>
+    /// The FromJson method, as you might expect, converts the supplied JSON to the specified object.
+    /// </summary>
+    /// <typeparam name="T">The required type of the object to deserialise to.</typeparam>
+    /// <param name="json">The JSON representation of the object.</param>
+    /// <param name="options">Allows the specific <see href="JsonSerializerOptions">options</see> to be set to control deserialisation.</param>
+    /// <returns>A deserialised object based on the original JSON.</returns>
+    public static T FromJson<T>(this string json, JsonSerializerOptions options) => JsonSerializer.Deserialize<T>(json, options)!;
 }
