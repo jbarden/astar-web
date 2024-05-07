@@ -2,77 +2,86 @@
 @using AStar.Web.UI.FilesApi
 @using AStar.Web.UI.Shared
 <LoadingIndicator @ref="loadingIndicator">
-<Accordion>
-    <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
-        <AccordionHeader Background="Background.Primary">
-            <Heading Size="HeadingSize.Is5">
-                <AccordionToggle>Search</AccordionToggle>
-            </Heading>
-        </AccordionHeader>
-        <AccordionBody>
-            <Row>
-                <Column ColumnSize="ColumnSize.Is6.OnDesktop">
-                    <Card Margin="Margin.Is4.FromBottom">
-                        <CardBody Background="Background.Primary">
-                            <Field Horizontal>
-                                <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Folder</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" id="startingFolder" />
-                                </FieldBody>
-                            </Field>
-                            <Field Horizontal>
-                                <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Items Per Page</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50" id="itemsPerPage" />
-                                </FieldBody>
-                            </Field>
-                            <Field Horizontal>
-                                <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Type</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <Select @bind-SelectedValue="@searchType" id="searchType">
-                                        <SelectItem Value="1">Images</SelectItem>
-                                        <SelectItem Value="2">All</SelectItem>
-                                    </Select>
-                                        </FieldBody>
-                                    </Field>
-                                    <Field Horizontal>
-                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Sort Order</FieldLabel>
-                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
-                                                <SelectItem Value="1">Size Descending</SelectItem>
-                                                <SelectItem Value="2">Size Ascending</SelectItem>
-                                                <SelectItem Value="3">Name Descending</SelectItem>
-                                                <SelectItem Value="4">Name Ascending</SelectItem>
-                                            </Select>
-                                        </FieldBody>
-                                    </Field>
-                                <Field Horizontal JustifyContent="JustifyContent.End">
-                                    <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
-                                        <Button Color="Color.Success" Clicked="SubmitHorizontalForm" id="startSearch">Submit</Button>
-                                        <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?</Switch>
+    <Accordion>
+        <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
+            <AccordionHeader Background="Background.Primary">
+                <Heading Size="HeadingSize.Is5">
+                    <AccordionToggle>Search</AccordionToggle>
+                </Heading>
+            </AccordionHeader>
+            <AccordionBody>
+                <Row>
+                    <Column ColumnSize="ColumnSize.Is6.OnDesktop">
+                        <Card Margin="Margin.Is4.FromBottom">
+                            <CardBody Background="Background.Primary">
+                                <Field Horizontal>
+                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Folder
+                                    </FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                        <TextEdit Placeholder="Please specify the starting folder"
+                                            @bind-text="@startingFolder" id="startingFolder" />
                                     </FieldBody>
                                 </Field>
-                        </CardBody>
-                    </Card>
-                </Column>
-            </Row>
-        </AccordionBody>
-    </AccordionItem>
-    <AccordionItem @bind-Visible="@accordionItem3Visible" Background="Background.Primary">
-        <AccordionHeader>
-            <Heading Size="HeadingSize.Is5">
-                <AccordionToggle>Search Results</AccordionToggle>
-            </Heading>
-        </AccordionHeader>
-        <AccordionBody>
+                                <Field Horizontal>
+                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Items Per Page
+                                    </FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                        <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
+                                            WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
+                                            id="itemsPerPage" />
+                                    </FieldBody>
+                                </Field>
+                                <Field Horizontal>
+                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Type
+                                    </FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                        <Select @bind-SelectedValue="@searchType" id="searchType">
+                                            <SelectItem Value="1">Images</SelectItem>
+                                            <SelectItem Value="2">All</SelectItem>
+                                        </Select>
+                                    </FieldBody>
+                                </Field>
+                                <Field Horizontal>
+                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Sort Order
+                                    </FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                        <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
+                                            <SelectItem Value="1">Size Descending</SelectItem>
+                                            <SelectItem Value="2">Size Ascending</SelectItem>
+                                            <SelectItem Value="3">Name Descending</SelectItem>
+                                            <SelectItem Value="4">Name Ascending</SelectItem>
+                                        </Select>
+                                    </FieldBody>
+                                </Field>
+                                <Field Horizontal JustifyContent="JustifyContent.End">
+                                    <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
+                                        <Button Color="Color.Success" Clicked="SubmitHorizontalForm"
+                                            id="startSearch">Submit</Button>
+                                        <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?
+                                        </Switch>
+                                    </FieldBody>
+                                </Field>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                </Row>
+            </AccordionBody>
+        </AccordionItem>
+        <AccordionItem @bind-Visible="@accordionItem3Visible" Background="Background.Primary">
+            <AccordionHeader>
+                <Heading Size="HeadingSize.Is5">
+                    <AccordionToggle>Search Results</AccordionToggle>
+                </Heading>
+            </AccordionHeader>
+            <AccordionBody>
                 <Pagination Background="Background.Primary">
-                <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                    <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
                         <PaginationLink Background="Background.Success">
-                        <span aria-hidden="true">«</span>
-                    </PaginationLink>
-                </PaginationItem>
+                            <span aria-hidden="true">«</span>
+                        </PaginationLink>
+                    </PaginationItem>
                     @{
-                        foreach(var pageOrdinal in pagesForPagination)
+                        foreach (var pageOrdinal in pagesForPagination)
                         {
                             var pageNumberAsString = pageOrdinal.ToString();
                             <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
@@ -82,14 +91,14 @@
                             </PaginationItem>
                         }
                     }
-                <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                    <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
                         <PaginationLink Background="Background.Success">
-                        <span aria-hidden="true">»</span>
-                    </PaginationLink>
-                </PaginationItem>
-            </Pagination>
+                            <span aria-hidden="true">»</span>
+                        </PaginationLink>
+                    </PaginationItem>
+                </Pagination>
 
-        </AccordionBody>
-    </AccordionItem>
+            </AccordionBody>
+        </AccordionItem>
     </Accordion>
 </LoadingIndicator>
