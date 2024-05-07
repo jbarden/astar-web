@@ -13,6 +13,7 @@
 		</Description>
 		<Copyright>Copyright 2018-2024 Megabit</Copyright>
 		<UserSecretsId>27751ab7-9701-4ebb-a663-5b874b3594a3</UserSecretsId>
+		<ApplicationInsightsResourceId>/subscriptions/3c882f98-20af-4f25-b07f-35da044741c0/resourceGroups/rg-astar/providers/microsoft.insights/components/AStar</ApplicationInsightsResourceId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

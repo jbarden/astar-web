@@ -17,19 +17,19 @@
                             <Field Horizontal>
                                 <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Folder</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                            <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" />
+                                        <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" id="startingFolder" />
                                 </FieldBody>
                             </Field>
                             <Field Horizontal>
                                 <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Items Per Page</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50" />
+                                    <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50" id="itemsPerPage" />
                                 </FieldBody>
                             </Field>
                             <Field Horizontal>
                                 <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Type</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <Select @bind-SelectedValue="@searchType">
+                                        <Select @bind-SelectedValue="@searchType" id="searchType">
                                         <SelectItem Value="1">Images</SelectItem>
                                         <SelectItem Value="2">All</SelectItem>
                                     </Select>
@@ -38,17 +38,17 @@
                                     <Field Horizontal>
                                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Sort Order</FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <Select @bind-SelectedValue="@sortOrder">
-                                        <SelectItem Value="1">Size Descending</SelectItem>
-                                        <SelectItem Value="2">Size Ascending</SelectItem>
-                                        <SelectItem Value="3">Name Descending</SelectItem>
-                                        <SelectItem Value="4">Name Ascending</SelectItem>
+                                            <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
+                                                <SelectItem Value="1">Size Descending</SelectItem>
+                                                <SelectItem Value="2">Size Ascending</SelectItem>
+                                                <SelectItem Value="3">Name Descending</SelectItem>
+                                                <SelectItem Value="4">Name Ascending</SelectItem>
                                             </Select>
                                         </FieldBody>
                                     </Field>
                                 <Field Horizontal JustifyContent="JustifyContent.End">
                                     <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
-                                        <Button Color="Color.Success" Clicked="SubmitHorizontalForm">Submit</Button>
+                                        <Button Color="Color.Success" Clicked="SubmitHorizontalForm" id="startSearch">Submit</Button>
                                         <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?</Switch>
                                     </FieldBody>
                                 </Field>
