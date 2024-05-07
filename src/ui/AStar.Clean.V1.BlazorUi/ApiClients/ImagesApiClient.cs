@@ -15,7 +15,7 @@ public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClien
             response = await httpClient.GetAsync("/health/live");
 
             return response.IsSuccessStatusCode
-                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!
+                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), Utilities.Constants.WebDeserialisationSettings))!
                 : new() { Status = "Health Check failed" }!;
         }
         catch(HttpRequestException ex)
@@ -36,7 +36,7 @@ public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClien
         }
         catch(Exception ex)
         {
-            logger.LogError(ex, ex.Message);
+            logger.LogError(ex, "Error while searching images: {Message}", ex.Message);
         }
 
         return response?.IsSuccessStatusCode == true
@@ -60,7 +60,7 @@ public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClien
         var response = await httpClient.GetAsync(requestUri);
 
         return response.IsSuccessStatusCode
-            ? await JsonSerializer.DeserializeAsync<FileInfoDto>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web))
+            ? await JsonSerializer.DeserializeAsync<FileInfoDto>(await response.Content.ReadAsStreamAsync(), Utilities.Constants.WebDeserialisationSettings)
             : new();
     }
 

@@ -177,7 +177,7 @@ public partial class List : IDisposable
         }
         catch(Exception ex)
         {
-            Logger.LogError(0, ex, ex.Message);
+            Logger.LogError(0, ex, "Error while searching images: {Message}", ex.Message);
             SuccessMessage = null;
             ErrorMessage = $"Error while searching images: {ex.Message}";
         }

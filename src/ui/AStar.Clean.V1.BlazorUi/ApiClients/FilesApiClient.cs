@@ -24,7 +24,7 @@ public class FilesApiClient
             response = await httpClient.GetAsync("/health/live");
 
             return response.IsSuccessStatusCode
-                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions(JsonSerializerDefaults.Web)))!
+                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), Utilities.Constants.WebDeserialisationSettings))!
                 : new() { Status = "Health Check failed" }!;
         }
         catch(HttpRequestException ex)
@@ -82,7 +82,7 @@ public class FilesApiClient
         }
 
         var content = await response.Content.ReadAsStreamAsync(cancellationToken);
-        var filesCount = await JsonSerializer.DeserializeAsync<int>(content, new JsonSerializerOptions(JsonSerializerDefaults.Web), cancellationToken);
+        var filesCount = await JsonSerializer.DeserializeAsync<int>(content, Utilities.Constants.WebDeserialisationSettings, cancellationToken);
 
         return filesCount;
     }

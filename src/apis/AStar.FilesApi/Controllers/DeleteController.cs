@@ -25,7 +25,7 @@ public class DeleteController(IFileSystem fileSystem, FilesContext context, ILog
             DeleteFile(filePathUpdated);
         }
 
-        var lastIndex = filePath.LastIndexOf(@"\", StringComparison.Ordinal);
+        var lastIndex = filePath.LastIndexOf('\\');
         var path = filePath[..lastIndex];
         var fileName = filePath[(lastIndex + 1)..];
         var existing = context.Files.FirstOrDefault(f => f.DirectoryName == path && f.FileName == fileName);

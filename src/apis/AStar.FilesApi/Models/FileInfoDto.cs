@@ -44,7 +44,7 @@ public class FileInfoDto
     {
         get
         {
-            var extensionIndex = Name.LastIndexOf(".", StringComparison.Ordinal) + 1;
+            var extensionIndex = Name.LastIndexOf('.') + 1;
             return Name[extensionIndex..];
         }
     }

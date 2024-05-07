@@ -18,7 +18,7 @@ public static class FilesContextExtensions
     /// <returns></returns>
     public static IEnumerable<FileDetail> FilterBySearchFolder(this DbSet<FileDetail> files, string startingFolder, bool recursive)
         => startingFolder.IsNullOrWhiteSpace()
-                ? Enumerable.Empty<FileDetail>()
+                ? []
                 : GetFiles(files, startingFolder, recursive);
 
     /// <summary>
