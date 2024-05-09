@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
         _ = services.AddControllers()
-                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+                    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
         _ = services.AddEndpointsApiExplorer();
         _ = services.AddSwaggerGen(c =>
         {

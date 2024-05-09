@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
+using Newtonsoft.Json.Converters;
 
 namespace AStar.FilesApi.Files;
 
@@ -9,6 +11,7 @@ public partial class SearchParameters
     [Required]
     public string SearchFolder { get; set; } = string.Empty;
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public SearchType SearchType { get; set; }
 
     public bool Recursive { get; set; } = true;
