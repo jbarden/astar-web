@@ -1,7 +1,5 @@
-using System;
 using AStar.Utilities;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace AStar.Logging.Extensions;
@@ -46,7 +44,7 @@ public static class LoggingExtensions
         {
             _ = builder.Configuration.AddJsonFile(path: externalSettingsFile, optional: false, reloadOnChange: true);
         }
-        
+
         _ = builder.Configuration.AddUserSecrets<Program>();
 
         _ = builder.Host
