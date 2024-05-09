@@ -29,6 +29,7 @@
 		<contentFiles>
 			<files include="astar-logging-settings.json" buildAction="content" flatten="true" copyToOutput="true" />
 		</contentFiles>
+		<UserSecretsId>039ddaa4-ae45-47f5-b667-1d13b1225b51</UserSecretsId>
 	</PropertyGroup>
 
   <ItemGroup>
@@ -37,7 +38,7 @@
 		<PackageReference Include="Serilog.Enrichers.Span" Version="3.1.0" />
 		<PackageReference Include="Serilog.Enrichers.Environment" Version="2.3.0" />
 		<PackageReference Include="Serilog.Expressions" Version="4.0.0" />
-		<PackageReference Include="Serilog.Sinks.Seq" Version="7.0.0" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="7.0.1" />
 		<PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
 		<PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
   </ItemGroup>

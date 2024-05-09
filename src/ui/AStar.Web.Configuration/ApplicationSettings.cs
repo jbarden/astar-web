@@ -1,8 +1,5 @@
-﻿using AStar.CodeGenerators;
+﻿namespace AStar.Web.UI.Configuration;
 
-namespace AStar.Web.UI.Configuration;
-
-[GenerateToString]
 public partial class ApplicationSettings
 {
     public bool DetailedErrors { get; set; }

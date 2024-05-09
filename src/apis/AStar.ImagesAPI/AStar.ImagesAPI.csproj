@@ -19,7 +19,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AStar.CodeGenerators" Version="0.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
 		<PackageReference Include="System.Drawing.Common" Version="8.0.4" />

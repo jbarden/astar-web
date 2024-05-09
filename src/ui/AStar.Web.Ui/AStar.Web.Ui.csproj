@@ -27,17 +27,24 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AStar.CodeGenerators" Version="0.2.0" />
-		<PackageReference Include="Blazorise" Version="1.5.*" />
-		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.*" />
-		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.*" />
-		<PackageReference Include="Blazorise.DataGrid" Version="1.5.*" />
+		<PackageReference Include="Blazorise" Version="1.5.2" />
+		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.2" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.2" />
+		<PackageReference Include="Blazorise.DataGrid" Version="1.5.2" />
 		<PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.2" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\core\AStar.ASPNet.Extensions\AStar.ASPNet.Extensions.csproj" />
+	  <ProjectReference Include="..\AStar.Web.Configuration\AStar.Web.Configuration.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Configuration\" />
 	</ItemGroup>
 
 </Project>

@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AStar.CodeGenerators;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 
 namespace AStar.FilesApi.Files;
 
-[GenerateToString]
 public partial class SearchParameters
 {
     [Required]

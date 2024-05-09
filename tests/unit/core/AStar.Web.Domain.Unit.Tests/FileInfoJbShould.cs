@@ -16,7 +16,7 @@ public class FileInfoJbShould
     {
         var sut = new FileDetail { FileName = filename };
 
-        _ = sut.IsImage2.Should().BeFalse();
+        _ = sut.IsImage.Should().BeFalse();
     }
 
     [Theory]
@@ -34,6 +34,6 @@ public class FileInfoJbShould
     {
         var sut = new FileDetail { FileName = filename };
 
-        _ = sut.IsImage2.Should().BeTrue();
+        _ = sut.IsImage.Should().BeTrue();
     }
 }

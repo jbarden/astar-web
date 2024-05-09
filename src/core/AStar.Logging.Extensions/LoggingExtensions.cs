@@ -19,9 +19,7 @@ public static class LoggingExtensions
         _ = services.AddApplicationInsightsTelemetry();
         var serviceProvider = services.BuildServiceProvider();
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.ApplicationInsights(
-                serviceProvider.GetRequiredService<TelemetryConfiguration>(),
-            TelemetryConverter.Traces)
+            .WriteTo.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
             .CreateLogger();
 
         return services;
