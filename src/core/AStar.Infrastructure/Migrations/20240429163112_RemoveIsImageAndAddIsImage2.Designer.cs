@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AStar.Infrastructure.Migrations
 {
     [DbContext(typeof(FilesContext))]
-    [Migration("20240429163112_RemoveIsImageAndAddIsImage2")]
-    partial class RemoveIsImageAndAddIsImage2
+    [Migration("20240429163112_RemoveIsImageAndAddIsImage")]
+    partial class RemoveIsImageAndAddIsImage
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

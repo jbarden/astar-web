@@ -2,7 +2,7 @@
   {
     "FileName": ".editorconfig",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -14,7 +14,7 @@
   {
     "FileName": ".gitattributes",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -26,7 +26,7 @@
   {
     "FileName": ".gitignore",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -38,7 +38,7 @@
   {
     "FileName": "api-creation-log.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -50,7 +50,7 @@
   {
     "FileName": "Files.db.sql",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -62,7 +62,7 @@
   {
     "FileName": "files.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -74,7 +74,7 @@
   {
     "FileName": "files.list.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -86,7 +86,7 @@
   {
     "FileName": "Files.sqbpro",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -98,7 +98,7 @@
   {
     "FileName": "replace.ps1",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -110,7 +110,7 @@
   {
     "FileName": "test.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp",
@@ -122,7 +122,7 @@
   {
     "FileName": "0.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -134,7 +134,7 @@
   {
     "FileName": "1.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -146,7 +146,7 @@
   {
     "FileName": "10.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -158,7 +158,7 @@
   {
     "FileName": "11.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -170,7 +170,7 @@
   {
     "FileName": "12.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -182,7 +182,7 @@
   {
     "FileName": "2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -194,7 +194,7 @@
   {
     "FileName": "3.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -206,7 +206,7 @@
   {
     "FileName": "3aE.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -218,7 +218,7 @@
   {
     "FileName": "3E.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -230,7 +230,7 @@
   {
     "FileName": "4.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -242,7 +242,7 @@
   {
     "FileName": "5.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -254,7 +254,7 @@
   {
     "FileName": "6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -266,7 +266,7 @@
   {
     "FileName": "7.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -278,7 +278,7 @@
   {
     "FileName": "8.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -290,7 +290,7 @@
   {
     "FileName": "9.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -302,7 +302,7 @@
   {
     "FileName": "A-0005.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -314,7 +314,7 @@
   {
     "FileName": "A-0117.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -326,7 +326,7 @@
   {
     "FileName": "A-0141.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\1st Year Frame",
@@ -338,7 +338,7 @@
   {
     "FileName": ".editorconfig",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -350,7 +350,7 @@
   {
     "FileName": ".gitattributes",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -362,7 +362,7 @@
   {
     "FileName": ".gitignore",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -374,7 +374,7 @@
   {
     "FileName": "api-creation-log.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -386,7 +386,7 @@
   {
     "FileName": "files.list.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -398,7 +398,7 @@
   {
     "FileName": "replace.ps1",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -410,7 +410,7 @@
   {
     "FileName": "test.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous",
@@ -422,7 +422,7 @@
   {
     "FileName": "Sammy.arl",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home",
@@ -434,7 +434,7 @@
   {
     "FileName": "A-0001.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -446,7 +446,7 @@
   {
     "FileName": "A-0005.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -458,7 +458,7 @@
   {
     "FileName": "A-0009.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -470,7 +470,7 @@
   {
     "FileName": "A-0013.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -482,7 +482,7 @@
   {
     "FileName": "A-0017.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -494,7 +494,7 @@
   {
     "FileName": "A-0025.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -506,7 +506,7 @@
   {
     "FileName": "A-0029.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -518,7 +518,7 @@
   {
     "FileName": "A-0033.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -530,7 +530,7 @@
   {
     "FileName": "A-0041.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -542,7 +542,7 @@
   {
     "FileName": "A-0045.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -554,7 +554,7 @@
   {
     "FileName": "A-0049.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -566,7 +566,7 @@
   {
     "FileName": "A-0053.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -578,7 +578,7 @@
   {
     "FileName": "A-0057.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -590,7 +590,7 @@
   {
     "FileName": "A-0069.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -602,7 +602,7 @@
   {
     "FileName": "A-0073.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -614,7 +614,7 @@
   {
     "FileName": "A-0077.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -626,7 +626,7 @@
   {
     "FileName": "A-0081.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -638,7 +638,7 @@
   {
     "FileName": "A-0085.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -650,7 +650,7 @@
   {
     "FileName": "A-0093.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -662,7 +662,7 @@
   {
     "FileName": "A-0097.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -674,7 +674,7 @@
   {
     "FileName": "A-0101.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -686,7 +686,7 @@
   {
     "FileName": "A-0109.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -698,7 +698,7 @@
   {
     "FileName": "A-0113.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -710,7 +710,7 @@
   {
     "FileName": "A-0117.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -722,7 +722,7 @@
   {
     "FileName": "A-0121.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -734,7 +734,7 @@
   {
     "FileName": "A-0129.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -746,7 +746,7 @@
   {
     "FileName": "A-0133.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -758,7 +758,7 @@
   {
     "FileName": "A-0137.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -770,7 +770,7 @@
   {
     "FileName": "A-0141.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -782,7 +782,7 @@
   {
     "FileName": "A-0145.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -794,7 +794,7 @@
   {
     "FileName": "MDayV2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -806,7 +806,7 @@
   {
     "FileName": "Mothers Day 2010 copy.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -818,7 +818,7 @@
   {
     "FileName": "Mothers Day 2010.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -830,7 +830,7 @@
   {
     "FileName": "Mothers Day 2010.psd",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -842,7 +842,7 @@
   {
     "FileName": "Sammy - 1st Snow 022.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -854,7 +854,7 @@
   {
     "FileName": "Sammy 014.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\M Day 2010",
@@ -866,7 +866,7 @@
   {
     "FileName": "2024-03-26.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Screenshots",
@@ -878,7 +878,7 @@
   {
     "FileName": "AStar.Web.sln",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web",
@@ -890,7 +890,7 @@
   {
     "FileName": "wallhaven-2y5yj6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress",
@@ -902,7 +902,7 @@
   {
     "FileName": "wallhaven-851rdy.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress",
@@ -914,7 +914,7 @@
   {
     "FileName": "wallhaven-qz8lg7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress",
@@ -926,7 +926,7 @@
   {
     "FileName": "wallhaven-zyr5ow.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress",
@@ -938,7 +938,7 @@
   {
     "FileName": "wallhaven-zyr5pj.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress",
@@ -950,7 +950,7 @@
   {
     "FileName": "wallhaven-9dym2d.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Cillian Murphy",
@@ -962,7 +962,7 @@
   {
     "FileName": "wallhaven-3k313y.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats",
@@ -974,7 +974,7 @@
   {
     "FileName": "wallhaven-851jjy.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats",
@@ -986,7 +986,7 @@
   {
     "FileName": "wallhaven-jxoyoq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats",
@@ -998,7 +998,7 @@
   {
     "FileName": "wallhaven-yxre17.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats",
@@ -1010,7 +1010,7 @@
   {
     "FileName": "wallhaven-9dydrd.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Coco Austin",
@@ -1022,7 +1022,7 @@
   {
     "FileName": "wallhaven-gplz3d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Emma Appleton",
@@ -1034,7 +1034,7 @@
   {
     "FileName": "wallhaven-l879e2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Emma Appleton",
@@ -1046,7 +1046,7 @@
   {
     "FileName": "wallhaven-o5e9k7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Emma Appleton",
@@ -1058,7 +1058,7 @@
   {
     "FileName": "wallhaven-yxr7zg.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Emma Appleton",
@@ -1070,7 +1070,7 @@
   {
     "FileName": "wallhaven-p9x81j.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\George Russell",
@@ -1082,7 +1082,7 @@
   {
     "FileName": "wallhaven-6dzdrl.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Han So-hee",
@@ -1094,7 +1094,7 @@
   {
     "FileName": "wallhaven-1pmqo1.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Jes Macallan",
@@ -1106,7 +1106,7 @@
   {
     "FileName": "wallhaven-2y5166.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Jes Macallan",
@@ -1118,7 +1118,7 @@
   {
     "FileName": "wallhaven-l87ygp.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Jes Macallan",
@@ -1130,7 +1130,7 @@
   {
     "FileName": "wallhaven-werewx.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Melissa Benoist",
@@ -1142,7 +1142,7 @@
   {
     "FileName": "wallhaven-gpljx3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1154,7 +1154,7 @@
   {
     "FileName": "wallhaven-jxo8qm.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1166,7 +1166,7 @@
   {
     "FileName": "wallhaven-l87q7q.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1178,7 +1178,7 @@
   {
     "FileName": "wallhaven-l87qvl.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1190,7 +1190,7 @@
   {
     "FileName": "wallhaven-yxrj3d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1202,7 +1202,7 @@
   {
     "FileName": "wallhaven-yxrjr7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\natalie",
@@ -1214,7 +1214,7 @@
   {
     "FileName": "wallhaven-d6qgjj.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Rebecca Ferguson",
@@ -1226,7 +1226,7 @@
   {
     "FileName": "wallhaven-rrz291.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Rebecca Ferguson",
@@ -1238,7 +1238,7 @@
   {
     "FileName": "wallhaven-weryg7.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Rebecca Ferguson",
@@ -1250,7 +1250,7 @@
   {
     "FileName": "wallhaven-1pmqx3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1262,7 +1262,7 @@
   {
     "FileName": "wallhaven-7pqjwv.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1274,7 +1274,7 @@
   {
     "FileName": "wallhaven-851gd2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1286,7 +1286,7 @@
   {
     "FileName": "wallhaven-9dyo8d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1298,7 +1298,7 @@
   {
     "FileName": "wallhaven-jxoekq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1310,7 +1310,7 @@
   {
     "FileName": "wallhaven-kx68k7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1322,7 +1322,7 @@
   {
     "FileName": "wallhaven-l87ykr.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1334,7 +1334,7 @@
   {
     "FileName": "wallhaven-p9xoje.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1346,7 +1346,7 @@
   {
     "FileName": "wallhaven-qz8rgd.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1358,7 +1358,7 @@
   {
     "FileName": "wallhaven-rrzqoq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood",
@@ -1370,7 +1370,7 @@
   {
     "FileName": "wallhaven-2y5ywx.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1382,7 +1382,7 @@
   {
     "FileName": "wallhaven-3lelyv.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1394,7 +1394,7 @@
   {
     "FileName": "wallhaven-5g8gj9.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1406,7 +1406,7 @@
   {
     "FileName": "wallhaven-vqrqvl.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1418,7 +1418,7 @@
   {
     "FileName": "wallhaven-werevr.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1430,7 +1430,7 @@
   {
     "FileName": "wallhaven-yxrx3d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Yishang Zhang",
@@ -1442,7 +1442,7 @@
   {
     "FileName": "wallhaven-2y5evm.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Zendaya",
@@ -1454,7 +1454,7 @@
   {
     "FileName": "Lucia 060.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\earlydays",
@@ -1466,7 +1466,7 @@
   {
     "FileName": "Sam - 12 weeks.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\earlydays",
@@ -1478,7 +1478,7 @@
   {
     "FileName": "Sam 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\earlydays",
@@ -1490,7 +1490,7 @@
   {
     "FileName": "20080324 002.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1502,7 +1502,7 @@
   {
     "FileName": "20080324 005.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1514,7 +1514,7 @@
   {
     "FileName": "20080324 036.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1526,7 +1526,7 @@
   {
     "FileName": "20080324 046.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1538,7 +1538,7 @@
   {
     "FileName": "20080324 055.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1550,7 +1550,7 @@
   {
     "FileName": "20080324 064.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1562,7 +1562,7 @@
   {
     "FileName": "20080324 075.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1574,7 +1574,7 @@
   {
     "FileName": "20080324 091.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\firstday",
@@ -1586,7 +1586,7 @@
   {
     "FileName": "20080325 003.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1598,7 +1598,7 @@
   {
     "FileName": "20080325 008.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1610,7 +1610,7 @@
   {
     "FileName": "20080326 007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1622,7 +1622,7 @@
   {
     "FileName": "20080326 009.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1634,7 +1634,7 @@
   {
     "FileName": "20080327 002.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1646,7 +1646,7 @@
   {
     "FileName": "20080331 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1658,7 +1658,7 @@
   {
     "FileName": "20080331 018.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1670,7 +1670,7 @@
   {
     "FileName": "20080401 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1682,7 +1682,7 @@
   {
     "FileName": "20080401 004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1694,7 +1694,7 @@
   {
     "FileName": "20080401 007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1706,7 +1706,7 @@
   {
     "FileName": "20080401 018.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1718,7 +1718,7 @@
   {
     "FileName": "20080401 034.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1730,7 +1730,7 @@
   {
     "FileName": "20080401 044.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1742,7 +1742,7 @@
   {
     "FileName": "20080401 051.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1754,7 +1754,7 @@
   {
     "FileName": "20080401 060.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1766,7 +1766,7 @@
   {
     "FileName": "20080401 065.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1778,7 +1778,7 @@
   {
     "FileName": "20080405 021.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1790,7 +1790,7 @@
   {
     "FileName": "20080405 028.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1802,7 +1802,7 @@
   {
     "FileName": "20080405 031.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1814,7 +1814,7 @@
   {
     "FileName": "20080406 003.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1826,7 +1826,7 @@
   {
     "FileName": "20080406 012.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1838,7 +1838,7 @@
   {
     "FileName": "20080406 036.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1850,7 +1850,7 @@
   {
     "FileName": "20080410 012.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1862,7 +1862,7 @@
   {
     "FileName": "20080413 002.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1874,7 +1874,7 @@
   {
     "FileName": "20080413 004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1886,7 +1886,7 @@
   {
     "FileName": "20080413 007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month01",
@@ -1898,7 +1898,7 @@
   {
     "FileName": "20080423 004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1910,7 +1910,7 @@
   {
     "FileName": "20080423 005.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1922,7 +1922,7 @@
   {
     "FileName": "20080423 017.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1934,7 +1934,7 @@
   {
     "FileName": "20080423 027.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1946,7 +1946,7 @@
   {
     "FileName": "20080423 034.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1958,7 +1958,7 @@
   {
     "FileName": "20080423 049.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1970,7 +1970,7 @@
   {
     "FileName": "20080426 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1982,7 +1982,7 @@
   {
     "FileName": "20080426 014.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -1994,7 +1994,7 @@
   {
     "FileName": "20080426 036.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2006,7 +2006,7 @@
   {
     "FileName": "20080427 007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2018,7 +2018,7 @@
   {
     "FileName": "20080427 008.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2030,7 +2030,7 @@
   {
     "FileName": "20080503 002.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2042,7 +2042,7 @@
   {
     "FileName": "20080503 004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2054,7 +2054,7 @@
   {
     "FileName": "20080503 008.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2066,7 +2066,7 @@
   {
     "FileName": "20080503 011.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2078,7 +2078,7 @@
   {
     "FileName": "20080507 002.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2090,7 +2090,7 @@
   {
     "FileName": "20080507 013.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2102,7 +2102,7 @@
   {
     "FileName": "20080507 017.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month02",
@@ -2114,7 +2114,7 @@
   {
     "FileName": "20080523 006.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2126,7 +2126,7 @@
   {
     "FileName": "20080523 011.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2138,7 +2138,7 @@
   {
     "FileName": "20080523 026.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2150,7 +2150,7 @@
   {
     "FileName": "20080523 037.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2162,7 +2162,7 @@
   {
     "FileName": "20080523 054.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2174,7 +2174,7 @@
   {
     "FileName": "20080523 061.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2186,7 +2186,7 @@
   {
     "FileName": "20080523 064.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2198,7 +2198,7 @@
   {
     "FileName": "20080523 074.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2210,7 +2210,7 @@
   {
     "FileName": "20080529 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2222,7 +2222,7 @@
   {
     "FileName": "20080529 021.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2234,7 +2234,7 @@
   {
     "FileName": "20080605 019.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2246,7 +2246,7 @@
   {
     "FileName": "20080605 027.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2258,7 +2258,7 @@
   {
     "FileName": "20080609 001.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2270,7 +2270,7 @@
   {
     "FileName": "20080621 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2282,7 +2282,7 @@
   {
     "FileName": "20080621 010.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2294,7 +2294,7 @@
   {
     "FileName": "20080621 020.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2306,7 +2306,7 @@
   {
     "FileName": "20080621 022.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2318,7 +2318,7 @@
   {
     "FileName": "20080621 032.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2330,7 +2330,7 @@
   {
     "FileName": "20080622 003.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2342,7 +2342,7 @@
   {
     "FileName": "20080622 017.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2354,7 +2354,7 @@
   {
     "FileName": "20080622 036.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2366,7 +2366,7 @@
   {
     "FileName": "20080622 054.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2378,7 +2378,7 @@
   {
     "FileName": "z20080523 003.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month03",
@@ -2390,7 +2390,7 @@
   {
     "FileName": "20080628 002.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2402,7 +2402,7 @@
   {
     "FileName": "20080628 008.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2414,7 +2414,7 @@
   {
     "FileName": "20080628 019.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2426,7 +2426,7 @@
   {
     "FileName": "20080628 025.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2438,7 +2438,7 @@
   {
     "FileName": "20080628 038.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2450,7 +2450,7 @@
   {
     "FileName": "20080628 044.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2462,7 +2462,7 @@
   {
     "FileName": "20080628 049.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2474,7 +2474,7 @@
   {
     "FileName": "20080716 003.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2486,7 +2486,7 @@
   {
     "FileName": "20080717 001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2498,7 +2498,7 @@
   {
     "FileName": "20080717 010.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2510,7 +2510,7 @@
   {
     "FileName": "20080717 021.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2522,7 +2522,7 @@
   {
     "FileName": "20080717 029.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2534,7 +2534,7 @@
   {
     "FileName": "20080717 033.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2546,7 +2546,7 @@
   {
     "FileName": "20080717 041.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2558,7 +2558,7 @@
   {
     "FileName": "20080719 014.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2570,7 +2570,7 @@
   {
     "FileName": "20080719 026.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2582,7 +2582,7 @@
   {
     "FileName": "20080719 036.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2594,7 +2594,7 @@
   {
     "FileName": "20080719 047.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2606,7 +2606,7 @@
   {
     "FileName": "20080719 056.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month04",
@@ -2618,7 +2618,7 @@
   {
     "FileName": "20080726_001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2630,7 +2630,7 @@
   {
     "FileName": "20080726_009.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2642,7 +2642,7 @@
   {
     "FileName": "20080726_011.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2654,7 +2654,7 @@
   {
     "FileName": "20080730_001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2666,7 +2666,7 @@
   {
     "FileName": "20080730_006.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2678,7 +2678,7 @@
   {
     "FileName": "20080730_018.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2690,7 +2690,7 @@
   {
     "FileName": "20080730_031.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2702,7 +2702,7 @@
   {
     "FileName": "20080730_061.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2714,7 +2714,7 @@
   {
     "FileName": "20080730_070.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2726,7 +2726,7 @@
   {
     "FileName": "20080801_009.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2738,7 +2738,7 @@
   {
     "FileName": "20080815_015.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2750,7 +2750,7 @@
   {
     "FileName": "20080815_024.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2762,7 +2762,7 @@
   {
     "FileName": "20080815_025.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2774,7 +2774,7 @@
   {
     "FileName": "20080816_001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2786,7 +2786,7 @@
   {
     "FileName": "20080816_008.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2798,7 +2798,7 @@
   {
     "FileName": "20080816_011.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month05",
@@ -2810,7 +2810,7 @@
   {
     "FileName": "2008-08-24_003.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2822,7 +2822,7 @@
   {
     "FileName": "2008-08-24_007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2834,7 +2834,7 @@
   {
     "FileName": "2008-08-24_015.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2846,7 +2846,7 @@
   {
     "FileName": "2008-08-24_019.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2858,7 +2858,7 @@
   {
     "FileName": "2008-08-24_021.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2870,7 +2870,7 @@
   {
     "FileName": "2008-08-24_029.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2882,7 +2882,7 @@
   {
     "FileName": "2008-08-24_034.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2894,7 +2894,7 @@
   {
     "FileName": "2008-08-24_041.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2906,7 +2906,7 @@
   {
     "FileName": "2008-08-24_052.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2918,7 +2918,7 @@
   {
     "FileName": "2008-08-24_058.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2930,7 +2930,7 @@
   {
     "FileName": "20080902_004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2942,7 +2942,7 @@
   {
     "FileName": "20080907_004.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2954,7 +2954,7 @@
   {
     "FileName": "20080911_001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2966,7 +2966,7 @@
   {
     "FileName": "20080911_007.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2978,7 +2978,7 @@
   {
     "FileName": "20080911_018.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -2990,7 +2990,7 @@
   {
     "FileName": "20080911_020.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -3002,7 +3002,7 @@
   {
     "FileName": "20080921_001.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -3014,7 +3014,7 @@
   {
     "FileName": "20080921_005.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month06",
@@ -3026,7 +3026,7 @@
   {
     "FileName": "20081004_005.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month07",
@@ -3038,7 +3038,7 @@
   {
     "FileName": "20081004_014.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month07",
@@ -3050,7 +3050,7 @@
   {
     "FileName": "20081004_017.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month07",
@@ -3062,7 +3062,7 @@
   {
     "FileName": "20081004_026.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month07",
@@ -3074,7 +3074,7 @@
   {
     "FileName": "Sammy 043.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month08",
@@ -3086,7 +3086,7 @@
   {
     "FileName": "Sammy 060.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month08",
@@ -3098,7 +3098,7 @@
   {
     "FileName": "Sammy 066.JPG",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\month08",
@@ -3110,7 +3110,7 @@
   {
     "FileName": "I\u0027m Crawling!.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3122,7 +3122,7 @@
   {
     "FileName": "Sam20080619_Small_1.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3134,7 +3134,7 @@
   {
     "FileName": "Sam20080619_Small_2.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3146,7 +3146,7 @@
   {
     "FileName": "Sammy 2008-11-08 - Part 2.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3158,7 +3158,7 @@
   {
     "FileName": "Sammy 2008-11-08.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3170,7 +3170,7 @@
   {
     "FileName": "Sammy_20080829_1.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3182,7 +3182,7 @@
   {
     "FileName": "Sammy_20080829_2.wmv",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Home\\videos",
@@ -3194,7 +3194,7 @@
   {
     "FileName": "App.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3206,7 +3206,7 @@
   {
     "FileName": "appsettings.Development.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3218,7 +3218,7 @@
   {
     "FileName": "appsettings.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3230,7 +3230,7 @@
   {
     "FileName": "AStar.Web.UI.csproj",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3242,7 +3242,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.user",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3254,7 +3254,7 @@
   {
     "FileName": "AStar.Web.UI.sln",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3266,7 +3266,7 @@
   {
     "FileName": "Program.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3278,7 +3278,7 @@
   {
     "FileName": "_Imports.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI",
@@ -3290,7 +3290,7 @@
   {
     "FileName": "wallhaven-lmo27p.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\pink stockings",
@@ -3302,7 +3302,7 @@
   {
     "FileName": "wallhaven-1pmqx3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3314,7 +3314,7 @@
   {
     "FileName": "wallhaven-7pqjwv.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3326,7 +3326,7 @@
   {
     "FileName": "wallhaven-851gd2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3338,7 +3338,7 @@
   {
     "FileName": "wallhaven-9dyo8d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3350,7 +3350,7 @@
   {
     "FileName": "wallhaven-jxoekq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3362,7 +3362,7 @@
   {
     "FileName": "wallhaven-kx68k7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3374,7 +3374,7 @@
   {
     "FileName": "wallhaven-l87ykr.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3386,7 +3386,7 @@
   {
     "FileName": "wallhaven-p9xoje.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3398,7 +3398,7 @@
   {
     "FileName": "wallhaven-qz8rgd.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3410,7 +3410,7 @@
   {
     "FileName": "wallhaven-rrzqoq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy",
@@ -3422,7 +3422,7 @@
   {
     "FileName": "wallhaven-96wx6d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats\\red coat",
@@ -3434,7 +3434,7 @@
   {
     "FileName": "wallhaven-vqrgp5.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\feet on table\\nipples",
@@ -3446,7 +3446,7 @@
   {
     "FileName": "wallhaven-p8z7je.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Liliana Matthus\\lingerie",
@@ -3458,7 +3458,7 @@
   {
     "FileName": "wallhaven-2y5139.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate",
@@ -3470,7 +3470,7 @@
   {
     "FileName": "wallhaven-5g8yr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate",
@@ -3482,7 +3482,7 @@
   {
     "FileName": "wallhaven-wer5m6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate",
@@ -3494,7 +3494,7 @@
   {
     "FileName": "wallhaven-yxrqvk.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate",
@@ -3506,7 +3506,7 @@
   {
     "FileName": "wallhaven-1pmqx3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3518,7 +3518,7 @@
   {
     "FileName": "wallhaven-7pqjwv.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3530,7 +3530,7 @@
   {
     "FileName": "wallhaven-851gd2.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3542,7 +3542,7 @@
   {
     "FileName": "wallhaven-9dyo8d.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3554,7 +3554,7 @@
   {
     "FileName": "wallhaven-jxoekq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3566,7 +3566,7 @@
   {
     "FileName": "wallhaven-kx68k7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3578,7 +3578,7 @@
   {
     "FileName": "wallhaven-l87ykr.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3590,7 +3590,7 @@
   {
     "FileName": "wallhaven-p9xoje.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3602,7 +3602,7 @@
   {
     "FileName": "wallhaven-qz8rgd.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3614,7 +3614,7 @@
   {
     "FileName": "wallhaven-rrzqoq.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy",
@@ -3626,7 +3626,7 @@
   {
     "FileName": "WeatherForecast.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Data",
@@ -3638,7 +3638,7 @@
   {
     "FileName": "WeatherForecastService.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Data",
@@ -3650,7 +3650,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.nuget.dgspec.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj",
@@ -3662,7 +3662,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.nuget.g.props",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj",
@@ -3674,7 +3674,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.nuget.g.targets",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj",
@@ -3686,7 +3686,7 @@
   {
     "FileName": "project.assets.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj",
@@ -3698,7 +3698,7 @@
   {
     "FileName": "project.nuget.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj",
@@ -3710,7 +3710,7 @@
   {
     "FileName": "Counter.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3722,7 +3722,7 @@
   {
     "FileName": "Error.cshtml",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3734,7 +3734,7 @@
   {
     "FileName": "Error.cshtml.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3746,7 +3746,7 @@
   {
     "FileName": "FetchData.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3758,7 +3758,7 @@
   {
     "FileName": "Index.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3770,7 +3770,7 @@
   {
     "FileName": "_Host.cshtml",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages",
@@ -3782,7 +3782,7 @@
   {
     "FileName": "launchSettings.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Properties",
@@ -3794,7 +3794,7 @@
   {
     "FileName": "MainLayout.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Shared",
@@ -3806,7 +3806,7 @@
   {
     "FileName": "SurveyPrompt.razor",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Shared",
@@ -3818,7 +3818,7 @@
   {
     "FileName": "favicon.png",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\wwwroot",
@@ -3830,7 +3830,7 @@
   {
     "FileName": "wallhaven-2y5139.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate",
@@ -3842,7 +3842,7 @@
   {
     "FileName": "wallhaven-5g8yr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate",
@@ -3854,7 +3854,7 @@
   {
     "FileName": "wallhaven-wer5m6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate",
@@ -3866,7 +3866,7 @@
   {
     "FileName": "wallhaven-yxrqvk.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate",
@@ -3878,7 +3878,7 @@
   {
     "FileName": "wallhaven-721r5v.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats\\trimmed pubic hair\\nipples",
@@ -3890,7 +3890,7 @@
   {
     "FileName": "wallhaven-qz8rld.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate\\lingerie",
@@ -3902,7 +3902,7 @@
   {
     "FileName": "wallhaven-zyrp5g.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate\\lingerie",
@@ -3914,7 +3914,7 @@
   {
     "FileName": "wallhaven-2y5139.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate",
@@ -3926,7 +3926,7 @@
   {
     "FileName": "wallhaven-5g8yr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate",
@@ -3938,7 +3938,7 @@
   {
     "FileName": "wallhaven-wer5m6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate",
@@ -3950,7 +3950,7 @@
   {
     "FileName": "wallhaven-yxrqvk.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate",
@@ -3962,7 +3962,7 @@
   {
     "FileName": "blazorbootstrapserverapp.metadata.v6.1",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\ProjectEvaluation",
@@ -3974,7 +3974,7 @@
   {
     "FileName": "blazorbootstrapserverapp.projects.v6.1",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\ProjectEvaluation",
@@ -3986,7 +3986,7 @@
   {
     "FileName": "site.css",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\wwwroot\\css",
@@ -3998,7 +3998,7 @@
   {
     "FileName": "wallhaven-qz8rld.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate\\lingerie",
@@ -4010,7 +4010,7 @@
   {
     "FileName": "wallhaven-zyrp5g.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate\\lingerie",
@@ -4022,7 +4022,7 @@
   {
     "FileName": "wallhaven-5d1me7.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats\\reading\\VivThomas\\black boots",
@@ -4034,7 +4034,7 @@
   {
     "FileName": "wallhaven-3k76y6.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\coats\\trench coat\\knee-highs\\undone clothing",
@@ -4046,7 +4046,7 @@
   {
     "FileName": "wallhaven-qz8rld.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate\\lingerie",
@@ -4058,7 +4058,7 @@
   {
     "FileName": "wallhaven-zyrp5g.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate\\lingerie",
@@ -4070,7 +4070,7 @@
   {
     "FileName": "applicationhost.config",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\config",
@@ -4082,7 +4082,7 @@
   {
     "FileName": ".dtbcache.v2",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\DesignTimeBuild",
@@ -4094,7 +4094,7 @@
   {
     "FileName": "4d94cc37-0f59-4585-a6ed-e2be4ce81f7c.vsidx",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\FileContentIndex",
@@ -4106,7 +4106,7 @@
   {
     "FileName": "88ca4746-3dac-4217-aba6-ccb6facac4de.vsidx",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\FileContentIndex",
@@ -4118,7 +4118,7 @@
   {
     "FileName": "read.lock",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\FileContentIndex",
@@ -4130,7 +4130,7 @@
   {
     "FileName": ".futdcache.v2",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\v17",
@@ -4142,7 +4142,7 @@
   {
     "FileName": "appsettings.Development.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4154,7 +4154,7 @@
   {
     "FileName": "appsettings.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4166,7 +4166,7 @@
   {
     "FileName": "AStar.Web.UI.deps.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4178,7 +4178,7 @@
   {
     "FileName": "AStar.Web.UI.dll",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4190,7 +4190,7 @@
   {
     "FileName": "AStar.Web.UI.exe",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4202,7 +4202,7 @@
   {
     "FileName": "AStar.Web.UI.pdb",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4214,7 +4214,7 @@
   {
     "FileName": "AStar.Web.UI.runtimeconfig.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4226,7 +4226,7 @@
   {
     "FileName": "AStar.Web.UI.staticwebassets.runtime.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4238,7 +4238,7 @@
   {
     "FileName": "BlazorBootstrap.dll",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\bin\\Debug\\net8.0",
@@ -4250,7 +4250,7 @@
   {
     "FileName": ".NETCoreApp,Version=v7.0.AssemblyAttributes.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4262,7 +4262,7 @@
   {
     "FileName": "AStar.Web.UI.AssemblyInfo.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4274,7 +4274,7 @@
   {
     "FileName": "AStar.Web.UI.AssemblyInfoInputs.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4286,7 +4286,7 @@
   {
     "FileName": "AStar.Web.UI.assets.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4298,7 +4298,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.AssemblyReference.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4310,7 +4310,7 @@
   {
     "FileName": "AStar.Web.UI.GeneratedMSBuildEditorConfig.editorconfig",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4322,7 +4322,7 @@
   {
     "FileName": "AStar.Web.UI.GlobalUsings.g.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4334,7 +4334,7 @@
   {
     "FileName": "AStar.Web.UI.RazorAssemblyInfo.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4346,7 +4346,7 @@
   {
     "FileName": "AStar.Web.UI.RazorAssemblyInfo.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net7.0",
@@ -4358,7 +4358,7 @@
   {
     "FileName": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4370,7 +4370,7 @@
   {
     "FileName": "apphost.exe",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4382,7 +4382,7 @@
   {
     "FileName": "AStar.We.C5A7A0FB.Up2Date",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4394,7 +4394,7 @@
   {
     "FileName": "AStar.Web.UI.AssemblyInfo.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4406,7 +4406,7 @@
   {
     "FileName": "AStar.Web.UI.AssemblyInfoInputs.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4418,7 +4418,7 @@
   {
     "FileName": "AStar.Web.UI.assets.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4430,7 +4430,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.AssemblyReference.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4442,7 +4442,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.BuildWithSkipAnalyzers",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4454,7 +4454,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.CoreCompileInputs.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4466,7 +4466,7 @@
   {
     "FileName": "AStar.Web.UI.csproj.FileListAbsolute.txt",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4478,7 +4478,7 @@
   {
     "FileName": "AStar.Web.UI.dll",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4490,7 +4490,7 @@
   {
     "FileName": "AStar.Web.UI.GeneratedMSBuildEditorConfig.editorconfig",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4502,7 +4502,7 @@
   {
     "FileName": "AStar.Web.UI.genruntimeconfig.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4514,7 +4514,7 @@
   {
     "FileName": "AStar.Web.UI.GlobalUsings.g.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4526,7 +4526,7 @@
   {
     "FileName": "AStar.Web.UI.MvcApplicationPartsAssemblyInfo.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4538,7 +4538,7 @@
   {
     "FileName": "AStar.Web.UI.pdb",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4550,7 +4550,7 @@
   {
     "FileName": "AStar.Web.UI.RazorAssemblyInfo.cache",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4562,7 +4562,7 @@
   {
     "FileName": "AStar.Web.UI.RazorAssemblyInfo.cs",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4574,7 +4574,7 @@
   {
     "FileName": "staticwebassets.build.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4586,7 +4586,7 @@
   {
     "FileName": "staticwebassets.development.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4598,7 +4598,7 @@
   {
     "FileName": "staticwebassets.pack.json",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0",
@@ -4610,7 +4610,7 @@
   {
     "FileName": "logo-white.svg",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\wwwroot\\images\\logo",
@@ -4622,7 +4622,7 @@
   {
     "FileName": "wallhaven-1pmqr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate\\lingerie\\sideboob\\ass",
@@ -4634,7 +4634,7 @@
   {
     "FileName": "AStar.Web.UI.dll",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\ref",
@@ -4646,7 +4646,7 @@
   {
     "FileName": "AStar.Web.UI.dll",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\refint",
@@ -4658,7 +4658,7 @@
   {
     "FileName": "msbuild.AStar.Web.UI.Microsoft.AspNetCore.StaticWebAssets.props",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\staticwebassets",
@@ -4670,7 +4670,7 @@
   {
     "FileName": "msbuild.build.AStar.Web.UI.props",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\staticwebassets",
@@ -4682,7 +4682,7 @@
   {
     "FileName": "msbuild.buildMultiTargeting.AStar.Web.UI.props",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\staticwebassets",
@@ -4694,7 +4694,7 @@
   {
     "FileName": "msbuild.buildTransitive.AStar.Web.UI.props",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\staticwebassets",
@@ -4706,7 +4706,7 @@
   {
     "FileName": "wallhaven-1pmqr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate\\lingerie\\sideboob\\ass",
@@ -4718,7 +4718,7 @@
   {
     "FileName": "wallhaven-1pmqr3.jpg",
     "IsImage": true,
-    "IsImage2": true,
+    "IsImage": true,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Famous\\Sara Jean Underwood\\Sara Jean Underwood - Copy\\Playmate\\lingerie\\sideboob\\ass",
@@ -4730,7 +4730,7 @@
   {
     "FileName": "AStar.Web.UI.styles.css",
     "IsImage": false,
-    "IsImage2": false,
+    "IsImage": false,
     "DetailsLastUpdated": null,
     "LastViewed": null,
     "DirectoryName": "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\obj\\Debug\\net8.0\\scopedcss\\bundle",

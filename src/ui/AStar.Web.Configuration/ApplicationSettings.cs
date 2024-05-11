@@ -1,4 +1,6 @@
-﻿namespace AStar.Web.UI.Configuration;
+﻿using System.Text.Json;
+
+namespace AStar.Web.UI.Configuration;
 
 public partial class ApplicationSettings
 {
@@ -11,4 +13,6 @@ public partial class ApplicationSettings
     public ApiConfiguration ApiConfiguration { get; set; } = new();
 
     public ApplicationConfiguration ApplicationConfiguration { get; set; } = new();
+
+    public override string ToString() => JsonSerializer.Serialize(this);
 }

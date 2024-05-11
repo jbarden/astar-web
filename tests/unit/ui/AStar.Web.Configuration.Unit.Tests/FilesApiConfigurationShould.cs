@@ -4,5 +4,5 @@ public class FilesApiConfigurationShould
 {
     [Fact]
     public void ContainTheExpectedDefaultPropertiesAndValues()
-        => new FilesApiConfiguration().ToString().Should().Be("BaseUrl: https://not.set.com");
+        => new FilesApiConfiguration().ToString().Should().Be(@"{""BaseUrl"":""https://not.set.com""}");
 }

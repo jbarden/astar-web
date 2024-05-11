@@ -3,6 +3,7 @@ using AStar.FilesApi.Files;
 using AStar.FilesApi.Models;
 
 using AStar.Infrastructure.Data;
+using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesApi.Controllers;
@@ -23,7 +24,7 @@ public class FilesListController(FilesContext context, ILogger<FilesControllerBa
         var filesList = FileInfoFromContext(searchParameters).ToList();
         if(searchParameters.SearchType is SearchType.Images)
         {
-            filesList = filesList.Where(f => f.IsImage2).ToList();
+            filesList = filesList.Where(f => f.IsImage).ToList();
         }
 
         var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName, Height = f.Height, Width = f.Width });

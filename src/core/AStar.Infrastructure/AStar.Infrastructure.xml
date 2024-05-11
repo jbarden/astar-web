@@ -74,6 +74,14 @@
              <param name="searchType"></param>
              <returns></returns>
         </member>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.OrderFiles(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},AStar.Web.Domain.SortOrder)">
+            <summary>
+            
+            </summary>
+            <param name="files"></param>
+            <param name="sortOrder"></param>
+            <returns></returns>
+        </member>
         <member name="M:AStar.Infrastructure.EnumerableExtensions.GroupDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
              <summary>
             
@@ -93,16 +101,16 @@
         <member name="M:AStar.Infrastructure.Migrations.AddTagTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2">
+        <member name="T:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage">
             <inheritdoc />
         </member>
-        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:AStar.Infrastructure.Migrations.RemoveIsImageAndAddIsImage.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

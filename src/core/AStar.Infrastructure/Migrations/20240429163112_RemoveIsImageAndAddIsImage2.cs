@@ -5,7 +5,7 @@
 namespace AStar.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class RemoveIsImageAndAddIsImage2 : Migration
+    public partial class RemoveIsImageAndAddIsImage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

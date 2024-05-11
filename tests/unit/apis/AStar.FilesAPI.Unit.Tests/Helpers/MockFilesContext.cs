@@ -57,7 +57,7 @@ public class MockFilesContext : IDisposable
 
     private void AddMockFiles(FilesContext mockFilesContext)
     {
-        var filesAsJson = File.ReadAllText(@"C:\repos\astar-web\Tests\unit\apis\AStar.FilesAPI.Unit.Tests\TestFiles\files.json");
+        var filesAsJson = File.ReadAllText(@"TestFiles\files.json");
 
         var listFromJson = JsonSerializer.Deserialize<IEnumerable<FileDetail>>(filesAsJson);
 

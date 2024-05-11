@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using AStar.FilesApi.Config;
-using AStar.FilesApi.Models;
+using AStar.Web.Domain;
 
 namespace AStar.FilesApi.Files;
 
@@ -30,4 +31,6 @@ public partial class SearchParameters
     public SortOrder SortOrder { get; set; }
 
     public string SearchText { get; set; } = string.Empty;
+
+    public override string ToString() => JsonSerializer.Serialize(this);
 }

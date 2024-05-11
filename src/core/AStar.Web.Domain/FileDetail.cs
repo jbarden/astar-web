@@ -25,13 +25,6 @@ public class FileDetail
         FileName = fileInfo.Name;
         DirectoryName = fileInfo.DirectoryName!;
         FileSize = fileInfo.Length;
-        IsImage = FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("jpeg", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("bmp", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("jfif", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("jif", StringComparison.OrdinalIgnoreCase)
-               || FileName.EndsWith("gif", StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
@@ -40,15 +33,10 @@ public class FileDetail
     public string FileName { get; set; } = string.Empty;
 
     /// <summary>
-    /// Do not use, will be removed soon.
-    /// </summary>
-    public bool IsImage { get; set; }
-
-    /// <summary>
     /// Returns true when the file is of a supported image type.
     /// </summary>
     [NotMapped]
-    public bool IsImage2 => FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)
+    public bool IsImage => FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)
         || FileName.EndsWith("jpeg", StringComparison.OrdinalIgnoreCase)
         || FileName.EndsWith("bmp", StringComparison.OrdinalIgnoreCase)
         || FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)

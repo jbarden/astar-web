@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AStar.FilesApi.Models;
+namespace AStar.Web.Domain;
 
 [JsonConverter(typeof(JsonStringEnumConverter<SortOrder>))]
 public enum SortOrder

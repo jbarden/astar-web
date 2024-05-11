@@ -4,6 +4,7 @@ using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using static AStar.Infrastructure.EnumerableExtensions;
 
 namespace AStar.FilesApi.Files;
 
@@ -34,8 +35,12 @@ public class List(FilesContext context, ILogger<List> logger)
             return BadRequest("A Search folder must be specified.");
         }
 
-        var files = context.Files.FilterBySearchFolder(request.SearchFolder, request.Recursive);
+        var files = context.Files
+                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString())
+                           .OrderFiles(request.SortOrder);
+
         var fileList = new List<FileInfoDto>();
+
         foreach(var file in files.Skip((request.CurrentPage - 1) * request.ItemsPerPage).Take(request.ItemsPerPage))
         {
             fileList.Add(new FileInfoDto(file));

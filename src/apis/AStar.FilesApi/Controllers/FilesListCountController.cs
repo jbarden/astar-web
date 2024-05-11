@@ -22,7 +22,7 @@ public class FilesListCountController(FilesContext context, ILogger<FilesControl
 
         if(searchParameters.SearchType is SearchType.Images)
         {
-            filesList = filesList.Where(f => f.IsImage2).ToList();
+            filesList = filesList.Where(f => f.IsImage).ToList();
         }
 
         Logger.LogInformation("Starting search for {SearchType}", searchParameters.SearchType);
