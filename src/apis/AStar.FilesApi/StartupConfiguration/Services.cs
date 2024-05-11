@@ -13,7 +13,6 @@ public static class Services
             .Options;
 
         _ = services.AddScoped(_ => new FilesContext(contextOptions));
-        _ = services.AddSwaggerGenNewtonsoftSupport();
         _ = services.AddSingleton<IFileSystem, FileSystem>();
 
         return services;

@@ -5,8 +5,10 @@ using AStar.ImagesAPI.ApiClients;
 using AStar.ImagesAPI.Models;
 using AStar.ImagesAPI.Services;
 using AStar.Infrastructure.Data;
+using AStar.Logging.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Serilog;
 
 namespace AStar.ImagesAPI;
 
@@ -16,16 +18,29 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.Configure();
+        try
+        {
+            builder.CreateBootstrapLogger("astar-logging-settings.json");
+            Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = builder.AddLogging("astar-logging-settings.json");
+            _ = builder.Services.Configure();
 
-        _ = ConfigureServices(builder.Services, builder.Configuration);
+            _ = ConfigureServices(builder.Services, builder.Configuration);
 
-        var app = builder.Build();
-        _ = app.ConfigurePipeline();
-        _ = ConfigurePipeline(app);
+            var app = builder.Build();
+            _ = app.ConfigurePipeline();
+            _ = ConfigurePipeline(app);
 
-        app.Run();
+            app.Run();
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex, "Fatal error occurred in {AppName}", typeof(Program).AssemblyQualifiedName);
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 
     private static IServiceCollection ConfigureServices(IServiceCollection services, ConfigurationManager configuration)

@@ -2,7 +2,6 @@
 using System.Text.Json.Serialization;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
-using Newtonsoft.Json.Converters;
 
 namespace AStar.FilesApi.Files;
 
@@ -11,7 +10,6 @@ public partial class SearchParameters
     [Required]
     public string SearchFolder { get; set; } = string.Empty;
 
-    [JsonConverter(typeof(StringEnumConverter))]
     public SearchType SearchType { get; set; }
 
     public bool Recursive { get; set; } = true;
@@ -29,7 +27,7 @@ public partial class SearchParameters
     public int MaximumSizeOfImage { get; set; } = 1500;
 
     [Required]
-    public SortOrder SortOrder { get; set; } = SortOrder.SizeDescending;
+    public SortOrder SortOrder { get; set; }
 
     public string SearchText { get; set; } = string.Empty;
 }

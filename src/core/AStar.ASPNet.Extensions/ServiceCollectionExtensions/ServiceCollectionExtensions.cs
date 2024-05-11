@@ -18,8 +18,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection Configure(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
-        _ = services.AddControllers()
-                    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+        _ = services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         _ = services.AddEndpointsApiExplorer();
         _ = services.AddSwaggerGen(c =>
         {
@@ -27,7 +26,6 @@ public static class ServiceCollectionExtensions
             c.EnableAnnotations();
         });
         _ = services.AddHealthChecks();
-        _ = services.AddSwaggerGenNewtonsoftSupport();
 
         return services;
     }

@@ -1,4 +1,5 @@
 ﻿using AStar.Web.UI.FilesApi;
+using AStar.Web.UI.Models;
 using AStar.Web.UI.Services;
 using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
@@ -20,7 +21,10 @@ public partial class Search
     private bool accordionItem1Visible = true;
     private bool accordionItem3Visible = false;
     private string currentPage = "1";
+    private int currentPageAsInt =1;
     private bool recursiveSearch = true;
+
+    public IEnumerable<FileInfoDto> Files { get; set; } = [];
 
     [Inject]
     private FilesApiClient FilesApiClient { get; set; } = default!;
@@ -31,9 +35,12 @@ public partial class Search
     [Inject]
     private ILogger<Search> Logger { get; set; } = default!;
 
-    private async Task SubmitHorizontalForm()
+    private async Task StartSearch() => await SearchForMatchingFiles();
+
+    private async Task SearchForMatchingFiles()
     {
         await loadingIndicator.Show();
+        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Images, SortOrder = SortOrder.SizeDescending, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
         var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Images,SortOrder = SortOrder.SizeDescending });
         pages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(pages);
@@ -60,24 +67,34 @@ public partial class Search
         return false;
     }
 
-    private void Previous()
+    private async Task Previous()
     {
-        var currentPageAsInt = int.Parse(currentPage);
+        currentPageAsInt = int.Parse(currentPage);
         if(currentPageAsInt > 1)
         {
             currentPage = (currentPageAsInt - 1).ToString();
         }
+
+        await SetActive(currentPage);
     }
 
-    private void Next()
+    private async Task Next()
     {
-        var currentPageAsInt = int.Parse(currentPage);
+        currentPageAsInt = int.Parse(currentPage);
         if(currentPageAsInt < itemsPerPage)
         {
             currentPage = (currentPageAsInt + 1).ToString();
         }
+
+        await SetActive(currentPage);
     }
 
-    private void SetActive(string page)
-                    => currentPage = page; // The re-query will happen here
+    private async Task SetActive(string page)
+    {
+        Files = new List<FileInfoDto>();
+        currentPage = page;
+        currentPageAsInt = int.Parse(currentPage);
+
+        await SearchForMatchingFiles();
+    }
 }

@@ -31,4 +31,25 @@ public class ImagesApiClient
             return new() { Status = "Could not get a response from the Images API." }!;
         }
     }
+
+    public async Task<Stream> GetImageAsync(string imagePath, int maximumSizeInPixels, bool thumbnail)
+    {
+        var requestUri = $"/api/image?thumbnail={thumbnail}&imagePath={imagePath}&resize=true&maximumSizeInPixels={maximumSizeInPixels}";
+        var response = await httpClient.GetAsync(requestUri);
+
+        return response.IsSuccessStatusCode
+            ? await response.Content.ReadAsStreamAsync()
+            : CreateNotFoundMemoryStream(imagePath);
+    }
+
+    /// <summary>
+    /// _ = filesApiClient.DeleteFileAsync(fileName, true);
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    private MemoryStream CreateNotFoundMemoryStream(string fileName)
+    {
+        logger.LogWarning("Could not delete: {FileName}", fileName);
+        return new(File.ReadAllBytes("404.jpg"));
+    }
 }

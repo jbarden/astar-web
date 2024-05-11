@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using AStar.Utilities;
+using AStar.Web.UI.Models;
 using AStar.Web.UI.Shared;
 
 namespace AStar.Web.UI.FilesApi;
@@ -24,6 +26,23 @@ public class FilesApiClient
         return response.IsSuccessStatusCode
             ? int.Parse(await response.Content.ReadAsStringAsync())
             : -1;
+    }
+
+    public async Task<IEnumerable<FileInfoDto>> GetFilesAsync(SearchParameters searchParameters)
+    {
+        var response = await httpClient.GetAsync($"api/files/list?{searchParameters}");
+
+        logger.LogWarning("Getting the count of matching files.");
+
+        if(response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            return content.FromJson<IEnumerable<FileInfoDto>>(new(JsonSerializerDefaults.Web));
+        }
+        else
+        {
+            throw new InvalidOperationException("God won't give me a break...");
+        }
     }
 
     public async Task<HealthStatusResponse> GetHealthAsync()

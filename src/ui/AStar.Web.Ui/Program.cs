@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
+using AStar.Logging.Extensions;
+using Serilog;
 
 namespace AStar.Web.UI;
 
@@ -10,15 +12,33 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.Configure();
+        try
+        {
+            builder.CreateBootstrapLogger("astar-logging-settings.json");
+            Log.Information("Starting: {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = builder.AddLogging("astar-logging-settings.json");
+            Log.Information("Starting2 {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = builder.Services.Configure();
 
-        _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
+            Log.Information("Starting3 {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
-        var app = builder.Build();
-        _ = ConfigurePipeline(app);
+            Log.Information("Starting4 {AppName}", typeof(Program).AssemblyQualifiedName);
+            var app = builder.Build();
+            Log.Information("Starting5 {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = ConfigurePipeline(app);
 
-        app.Run();
+            Log.Information("Starting6 {AppName}", typeof(Program).AssemblyQualifiedName);
+            app.Run();
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex, "Fatal error occurred in {AppName}", typeof(Program).AssemblyQualifiedName);
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 
     private static WebApplication ConfigurePipeline(WebApplication app)

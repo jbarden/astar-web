@@ -3,9 +3,11 @@ using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Clean.V1.BlazorUI.ApiClients;
 using AStar.Clean.V1.BlazorUI.Models;
+using AStar.Logging.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Serilog;
 
 namespace AStar.Clean.V1.BlazorUI;
 
@@ -15,16 +17,29 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        _ = builder.AddLogging("astar-logging-settings.json");
-        _ = builder.Services.Configure();
-        ConfigureServices(builder);
+        try
+        {
+            builder.CreateBootstrapLogger("astar-logging-settings.json");
+            Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
+            _ = builder.AddLogging("astar-logging-settings.json");
+            _ = builder.Services.Configure();
+            ConfigureServices(builder);
 
-        var app = builder.Build();
+            var app = builder.Build();
 
-        ConfigurePipeline(app);
-        _ = app.ConfigurePipeline();
+            ConfigurePipeline(app);
+            _ = app.ConfigurePipeline();
 
-        app.Run();
+            app.Run();
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex, "Fatal error occurred in {AppName}", typeof(Program).AssemblyQualifiedName);
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 
     private static void ConfigurePipeline(WebApplication app)

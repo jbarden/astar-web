@@ -1,6 +1,8 @@
 ﻿@page "/search"
 @using AStar.Web.UI.FilesApi
 @using AStar.Web.UI.Shared
+@using AStar.Web.UI.Components
+
 <LoadingIndicator @ref="loadingIndicator">
     <Accordion>
         <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
@@ -55,7 +57,7 @@
                                 </Field>
                                 <Field Horizontal JustifyContent="JustifyContent.End">
                                     <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
-                                        <Button Color="Color.Success" Clicked="SubmitHorizontalForm"
+                                        <Button Color="Color.Success" Clicked="StartSearch"
                                             id="startSearch">Submit</Button>
                                         <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?
                                         </Switch>
@@ -74,30 +76,79 @@
                 </Heading>
             </AccordionHeader>
             <AccordionBody>
-                <Pagination Background="Background.Primary">
-                    <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                        <PaginationLink Background="Background.Success">
-                            <span aria-hidden="true">«</span>
-                        </PaginationLink>
-                    </PaginationItem>
+                <Row>
+                    <Pagination Background="Background.Primary">
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">«</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                        @{
+                            foreach(var pageOrdinal in pagesForPagination)
+                            {
+                                var pageNumberAsString = pageOrdinal.ToString();
+                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        @pageNumberAsString
+                                    </PaginationLink>
+                                </PaginationItem>
+                            }
+                        }
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">»</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                    </Pagination>
+                </Row>
+                <Row>
+                    <CardDeck>
                     @{
-                        foreach (var pageOrdinal in pagesForPagination)
+                        foreach(var f in Files)
                         {
-                            var pageNumberAsString = pageOrdinal.ToString();
-                            <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
-                                    @pageNumberAsString
-                                </PaginationLink>
-                            </PaginationItem>
+                                <Card Background="Background.Primary">
+                                <CardBody>
+                                    <CardTitle Size="4">
+                                            <div>@f.Name</div>
+                                            <div><Button Color="Color.Danger">Delete</Button></div>
+                                    </CardTitle>
+                                        <CardText>
+                                            <div><ImageComponent ImageName="@f.Name" ImageFullName="@f.FullName" ImageSize="750"></ImageComponent></div>
+                                            <div>Size: @f.Size</div>
+                                            <div>W x H: @f.Width x @f.Height</div>
+                                            <div>@f.FullName</div>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
                         }
                     }
-                    <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                        <PaginationLink Background="Background.Success">
-                            <span aria-hidden="true">»</span>
-                        </PaginationLink>
-                    </PaginationItem>
-                </Pagination>
-
+                    </CardDeck>
+                </Row>
+                <Row>
+                    <Pagination Background="Background.Primary">
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">«</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                        @{
+                            foreach(var pageOrdinal in pagesForPagination)
+                            {
+                                var pageNumberAsString = pageOrdinal.ToString();
+                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        @pageNumberAsString
+                                    </PaginationLink>
+                                </PaginationItem>
+                            }
+                        }
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">»</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                    </Pagination>
+                </Row>
             </AccordionBody>
         </AccordionItem>
     </Accordion>

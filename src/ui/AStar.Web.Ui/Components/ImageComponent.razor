@@ -1,0 +1,14 @@
+﻿@using AStar.Web.UI.ImagesApi
+@inject ImagesApiClient ImagesApiClient
+
+@if (@imageSource.Length > 0)
+{
+    <img id="@ImageName" src="@imageSource" alt="@ImageName"/>
+}
+else
+{
+    <span>
+        Loading...please wait...
+        <img src="assets/loading-gif-orange-8.gif" alt="Loading...please wait..." width="25" height="25" />
+    </span>
+}

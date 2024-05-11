@@ -18,9 +18,11 @@ public static class LoggingExtensions
     {
         _ = services.AddApplicationInsightsTelemetry();
         var serviceProvider = services.BuildServiceProvider();
-        Log.Logger = new LoggerConfiguration()
+        var logger = new LoggerConfiguration()
             .WriteTo.ApplicationInsights(serviceProvider.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
             .CreateLogger();
+        logger.Information("Will this log?");
+        Log.Logger = logger;
 
         return services;
     }
@@ -52,5 +54,18 @@ public static class LoggingExtensions
                     .Enrich.FromLogContext());
 
         return builder;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <param name="externalSettingsFile"></param>
+    /// <returns></returns>
+    public static void CreateBootstrapLogger(this WebApplicationBuilder builder, string externalSettingsFile = "")
+    {
+        builder = builder.UseSerilogLogging(externalSettingsFile);
+
+        _ = builder.Services.AddSerilogLogging();
     }
 }

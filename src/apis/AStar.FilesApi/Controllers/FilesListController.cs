@@ -28,7 +28,7 @@ public class FilesListController(FilesContext context, ILogger<FilesControllerBa
 
         var fileInfos = filesList.Select(f => new FileInfoDto { FullName = Path.Combine(f.DirectoryName, f.FileName), Size = f.FileSize, Name = f.FileName, Height = f.Height, Width = f.Width });
         var skip = searchParameters.ItemsPerPage * (searchParameters.CurrentPage - 1);
-        if(searchParameters.SearchType is SearchType.Duplicates)
+        if(searchParameters.SearchType is Config.SearchType.Duplicates)
         {
             Logger.LogInformation("Starting duplicate search");
             fileInfos = DuplicateFileInfoJbs(fileInfos);
