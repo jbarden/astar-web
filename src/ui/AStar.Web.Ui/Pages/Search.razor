@@ -38,8 +38,8 @@
                                     </FieldLabel>
                                     <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
                                         <Select @bind-SelectedValue="@searchType" id="searchType">
-                                            <SelectItem Value="1">Images</SelectItem>
-                                            <SelectItem Value="2">All</SelectItem>
+                                            <SelectItem Value="0">Images</SelectItem>
+                                            <SelectItem Value="1">All</SelectItem>
                                         </Select>
                                     </FieldBody>
                                 </Field>
@@ -48,10 +48,10 @@
                                     </FieldLabel>
                                     <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
                                         <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
-                                            <SelectItem Value="1">Size Descending</SelectItem>
-                                            <SelectItem Value="2">Size Ascending</SelectItem>
-                                            <SelectItem Value="3">Name Descending</SelectItem>
-                                            <SelectItem Value="4">Name Ascending</SelectItem>
+                                            <SelectItem Value="0">Size Descending</SelectItem>
+                                            <SelectItem Value="1">Size Ascending</SelectItem>
+                                            <SelectItem Value="2">Name Descending</SelectItem>
+                                            <SelectItem Value="3">Name Ascending</SelectItem>
                                         </Select>
                                     </FieldBody>
                                 </Field>
@@ -103,24 +103,22 @@
                 </Row>
                 <Row>
                     <CardDeck>
-                    @{
-                        foreach(var f in Files)
-                        {
-                                <Card Background="Background.Primary">
-                                <CardBody>
-                                    <CardTitle Size="4">
-                                            <div>@f.Name</div>
-                                            <div><Button Color="Color.Danger">Delete</Button></div>
-                                    </CardTitle>
-                                        <CardText>
-                                            <div><ImageComponent ImageName="@f.Name" ImageFullName="@f.FullName" ImageSize="750"></ImageComponent></div>
-                                            <div>Size: @f.Size</div>
-                                            <div>W x H: @f.Width x @f.Height</div>
-                                            <div>@f.FullName</div>
-                                    </CardText>
-                                </CardBody>
-                            </Card>
-                        }
+                    @foreach(var f in Files)
+                    {
+                        <Card Background="Background.Primary">
+                            <CardBody>
+                                <CardTitle Size="4">
+                                        <div>@f.Name</div>
+                                </CardTitle>
+                                    <CardText>
+                                        <div><ImageComponent ImageName="@f.Name" ImageFullName="@f.FullName" ImageSize="750"></ImageComponent></div>
+                                        <div>@f.FullName</div>
+                                        <div>Size: @f.SizeForDisplay</div>
+                                        <div>W x H: @f.Width x @f.Height</div>
+                                        <div><Button Color="Color.Danger">Delete</Button></div>
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     }
                     </CardDeck>
                 </Row>

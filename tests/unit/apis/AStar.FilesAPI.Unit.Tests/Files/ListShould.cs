@@ -58,8 +58,8 @@ public class ListShould : IClassFixture<ListFixture>
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "_Host.cshtml", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages\\_Host.cshtml", Size = 2228L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "z20080523 003.jpg", FullName = "c:\\temp\\Home\\month03\\z20080523 003.jpg", Size = 211127L, Height = 1234L, Width = 5678L });
+        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "Mothers Day 2010.psd", FullName = "c:\\temp\\M Day 2010\\Mothers Day 2010.psd", Size = 119880324L });
+        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "read.lock", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\FileContentIndex\\read.lock", Size = 0L });
     }
 
     [Fact]
@@ -79,8 +79,8 @@ public class ListShould : IClassFixture<ListFixture>
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "_Host.cshtml", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\Pages\\_Host.cshtml", Size = 2228L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = ".gitignore", FullName = "c:\\temp\\Famous\\.gitignore", Size = 6352L });
+        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "Mothers Day 2010 copy.jpg", FullName = "c:\\temp\\M Day 2010\\Mothers Day 2010 copy.jpg", Size = 10435815L });
+        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-l87ygp.jpg", FullName = "c:\\temp\\Famous\\Jes Macallan\\wallhaven-l87ygp.jpg", Size = 5510486L });
     }
 
     [Fact]
@@ -100,8 +100,8 @@ public class ListShould : IClassFixture<ListFixture>
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = ".editorconfig", FullName = "c:\\temp\\Famous\\.editorconfig", Size = 12756L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-1pmqr3.jpg", FullName = "c:\\temp\\Famous\\Sara Jean Underwood\\Playmate\\lingerie\\sideboob\\ass\\wallhaven-1pmqr3.jpg", Size = 2688298L });
+        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-rrz291.png", FullName = "c:\\temp\\Famous\\Rebecca Ferguson\\wallhaven-rrz291.png", Size = 9099482L });
+        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-2y5139.jpg", FullName = "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate\\wallhaven-2y5139.jpg", Size = 4922103L });
     }
 
     [Fact]

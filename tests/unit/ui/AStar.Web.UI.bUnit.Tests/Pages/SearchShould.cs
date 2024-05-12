@@ -58,10 +58,10 @@ public class SearchShould : TestContext
         var filesApiStatus = cut.Find("#sortOrder");
 
         filesApiStatus.MarkupMatches(@"<select class=""form-select"" value=""0""         id=""sortOrder"" >
-  <option value=""1"" >Size Descending</option>
-  <option value=""2"" >Size Ascending</option>
-  <option value=""3"" >Name Descending</option>
-  <option value=""4"" >Name Ascending</option>
+  <option value=""0"" selected="""" >Size Descending</option>
+  <option value=""1"" >Size Ascending</option>
+  <option value=""2"" >Name Descending</option>
+  <option value=""3"" >Name Ascending</option>
 </select>");
     }
 
