@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AStar.Infrastructure.Data;
 
 /// <summary>
-/// The FileContext class/
+/// The FileContext class.
 /// </summary>
 public class FilesContext : DbContext
 {

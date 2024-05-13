@@ -39,7 +39,7 @@ public class DuplicatesCountShould : IClassFixture<DuplicatesCountFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(39);
+        _ = response!.Value.Should().Be(34);
     }
 
     [Fact]
@@ -47,6 +47,6 @@ public class DuplicatesCountShould : IClassFixture<DuplicatesCountFixture>
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(17);
+        _ = response!.Value.Should().Be(16);
     }
 }

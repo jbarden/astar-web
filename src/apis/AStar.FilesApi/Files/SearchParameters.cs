@@ -15,6 +15,10 @@ public partial class SearchParameters
 
     public bool Recursive { get; set; } = true;
 
+    public bool IncludeSoftDeleted { get; set; }
+
+    public bool IncludeMarkedForDeletion { get; set; }
+
     [Required]
     public int CurrentPage { get; set; } = 1;
 

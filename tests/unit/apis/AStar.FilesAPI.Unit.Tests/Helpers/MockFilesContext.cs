@@ -55,12 +55,12 @@ public class MockFilesContext : IDisposable
         }
     }
 
-    private void AddMockFiles(FilesContext mockFilesContext)
+    private static void AddMockFiles(FilesContext mockFilesContext)
     {
         var filesAsJson = File.ReadAllText(@"TestFiles\files.json");
 
-        var listFromJson = JsonSerializer.Deserialize<IEnumerable<FileDetail>>(filesAsJson);
+        var listFromJson = JsonSerializer.Deserialize<IEnumerable<FileDetail>>(filesAsJson)!;
 
-        mockFilesContext.AddRange(listFromJson!);
+        mockFilesContext.AddRange(listFromJson);
     }
 }

@@ -78,4 +78,9 @@ public class FileDetail
     /// Gets or sets whether the file has been 'soft deleted'. I know, shocking...
     /// </summary>
     public bool SoftDeleted { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the file has been marked as  'delete pending'. I know, shocking...
+    /// </summary>
+    public bool DeletePending { get; set; }
 }

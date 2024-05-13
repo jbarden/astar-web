@@ -21,17 +21,21 @@ public class CountShould : IClassFixture<CountFixture>
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllFiles()
     {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 341;
+
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(mockFilesFixture.MockFilesContext.Files.Count());
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
     }
 
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
     {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 248;
+
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(288);
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
     }
 
     [Fact]
@@ -45,17 +49,20 @@ public class CountShould : IClassFixture<CountFixture>
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 81;
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(95);
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
     }
 
     [Fact]
     public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 3;
+
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
 
-        _ = response!.Value.Should().Be(4);
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
     }
 
     [Fact]
@@ -64,5 +71,35 @@ public class CountShould : IClassFixture<CountFixture>
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates}).Result as BadRequestObjectResult;
 
         _ = response!.Value.Should().Be("Duplicate searches are not supported by this endpoint, please call the duplicate-specific endpoint.");
+    }
+
+    [Fact]
+    public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursivelyButIncludeSoftDeleted()
+    {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 89;
+
+        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, IncludeSoftDeleted = true}).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
+    }
+
+    [Fact]
+    public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursivelyButIncludeMarkedForDeletion()
+    {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 87;
+
+        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, IncludeMarkedForDeletion = true}).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
+    }
+
+    [Fact]
+    public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursivelyButIncludeSoftDeletedAndIncludeMarkedForDeletion()
+    {
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 95;
+
+        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, IncludeSoftDeleted = true, IncludeMarkedForDeletion = true}).Result as OkObjectResult;
+
+        _ = response!.Value.Should().Be(FilesNotSoftDeletedOrPendingDeletionCount);
     }
 }
