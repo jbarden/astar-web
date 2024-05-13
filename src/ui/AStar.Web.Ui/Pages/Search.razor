@@ -115,7 +115,8 @@
                                         <div>@f.FullName</div>
                                         <div>Size: @f.SizeForDisplay</div>
                                         <div>W x H: @f.Width x @f.Height</div>
-                                        <div><Button Color="Color.Danger">Delete</Button></div>
+                                        <div><Button Clicked="@(()=>MarkForDeletion(f.FullName))" Color="Color.Danger">Delete</Button></div>
+                                        <div>@DeletionStatus</div>
                                 </CardText>
                             </CardBody>
                         </Card>

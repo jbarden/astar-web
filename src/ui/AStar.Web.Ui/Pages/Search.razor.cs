@@ -36,6 +36,7 @@ public partial class Search
 
     [Inject]
     private ILogger<Search> Logger { get; set; } = default!;
+    public string DeletionStatus { get; private set; }=string.Empty;
 
     private async Task StartSearch() => await SearchForMatchingFiles();
 
@@ -117,5 +118,12 @@ public partial class Search
         currentPageAsInt = int.Parse(currentPage);
 
         await SearchForMatchingFiles();
+    }
+
+    private async Task MarkForDeletion(string fullName)
+    {
+        var result = await FilesApiClient.MarkForDeletionAsync(fullName);
+
+        DeletionStatus = result;
     }
 }

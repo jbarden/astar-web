@@ -62,4 +62,22 @@ public class FilesApiClient
             return new() { Status = "Could not get a response from the Files API." }!;
         }
     }
+
+    public async Task<string> MarkForDeletionAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Deleting the {FileName}.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/MarkForDeletion?{fullName}");
+
+            return response.IsSuccessStatusCode
+                ? "Deleted"
+                : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+            return ex.Message;
+        }
+    }
 }

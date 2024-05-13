@@ -73,4 +73,38 @@ public class FilesApiClientShould
 
         response.Should().Be(0);
     }
+
+    [Fact]
+    public async Task ReturnExpectedMessageFromMarkForDeletionWhenSuccessful()
+    {
+        var handler = new MockSuccessHttpMessageHandler();
+
+        var httpClient = new HttpClient(handler)
+        {
+            BaseAddress = new("https://doesnot.matter.com")
+        };
+
+        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+
+        var response = await sut.MarkForDeletionAsync("not relevant");
+
+        response.Should().Be("Deleted");
+    }
+
+    [Fact]
+    public async Task ReturnExpectedMessageFromMarkForDeletionWhenFailure()
+    {
+        var handler = new MockInternalServerErrorHttpMessageHandler();
+
+        var httpClient = new HttpClient(handler)
+        {
+            BaseAddress = new("https://doesnot.matter.com")
+        };
+
+        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+
+        var response = await sut.MarkForDeletionAsync("not relevant");
+
+        response.Should().Be("Delete failed...");
+    }
 }
