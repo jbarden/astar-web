@@ -1,4 +1,6 @@
-﻿using AStar.Web.UI.Shared;
+﻿using AStar.Web.UI.Layouts;
+using AStar.Web.UI.Shared;
+using Blazorise;
 using Blazorise.Localization;
 using Microsoft.AspNetCore.Components;
 
@@ -19,6 +21,7 @@ public partial class TopMenu
     [Parameter] public EventCallback<string> LayoutTypeChanged { get; set; }
 
     [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
+    [Inject] private SupportedThemes SupportedThemes { get; set; } = default!;
 
     [CascadingParameter] protected Theme? Theme { get; set; }
 
@@ -47,7 +50,7 @@ public partial class TopMenu
         return Task.CompletedTask;
     }
 
-    private Task SwapLightAndDarkThemes()
+    private async Task SwapLightAndDarkThemes()
     {
         if(Theme is not null)
         {
@@ -65,10 +68,8 @@ public partial class TopMenu
                 Theme.BodyOptions.BackgroundColor = SupportedColours.Black;
                 Theme.BodyOptions.TextColor = SupportedColours.White;
             }
+
+            await InvokeAsync(Theme.ThemeHasChanged);
         }
-
-        Theme?.ThemeHasChanged();
-
-        return Task.CompletedTask;
     }
 }

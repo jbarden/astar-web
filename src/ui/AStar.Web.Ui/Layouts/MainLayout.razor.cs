@@ -1,4 +1,5 @@
-﻿using Blazorise.Localization;
+﻿using AStar.Web.UI.Shared;
+using Blazorise.Localization;
 
 using Microsoft.AspNetCore.Components;
 
@@ -16,6 +17,16 @@ public partial class MainLayout
         await SelectCulture("en-US");
 
         await base.OnInitializedAsync();
+
+        if(Theme is not null)
+        {
+            Theme.BackgroundOptions.Primary = SupportedColours.White;
+            Theme.ColorOptions.Primary = SupportedColours.Black;
+            Theme.BodyOptions.BackgroundColor = SupportedColours.White;
+            Theme.BodyOptions.TextColor = SupportedColours.Black;
+
+            await InvokeAsync(Theme.ThemeHasChanged);
+        }
     }
 
     private Task SelectCulture(string name)
