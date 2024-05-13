@@ -102,7 +102,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.Configuration", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.Configuration.Unit.Tests", "tests\unit\ui\AStar.Web.Configuration.Unit.Tests\AStar.Web.Configuration.Unit.Tests.csproj", "{09E73E60-9D26-46A4-937A-3545F445FD59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Web.UI.bUnit.Tests", "tests\unit\ui\AStar.Web.UI.bUnit.Tests\AStar.Web.UI.bUnit.Tests.csproj", "{407EBBEC-65F0-4046-8F30-3B97B33E439C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI.bUnit.Tests", "tests\unit\ui\AStar.Web.UI.bUnit.Tests\AStar.Web.UI.bUnit.Tests.csproj", "{407EBBEC-65F0-4046-8F30-3B97B33E439C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

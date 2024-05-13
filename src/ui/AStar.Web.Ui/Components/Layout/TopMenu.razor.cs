@@ -21,7 +21,6 @@ public partial class TopMenu
     [Parameter] public EventCallback<string> LayoutTypeChanged { get; set; }
 
     [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
-    [Inject] private SupportedThemes SupportedThemes { get; set; } = default!;
 
     [CascadingParameter] protected Theme? Theme { get; set; }
 
