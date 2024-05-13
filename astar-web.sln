@@ -104,6 +104,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.Configuration.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web.UI.bUnit.Tests", "tests\unit\ui\AStar.Web.UI.bUnit.Tests\AStar.Web.UI.bUnit.Tests.csproj", "{407EBBEC-65F0-4046-8F30-3B97B33E439C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.FunctionalExtensions", "src\core\AStar.FunctionalExtensions\AStar.FunctionalExtensions.csproj", "{18E974DC-8E26-42FD-9918-292361620067}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -234,6 +236,10 @@ Global
 		{407EBBEC-65F0-4046-8F30-3B97B33E439C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407EBBEC-65F0-4046-8F30-3B97B33E439C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407EBBEC-65F0-4046-8F30-3B97B33E439C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E974DC-8E26-42FD-9918-292361620067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E974DC-8E26-42FD-9918-292361620067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E974DC-8E26-42FD-9918-292361620067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E974DC-8E26-42FD-9918-292361620067}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -283,6 +289,7 @@ Global
 		{8A8E523C-5F9A-4FB6-8449-BB9F1744B132} = {1C50DA4B-0643-49B2-A800-3C8F72DCEE04}
 		{09E73E60-9D26-46A4-937A-3545F445FD59} = {8BFDC661-E615-4D86-BCA1-8552E45A6392}
 		{407EBBEC-65F0-4046-8F30-3B97B33E439C} = {8BFDC661-E615-4D86-BCA1-8552E45A6392}
+		{18E974DC-8E26-42FD-9918-292361620067} = {C6AF87BC-D8B2-4C40-AC09-1254AE8A6C36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A4E9B7A-7302-4CE4-A187-FC4AEEF15AF3}
