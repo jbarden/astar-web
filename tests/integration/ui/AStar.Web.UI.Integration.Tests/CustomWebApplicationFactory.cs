@@ -1,14 +1,4 @@
-﻿using AStar.ASPNet.Extensions.Handlers;
-using System.Text.Json.Serialization;
-using AStar.Web.UI.FilesApi;
-using AStar.Web.UI.Services;
-using Blazorise;
-using Blazorise.Bootstrap5;
-using Blazorise.Icons.FontAwesome;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.DependencyInjection;
-using AStar.Web.UI.ImagesApi;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace AStar.Web.UI.Integration;
 
@@ -21,7 +11,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureServices(services =>
         {
-            
+
         });
 
         builder.UseEnvironment("Development");

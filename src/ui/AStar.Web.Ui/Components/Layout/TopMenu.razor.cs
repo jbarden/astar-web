@@ -1,6 +1,4 @@
-﻿using AStar.Web.UI.Layouts;
-using AStar.Web.UI.Shared;
-using Blazorise;
+﻿using AStar.Web.UI.Shared;
 using Blazorise.Localization;
 using Microsoft.AspNetCore.Components;
 

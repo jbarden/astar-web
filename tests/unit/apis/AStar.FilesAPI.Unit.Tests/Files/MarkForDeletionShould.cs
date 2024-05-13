@@ -1,7 +1,4 @@
-using System.IO;
-using AStar.FilesApi.Config;
 using AStar.FilesAPI.Helpers;
-using AStar.Web.Domain.Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;

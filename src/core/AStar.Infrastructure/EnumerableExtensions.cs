@@ -17,20 +17,20 @@ public static class EnumerableExtensions
         => searchType != "Images" ? files : files.Where(file => file.IsImage);
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="files"></param>
     /// <param name="sortOrder"></param>
     /// <returns></returns>
     public static IEnumerable<FileDetail> OrderFiles(this IEnumerable<FileDetail> files, SortOrder sortOrder)
-        => sortOrder switch
-                     {
-                         SortOrder.NameAscending => files.OrderBy(f => f.FileName),
-                         SortOrder.NameDescending => files.OrderByDescending(f => f.FileName),
-                         SortOrder.SizeAscending => files.OrderBy(f => f.FileSize),
-                         SortOrder.SizeDescending => files.OrderByDescending(f => f.FileSize),
-                         _ => files,
-                     };
+                                                => sortOrder switch
+                                                {
+                                                    SortOrder.NameAscending => files.OrderBy(f => f.FileName),
+                                                    SortOrder.NameDescending => files.OrderByDescending(f => f.FileName),
+                                                    SortOrder.SizeAscending => files.OrderBy(f => f.FileSize),
+                                                    SortOrder.SizeDescending => files.OrderByDescending(f => f.FileSize),
+                                                    _ => files,
+                                                };
 
     /// <summary>
     ///

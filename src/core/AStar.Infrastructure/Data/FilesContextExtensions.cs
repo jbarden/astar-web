@@ -44,6 +44,6 @@ public static class FilesContextExtensions
                 : (IEnumerable<FileDetail>)files.Where(file => file.DirectoryName.Equals(startingFolder));
 
     private static IEnumerable<FileDetail> FilterSoftDeleted(this IEnumerable<FileDetail> files, bool includeSoftDeleted) => !includeSoftDeleted ? files.Where(file => !file.SoftDeleted) : files;
-    
+
     private static IEnumerable<FileDetail> FilterMarkedForDeletion(this IEnumerable<FileDetail> files, bool includeMarkedForDeletion) => !includeMarkedForDeletion ? files.Where(file => !file.DeletePending) : files;
 }

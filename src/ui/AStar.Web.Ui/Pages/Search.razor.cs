@@ -4,8 +4,6 @@ using AStar.Web.UI.Services;
 using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
 using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json.Linq;
-using static AStar.Utilities.EnumExtensions;
 
 namespace AStar.Web.UI.Pages;
 
@@ -23,10 +21,12 @@ public partial class Search
     private bool accordionItem1Visible = true;
     private bool accordionItem3Visible = false;
     private string currentPage = "1";
-    private int currentPageAsInt =1;
+    private int currentPageAsInt = 1;
     private bool recursiveSearch = true;
 
     public IEnumerable<FileInfoDto> Files { get; set; } = [];
+
+    public string DeletionStatus { get; private set; } = string.Empty;
 
     [Inject]
     private FilesApiClient FilesApiClient { get; set; } = default!;
@@ -36,7 +36,6 @@ public partial class Search
 
     [Inject]
     private ILogger<Search> Logger { get; set; } = default!;
-    public string DeletionStatus { get; private set; }=string.Empty;
 
     private async Task StartSearch() => await SearchForMatchingFiles();
 
@@ -50,7 +49,7 @@ public partial class Search
             1 => SortOrder.SizeAscending,
             2 => SortOrder.NameDescending,
             3 => SortOrder.NameAscending,
-            _ => throw new ArgumentOutOfRangeException(nameof(SortOrder)),
+            _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
         };
 
         var searchTypeAsEnum = searchType switch
@@ -58,7 +57,7 @@ public partial class Search
             0 => SearchType.Images,
             1 => SearchType.All,
             2 => SearchType.Duplicates,
-            _ => throw new ArgumentOutOfRangeException(nameof(SortOrder)),
+            _ => throw new ArgumentOutOfRangeException(nameof(searchType)),
         };
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
@@ -124,7 +123,7 @@ public partial class Search
     {
         var result = await FilesApiClient.MarkForDeletionAsync(fullName);
 
-        var file = Files.Where(file => file.FullName == fullName).FirstOrDefault();
+        var file = Files.FirstOrDefault(file => file.FullName == fullName);
         if(file != null)
         {
             file.DeletePending = true;
@@ -137,7 +136,7 @@ public partial class Search
     {
         var result = await FilesApiClient.UndoMarkForDeletionAsync(fullName);
 
-        var file = Files.Where(file => file.FullName == fullName).FirstOrDefault();
+        var file = Files.FirstOrDefault(file => file.FullName == fullName);
         if(file != null)
         {
             file.DeletePending = false;

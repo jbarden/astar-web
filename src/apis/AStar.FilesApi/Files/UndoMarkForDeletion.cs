@@ -1,5 +1,4 @@
 ﻿using Ardalis.ApiEndpoints;
-using AStar.FilesApi.Config;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;

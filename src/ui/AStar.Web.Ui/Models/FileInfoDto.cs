@@ -17,7 +17,7 @@ public class FileInfoDto
     /// <summary>
     /// Need to account for decimal points here...
     /// </summary>
-    public string SizeForDisplay 
+    public string SizeForDisplay
                         => Size / 1024 / 1024 > 0
                                 ? (Size / 1024D / 1024D).ToString("N2") + " Mb"
                                 : (Size / 1024D).ToString("N2") + " Kb";
