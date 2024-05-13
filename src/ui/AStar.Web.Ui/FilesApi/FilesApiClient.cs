@@ -67,11 +67,11 @@ public class FilesApiClient
     {
         try
         {
-            logger.LogWarning("Deleting the {FileName}.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/MarkForDeletion?{fullName}");
+            logger.LogWarning("Marking the {FileName} for deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/markForDeletion?request={fullName}");
 
             return response.IsSuccessStatusCode
-                ? "Deleted"
+                ? "Marked for deletion"
                 : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)
@@ -80,4 +80,22 @@ public class FilesApiClient
             return ex.Message;
         }
     }
-}
+
+    public async Task<string> UndoMarkForDeletionAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Unmarking the {FileName} for deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/undoMarkForDeletion?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                ? "Mark for deletion has been undone"
+                : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+            return ex.Message;
+        }
+    }
+    }

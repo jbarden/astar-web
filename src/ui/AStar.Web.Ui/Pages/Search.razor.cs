@@ -124,6 +124,25 @@ public partial class Search
     {
         var result = await FilesApiClient.MarkForDeletionAsync(fullName);
 
+        var file = Files.Where(file => file.FullName == fullName).FirstOrDefault();
+        if(file != null)
+        {
+            file.DeletePending = true;
+        }
+
+        DeletionStatus = result;
+    }
+
+    private async Task UndoMarkForDeletion(string fullName)
+    {
+        var result = await FilesApiClient.UndoMarkForDeletionAsync(fullName);
+
+        var file = Files.Where(file => file.FullName == fullName).FirstOrDefault();
+        if(file != null)
+        {
+            file.DeletePending = false;
+        }
+
         DeletionStatus = result;
     }
 }

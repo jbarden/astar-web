@@ -88,7 +88,7 @@ public class FilesApiClientShould
 
         var response = await sut.MarkForDeletionAsync("not relevant");
 
-        response.Should().Be("Deleted");
+        response.Should().Be("Marked for deletion");
     }
 
     [Fact]
@@ -106,5 +106,39 @@ public class FilesApiClientShould
         var response = await sut.MarkForDeletionAsync("not relevant");
 
         response.Should().Be("Delete failed...");
+    }
+
+    [Fact]
+    public async Task ReturnExpectedMessageFromUndoMarkForDeletionWhenSuccessful()
+    {
+        var handler = new MockSuccessHttpMessageHandler();
+
+        var httpClient = new HttpClient(handler)
+        {
+            BaseAddress = new("https://doesnot.matter.com")
+        };
+
+        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+
+        var response = await sut.UndoMarkForDeletionAsync("not relevant");
+
+        response.Should().Be("Mark for deletion has been undone");
+    }
+
+    [Fact]
+    public async Task ReturnExpectedMessageFromUndoMarkForDeletionWhenFailure()
+    {
+        var handler = new MockInternalServerErrorHttpMessageHandlerForUnMarkForDeletion();
+
+        var httpClient = new HttpClient(handler)
+        {
+            BaseAddress = new("https://doesnot.matter.com")
+        };
+
+        var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
+
+        var response = await sut.UndoMarkForDeletionAsync("not relevant");
+
+        response.Should().Be("Undo mark for deletion failed...");
     }
 }

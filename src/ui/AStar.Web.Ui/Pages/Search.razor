@@ -2,6 +2,7 @@
 @using AStar.Web.UI.FilesApi
 @using AStar.Web.UI.Shared
 @using AStar.Web.UI.Components
+@using static AStar.Utilities.StringExtensions
 
 <LoadingIndicator @ref="loadingIndicator">
     <Accordion>
@@ -13,56 +14,73 @@
             </AccordionHeader>
             <AccordionBody>
                 <Row>
-                    <Column ColumnSize="ColumnSize.Is6.OnDesktop">
+                    <Column ColumnSize="ColumnSize.Is12.OnDesktop">
                         <Card Margin="Margin.Is4.FromBottom">
                             <CardBody Background="Background.Primary">
-                                <Field Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Folder
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <TextEdit Placeholder="Please specify the starting folder"
-                                            @bind-text="@startingFolder" id="startingFolder" />
-                                    </FieldBody>
-                                </Field>
-                                <Field Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Items Per Page
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
-                                            WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
-                                            id="itemsPerPage" />
-                                    </FieldBody>
-                                </Field>
-                                <Field Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Search Type
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <Select @bind-SelectedValue="@searchType" id="searchType">
-                                            <SelectItem Value="0">Images</SelectItem>
-                                            <SelectItem Value="1">All</SelectItem>
-                                        </Select>
-                                    </FieldBody>
-                                </Field>
-                                <Field Horizontal>
-                                    <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Sort Order
-                                    </FieldLabel>
-                                    <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                        <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
-                                            <SelectItem Value="0">Size Descending</SelectItem>
-                                            <SelectItem Value="1">Size Ascending</SelectItem>
-                                            <SelectItem Value="2">Name Descending</SelectItem>
-                                            <SelectItem Value="3">Name Ascending</SelectItem>
-                                        </Select>
-                                    </FieldBody>
-                                </Field>
-                                <Field Horizontal JustifyContent="JustifyContent.End">
-                                    <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
-                                        <Button Color="Color.Success" Clicked="StartSearch"
-                                            id="startSearch">Submit</Button>
-                                        <Switch TValue="bool" @bind-Checked="@recursiveSearch">Recursive Search?
-                                        </Switch>
-                                    </FieldBody>
-                                </Field>
+                                <Fields>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Search Folder
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <TextEdit Placeholder="Please specify the starting folder"
+                                                      @bind-text="@startingFolder" id="startingFolder" />
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Items Per Page
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
+                                                           WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
+                                                           id="itemsPerPage" />
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
+                                <Fields>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Search Type
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <Select @bind-SelectedValue="@searchType" id="searchType">
+                                                <SelectItem Value="0">Images</SelectItem>
+                                                <SelectItem Value="1">All</SelectItem>
+                                            </Select>
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Sort Order
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
+                                                <SelectItem Value="0">Size Descending</SelectItem>
+                                                <SelectItem Value="1">Size Ascending</SelectItem>
+                                                <SelectItem Value="2">Name Descending</SelectItem>
+                                                <SelectItem Value="3">Name Ascending</SelectItem>
+                                            </Select>
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
+                                <Fields>
+                                    <Field Horizontal JustifyContent="JustifyContent.End">
+                                        <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
+                                            <Switch TValue="bool" @bind-Checked="@recursiveSearch">
+                                                Recursive Search?
+                                            </Switch>
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal JustifyContent="JustifyContent.End">
+                                        <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
+                                            <Button Color="Color.Success" Clicked="StartSearch"
+                                                    id="startSearch">
+                                                Submit
+                                            </Button>
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
                             </CardBody>
                         </Card>
                     </Column>
@@ -115,8 +133,19 @@
                                         <div>@f.FullName</div>
                                         <div>Size: @f.SizeForDisplay</div>
                                         <div>W x H: @f.Width x @f.Height</div>
-                                        <div><Button Clicked="@(()=>MarkForDeletion(f.FullName))" Color="Color.Danger">Delete</Button></div>
-                                        <div>@DeletionStatus</div>
+                                        @{
+                                            if(!f.DeletePending)
+                                            {
+                                                <div><Button Clicked="@(()=>MarkForDeletion(f.FullName))" Color="Color.Danger">Delete</Button></div>
+                                            }
+                                            else
+                                            {
+                                                <Field Background="Background.Success">
+                                                    <FieldLabel>@DeletionStatus</FieldLabel>
+                                                </Field>
+                                                <Button Clicked="@(()=>UndoMarkForDeletion(f.FullName))" Color="Color.Info">Undo</Button>
+                                            }
+                                        }
                                 </CardText>
                             </CardBody>
                         </Card>
