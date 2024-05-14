@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AStar.TechnicalDebt.Reporting\AStar.TechnicalDebt.Reporting.csproj" />
+    <ProjectReference Include="..\..\..\..\src\core\AStar.TechnicalDebt.Reporting\AStar.TechnicalDebt.Reporting.csproj" />
   </ItemGroup>
 
   <ItemGroup>

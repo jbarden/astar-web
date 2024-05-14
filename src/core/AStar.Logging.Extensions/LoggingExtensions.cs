@@ -57,7 +57,7 @@ public static class LoggingExtensions
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="externalSettingsFile"></param>

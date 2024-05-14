@@ -8,6 +8,10 @@ namespace AStar.Web.UI;
 [ExcludeFromCodeCoverage]
 public class Program
 {
+    protected Program()
+    {
+    }
+
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);

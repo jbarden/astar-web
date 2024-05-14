@@ -77,12 +77,12 @@
              <returns></returns>
         </member>
         <member name="M:AStar.Infrastructure.EnumerableExtensions.OrderFiles(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},AStar.Web.Domain.SortOrder)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="files"></param>
-            <param name="sortOrder"></param>
-            <returns></returns>
+             </summary>
+             <param name="files"></param>
+             <param name="sortOrder"></param>
+             <returns></returns>
         </member>
         <member name="M:AStar.Infrastructure.EnumerableExtensions.GroupDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
              <summary>

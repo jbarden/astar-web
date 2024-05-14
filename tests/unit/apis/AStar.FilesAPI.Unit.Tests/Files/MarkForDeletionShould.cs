@@ -25,7 +25,7 @@ public class MarkForDeletionShould : IClassFixture<MarkForDeletionFixture>
     {
         var testFile = mockFilesFixture.MockFilesContext.Files.First();
 
-        var response = mockFilesFixture.SUT.Handle(Path.Combine(testFile.DirectoryName, testFile.FileName)) as OkObjectResult;
+        _ = mockFilesFixture.SUT.Handle(Path.Combine(testFile.DirectoryName, testFile.FileName)) as OkObjectResult;
 
         mockFilesFixture.MockFilesContext.Files.Count(file => file.DirectoryName == testFile.DirectoryName && file.FileName == testFile.FileName && file.DeletePending).Should().Be(1);
     }

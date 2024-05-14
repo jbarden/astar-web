@@ -11,7 +11,6 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureServices(services =>
         {
-
         });
 
         builder.UseEnvironment("Development");

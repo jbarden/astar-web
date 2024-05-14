@@ -2,6 +2,7 @@ using AStar.FilesApi.Files;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesApi.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase

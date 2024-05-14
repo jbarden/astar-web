@@ -4,12 +4,12 @@ using Microsoft.ApplicationInsights.Extensibility;
 namespace AStar.Logging.Extensions;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public class AStarTelemetryInitializer : ITelemetryInitializer
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="telemetry"></param>
     public void Initialize(ITelemetry telemetry)

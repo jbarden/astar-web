@@ -43,6 +43,7 @@ public partial class Search
     {
         await loadingIndicator.Show();
         Files = new List<FileInfoDto>();
+#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one
         var sortOrderAsEnum = sortOrder switch
         {
             0 => SortOrder.SizeDescending,
@@ -59,6 +60,7 @@ public partial class Search
             2 => SearchType.Duplicates,
             _ => throw new ArgumentOutOfRangeException(nameof(searchType)),
         };
+#pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
         Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
@@ -75,18 +77,9 @@ public partial class Search
     private bool IsActive(string page) => currentPage == page;
 
     private bool IsPageNavigationDisabled(string navigation)
-    {
-        if(navigation.Equals(PREVIOUS))
-        {
-            return currentPage.Equals("1");
-        }
-        else if(navigation.Equals(NEXT))
-        {
-            return currentPage.Equals(itemsPerPage.ToString());
-        }
-
-        return false;
-    }
+        => navigation.Equals(PREVIOUS)
+                    ? currentPage.Equals("1")
+                    : navigation.Equals(NEXT) && currentPage.Equals(itemsPerPage.ToString());
 
     private async Task Previous()
     {
