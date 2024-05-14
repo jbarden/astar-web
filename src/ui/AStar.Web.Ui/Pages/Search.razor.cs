@@ -12,10 +12,10 @@ public partial class Search
     private const string PREVIOUS = "previous";
     private const string NEXT = "next";
     private string startingFolder = @"f:\wallhaven\named\q";
-    private int itemsPerPage = 20;
+    private int itemsPerPage = 30;
     private int searchType;
     private int sortOrder;
-    private int pages;
+    private int totalPages;
     private IReadOnlyCollection<int> pagesForPagination = [];
     private LoadingIndicator loadingIndicator = new();
     private bool accordionItem1Visible = true;
@@ -42,7 +42,7 @@ public partial class Search
     private async Task SearchForMatchingFiles()
     {
         await loadingIndicator.Show();
-        Files = new List<FileInfoDto>();
+        Files = [];
 #pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one
         var sortOrderAsEnum = sortOrder switch
         {
@@ -65,8 +65,8 @@ public partial class Search
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
         Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
         var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum });
-        pages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
-        pagesForPagination = PaginationService.GetPaginationInformation(pages);
+        totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
+        pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 
         Logger.LogInformation("FilesApiClient fileCount: {FileCount}", filesCount);
         accordionItem1Visible = false;
@@ -105,7 +105,7 @@ public partial class Search
 
     private async Task SetActive(string page)
     {
-        Files = new List<FileInfoDto>();
+        Files = [];
         currentPage = page;
         currentPageAsInt = int.Parse(currentPage);
 
