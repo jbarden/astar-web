@@ -1,0 +1,188 @@
+﻿@page "/search-duplicates"
+@using AStar.Web.UI.FilesApi
+@using AStar.Web.UI.Shared
+@using AStar.Web.UI.Components
+@using static AStar.Utilities.StringExtensions
+
+<LoadingIndicator @ref="loadingIndicator">
+    <Accordion>
+        <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
+            <AccordionHeader Background="Background.Primary">
+                <Heading Size="HeadingSize.Is5">
+                    <AccordionToggle>Search</AccordionToggle>
+                </Heading>
+            </AccordionHeader>
+            <AccordionBody>
+                <Row>
+                    <Column ColumnSize="ColumnSize.Is12.OnDesktop">
+                        <Card Margin="Margin.Is4.FromBottom">
+                            <CardBody Background="Background.Primary">
+                                <Fields>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Search Folder
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <TextEdit Placeholder="Please specify the starting folder"
+                                                      @bind-text="@startingFolder" id="startingFolder" />
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Items Per Page
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
+                                                           WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
+                                                           id="itemsPerPage" />
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
+                                <Fields>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Sort Order
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is6.OnTablet.Is9.OnDesktop">
+                                            <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
+                                                <SelectItem Value="0">Size Descending</SelectItem>
+                                                <SelectItem Value="1">Size Ascending</SelectItem>
+                                                <SelectItem Value="2">Name Descending</SelectItem>
+                                                <SelectItem Value="3">Name Ascending</SelectItem>
+                                            </Select>
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is6.OnTablet.Is9.OnDesktop">
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
+                                <Fields>
+                                    <Field Horizontal JustifyContent="JustifyContent.End">
+                                        <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
+                                            <Switch TValue="bool" @bind-Checked="@recursiveSearch">
+                                                Recursive Search?
+                                            </Switch>
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal JustifyContent="JustifyContent.End">
+                                        <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
+                                            <Button Color="Color.Success" Clicked="StartSearch"
+                                                    id="startSearch">
+                                                Submit
+                                            </Button>
+                                        </FieldBody>
+                                    </Field>
+                                </Fields>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                </Row>
+            </AccordionBody>
+        </AccordionItem>
+        <AccordionItem @bind-Visible="@accordionItem3Visible" Background="Background.Primary">
+            <AccordionHeader>
+                <Heading Size="HeadingSize.Is5">
+                    <AccordionToggle>Search Results</AccordionToggle>
+                </Heading>
+            </AccordionHeader>
+            <AccordionBody>
+                <Row>
+                    <Pagination Background="Background.Primary">
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">«</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                        @{
+                            foreach(var pageOrdinal in pagesForPagination)
+                            {
+                                var pageNumberAsString = pageOrdinal.ToString();
+                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        @pageNumberAsString
+                                    </PaginationLink>
+                                </PaginationItem>
+                            }
+                        }
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">»</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                    </Pagination>
+                </Row>
+                <Row>
+                    <CardDeck>
+                        @foreach(var fileGroup in FileGroups)
+                        {
+                            <Card Background="Background.Primary">
+                                <CardBody>
+                                    <CardTitle Size="4">
+                                        <div>Size: @fileGroup.Group.FileLength, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</div>
+                                    </CardTitle>
+                                @foreach(var file in fileGroup.Files)
+                                {
+                                    <Card Background="Background.Primary">
+                                        <CardBody>
+                                            <CardTitle Size="4">
+                                                <div>@file.Name</div>
+                                            </CardTitle>
+                                            <CardText>
+                                                <div><ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="750"></ImageComponent></div>
+                                                <div>@file.FullName</div>
+                                                <div>Size: @file.SizeForDisplay</div>
+                                                <div>W x H: @file.Width x @file.Height</div>
+                                                @{
+                                                    if(!file.DeletePending)
+                                                    {
+                                                        <div><Button Clicked="@(()=>MarkForDeletion(file.FullName))" Color="Color.Danger">Delete</Button></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <Field Background="Background.Success">
+                                                            <FieldLabel>@DeletionStatus</FieldLabel>
+                                                        </Field>
+                                                            <Button Clicked="@(()=>UndoMarkForDeletion(file.FullName))" Color="Color.Info">Undo</Button>
+                                                    }
+                                                }
+                                            </CardText>
+                                        </CardBody>
+                                    </Card>
+                                }
+                                </CardBody>
+                            </Card>
+                    }
+                        </CardDeck>
+                </Row>
+                <Row>
+                    <Pagination Background="Background.Primary">
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">«</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                        @{
+                            foreach(var pageOrdinal in pagesForPagination)
+                            {
+                                var pageNumberAsString = pageOrdinal.ToString();
+                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        @pageNumberAsString
+                                    </PaginationLink>
+                                </PaginationItem>
+                            }
+                        }
+                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                            <PaginationLink Background="Background.Success">
+                                <span aria-hidden="true">»</span>
+                            </PaginationLink>
+                        </PaginationItem>
+                    </Pagination>
+                </Row>
+            </AccordionBody>
+        </AccordionItem>
+    </Accordion>
+</LoadingIndicator>

@@ -43,8 +43,4 @@
 	  <ProjectReference Include="..\AStar.Web.Configuration\AStar.Web.Configuration.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Configuration\" />
-	</ItemGroup>
-
 </Project>

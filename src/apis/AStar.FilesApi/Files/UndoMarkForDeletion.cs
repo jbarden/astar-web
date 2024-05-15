@@ -12,7 +12,7 @@ public class UndoMarkForDeletion(FilesContext context, ILogger<MarkForDeletion> 
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpDelete("UndoMarkForDeletion")]
+    [HttpDelete("undo-mark-for-deletion")]
     [SwaggerOperation(
         Summary = "Undo mark the specified file for deletion",
         Description = "Undo the mark the specified file for deletion.",

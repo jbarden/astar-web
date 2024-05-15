@@ -12,7 +12,6 @@ public class FileInfoDto
         Height = fileDetail.Height;
         Width = fileDetail.Width;
         Size = fileDetail.FileSize;
-        Height = fileDetail.Height;
         DetailsLastUpdated = fileDetail.DetailsLastUpdated;
         LastViewed = fileDetail.LastViewed;
     }

@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using AStar.Utilities;
 using AStar.Web.UI.Models;
+using AStar.Web.UI.Pages;
 using AStar.Web.UI.Shared;
 
 namespace AStar.Web.UI.FilesApi;
@@ -28,16 +29,44 @@ public class FilesApiClient
             : -1;
     }
 
+    public async Task<int> GetDuplicateFilesCountAsync(SearchParameters searchParameters)
+    {
+        var response = await httpClient.GetAsync($"api/files/count-duplicates?{searchParameters}");
+
+        logger.LogWarning("Getting the count of matching duplicate files.");
+
+        return response.IsSuccessStatusCode
+            ? int.Parse(await response.Content.ReadAsStringAsync())
+            : -1;
+    }
+
     public async Task<IEnumerable<FileInfoDto>> GetFilesAsync(SearchParameters searchParameters)
     {
         var response = await httpClient.GetAsync($"api/files/list?{searchParameters}");
 
-        logger.LogWarning("Getting the count of matching files.");
+        logger.LogWarning("Getting the list of files matching the criteria.");
 
         if(response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
             return content.FromJson<IEnumerable<FileInfoDto>>(new(JsonSerializerDefaults.Web));
+        }
+        else
+        {
+            throw new InvalidOperationException("God won't give me a break...");
+        }
+    }
+
+    public async Task<IReadOnlyCollection<DuplicateGroup>> GetDuplicateFilesAsync(SearchParameters searchParameters)
+    {
+        var response = await httpClient.GetAsync($"api/files/list-duplicates?{searchParameters}");
+
+        logger.LogWarning("Getting the list of duplicate files matching the criteria.");
+
+        if(response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            return content.FromJson<IReadOnlyCollection<DuplicateGroup>>(new(JsonSerializerDefaults.Web));
         }
         else
         {
@@ -59,6 +88,7 @@ public class FilesApiClient
         catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
             return new() { Status = "Could not get a response from the Files API." }!;
         }
     }
@@ -68,15 +98,16 @@ public class FilesApiClient
         try
         {
             logger.LogWarning("Marking the {FileName} for deletion.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/markForDeletion?request={fullName}");
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
-                ? "Marked for deletion"
-                : await response.Content.ReadAsStringAsync();
+                            ? "Marked for deletion"
+                            : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
             return ex.Message;
         }
     }
@@ -86,7 +117,7 @@ public class FilesApiClient
         try
         {
             logger.LogWarning("Unmarking the {FileName} for deletion.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/undoMarkForDeletion?request={fullName}");
+            var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
                 ? "Mark for deletion has been undone"

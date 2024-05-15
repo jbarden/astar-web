@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;
 
-public class DuplicatesCountShould : IClassFixture<DuplicatesCountFixture>
+public class CountDuplicatesShould : IClassFixture<CountDuplicatesFixture>
 {
-    private readonly DuplicatesCountFixture mockFilesFixture;
+    private readonly CountDuplicatesFixture mockFilesFixture;
 
-    public DuplicatesCountShould(DuplicatesCountFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
+    public CountDuplicatesShould(CountDuplicatesFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Fact]
     public void ReturnBadRequestWhenNoSearchFolderSpecified()

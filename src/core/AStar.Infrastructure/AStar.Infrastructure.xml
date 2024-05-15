@@ -84,12 +84,19 @@
              <param name="sortOrder"></param>
              <returns></returns>
         </member>
-        <member name="M:AStar.Infrastructure.EnumerableExtensions.GroupDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
-             <summary>
-            
-             </summary>
-             <param name="files"></param>
-             <returns></returns>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.GetDuplicatesCount(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
+            <summary>
+            Gets the count of duplicates, grouped by Size, Height and Width.
+            </summary>
+            <param name="files">The files to return grouped together.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.GetDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
+            <summary>
+            Gets the count of duplicates, grouped by Size, Height and Width.
+            </summary>
+            <param name="files">The files to return grouped together.</param>
+            <returns></returns>
         </member>
         <member name="T:AStar.Infrastructure.Migrations.AddTagTables">
             <inheritdoc />

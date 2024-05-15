@@ -12,7 +12,7 @@ public class MarkForDeletion(FilesContext context, ILogger<MarkForDeletion> logg
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpDelete("MarkForDeletion")]
+    [HttpDelete("mark-for-deletion")]
     [SwaggerOperation(
         Summary = "Mark the specified file for deletion",
         Description = "Mark the specified file for deletion - the file will NOT be deleted, just marked for deletion, please run the separate delete method to actually delete the file.",

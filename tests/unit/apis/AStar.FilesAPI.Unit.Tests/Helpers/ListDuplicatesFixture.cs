@@ -4,19 +4,19 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.FilesAPI.Helpers;
 
-public class DuplicatesCountFixture : IDisposable
+public class ListDuplicatesFixture : IDisposable
 {
     private bool disposedValue;
 
-    public DuplicatesCountFixture()
+    public ListDuplicatesFixture()
     {
         MockFilesContext = new MockFilesContext().CreateContext();
-        SUT = new DuplicatesCount(MockFilesContext, NullLogger<DuplicatesCount>.Instance);
+        SUT = new ListDuplicates(MockFilesContext, NullLogger<ListDuplicates>.Instance);
     }
 
     public FilesContext MockFilesContext { get; }
 
-    public DuplicatesCount SUT { get; }
+    public ListDuplicates SUT { get; }
 
     public void Dispose()
     {

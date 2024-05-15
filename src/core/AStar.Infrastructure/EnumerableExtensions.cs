@@ -33,11 +33,11 @@ public static class EnumerableExtensions
                                                 };
 
     /// <summary>
-    ///
+    /// Gets the count of duplicates, grouped by Size, Height and Width.
     /// </summary>
-    /// <param name="files"></param>
+    /// <param name="files">The files to return grouped together.</param>
     /// <returns></returns>
-    public static int GroupDuplicates(this IEnumerable<FileDetail> files)
+    public static int GetDuplicatesCount(this IEnumerable<FileDetail> files)
     {
         var duplicatesBySize = files.AsEnumerable()
                 .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
@@ -46,4 +46,14 @@ public static class EnumerableExtensions
 
         return duplicatesBySize.Length;
     }
+
+    /// <summary>
+    /// Gets the count of duplicates, grouped by Size, Height and Width.
+    /// </summary>
+    /// <param name="files">The files to return grouped together.</param>
+    /// <returns></returns>
+    public static IEnumerable<IGrouping<FileSize, FileDetail>> GetDuplicates(this IEnumerable<FileDetail> files)
+                                => files
+                                    .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
+                                             new FileSizeEqualityComparer()).Where(files => files.Count() > 1);
 }

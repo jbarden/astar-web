@@ -11,8 +11,15 @@ public static class Services
 {
     public static IServiceCollection Configure(IServiceCollection services, ConfigurationManager configuration)
     {
-        _ = services.Configure<FilesApiConfiguration>(configuration.GetSection(FilesApiConfiguration.SectionLocation));
-        _ = services.Configure<ImagesApiConfiguration>(configuration.GetSection(ImagesApiConfiguration.SectionLocation));
+        _ = services.AddOptions<FilesApiConfiguration>()
+                    .Bind(configuration.GetSection(FilesApiConfiguration.SectionLocation))
+                    .ValidateDataAnnotations()
+                    .ValidateOnStart();
+        _ = services.AddOptions<ImagesApiConfiguration>()
+                    .Bind(configuration.GetSection(ImagesApiConfiguration.SectionLocation))
+                    .ValidateDataAnnotations()
+                    .ValidateOnStart();
+
         _ = services.AddRazorPages();
         _ = services.AddServerSideBlazor();
         _ = services.AddScoped<PaginationService>();
