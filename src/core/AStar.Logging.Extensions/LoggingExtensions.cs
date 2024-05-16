@@ -61,11 +61,13 @@ public static class LoggingExtensions
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="externalSettingsFile"></param>
-    /// <returns></returns>
-    public static void CreateBootstrapLogger(this WebApplicationBuilder builder, string externalSettingsFile = "")
+    /// <returns>The original instance of the <see href="WebApplicationBuilder"></see> to facilitate method chaining (AKA fluent configuration).</returns>
+    public static WebApplicationBuilder CreateBootstrapLogger(this WebApplicationBuilder builder, string externalSettingsFile = "")
     {
         builder = builder.UseSerilogLogging(externalSettingsFile);
 
         _ = builder.Services.AddSerilogLogging();
+
+        return builder;
     }
 }

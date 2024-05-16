@@ -1,10 +1,6 @@
-using System;
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Files;
-using AStar.FilesApi.Models;
 using AStar.FilesAPI.Helpers;
-using AStar.Web.Domain;
-using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;

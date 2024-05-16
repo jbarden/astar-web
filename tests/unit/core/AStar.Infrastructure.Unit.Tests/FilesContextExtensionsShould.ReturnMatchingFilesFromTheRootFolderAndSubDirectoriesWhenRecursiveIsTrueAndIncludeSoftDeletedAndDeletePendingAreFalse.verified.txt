@@ -1,0 +1,186 @@
+﻿[
+  {
+    FileName: .editorconfig,
+    IsImage: false,
+    DirectoryName: c:\temp\Famous,
+    FileSize: 12756,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: .gitattributes,
+    IsImage: false,
+    DirectoryName: c:\temp\Famous,
+    FileSize: 2581,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 12.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 4529837,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 12.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame\subfolder,
+    FileSize: 4529837,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 2.jpg,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 3703840,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 2.jpg,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame\subfolder,
+    FileSize: 3703840,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 3aE.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 57995,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 3E.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 140283,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 4.jpg,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 3373501,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 5.jpg,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 4272823,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 6.jpg,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 162205,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 7.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 3331810,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 8.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 443665,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: 9.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 483409,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: A-0005.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 646684,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: A-0141.JPG,
+    IsImage: true,
+    DirectoryName: c:\temp\1st Year Frame,
+    FileSize: 472630,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: api-creation-log.txt,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 75911,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: Files.db.sql,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 101079442,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: files.json,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 78791,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: files.list.txt,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 712847,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: Files.sqbpro,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 1550,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: replace.ps1,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 2388,
+    SoftDeleted: false,
+    DeletePending: false
+  },
+  {
+    FileName: test.txt,
+    IsImage: false,
+    DirectoryName: c:\temp,
+    FileSize: 2185,
+    SoftDeleted: false,
+    DeletePending: false
+  }
+]

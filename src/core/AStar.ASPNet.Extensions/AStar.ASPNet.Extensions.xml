@@ -66,5 +66,17 @@
             </param>
             <returns>The original <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> to facilitate method chaining.</returns>
         </member>
+        <member name="T:AStar.ASPNet.Extensions.WebApplicationBuilderExtensions.WebApplicationBuilderExtensions">
+            <summary>
+            The <see href=""></see> class containing applicable extensions for the <see href="WebApplicationBuilder"></see> class.
+            </summary>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.WebApplicationBuilderExtensions.WebApplicationBuilderExtensions.DisableServerHeader(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            This method will, unsurprisingly, disable the "Server" Header for all responses from the Kestrel Server.
+            </summary>
+            <param name="builder">The instance of <see href="WebApplicationBuilder"></see> to configure.</param>
+            <returns>The original instance of the <see href="WebApplicationBuilder"></see> to facilitate method chaining (AKA fluent configuration).</returns>
+        </member>
     </members>
 </doc>

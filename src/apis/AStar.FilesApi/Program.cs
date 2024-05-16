@@ -1,5 +1,6 @@
 using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
+using AStar.ASPNet.Extensions.WebApplicationBuilderExtensions;
 using AStar.Logging.Extensions;
 using Serilog;
 
@@ -13,15 +14,18 @@ public static class Program
 
         try
         {
-            builder.CreateBootstrapLogger("astar-logging-settings.json");
+            _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
+                       .DisableServerHeader()
+                       .AddLogging("astar-logging-settings.json");
+
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
-            _ = builder.AddLogging("astar-logging-settings.json");
             _ = builder.Services.Configure();
 
             _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
-            var app = builder.Build();
-            _ = app.ConfigurePipeline();
+            var app = builder.Build()
+                             .ConfigurePipeline();
+
             _ = ConfigurePipeline(app);
 
             app.Run();

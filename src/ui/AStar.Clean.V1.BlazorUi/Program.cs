@@ -19,10 +19,11 @@ public static class Program
 
         try
         {
-            builder.CreateBootstrapLogger("astar-logging-settings.json");
+            _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
+                       .AddLogging("astar-logging-settings.json")
+                       .Services.Configure();
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
-            _ = builder.AddLogging("astar-logging-settings.json");
-            _ = builder.Services.Configure();
+
             ConfigureServices(builder);
 
             var app = builder.Build();

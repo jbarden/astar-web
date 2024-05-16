@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.Shared;
 
 namespace AStar.Web.UI.ImagesApi;
@@ -7,11 +8,13 @@ public class ImagesApiClient
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new(JsonSerializerDefaults.Web);
     private readonly HttpClient httpClient;
+    private readonly FilesApiClient filesApiClient;
     private readonly ILogger<ImagesApiClient> logger;
 
-    public ImagesApiClient(HttpClient httpClient, ILogger<ImagesApiClient> logger)
+    public ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClient, ILogger<ImagesApiClient> logger)
     {
         this.httpClient = httpClient;
+        this.filesApiClient = filesApiClient;
         this.logger = logger;
     }
 
@@ -39,17 +42,14 @@ public class ImagesApiClient
 
         return response.IsSuccessStatusCode
             ? await response.Content.ReadAsStreamAsync()
-            : CreateNotFoundMemoryStream(imagePath);
+            : await CreateNotFoundMemoryStream(imagePath);
     }
 
-    /// <summary>
-    /// _ = filesApiClient.DeleteFileAsync(fileName, true);
-    /// </summary>
-    /// <param name="fileName"></param>
-    /// <returns></returns>
-    private MemoryStream CreateNotFoundMemoryStream(string fileName)
+    private async Task<MemoryStream> CreateNotFoundMemoryStream(string fileName)
     {
-        logger.LogWarning("Could not delete: {FileName}", fileName);
-        return new(File.ReadAllBytes("404.jpg"));
+        logger.LogWarning("Could not find: {FileName}", fileName);
+        _ = await filesApiClient.MarkForDeletionAsync(fileName);
+
+        return new(Models.NotFound.Image);
     }
 }

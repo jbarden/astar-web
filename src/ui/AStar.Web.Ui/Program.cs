@@ -33,21 +33,19 @@ public class Program
 
     private static WebApplication RunConfiguration(WebApplicationBuilder builder)
     {
-        builder.CreateBootstrapLogger("astar-logging-settings.json");
-        Log.Information("Starting: {AppName}", typeof(Program).AssemblyQualifiedName);
-        _ = builder.AddLogging("astar-logging-settings.json");
-        Log.Information("Starting2 {AppName}", typeof(Program).AssemblyQualifiedName);
-        _ = builder.Services.Configure();
+        _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
+                   .AddLogging("astar-logging-settings.json")
+                   .Services.Configure();
 
-        Log.Information("Starting3 {AppName}", typeof(Program).AssemblyQualifiedName);
+        Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
         _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
-        Log.Information("Starting4 {AppName}", typeof(Program).AssemblyQualifiedName);
+        Log.Information("Starting2 {AppName}", typeof(Program).AssemblyQualifiedName);
         var app = builder.Build();
-        Log.Information("Starting5 {AppName}", typeof(Program).AssemblyQualifiedName);
+        Log.Information("Starting3 {AppName}", typeof(Program).AssemblyQualifiedName);
         _ = ConfigurePipeline(app);
 
-        Log.Information("Starting6 {AppName}", typeof(Program).AssemblyQualifiedName);
+        Log.Information("Starting4 {AppName}", typeof(Program).AssemblyQualifiedName);
         return app;
     }
 

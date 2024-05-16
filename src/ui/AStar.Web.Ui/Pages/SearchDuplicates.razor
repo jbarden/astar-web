@@ -29,7 +29,7 @@
                                     </Field>
                                     <Field Horizontal>
                                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
-                                            Items Per Page
+                                            Groups Per Page
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
                                             <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
@@ -115,47 +115,53 @@
                     </Pagination>
                 </Row>
                 <Row>
-                    <CardDeck>
-                        @foreach(var fileGroup in FileGroups)
-                        {
-                            <Card Background="Background.Primary">
-                                <CardBody>
-                                    <CardTitle Size="4">
-                                        <div>Size: @fileGroup.Group.FileLength, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</div>
-                                    </CardTitle>
-                                @foreach(var file in fileGroup.Files)
-                                {
-                                    <Card Background="Background.Primary">
-                                        <CardBody>
-                                            <CardTitle Size="4">
-                                                <div>@file.Name</div>
-                                            </CardTitle>
-                                            <CardText>
-                                                <div><ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="750"></ImageComponent></div>
+                    @foreach(var fileGroup in FileGroups)
+                    {
+                        var imageDivClass = "imageDiv";
+                        <table>
+                            <thead>
+                                <th>
+                                    <h2 class="centre">Duplicate Group Details - Size: @fileGroup.Group.FileSizeForDisplay, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</h2>
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @foreach(var file in fileGroup.Files)
+                                        {
+                                        <div class="@imageDivClass">
+                                            <h4>@file.Name</h4>
+                                            <br />
+                                                <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="750"></ImageComponent>
+                                                <br />
+
                                                 <div>@file.FullName</div>
                                                 <div>Size: @file.SizeForDisplay</div>
                                                 <div>W x H: @file.Width x @file.Height</div>
-                                                @{
-                                                    if(!file.DeletePending)
-                                                    {
-                                                        <div><Button Clicked="@(()=>MarkForDeletion(file.FullName))" Color="Color.Danger">Delete</Button></div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <Field Background="Background.Success">
-                                                            <FieldLabel>@DeletionStatus</FieldLabel>
-                                                        </Field>
-                                                            <Button Clicked="@(()=>UndoMarkForDeletion(file.FullName))" Color="Color.Info">Undo</Button>
-                                                    }
+                                                @if(!file.DeletePending)
+                                                {
+                                                    <div><Button Clicked="@(()=>MarkForDeletion(file.FullName))" Color="Color.Danger">Delete</Button></div>
                                                 }
-                                            </CardText>
-                                        </CardBody>
-                                    </Card>
-                                }
-                                </CardBody>
-                            </Card>
+                                                else
+                                                {
+                                                    <Field Background="Background.Success">
+                                                        <FieldLabel>@DeletionStatus</FieldLabel>
+                                                    </Field>
+                                                    <Button Clicked="@(()=>UndoMarkForDeletion(file.FullName))" Color="Color.Info">Undo</Button>
+                                                }
+                                            </div>
+
+                                            imageDivClass = "";
+                                        }
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     }
-                        </CardDeck>
                 </Row>
                 <Row>
                     <Pagination Background="Background.Primary">
