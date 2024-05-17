@@ -37,7 +37,7 @@ public class MarkForDeletion(FilesContext context, ILogger<MarkForDeletion> logg
             _ = context.SaveChanges();
         }
 
-        logger.LogDebug("File {FileName} marked for deletion", specifiedFile);
+        logger.LogDebug("File {FileName} marked for deletion", request);
 
         return NoContent();
     }

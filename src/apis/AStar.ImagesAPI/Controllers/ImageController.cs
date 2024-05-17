@@ -15,7 +15,7 @@ namespace AStar.ImagesAPI.Controllers;
 [ApiController]
 public class ImageController(IFileSystem fileSystem, IImageService imageService, FilesContext context) : ControllerBase
 {
-    private const int MaximumHeightAndWidthForThumbnail = 750;
+    private const int MaximumHeightAndWidthForThumbnail = 850;
 
     [HttpGet("details", Name = "ImageDetail")]
     [Produces("application/json")]

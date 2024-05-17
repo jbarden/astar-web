@@ -32,7 +32,7 @@
                                             Groups Per Page
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
+                                            <NumericPicker @bind-Value="@groupsPerPage" ModifyValueOnWheel
                                                            WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
                                                            id="itemsPerPage" />
                                         </FieldBody>
@@ -93,7 +93,7 @@
                     <Pagination Background="Background.Primary">
                         <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
                             <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">«</span>
+                                <span aria-hidden="true">« Previous</span>
                             </PaginationLink>
                         </PaginationItem>
                         @{
@@ -109,10 +109,18 @@
                         }
                         <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
                             <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">»</span>
+                                <span aria-hidden="true">Next »</span>
                             </PaginationLink>
                         </PaginationItem>
                     </Pagination>
+                    <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
+                        @{
+                            foreach(var pageNumber in pages)
+                            {
+                                <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                            }
+                        }
+                    </Select>
                 </Row>
                 <Row>
                     @foreach(var fileGroup in FileGroups)
@@ -121,7 +129,7 @@
                         <table>
                             <thead>
                                 <th>
-                                    <h2 class="centre">Duplicate Group Details - Size: @fileGroup.Group.FileSizeForDisplay, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</h2>
+                                <h2 class="centre"><br />Duplicate Group Details<br />Size: @fileGroup.Group.FileSizeForDisplay, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</h2>
                                 </th>
                             </thead>
                             <tbody>
@@ -129,10 +137,10 @@
                                     <td>
                                         @foreach(var file in fileGroup.Files)
                                         {
-                                        <div class="@imageDivClass">
+                                            <div class="@imageDivClass">
                                             <h4>@file.Name</h4>
                                             <br />
-                                                <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="750"></ImageComponent>
+                                                <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="850"></ImageComponent>
                                                 <br />
 
                                                 <div>@file.FullName</div>
@@ -144,19 +152,17 @@
                                                 }
                                                 else
                                                 {
-                                                    <Field Background="Background.Success">
-                                                        <FieldLabel>@DeletionStatus</FieldLabel>
+                                                    <Field Background="Background.Success" Border="Border.Is1.Rounded">
+                                                        <FieldLabel> @DeletionStatus</FieldLabel>
+                                                        <FieldBody ColumnSize="ColumnSize.Is4">
+                                                            <Button Clicked="@(()=>UndoMarkForDeletion(file.FullName))" Color="Color.Info">Undo</Button>
+                                                        </FieldBody>
                                                     </Field>
-                                                    <Button Clicked="@(()=>UndoMarkForDeletion(file.FullName))" Color="Color.Info">Undo</Button>
                                                 }
                                             </div>
 
-                                            imageDivClass = "";
+                                            imageDivClass = "imageDiv2";
                                         }
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
                                     </td>
                                 </tr>
                             </tbody>
@@ -167,7 +173,7 @@
                     <Pagination Background="Background.Primary">
                         <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
                             <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">«</span>
+                                <span aria-hidden="true">« Previous</span>
                             </PaginationLink>
                         </PaginationItem>
                         @{
@@ -183,7 +189,7 @@
                         }
                         <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
                             <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">»</span>
+                                <span aria-hidden="true">Next »</span>
                             </PaginationLink>
                         </PaginationItem>
                     </Pagination>

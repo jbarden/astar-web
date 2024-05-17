@@ -10,8 +10,8 @@ public partial class SearchDuplicates
 {
     private const string PREVIOUS = "previous";
     private const string NEXT = "next";
-    private string startingFolder = @"f:\wallhaven\named\q";
-    private int itemsPerPage = 30;
+    private string startingFolder = @"f:\wallhaven\named";
+    private int groupsPerPage = 10;
     private int sortOrder;
     private int totalPages;
     private IReadOnlyCollection<int> pagesForPagination = [];
@@ -21,6 +21,7 @@ public partial class SearchDuplicates
     private string currentPage = "1";
     private int currentPageAsInt = 1;
     private bool recursiveSearch = true;
+    private IEnumerable<int> pages = [];
 
     public IEnumerable<DuplicateGroup> FileGroups { get; set; } = [];
 
@@ -53,15 +54,25 @@ public partial class SearchDuplicates
 #pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, SearchType.Duplicates);
-        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
+        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage });
         var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum });
-        totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
+        totalPages = (int)Math.Ceiling(filesCount / (decimal)groupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 
+        pages = Enumerable.Range(1, totalPages).ToList();
         Logger.LogInformation("FilesApiClient fileCount: {FileCount}", filesCount);
         accordionItem1Visible = false;
         accordionItem3Visible = true;
         await loadingIndicator.Hide();
+    }
+
+    private async Task OnSelectedValueChanged(int value)
+    {
+        currentPageAsInt = value;
+        currentPage = value.ToString();
+
+        await SetActive(currentPage);
+
     }
 
     private bool IsActive(string page) => currentPage == page;
@@ -69,7 +80,7 @@ public partial class SearchDuplicates
     private bool IsPageNavigationDisabled(string navigation)
         => navigation.Equals(PREVIOUS)
                     ? currentPage.Equals("1")
-                    : navigation.Equals(NEXT) && currentPage.Equals(itemsPerPage.ToString());
+                    : navigation.Equals(NEXT) && currentPage.Equals(groupsPerPage.ToString());
 
     private async Task Previous()
     {
@@ -85,7 +96,7 @@ public partial class SearchDuplicates
     private async Task Next()
     {
         currentPageAsInt = int.Parse(currentPage);
-        if(currentPageAsInt < itemsPerPage)
+        if(currentPageAsInt < groupsPerPage)
         {
             currentPage = (currentPageAsInt + 1).ToString();
         }

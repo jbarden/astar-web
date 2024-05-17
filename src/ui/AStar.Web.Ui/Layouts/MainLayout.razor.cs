@@ -24,6 +24,7 @@ public partial class MainLayout
             Theme.ColorOptions.Primary = SupportedColours.Black;
             Theme.BodyOptions.BackgroundColor = SupportedColours.White;
             Theme.BodyOptions.TextColor = SupportedColours.Black;
+            Theme.IsRounded = true;
 
             await InvokeAsync(Theme.ThemeHasChanged);
         }

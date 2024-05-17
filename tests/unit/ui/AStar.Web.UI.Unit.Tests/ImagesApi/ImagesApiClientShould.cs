@@ -1,3 +1,4 @@
+using AStar.Web.UI.FilesApi;
 using AStar.Web.UI.MockMessageHandlers;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -14,8 +15,9 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
+        var filesApiClient = new FilesApiClient(httpClient,NullLogger<FilesApiClient>.Instance);
 
-        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, filesApiClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
@@ -31,8 +33,9 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
+        var filesApiClient = new FilesApiClient(httpClient,NullLogger<FilesApiClient>.Instance);
 
-        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, filesApiClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
@@ -48,8 +51,9 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
+        var filesApiClient = new FilesApiClient(httpClient,NullLogger<FilesApiClient>.Instance);
 
-        var sut = new ImagesApiClient(httpClient, NullLogger<ImagesApiClient>.Instance);
+        var sut = new ImagesApiClient(httpClient, filesApiClient, NullLogger<ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 

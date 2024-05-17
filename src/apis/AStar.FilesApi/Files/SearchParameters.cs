@@ -24,7 +24,7 @@ public partial class SearchParameters
     [Required]
     public int ItemsPerPage { get; set; } = 10;
 
-    [Range(50, 750, ErrorMessage = "Please specify a thumbnail size between 50 and 750 pixels.")]
+    [Range(50, 850, ErrorMessage = "Please specify a thumbnail size between 50 and 850 pixels.")]
     public int MaximumSizeOfThumbnail { get; set; } = 150;
 
     [Range(50, 999999, ErrorMessage = "Please specify an image size between 500 and 999999 (NOT recommended!) pixels.")]

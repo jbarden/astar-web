@@ -1,6 +1,9 @@
 ﻿.imageDiv {
     float: left;
-    width: 50%
+    width: 900px;
+}
+.imageDiv2 {
+    float: left;
 }
 
 .centre {
