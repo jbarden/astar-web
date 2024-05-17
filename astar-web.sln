@@ -110,7 +110,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.TechnicalDebt.Reporti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.TechnicalDebt.Reporting.Unit.Tests", "tests\unit\core\AStar.TechnicalDebt.Reporting.Unit.Tests\AStar.TechnicalDebt.Reporting.Unit.Tests.csproj", "{5CF0D874-2B7D-4B0C-9C99-21803C9074C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Update.Database", "src\core\AStar.Update.Database\AStar.Update.Database.csproj", "{99F8FCF7-7C50-46D0-BA0C-C2F7E66A5C35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Update.Database", "src\core\AStar.Update.Database\AStar.Update.Database.csproj", "{99F8FCF7-7C50-46D0-BA0C-C2F7E66A5C35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

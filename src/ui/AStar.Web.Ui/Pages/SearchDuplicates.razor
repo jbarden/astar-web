@@ -90,37 +90,41 @@
             </AccordionHeader>
             <AccordionBody>
                 <Row>
-                    <Pagination Background="Background.Primary">
-                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">« Previous</span>
-                            </PaginationLink>
-                        </PaginationItem>
-                        @{
-                            foreach(var pageOrdinal in pagesForPagination)
-                            {
-                                var pageNumberAsString = pageOrdinal.ToString();
-                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
-                                        @pageNumberAsString
-                                    </PaginationLink>
-                                </PaginationItem>
+                    <Column ColumnSize="ColumnSize.Is8">
+                        <Pagination Background="Background.Primary">
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                                <PaginationLink Background="Background.Success">
+                                    <span aria-hidden="true">« Previous</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                            @{
+                                foreach(var pageOrdinal in pagesForPagination)
+                                {
+                                    var pageNumberAsString = pageOrdinal.ToString();
+                                    <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                        <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                            @pageNumberAsString
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                }
                             }
-                        }
-                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">Next »</span>
-                            </PaginationLink>
-                        </PaginationItem>
-                    </Pagination>
-                    <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
-                        @{
-                            foreach(var pageNumber in pages)
-                            {
-                                <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                                <PaginationLink Background="Background.Success">
+                                    <span aria-hidden="true">Next »</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                        </Pagination>
+                    </Column>
+                    <Column ColumnSize="ColumnSize.Is2">
+                        <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
+                            @{
+                                foreach(var pageNumber in pages)
+                                {
+                                    <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                                }
                             }
-                        }
-                    </Select>
+                        </Select>
+                    </Column>                        
                 </Row>
                 <Row>
                     @foreach(var fileGroup in FileGroups)
@@ -142,7 +146,6 @@
                                             <br />
                                                 <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="850"></ImageComponent>
                                                 <br />
-
                                                 <div>@file.FullName</div>
                                                 <div>Size: @file.SizeForDisplay</div>
                                                 <div>W x H: @file.Width x @file.Height</div>
@@ -170,29 +173,41 @@
                     }
                 </Row>
                 <Row>
-                    <Pagination Background="Background.Primary">
-                        <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">« Previous</span>
-                            </PaginationLink>
-                        </PaginationItem>
-                        @{
-                            foreach(var pageOrdinal in pagesForPagination)
-                            {
-                                var pageNumberAsString = pageOrdinal.ToString();
-                                <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
-                                        @pageNumberAsString
-                                    </PaginationLink>
-                                </PaginationItem>
+                    <Column ColumnSize="ColumnSize.Is8">
+                        <Pagination Background="Background.Primary">
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
+                                <PaginationLink Background="Background.Success">
+                                    <span aria-hidden="true">« Previous</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                            @{
+                                foreach(var pageOrdinal in pagesForPagination)
+                                {
+                                    var pageNumberAsString = pageOrdinal.ToString();
+                                    <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
+                                        <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                            @pageNumberAsString
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                }
                             }
-                        }
-                        <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">Next »</span>
-                            </PaginationLink>
-                        </PaginationItem>
-                    </Pagination>
+                            <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
+                                <PaginationLink Background="Background.Success">
+                                    <span aria-hidden="true">Next »</span>
+                                </PaginationLink>
+                            </PaginationItem>
+                        </Pagination>
+                    </Column>
+                    <Column ColumnSize="ColumnSize.Is2">
+                        <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
+                            @{
+                                foreach(var pageNumber in pages)
+                                {
+                                    <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                                }
+                            }
+                        </Select>
+                    </Column>     
                 </Row>
             </AccordionBody>
         </AccordionItem>

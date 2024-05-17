@@ -72,7 +72,6 @@ public partial class SearchDuplicates
         currentPage = value.ToString();
 
         await SetActive(currentPage);
-
     }
 
     private bool IsActive(string page) => currentPage == page;
