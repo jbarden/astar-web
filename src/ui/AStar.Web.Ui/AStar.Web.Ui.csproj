@@ -32,7 +32,7 @@
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.2" />
 		<PackageReference Include="Blazorise.DataGrid" Version="1.5.2" />
 		<PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
