@@ -42,7 +42,7 @@ public partial class SearchDuplicates
     {
         await loadingIndicator.Show();
         FileGroups = [];
-#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning disable S3928 // Parameter names used in ArgumentException constructors should match an existing one
         var sortOrderAsEnum = sortOrder switch
         {
             0 => SortOrder.SizeDescending,
@@ -51,11 +51,11 @@ public partial class SearchDuplicates
             3 => SortOrder.NameAscending,
             _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
         };
-#pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, SearchType.Duplicates);
-        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage });
-        var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum });
+        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage });
+        var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum });
         totalPages = (int)Math.Ceiling(filesCount / (decimal)groupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 

@@ -51,7 +51,7 @@
              <param name="recursive"></param>
              <returns></returns>
         </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String,System.Boolean,System.Boolean)">
+        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
              <summary>
             
              </summary>
@@ -61,6 +61,7 @@
              <param name="searchType"></param>
              <param name="includeSoftDeleted"></param>
              <param name="includeMarkedForDeletion"></param>
+             <param name="cancellationToken"></param>
              <returns></returns>
         </member>
         <member name="T:AStar.Infrastructure.EnumerableExtensions">

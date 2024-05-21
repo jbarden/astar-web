@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions.Handlers;
 using AStar.Logging.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 
 namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
@@ -11,20 +12,45 @@ namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// The <see cref="Configure"/> will do exactly what it says on the tin...
+    /// The <see cref="ConfigureUi"/> will do exactly what it says on the tin...this time around, this is for the UI.
+    /// </summary>
+    /// <param name="services">An instance of the <see cref="IServiceCollection"/> interface that will be configured with the the Global Exception Handler,
+    /// and the controllers (a UI isn't much use without them...).</param>
+    /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.</returns>
+    /// <seealso href="ConfigureApi"></seealso>
+    public static IServiceCollection ConfigureUi(this IServiceCollection services)
+    {
+        _ = services
+                .AddExceptionHandler<GlobalExceptionHandler>()
+                .AddControllers();
+
+        return services;
+    }
+
+    /// <summary>
+    /// The <see cref="ConfigureApi"/> will do exactly what it says on the tin... just, this time, it is API-specific.
     /// </summary>
     /// <param name="services">An instance of the <see cref="IServiceCollection"/> interface that will be configured with the current methods.</param>
-    /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.   </returns>
-    public static IServiceCollection Configure(this IServiceCollection services)
+    /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.</returns>
+    /// <seealso href="ConfigureUi"></seealso>
+    public static IServiceCollection ConfigureApi(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
-        _ = services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-        _ = services.AddEndpointsApiExplorer();
-        _ = services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            c.EnableAnnotations();
-        });
+        _ = services.AddControllers(options =>
+                        {
+                            options.ReturnHttpNotAcceptable = true;
+                            options.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+                            options.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+                        })
+                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+        _ = services.AddEndpointsApiExplorer()
+                    .AddSwaggerGen(c =>
+                        {
+                            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                            c.EnableAnnotations();
+                        });
+
         _ = services.AddHealthChecks();
 
         return services;

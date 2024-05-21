@@ -43,7 +43,7 @@ public partial class Search
     {
         await loadingIndicator.Show();
         Files = [];
-#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning disable S3928 // Parameter names used in ArgumentException constructors should match an existing one
         var sortOrderAsEnum = sortOrder switch
         {
             0 => SortOrder.SizeDescending,
@@ -60,11 +60,11 @@ public partial class Search
             2 => SearchType.Duplicates,
             _ => throw new ArgumentOutOfRangeException(nameof(searchType)),
         };
-#pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
-        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
-        var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum });
+        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsPerPage });
+        var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum });
         totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 

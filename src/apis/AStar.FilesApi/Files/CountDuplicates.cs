@@ -35,7 +35,7 @@ public class CountDuplicates(FilesContext context, ILogger<CountDuplicates> logg
         }
 
         var matchingFiles = context.Files
-                                   .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion)
+                                   .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, CancellationToken.None)
                                    .GetDuplicatesCount();
 
         logger.LogDebug("Duplicate File Count: {FileCount}", matchingFiles);

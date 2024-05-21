@@ -22,7 +22,7 @@ public static class Program
         {
             _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
                        .AddLogging("astar-logging-settings.json")
-                       .Services.Configure();
+                       .Services.ConfigureApi();
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
 
             _ = ConfigureServices(builder.Services, builder.Configuration);

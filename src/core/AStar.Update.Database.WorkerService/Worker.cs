@@ -1,39 +1,141 @@
 using AStar.Infrastructure.Data;
+using AStar.Update.Database.WorkerService.Models;
 using AStar.Web.Domain;
+using AStar.Web.Domain.Types;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
+using Microsoft.Extensions.Options;
 using SkiaSharp;
 
 namespace AStar.Update.Database.WorkerService;
 
-public class Worker(ILogger<Worker> logger) : BackgroundService
+public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directories) : BackgroundService
 {
-    private static readonly FilesContext Context = new(new DbContextOptionsBuilder<FilesContext>()
-            .UseSqlite("Data Source=F:\\files-db\\files.db")
-            .Options);
+    private static readonly FilesContext Context
+                        = new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        _ = Context.Database.EnsureCreated();
         while(!stoppingToken.IsCancellationRequested)
         {
-            Log.Logger.Information("duck you");
+            ProcessFilesMarkedForDeletion();
             logger.LogInformation("here we are");
-            Log.Logger.Information("AStar.Update.Database running at: {RunTime}", DateTimeOffset.Now);
+            logger.LogInformation("AStar.Update.Database running at: {RunTime}", DateTimeOffset.Now);
+            var files = new List<string>();
 
-#pragma warning disable S1075 // URIs should not be hardcoded
-            var files = Directory.EnumerateFiles(@"f:\wallhaven", "*.*", new EnumerationOptions(){RecurseSubdirectories = true, IgnoreInaccessible = true});
+            directories.Value.Directories
+                                    .ToList()
+                                    .ForEach(dir => GetFilesFromDirectory(dir, files));
+
             UpdateDirectoryFiles(files, stoppingToken);
-            files = Directory.EnumerateFiles(@"f:\LookAtNow", "*.*", new EnumerationOptions() { RecurseSubdirectories = true, IgnoreInaccessible = true });
-            UpdateDirectoryFiles(files, stoppingToken);
-#pragma warning restore S1075 // URIs should not be hardcoded
-            await Task.Delay(TimeSpan.FromMinutes(15), stoppingToken);
+            await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
         }
+    }
+
+    private static void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files, bool run = false)
+    {
+        if(!run)
+        {
+            return;
+        }
+
+        foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.DeletePending))
+        {
+            if(!files.Contains(Path.Combine(file.DirectoryName, file.FileName)))
+            {
+                _ = Context.Files.Remove(file);
+            }
+        }
+    }
+
+    private static void SaveChangesSafely(ILogger<Worker> logger)
+    {
+        try
+        {
+            _ = Context.SaveChanges();
+        }
+        catch(Exception ex)
+        {
+            if(!ex.Message.StartsWith("The database operation was expected to affect"))
+            {
+                logger.LogError(ex, "Error: {Error} occurred whilst saving changes - probably 'no records affected'", ex.Message);
+            }
+        }
+    }
+
+    private void GetFilesFromDirectory(string dir, List<string> files)
+    {
+        logger.LogInformation("Getting files in {Directory}", dir);
+        files.AddRange(Directory.EnumerateFiles(dir, "*.*",
+                            new EnumerationOptions()
+                            {
+                                RecurseSubdirectories = true,
+                                IgnoreInaccessible = true
+                            }
+                        ));
+        logger.LogInformation("Got files in {Directory}", dir);
     }
 
     private void UpdateDirectoryFiles(IEnumerable<string> files, CancellationToken stoppingToken)
     {
+        var filesInDb = Context.Files.Select(file => Path.Combine(file.DirectoryName, file.FileName));
+
+        ProcessNewFiles(files, filesInDb, stoppingToken);
+        ProcessMovedFiles(files, directories.Value.Directories);
+
+        RemoveFilesFromDbThatDoNotExistAnyMore(files);
+
+        SaveChangesSafely(logger);
+    }
+
+    private void ProcessFilesMarkedForDeletion()
+    {
+        Context.Files.Where(file => file.DeletePending)
+                     .ToList()
+                     .ForEach(file =>
+                     {
+                         if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
+                         {
+                             File.Delete(Path.Combine(file.DirectoryName, file.FileName));
+                         }
+
+                         file.SoftDeleted = true;
+                         file.DeletePending = false;
+                         file.DetailsLastUpdated = DateTime.UtcNow;
+                     });
+
+        _ = Context.SaveChanges();
+    }
+
+    private void ProcessMovedFiles(IEnumerable<string> files, string[] directories, bool run = false)
+    {
+        if(!run)
+        {
+            return;
+        }
+
+        foreach(var directory in directories)
+        {
+            foreach(var file in files.Where(file => file.StartsWith(directory)))
+            {
+                var lastIndexOf = file.LastIndexOf('\\');
+                var directoryName = file[..lastIndexOf];
+                var fileName = file[++lastIndexOf..];
+
+                var movedFile = Context.Files.FirstOrDefault(f => f.DirectoryName.StartsWith(directory) && f.DirectoryName != directoryName && f.FileName == fileName);
+                if(movedFile != null)
+                {
+                    UpdateExistingFile(directoryName, fileName, movedFile);
+                }
+            }
+        }
+    }
+
+    private void ProcessNewFiles(IEnumerable<string> files, IQueryable<string> filesInDb, CancellationToken stoppingToken)
+    {
         var counter = 0;
-        foreach(var file in files)
+        var notInTheDatabase = files.Except(filesInDb).ToList();
+        foreach(var file in notInTheDatabase)
         {
             if(stoppingToken.IsCancellationRequested)
             {
@@ -41,44 +143,29 @@ public class Worker(ILogger<Worker> logger) : BackgroundService
                 break;
             }
 
+            AddNewFile(file);
             counter++;
-            var fileDividerIndex = file.LastIndexOf('\\');
-            var directoryName = file[..fileDividerIndex];
-            var fileName = file[++fileDividerIndex..];
-            if(Context.Files.FirstOrDefault(f => f.DirectoryName == directoryName && f.FileName == fileName) is null)
-            {
-                var fileFromDatabase =Context.Files.FirstOrDefault(f => f.FileName == fileName);
-                if(fileFromDatabase is null)
-                {
-                    AddNewFile(file);
-                }
-                else
-                {
-                    UpdateExistingFile(directoryName, fileName, fileFromDatabase);
-                }
-            }
-            else
-            {
-                if(counter == 10_000)
-                {
-                    Log.Logger.Information("File {FileName} exists in the database.", file);
-                }
-            }
 
-            if(counter == 10_000)
+            if(counter == 1_000)
             {
                 counter = 0;
                 _ = Context.SaveChanges();
-                Log.Logger.Information("Updating the database.");
+                logger.LogInformation("Updating the database.");
+
+                logger.LogInformation("File {FileName} has been added to the database.", file);
             }
         }
-
-        _ = Context.SaveChanges();
     }
 
     private void UpdateExistingFile(string directoryName, string fileName, FileDetail fileFromDatabase)
     {
-        _ = Context.Files.Remove(fileFromDatabase);
+        foreach(var file in Context.Files.Where(file => file.FileName == fileName))
+        {
+            _ = Context.Files.Remove(file);
+        }
+
+        SaveChangesSafely(logger);
+
         var updatedFile = new FileDetail
         {
             DirectoryName = directoryName,
@@ -87,30 +174,40 @@ public class Worker(ILogger<Worker> logger) : BackgroundService
             Height = fileFromDatabase.Height,
             Width = fileFromDatabase.Width,
             FileName = fileName,
-            DetailsLastUpdated = DateTime.Now,
+            DetailsLastUpdated = DateTime.UtcNow,
             LastViewed = fileFromDatabase.LastViewed,
             FileSize = fileFromDatabase.FileSize
         };
 
         _ = Context.Files.Add(updatedFile);
-        Log.Logger.Information("File: {FileName} appears to have moved since being added to the dB - previous location: {DirectoryName}", fileName, directoryName);
+        logger.LogInformation("File: {FileName} ({OriginalLocation}) appears to have moved since being added to the dB - previous location: {DirectoryName}", fileName, directoryName, fileFromDatabase.DirectoryName);
     }
 
     private void AddNewFile(string file)
     {
-        var fileInfo = new FileInfo(file);
-        var fileDetail = new FileDetail(fileInfo);
-
-        if(fileDetail.IsImage)
+        try
         {
-            var image = SKImage.FromEncodedData(file);
-            fileDetail.Height = image.Height;
-            fileDetail.Width = image.Width;
+            var fileInfo = new FileInfo(file);
+            var fileDetail = new FileDetail(fileInfo)
+            {
+                DetailsLastUpdated = DateTime.UtcNow,
+                FileName = fileInfo.Name,
+                DirectoryName = fileInfo.DirectoryName!,
+                FileSize = fileInfo.Length
+            };
+
+            if(fileDetail.IsImage)
+            {
+                var image = SKImage.FromEncodedData(file);
+                fileDetail.Height = image.Height;
+                fileDetail.Width = image.Width;
+            }
+
+            _ = Context.Files.Add(fileDetail);
         }
-
-        var entity = new FileDetail(fileInfo);
-        _ = Context.Files.Add(entity);
-
-        Log.Logger.Information("File {FileName} has been added to the database.", file);
+        catch(Exception ex)
+        {
+            logger.LogError(ex, "Error retrieving file '{File}' details", file);
+        }
     }
 }

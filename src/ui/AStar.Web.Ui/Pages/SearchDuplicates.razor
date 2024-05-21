@@ -9,7 +9,7 @@
         <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
             <AccordionHeader Background="Background.Primary">
                 <Heading Size="HeadingSize.Is5">
-                    <AccordionToggle>Search</AccordionToggle>
+                    <AccordionToggle>Search for Duplicates</AccordionToggle>
                 </Heading>
             </AccordionHeader>
             <AccordionBody>
@@ -19,12 +19,11 @@
                             <CardBody Background="Background.Primary">
                                 <Fields>
                                     <Field Horizontal>
-                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
-                                            Search Folder
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">                                            
+                                            <Tooltip Text="This is the folder (aka directory) where you want the search to start from. As a minimum, it must be a valid UNC path - e.g.: 'c:\'." Multiline="true"><span>Search Folder </span><span class="oi oi-question-mark" aria-hidden="true" style="color: blue;"></span></Tooltip>
                                         </FieldLabel>
-                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <TextEdit Placeholder="Please specify the starting folder"
-                                                      @bind-text="@startingFolder" id="startingFolder" />
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">                                            
+                                                <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" id="startingFolder" />
                                         </FieldBody>
                                     </Field>
                                     <Field Horizontal>

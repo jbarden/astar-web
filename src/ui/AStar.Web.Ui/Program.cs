@@ -35,7 +35,7 @@ public class Program
     {
         _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
                    .AddLogging("astar-logging-settings.json")
-                   .Services.Configure();
+                   .Services.ConfigureUi();
 
         Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
         _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);

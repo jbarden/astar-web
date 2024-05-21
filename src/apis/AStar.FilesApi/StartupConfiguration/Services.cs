@@ -15,6 +15,10 @@ public static class Services
         _ = services.AddScoped(_ => new FilesContext(contextOptions));
         _ = services.AddSingleton<IFileSystem, FileSystem>();
 
+        var sp = services.BuildServiceProvider();
+        var context = sp.GetRequiredService<FilesContext>();
+        _ = context.Database.EnsureCreated();
+
         return services;
     }
 }

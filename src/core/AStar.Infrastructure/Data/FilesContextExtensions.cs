@@ -30,8 +30,11 @@ public static class FilesContextExtensions
     /// <param name="searchType"></param>
     /// <param name="includeSoftDeleted"></param>
     /// <param name="includeMarkedForDeletion"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion)
+#pragma warning disable IDE0060 // Remove unused parameter
+    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion, CancellationToken cancellationToken)
+#pragma warning restore IDE0060 // Remove unused parameter
         => files
                 .FilterBySearchFolder(startingFolder, recursive)
                 .FilterSoftDeleted(includeSoftDeleted)

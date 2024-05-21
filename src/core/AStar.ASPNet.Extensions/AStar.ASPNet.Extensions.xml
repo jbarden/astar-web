@@ -49,12 +49,22 @@
             The <see cref="T:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions"/> class contains the method(s) available to configure the pipeline in a consistent manner.
             </summary>
         </member>
-        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.Configure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureUi(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.Configure(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin...
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureUi(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin...this time around, this is for the UI.
+            </summary>
+            <param name="services">An instance of the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> interface that will be configured with the the Global Exception Handler,
+            and the controllers (a UI isn't much use without them...).</param>
+            <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.</returns>
+            <seealso href="ConfigureApi"></seealso>
+        </member>
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin... just, this time, it is API-specific.
             </summary>
             <param name="services">An instance of the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> interface that will be configured with the current methods.</param>
-            <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.   </returns>
+            <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.</returns>
+            <seealso href="ConfigureUi"></seealso>
         </member>
         <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.AddLogging(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String)">
             <summary>

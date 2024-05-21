@@ -19,7 +19,7 @@ public static class Program
                        .AddLogging("astar-logging-settings.json");
 
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
-            _ = builder.Services.Configure();
+            _ = builder.Services.ConfigureApi();
 
             _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
