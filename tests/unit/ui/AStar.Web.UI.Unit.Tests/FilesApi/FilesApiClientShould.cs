@@ -86,7 +86,7 @@ public class FilesApiClientShould
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
-        var response = await sut.MarkForDeletionAsync("not relevant");
+        var response = await sut.MarkForSoftDeletionAsync("not relevant");
 
         response.Should().Be("Marked for deletion");
     }
@@ -103,7 +103,7 @@ public class FilesApiClientShould
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
-        var response = await sut.MarkForDeletionAsync("not relevant");
+        var response = await sut.MarkForSoftDeletionAsync("not relevant");
 
         response.Should().Be("Delete failed...");
     }
@@ -120,7 +120,7 @@ public class FilesApiClientShould
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
-        var response = await sut.UndoMarkForDeletionAsync("not relevant");
+        var response = await sut.UndoMarkForSoftDeletionAsync("not relevant");
 
         response.Should().Be("Mark for deletion has been undone");
     }
@@ -137,7 +137,7 @@ public class FilesApiClientShould
 
         var sut = new FilesApiClient(httpClient, NullLogger<FilesApiClient>.Instance);
 
-        var response = await sut.UndoMarkForDeletionAsync("not relevant");
+        var response = await sut.UndoMarkForSoftDeletionAsync("not relevant");
 
         response.Should().Be("Undo mark for deletion failed...");
     }

@@ -134,7 +134,7 @@
                                         <div>Size: @f.SizeForDisplay</div>
                                         <div>W x H: @f.Width x @f.Height</div>
                                         @{
-                                            if(!f.DeletePending)
+                                            if(!f.SoftDeletePending)
                                             {
                                                 <div><Button Clicked="@(()=>MarkForDeletion(f.FullName))" Color="Color.Danger">Delete</Button></div>
                                             }

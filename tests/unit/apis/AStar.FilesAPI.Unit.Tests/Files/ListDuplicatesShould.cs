@@ -58,7 +58,7 @@ public class ListDuplicatesShould : IClassFixture<ListDuplicatesFixture>
 
         var value = (IReadOnlyCollection<DuplicateGroup>)response!.Value!;
 
-        value.Count.Should().Be(14);
+        value.Count.Should().Be(16);
         return Verify(value);
     }
 }

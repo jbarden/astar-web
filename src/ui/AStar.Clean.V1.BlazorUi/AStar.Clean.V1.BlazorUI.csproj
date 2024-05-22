@@ -20,9 +20,9 @@
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
 		<PackageReference Include="Blazor.Bootstrap" Version="2.2.1" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-		<PackageReference Include="Microsoft.Identity.Web" Version="2.18.1" />
-		<PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.18.1" />
-		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.18.1" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.18.2" />
+		<PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.18.2" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.18.2" />
 		<PackageReference Include="BootstrapBlazor.FontAwesome" Version="8.0.4" />
 
 		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />

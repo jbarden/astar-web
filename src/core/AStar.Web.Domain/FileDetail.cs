@@ -80,7 +80,17 @@ public class FileDetail
     public bool SoftDeleted { get; set; }
 
     /// <summary>
-    /// Gets or sets whether the file has been marked as  'delete pending'. I know, shocking...
+    /// Gets or sets whether the file has been marked as 'delete pending'. I know, shocking...
     /// </summary>
-    public bool DeletePending { get; set; }
+    public bool SoftDeletePending { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the file has been marked as 'needs to move'. I know, shocking...
+    /// </summary>
+    public bool NeedsToMove { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the file has been marked as 'delete permanantely pending'. I know, shocking...
+    /// </summary>
+    public bool HardDeletePending { get; set; }
 }

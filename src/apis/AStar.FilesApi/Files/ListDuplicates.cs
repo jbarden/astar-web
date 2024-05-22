@@ -18,7 +18,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
     [SwaggerOperation(
         Summary = "List the matching duplicate files",
         Description = "List the duplicate files matching the criteria and group by size and dimensions",
-        OperationId = "Files_List",
+        OperationId = "Files_ListDuplicates",
         Tags = ["Files"])
 ]
     public override ActionResult<IReadOnlyCollection<DuplicateGroup>> Handle([FromQuery] SearchParameters request)
@@ -46,10 +46,13 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
             foreach(var file in fileGroup)
             {
                 fileDtos.Add(new FileInfoDto(file));
+                file.LastViewed = DateTime.UtcNow;
             }
 
             fileList.Add(new DuplicateGroup() { Group = new() { FileLength = key.FileLength, Width = key.Width, Height = key.Height }, Files = fileDtos });
         }
+
+        _ = context.SaveChanges();
 
         return Ok(fileList);
     }

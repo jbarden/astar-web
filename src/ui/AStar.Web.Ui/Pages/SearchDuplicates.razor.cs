@@ -112,32 +112,96 @@ public partial class SearchDuplicates
         await SearchForMatchingFiles();
     }
 
-    private async Task MarkForDeletion(string fullName)
+    private async Task MarkForMoving(string fullName)
     {
-        var result = await FilesApiClient.MarkForDeletionAsync(fullName);
+        var result = await FilesApiClient.MarkForMovingAsync(fullName);
 
         foreach(var fileGroup in FileGroups)
         {
             var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
             if(file != null)
             {
-                file.DeletePending = true;
+                file.NeedsToMove = true;
             }
 
             DeletionStatus = result;
         }
     }
 
-    private async Task UndoMarkForDeletion(string fullName)
+    private async Task MarkForHardDeletion(string fullName)
     {
-        var result = await FilesApiClient.UndoMarkForDeletionAsync(fullName);
+        var result = await FilesApiClient.MarkForHardDeletionAsync(fullName);
 
         foreach(var fileGroup in FileGroups)
         {
             var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
             if(file != null)
             {
-                file.DeletePending = false;
+                file.HardDeletePending = true;
+            }
+
+            DeletionStatus = result;
+        }
+    }
+
+    private async Task MarkForSoftDeletion(string fullName)
+    {
+        var result = await FilesApiClient.MarkForSoftDeletionAsync(fullName);
+
+        foreach(var fileGroup in FileGroups)
+        {
+            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
+            if(file != null)
+            {
+                file.SoftDeletePending = true;
+            }
+
+            DeletionStatus = result;
+        }
+    }
+
+    private async Task UndoMarkForSoftDeletion(string fullName)
+    {
+        var result = await FilesApiClient.UndoMarkForSoftDeletionAsync(fullName);
+
+        foreach(var fileGroup in FileGroups)
+        {
+            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
+            if(file != null)
+            {
+                file.SoftDeletePending = false;
+            }
+
+            DeletionStatus = result;
+        }
+    }
+
+    private async Task UndoMarkForHardDeletion(string fullName)
+    {
+        var result = await FilesApiClient.UndoMarkForHardDeletionAsync(fullName);
+
+        foreach(var fileGroup in FileGroups)
+        {
+            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
+            if(file != null)
+            {
+                file.SoftDeletePending = false;
+            }
+
+            DeletionStatus = result;
+        }
+    }
+
+    private async Task UndoMarkForMoving(string fullName)
+    {
+        var result = await FilesApiClient.UndoMarkForMovingAsync(fullName);
+
+        foreach(var fileGroup in FileGroups)
+        {
+            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
+            if(file != null)
+            {
+                file.NeedsToMove = true;
             }
 
             DeletionStatus = result;

@@ -45,7 +45,7 @@ public class ListShould : IClassFixture<ListFixture>
     [Fact]
     public void GetTheFullListOfFilesWhenTheFilterAppliedCapturesAllFiles()
     {
-        const int FilesNotSoftDeletedOrPendingDeletionCount = 341;
+        const int FilesNotSoftDeletedOrPendingDeletionCount = 364;
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
@@ -54,15 +54,13 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public void GetTheFullListContainingTheExpectedFilesWhenTheFilterAppliedCapturesAllFiles()
+    public Task GetTheFullListContainingTheExpectedFilesWhenTheFilterAppliedCapturesAllFiles()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "Mothers Day 2010.psd", FullName = "c:\\temp\\M Day 2010\\Mothers Day 2010.psd", Size = 119880324L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "read.lock", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\.vs\\AStar.Web.UI\\FileContentIndex\\read.lock", Size = 0L });
+        return Verify(value);
     }
 
     [Fact]
@@ -76,15 +74,13 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllImageFiles()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllImageFiles()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "Mothers Day 2010 copy.jpg", FullName = "c:\\temp\\M Day 2010\\Mothers Day 2010 copy.jpg", Size = 10435815L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-l87ygp.jpg", FullName = "c:\\temp\\Famous\\Jes Macallan\\wallhaven-l87ygp.jpg", Size = 5510486L });
+        return Verify(value);
     }
 
     [Fact]
@@ -98,15 +94,13 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatTargetsSpecificFolderRecursively()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-rrz291.png", FullName = "c:\\temp\\Famous\\Rebecca Ferguson\\wallhaven-rrz291.png", Size = 9099482L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-2y5139.jpg", FullName = "c:\\temp\\Famous\\actress\\Sara Jean Underwood - Copy - Copy\\Playmate\\wallhaven-2y5139.jpg", Size = 4922103L });
+        return Verify(value);
     }
 
     [Fact]
@@ -116,66 +110,56 @@ public class ListShould : IClassFixture<ListFixture>
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        _ = value.Count.Should().Be(3);
+        _ = value.Count.Should().Be(4);
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-851jjy.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-851jjy.jpg", Size = 296929L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-yxre17.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-yxre17.jpg", Size = 179564L });
+        return Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeDescendingSortOrder()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeDescendingSortOrder()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeDescending}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "Mothers Day 2010 copy.jpg", FullName = "c:\\temp\\M Day 2010\\Mothers Day 2010 copy.jpg", Size = 10435815L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-l87ygp.jpg", FullName = "c:\\temp\\Famous\\Jes Macallan\\wallhaven-l87ygp.jpg", Size = 5510486L });
+        return Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeAscendingSortOrder()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeAscendingSortOrder()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeAscending}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "favicon.png", FullName = "c:\\temp\\Blazor.Bootstrap\\AStar.Web\\AStar.Web.UI\\wwwroot\\favicon.png", Size = 7074L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "6.jpg", FullName = "c:\\temp\\1st Year Frame\\6.jpg", Size = 162205L });
+        return Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameDescendingSortOrder()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameDescendingSortOrder()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameDescending}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-yxre17.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-yxre17.jpg", Size = 179564L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-851jjy.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-851jjy.jpg", Size = 296929L });
+        return Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameAscendingSortOrder()
+    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameAscendingSortOrder()
     {
         var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameAscending}).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        using var scope = new AssertionScope();
-        _ = value.First().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-851jjy.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-851jjy.jpg", Size = 296929L });
-        _ = value.Last().Should().BeEquivalentTo(new FileInfoDto() { Name = "wallhaven-yxre17.jpg", FullName = "c:\\temp\\Famous\\coats\\wallhaven-yxre17.jpg", Size = 179564L });
+        return Verify(value);
     }
 }

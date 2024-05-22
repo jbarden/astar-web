@@ -93,12 +93,12 @@ public class FilesApiClient
         }
     }
 
-    public async Task<string> MarkForDeletionAsync(string fullName)
+    public async Task<string> MarkForSoftDeletionAsync(string fullName)
     {
         try
         {
-            logger.LogWarning("Marking the {FileName} for deletion.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/mark-for-deletion?request={fullName}");
+            logger.LogWarning("Marking the {FileName} for soft deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-soft-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
                             ? "Marked for deletion"
@@ -112,12 +112,50 @@ public class FilesApiClient
         }
     }
 
-    public async Task<string> UndoMarkForDeletionAsync(string fullName)
+    public async Task<string> MarkForHardDeletionAsync(string fullName)
     {
         try
         {
-            logger.LogWarning("Unmarking the {FileName} for deletion.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-deletion?request={fullName}");
+            logger.LogWarning("Marking the {FileName} for hard deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-hard-deletion?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Deleted"
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> MarkForMovingAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Marking the {FileName} for moving.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-moving?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Mark for moving"
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> UndoMarkForSoftDeletionAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Unmarking the {FileName} for soft deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-soft-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
                 ? "Mark for deletion has been undone"
@@ -126,6 +164,44 @@ public class FilesApiClient
         catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> UndoMarkForHardDeletionAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Unmarking the {FileName} for hard deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-hard-deletion?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Deleted"
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> UndoMarkForMovingAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Unmarking the {FileName} for moving.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-moving?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Mark for moving"
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
             return ex.Message;
         }
     }

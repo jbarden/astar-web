@@ -5,7 +5,9 @@
     DirectoryName: c:\temp,
     FileSize: 12756,
     SoftDeleted: true,
-    DeletePending: true
+    SoftDeletePending: true,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: .gitattributes,
@@ -13,7 +15,9 @@
     DirectoryName: c:\temp,
     FileSize: 2581,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: .gitignore,
@@ -21,7 +25,9 @@
     DirectoryName: c:\temp,
     FileSize: 6352,
     SoftDeleted: false,
-    DeletePending: true
+    SoftDeletePending: true,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: api-creation-log.txt,
@@ -29,7 +35,9 @@
     DirectoryName: c:\temp,
     FileSize: 75911,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: Files.db.sql,
@@ -37,7 +45,9 @@
     DirectoryName: c:\temp,
     FileSize: 101079442,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: files.json,
@@ -45,7 +55,9 @@
     DirectoryName: c:\temp,
     FileSize: 78791,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: files.list.txt,
@@ -53,7 +65,9 @@
     DirectoryName: c:\temp,
     FileSize: 712847,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: Files.sqbpro,
@@ -61,7 +75,9 @@
     DirectoryName: c:\temp,
     FileSize: 1550,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: replace.ps1,
@@ -69,7 +85,9 @@
     DirectoryName: c:\temp,
     FileSize: 2388,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: test.txt,
@@ -77,6 +95,8 @@
     DirectoryName: c:\temp,
     FileSize: 2185,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   }
 ]

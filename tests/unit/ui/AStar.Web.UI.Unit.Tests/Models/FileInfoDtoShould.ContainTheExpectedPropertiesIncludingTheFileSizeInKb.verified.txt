@@ -1,0 +1,11 @@
+﻿{
+  Name: ,
+  FullName: ,
+  Size: 123456,
+  SizeForDisplay: 120.56 Kb,
+  ChecksumHash: ,
+  SoftDeleted: false,
+  SoftDeletePending: false,
+  NeedsToMove: false,
+  HardDeletePending: false
+}

@@ -7,16 +7,16 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace AStar.FilesApi.Files;
 
 [Route("api/files")]
-public class MarkForDeletion(FilesContext context, ILogger<MarkForDeletion> logger)
+public class UndoMarkForSoftDeletion(FilesContext context, ILogger<MarkForSoftDeletion> logger)
             : EndpointBaseSync
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpDelete("mark-for-deletion")]
+    [HttpDelete("undo-mark-for-soft-deletion")]
     [SwaggerOperation(
-        Summary = "Mark the specified file for deletion",
-        Description = "Mark the specified file for deletion - the file will NOT be deleted, just marked for deletion, please run the separate delete method to actually delete the file.",
-        OperationId = "Files_MarkForDeletiong",
+        Summary = "Undo marking the specified file for soft deletion",
+        Description = "Undo marking the specified file for soft deletion.",
+        OperationId = "Files_UndoMarkForSoftDeletion",
         Tags = ["Files"])
 ]
     public override ActionResult Handle(string request)
@@ -33,11 +33,11 @@ public class MarkForDeletion(FilesContext context, ILogger<MarkForDeletion> logg
         var specifiedFile = context.Files.FirstOrDefault(file => file.DirectoryName == directory && file.FileName == fileName);
         if(specifiedFile != null)
         {
-            specifiedFile.DeletePending = true;
+            specifiedFile.SoftDeletePending = false;
             _ = context.SaveChanges();
         }
 
-        logger.LogDebug("File {FileName} marked for deletion", request);
+        logger.LogDebug("File {FileName} mark for deletion has been undone", specifiedFile);
 
         return NoContent();
     }

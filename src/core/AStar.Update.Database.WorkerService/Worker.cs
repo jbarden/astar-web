@@ -39,7 +39,7 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
             return;
         }
 
-        foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.DeletePending))
+        foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.SoftDeletePending))
         {
             if(!files.Contains(Path.Combine(file.DirectoryName, file.FileName)))
             {
@@ -90,7 +90,7 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
 
     private void ProcessFilesMarkedForDeletion()
     {
-        Context.Files.Where(file => file.DeletePending)
+        Context.Files.Where(file => file.SoftDeletePending)
                      .ToList()
                      .ForEach(file =>
                      {
@@ -100,9 +100,33 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
                          }
 
                          file.SoftDeleted = true;
-                         file.DeletePending = false;
+                         file.SoftDeletePending = false;
                          file.DetailsLastUpdated = DateTime.UtcNow;
                      });
+
+        Context.Files.Where(file => file.HardDeletePending)
+                     .ToList()
+                     .ForEach(file =>
+                     {
+                         if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
+                         {
+                             File.Delete(Path.Combine(file.DirectoryName, file.FileName));
+                         }
+
+                         file.SoftDeleted = true;
+                         file.SoftDeletePending = false;
+                         file.DetailsLastUpdated = DateTime.UtcNow;
+                     });
+
+        foreach(var file in Context.Files.Where(file => file.HardDeletePending))
+        {
+            if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
+            {
+                File.Delete(Path.Combine(file.DirectoryName, file.FileName));
+            }
+
+            _ = Context.Files.Remove(file);
+        }
 
         _ = Context.SaveChanges();
     }
@@ -170,7 +194,7 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
         {
             DirectoryName = directoryName,
             SoftDeleted = false,
-            DeletePending = false,
+            SoftDeletePending = false,
             Height = fileFromDatabase.Height,
             Width = fileFromDatabase.Width,
             FileName = fileName,

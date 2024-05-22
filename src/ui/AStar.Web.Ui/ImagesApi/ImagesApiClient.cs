@@ -48,7 +48,7 @@ public class ImagesApiClient
     private async Task<MemoryStream> CreateNotFoundMemoryStream(string fileName)
     {
         logger.LogWarning("Could not find: {FileName}", fileName);
-        _ = await filesApiClient.MarkForDeletionAsync(fileName);
+        _ = await filesApiClient.MarkForSoftDeletionAsync(fileName);
 
         return new(Models.NotFound.Image);
     }

@@ -48,5 +48,5 @@ public static class FilesContextExtensions
 
     private static IEnumerable<FileDetail> FilterSoftDeleted(this IEnumerable<FileDetail> files, bool includeSoftDeleted) => !includeSoftDeleted ? files.Where(file => !file.SoftDeleted) : files;
 
-    private static IEnumerable<FileDetail> FilterMarkedForDeletion(this IEnumerable<FileDetail> files, bool includeMarkedForDeletion) => !includeMarkedForDeletion ? files.Where(file => !file.DeletePending) : files;
+    private static IEnumerable<FileDetail> FilterMarkedForDeletion(this IEnumerable<FileDetail> files, bool includeMarkedForDeletion) => !includeMarkedForDeletion ? files.Where(file => !file.SoftDeletePending) : files;
 }

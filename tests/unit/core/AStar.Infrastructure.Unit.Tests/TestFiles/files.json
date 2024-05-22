@@ -9,7 +9,7 @@
     "Width": 0,
     "FileSize": 12756,
     "SoftDeleted": true,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": ".gitattributes",
@@ -21,7 +21,7 @@
     "Width": 0,
     "FileSize": 2581,
     "SoftDeleted": true,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": ".gitignore",
@@ -33,7 +33,7 @@
     "Width": 0,
     "FileSize": 6352,
     "SoftDeleted": false,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": "api-creation-log.txt",
@@ -45,7 +45,7 @@
     "Width": 0,
     "FileSize": 75911,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "Files.db.sql",
@@ -57,7 +57,7 @@
     "Width": 0,
     "FileSize": 101079442,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "files.json",
@@ -69,7 +69,7 @@
     "Width": 0,
     "FileSize": 78791,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "files.list.txt",
@@ -81,7 +81,7 @@
     "Width": 0,
     "FileSize": 712847,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "Files.sqbpro",
@@ -93,7 +93,7 @@
     "Width": 0,
     "FileSize": 1550,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "replace.ps1",
@@ -105,7 +105,7 @@
     "Width": 0,
     "FileSize": 2388,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "test.txt",
@@ -117,7 +117,7 @@
     "Width": 0,
     "FileSize": 2185,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "0.jpg",
@@ -129,7 +129,7 @@
     "Width": 0,
     "FileSize": 76380,
     "SoftDeleted": true,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "1.JPG",
@@ -141,7 +141,7 @@
     "Width": 0,
     "FileSize": 266275,
     "SoftDeleted": false,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": "10.JPG",
@@ -153,7 +153,7 @@
     "Width": 0,
     "FileSize": 2765928,
     "SoftDeleted": true,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": "11.JPG",
@@ -165,7 +165,7 @@
     "Width": 0,
     "FileSize": 3469867,
     "SoftDeleted": true,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "12.JPG",
@@ -177,7 +177,7 @@
     "Width": 0,
     "FileSize": 4529837,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "2.jpg",
@@ -189,7 +189,7 @@
     "Width": 0,
     "FileSize": 3703840,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "10.JPG",
@@ -201,7 +201,7 @@
     "Width": 0,
     "FileSize": 2765928,
     "SoftDeleted": true,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": "11.JPG",
@@ -213,7 +213,7 @@
     "Width": 0,
     "FileSize": 3469867,
     "SoftDeleted": true,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "12.JPG",
@@ -225,7 +225,7 @@
     "Width": 0,
     "FileSize": 4529837,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "2.jpg",
@@ -237,7 +237,7 @@
     "Width": 0,
     "FileSize": 3703840,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "3.JPG",
@@ -249,7 +249,7 @@
     "Width": 0,
     "FileSize": 3452232,
     "SoftDeleted": false,
-    "DeletePending": true
+    "SoftDeletePending": true
   },
   {
     "FileName": "3aE.JPG",
@@ -261,7 +261,7 @@
     "Width": 0,
     "FileSize": 57995,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "3E.JPG",
@@ -273,7 +273,7 @@
     "Width": 0,
     "FileSize": 140283,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "4.jpg",
@@ -285,7 +285,7 @@
     "Width": 0,
     "FileSize": 3373501,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "5.jpg",
@@ -297,7 +297,7 @@
     "Width": 0,
     "FileSize": 4272823,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "6.jpg",
@@ -309,7 +309,7 @@
     "Width": 0,
     "FileSize": 162205,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "7.JPG",
@@ -321,7 +321,7 @@
     "Width": 0,
     "FileSize": 3331810,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "8.JPG",
@@ -333,7 +333,7 @@
     "Width": 0,
     "FileSize": 443665,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "9.JPG",
@@ -345,7 +345,7 @@
     "Width": 0,
     "FileSize": 483409,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "A-0005.JPG",
@@ -357,7 +357,7 @@
     "Width": 0,
     "FileSize": 646684,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "A-0117.JPG",
@@ -369,7 +369,7 @@
     "Width": 0,
     "FileSize": 646837,
     "SoftDeleted": true,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": "A-0141.JPG",
@@ -381,7 +381,7 @@
     "Width": 0,
     "FileSize": 472630,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": ".editorconfig",
@@ -393,7 +393,7 @@
     "Width": 0,
     "FileSize": 12756,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   },
   {
     "FileName": ".gitattributes",
@@ -405,6 +405,6 @@
     "Width": 0,
     "FileSize": 2581,
     "SoftDeleted": false,
-    "DeletePending": false
+    "SoftDeletePending": false
   }
 ]

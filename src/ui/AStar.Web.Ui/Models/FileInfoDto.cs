@@ -15,6 +15,16 @@ public class FileInfoDto
     public long Size { get; set; }
 
     /// <summary>
+    /// Gets or sets the date the file details were last updated. I know, shocking...
+    /// </summary>
+    public DateTime? DetailsLastUpdated { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date the file wase last viewed. I know, shocking...
+    /// </summary>
+    public DateTime? LastViewed { get; set; }
+
+    /// <summary>
     /// Need to account for decimal points here...
     /// </summary>
     public string SizeForDisplay
@@ -32,9 +42,19 @@ public class FileInfoDto
     public bool SoftDeleted { get; set; }
 
     /// <summary>
-    /// Gets or sets whether the file has been marked as  'delete pending'. I know, shocking...
+    /// Gets or sets whether the file has been marked as 'delete pending'. I know, shocking...
     /// </summary>
-    public bool DeletePending { get; set; }
+    public bool SoftDeletePending { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the NeedsToMove flag is set for the file
+    /// </summary>
+    public bool NeedsToMove { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the HardDeletePending flag is set for the file
+    /// </summary>
+    public bool HardDeletePending { get; set; }
 
     /// <summary>
     /// Returns this object in JSON format.

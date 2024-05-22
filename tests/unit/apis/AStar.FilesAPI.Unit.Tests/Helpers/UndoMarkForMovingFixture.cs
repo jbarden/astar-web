@@ -4,19 +4,19 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AStar.FilesAPI.Helpers;
 
-public class UndoMarkForDeletionFixture : IDisposable
+public class UndoMarkForMovingFixture : IDisposable
 {
     private bool disposedValue;
 
-    public UndoMarkForDeletionFixture()
+    public UndoMarkForMovingFixture()
     {
         MockFilesContext = new MockFilesContext().CreateContext();
-        SUT = new UndoMarkForDeletion(MockFilesContext, NullLogger<MarkForDeletion>.Instance);
+        SUT = new UndoMarkForMoving(MockFilesContext, NullLogger<UndoMarkForMoving>.Instance);
     }
 
     public FilesContext MockFilesContext { get; }
 
-    public UndoMarkForDeletion SUT { get; }
+    public UndoMarkForMoving SUT { get; }
 
     public void Dispose()
     {

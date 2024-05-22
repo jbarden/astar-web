@@ -114,12 +114,12 @@ public partial class Search
 
     private async Task MarkForDeletion(string fullName)
     {
-        var result = await FilesApiClient.MarkForDeletionAsync(fullName);
+        var result = await FilesApiClient.MarkForSoftDeletionAsync(fullName);
 
         var file = Files.FirstOrDefault(file => file.FullName == fullName);
         if(file != null)
         {
-            file.DeletePending = true;
+            file.SoftDeletePending = true;
         }
 
         DeletionStatus = result;
@@ -127,12 +127,12 @@ public partial class Search
 
     private async Task UndoMarkForDeletion(string fullName)
     {
-        var result = await FilesApiClient.UndoMarkForDeletionAsync(fullName);
+        var result = await FilesApiClient.UndoMarkForSoftDeletionAsync(fullName);
 
         var file = Files.FirstOrDefault(file => file.FullName == fullName);
         if(file != null)
         {
-            file.DeletePending = false;
+            file.SoftDeletePending = false;
         }
 
         DeletionStatus = result;

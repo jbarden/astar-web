@@ -40,7 +40,10 @@ public class List(FilesContext context, ILogger<List> logger)
         foreach(var file in files.Skip((request.CurrentPage - 1) * request.ItemsPerPage).Take(request.ItemsPerPage))
         {
             fileList.Add(new FileInfoDto(file));
+            file.LastViewed = DateTime.UtcNow;
         }
+        
+        _ = context.SaveChanges();
 
         return Ok(fileList);
     }

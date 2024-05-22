@@ -5,7 +5,9 @@
     DirectoryName: c:\temp\Famous,
     FileSize: 12756,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: .gitattributes,
@@ -13,7 +15,9 @@
     DirectoryName: c:\temp,
     FileSize: 2581,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: .gitattributes,
@@ -21,7 +25,9 @@
     DirectoryName: c:\temp\Famous,
     FileSize: 2581,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 0.jpg,
@@ -29,7 +35,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 76380,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 11.JPG,
@@ -37,7 +45,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3469867,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 11.JPG,
@@ -45,7 +55,9 @@
     DirectoryName: c:\temp\1st Year Frame\subfolder,
     FileSize: 3469867,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 12.JPG,
@@ -53,7 +65,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 4529837,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 12.JPG,
@@ -61,7 +75,9 @@
     DirectoryName: c:\temp\1st Year Frame\subfolder,
     FileSize: 4529837,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 2.jpg,
@@ -69,7 +85,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3703840,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 2.jpg,
@@ -77,7 +95,9 @@
     DirectoryName: c:\temp\1st Year Frame\subfolder,
     FileSize: 3703840,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 3aE.JPG,
@@ -85,7 +105,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 57995,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 3E.JPG,
@@ -93,7 +115,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 140283,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 4.jpg,
@@ -101,7 +125,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3373501,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 5.jpg,
@@ -109,7 +135,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 4272823,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 6.jpg,
@@ -117,7 +145,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 162205,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 7.JPG,
@@ -125,7 +155,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3331810,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 8.JPG,
@@ -133,7 +165,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 443665,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 9.JPG,
@@ -141,7 +175,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 483409,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0005.JPG,
@@ -149,7 +185,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 646684,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0117.JPG,
@@ -157,7 +195,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 646837,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0141.JPG,
@@ -165,7 +205,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 472630,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: api-creation-log.txt,
@@ -173,7 +215,9 @@
     DirectoryName: c:\temp,
     FileSize: 75911,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: Files.db.sql,
@@ -181,7 +225,9 @@
     DirectoryName: c:\temp,
     FileSize: 101079442,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: files.json,
@@ -189,7 +235,9 @@
     DirectoryName: c:\temp,
     FileSize: 78791,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: files.list.txt,
@@ -197,7 +245,9 @@
     DirectoryName: c:\temp,
     FileSize: 712847,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: Files.sqbpro,
@@ -205,7 +255,9 @@
     DirectoryName: c:\temp,
     FileSize: 1550,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: replace.ps1,
@@ -213,7 +265,9 @@
     DirectoryName: c:\temp,
     FileSize: 2388,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: test.txt,
@@ -221,6 +275,8 @@
     DirectoryName: c:\temp,
     FileSize: 2185,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   }
 ]

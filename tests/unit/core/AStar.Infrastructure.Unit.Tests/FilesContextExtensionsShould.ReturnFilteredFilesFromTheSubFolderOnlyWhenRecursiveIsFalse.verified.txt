@@ -5,7 +5,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 76380,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 1.JPG,
@@ -13,7 +15,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 266275,
     SoftDeleted: false,
-    DeletePending: true
+    SoftDeletePending: true,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 10.JPG,
@@ -21,7 +25,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 2765928,
     SoftDeleted: true,
-    DeletePending: true
+    SoftDeletePending: true,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 11.JPG,
@@ -29,7 +35,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3469867,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 12.JPG,
@@ -37,7 +45,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 4529837,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 2.jpg,
@@ -45,7 +55,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3703840,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 3aE.JPG,
@@ -53,7 +65,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 57995,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 3E.JPG,
@@ -61,7 +75,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 140283,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 4.jpg,
@@ -69,7 +85,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3373501,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 5.jpg,
@@ -77,7 +95,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 4272823,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 6.jpg,
@@ -85,7 +105,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 162205,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 7.JPG,
@@ -93,7 +115,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 3331810,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 8.JPG,
@@ -101,7 +125,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 443665,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: 9.JPG,
@@ -109,7 +135,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 483409,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0005.JPG,
@@ -117,7 +145,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 646684,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0117.JPG,
@@ -125,7 +155,9 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 646837,
     SoftDeleted: true,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   },
   {
     FileName: A-0141.JPG,
@@ -133,6 +165,8 @@
     DirectoryName: c:\temp\1st Year Frame,
     FileSize: 472630,
     SoftDeleted: false,
-    DeletePending: false
+    SoftDeletePending: false,
+    NeedsToMove: false,
+    HardDeletePending: false
   }
 ]

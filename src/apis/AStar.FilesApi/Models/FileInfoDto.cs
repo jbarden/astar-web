@@ -55,9 +55,19 @@ public class FileInfoDto
     public bool SoftDeleted { get; set; }
 
     /// <summary>
-    /// Gets or sets whether the file has been marked as  'delete pending'. I know, shocking...
+    /// Gets or sets whether the file has been marked as 'delete pending'. I know, shocking...
     /// </summary>
-    public bool DeletePending { get; set; }
+    public bool SoftDeletePending { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the NeedsToMove flag is set for the file
+    /// </summary>
+    public bool NeedsToMove { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether the HardDeletePending flag is set for the file
+    /// </summary>
+    public bool HardDeletePending { get; set; }
 
     /// <summary>
     /// Returns this object in JSON format.
