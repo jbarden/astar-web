@@ -12,7 +12,7 @@ public class UndoMarkForMoving(FilesContext context, ILogger<UndoMarkForMoving> 
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpPut("undo-mark-for-moving")]
+    [HttpDelete("undo-mark-for-moving")]
     [SwaggerOperation(
         Summary = "Undo marking the specified file for moving later",
         Description = "Undo marking the specified file for moving - the file will NOT be moved, just marked for moving. Please use the applicable page in the portal to actually perform the move.",

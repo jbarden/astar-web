@@ -32,13 +32,14 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
         }
     }
 
-    private static void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files, bool run = false)
+    private void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files, bool run = false)
     {
         if(!run)
         {
             return;
         }
 
+        logger.LogInformation("Starting removal of deleted files");
         foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.SoftDeletePending))
         {
             if(!files.Contains(Path.Combine(file.DirectoryName, file.FileName)))
@@ -90,12 +91,14 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
 
     private void ProcessFilesMarkedForDeletion()
     {
+        logger.LogInformation("Starting removal of files marked for soft deletion");
         Context.Files.Where(file => file.SoftDeletePending)
                      .ToList()
                      .ForEach(file =>
                      {
                          if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
                          {
+                             logger.LogInformation("Soft-deleting {File}", file.FileName);
                              File.Delete(Path.Combine(file.DirectoryName, file.FileName));
                          }
 
@@ -104,24 +107,12 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
                          file.DetailsLastUpdated = DateTime.UtcNow;
                      });
 
-        Context.Files.Where(file => file.HardDeletePending)
-                     .ToList()
-                     .ForEach(file =>
-                     {
-                         if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
-                         {
-                             File.Delete(Path.Combine(file.DirectoryName, file.FileName));
-                         }
-
-                         file.SoftDeleted = true;
-                         file.SoftDeletePending = false;
-                         file.DetailsLastUpdated = DateTime.UtcNow;
-                     });
-
+        logger.LogInformation("Starting removal of files marked for hard deletion");
         foreach(var file in Context.Files.Where(file => file.HardDeletePending))
         {
             if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
             {
+                             logger.LogInformation("hard-deleting {File}", file.FileName);
                 File.Delete(Path.Combine(file.DirectoryName, file.FileName));
             }
 
@@ -138,6 +129,7 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
             return;
         }
 
+        logger.LogInformation("Starting update of files that have moved");
         foreach(var directory in directories)
         {
             foreach(var file in files.Where(file => file.StartsWith(directory)))
@@ -223,8 +215,15 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
             if(fileDetail.IsImage)
             {
                 var image = SKImage.FromEncodedData(file);
-                fileDetail.Height = image.Height;
-                fileDetail.Width = image.Width;
+                if(image is null)
+                {
+                    File.Delete(file);
+                }
+                else
+                {
+                    fileDetail.Height = image.Height;
+                    fileDetail.Width = image.Width;
+                }
             }
 
             _ = Context.Files.Add(fileDetail);

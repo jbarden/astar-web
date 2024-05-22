@@ -12,7 +12,7 @@ public class MarkForMoving(FilesContext context, ILogger<MarkForMoving> logger)
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpPut("mark-for-moving")]
+    [HttpDelete("mark-for-moving")]
     [SwaggerOperation(
         Summary = "Mark the specified file for moving later",
         Description = "Mark the specified file for moving - the file will NOT be moved, just marked for moving. Please use the applicable page in the portal to actually perform the move.",

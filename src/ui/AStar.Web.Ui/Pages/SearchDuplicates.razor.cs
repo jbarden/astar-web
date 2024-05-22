@@ -185,7 +185,7 @@ public partial class SearchDuplicates
             var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
             if(file != null)
             {
-                file.SoftDeletePending = false;
+                file.HardDeletePending = false;
             }
 
             DeletionStatus = result;
@@ -201,7 +201,7 @@ public partial class SearchDuplicates
             var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
             if(file != null)
             {
-                file.NeedsToMove = true;
+                file.NeedsToMove = false;
             }
 
             DeletionStatus = result;

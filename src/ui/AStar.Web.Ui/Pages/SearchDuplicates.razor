@@ -153,7 +153,7 @@
                                                 <div>
                                                     @if(file.SoftDeletePending)
                                                     {
-                                                        <Button Clicked="@(()=>UndoMarkForSoftDeletion(file.FullName))" Color="Color.Info">Undo Soft Delete</Button>
+                                                        <Button Clicked="@(()=>UndoMarkForSoftDeletion(file.FullName))" Color="Color.Success">Undo Soft Delete</Button>
                                                     }
                                                     else
                                                     {
@@ -161,7 +161,7 @@
                                                     }
                                                     @if(file.HardDeletePending)
                                                     {
-                                                        <Button Clicked="@(()=>UndoMarkForHardDeletion(file.FullName))" Color="Color.Info">Undo Hard Delete</Button>                                                        
+                                                        <Button Clicked="@(()=>UndoMarkForHardDeletion(file.FullName))" Color="Color.Success">Undo Hard Delete</Button>                                                        
                                                     }
                                                     else
                                                     {
@@ -169,7 +169,7 @@
                                                     }
                                                     @if(file.NeedsToMove)
                                                     {
-                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Info">Undo Needs to Move</Button>
+                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move</Button>
                                                     }
                                                     else
                                                     {
