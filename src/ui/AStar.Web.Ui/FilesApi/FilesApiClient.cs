@@ -18,6 +18,25 @@ public class FilesApiClient
         this.logger = logger;
     }
 
+    public async Task<HealthStatusResponse> GetHealthAsync()
+    {
+        try
+        {
+            var response = await httpClient.GetAsync("/health/live");
+
+            logger.LogWarning("Checking the FilesAPI Health.");
+            return response.IsSuccessStatusCode
+                                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!
+                                : new() { Status = "Health Check failed." }!;
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
+            return new() { Status = "Could not get a response from the Files API." }!;
+        }
+    }
+
     public async Task<int> GetFilesCountAsync(SearchParameters searchParameters)
     {
         var response = await httpClient.GetAsync($"api/files/count?{searchParameters}");
@@ -25,8 +44,8 @@ public class FilesApiClient
         logger.LogWarning("Getting the count of matching files.");
 
         return response.IsSuccessStatusCode
-            ? int.Parse(await response.Content.ReadAsStringAsync())
-            : -1;
+                            ? int.Parse(await response.Content.ReadAsStringAsync())
+                            : -1;
     }
 
     public async Task<int> GetDuplicateFilesCountAsync(SearchParameters searchParameters)
@@ -36,8 +55,8 @@ public class FilesApiClient
         logger.LogWarning("Getting the count of matching duplicate files.");
 
         return response.IsSuccessStatusCode
-            ? int.Parse(await response.Content.ReadAsStringAsync())
-            : -1;
+                            ? int.Parse(await response.Content.ReadAsStringAsync())
+                            : -1;
     }
 
     public async Task<IEnumerable<FileInfoDto>> GetFilesAsync(SearchParameters searchParameters)
@@ -74,25 +93,6 @@ public class FilesApiClient
         }
     }
 
-    public async Task<HealthStatusResponse> GetHealthAsync()
-    {
-        try
-        {
-            var response = await httpClient.GetAsync("/health/live");
-
-            logger.LogWarning("Checking the FilesAPI Health.");
-            return response.IsSuccessStatusCode
-                ? (await JsonSerializer.DeserializeAsync<HealthStatusResponse>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions))!
-                : new() { Status = "Health Check failed." }!;
-        }
-        catch(HttpRequestException ex)
-        {
-            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
-
-            return new() { Status = "Could not get a response from the Files API." }!;
-        }
-    }
-
     public async Task<string> MarkForSoftDeletionAsync(string fullName)
     {
         try
@@ -101,45 +101,7 @@ public class FilesApiClient
             var response = await httpClient.DeleteAsync($"/api/files/mark-for-soft-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
-                            ? "Marked for deletion"
-                            : await response.Content.ReadAsStringAsync();
-        }
-        catch(HttpRequestException ex)
-        {
-            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
-
-            return ex.Message;
-        }
-    }
-
-    public async Task<string> MarkForHardDeletionAsync(string fullName)
-    {
-        try
-        {
-            logger.LogWarning("Marking the {FileName} for hard deletion.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/mark-for-hard-deletion?request={fullName}");
-
-            return response.IsSuccessStatusCode
-                            ? "Deleted"
-                            : await response.Content.ReadAsStringAsync();
-        }
-        catch(HttpRequestException ex)
-        {
-            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
-
-            return ex.Message;
-        }
-    }
-
-    public async Task<string> MarkForMovingAsync(string fullName)
-    {
-        try
-        {
-            logger.LogWarning("Marking the {FileName} for moving.", fullName);
-            var response = await httpClient.DeleteAsync($"/api/files/mark-for-moving?request={fullName}");
-
-            return response.IsSuccessStatusCode
-                            ? "Mark for moving"
+                            ? "Marked for soft deletion"
                             : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)
@@ -158,12 +120,31 @@ public class FilesApiClient
             var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-soft-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
-                ? "Mark for deletion has been undone"
+                ? "Mark for soft deletion has been undone"
                 : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)
         {
             logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> MarkForHardDeletionAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Marking the {FileName} for hard deletion.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-hard-deletion?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Marked for hard deletion."
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
             return ex.Message;
         }
     }
@@ -176,7 +157,26 @@ public class FilesApiClient
             var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-hard-deletion?request={fullName}");
 
             return response.IsSuccessStatusCode
-                            ? "Deleted"
+                            ? "Mark for hard deletion has been undone"
+                            : await response.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex)
+        {
+            logger.LogError(500, ex, "Error: {ErrorMessage}", ex.Message);
+
+            return ex.Message;
+        }
+    }
+
+    public async Task<string> MarkForMovingAsync(string fullName)
+    {
+        try
+        {
+            logger.LogWarning("Marking the {FileName} for moving.", fullName);
+            var response = await httpClient.DeleteAsync($"/api/files/mark-for-moving?request={fullName}");
+
+            return response.IsSuccessStatusCode
+                            ? "Mark for moving was successful"
                             : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)
@@ -195,7 +195,7 @@ public class FilesApiClient
             var response = await httpClient.DeleteAsync($"/api/files/undo-mark-for-moving?request={fullName}");
 
             return response.IsSuccessStatusCode
-                            ? "Mark for moving"
+                            ? "Undo mark for moving was successful"
                             : await response.Content.ReadAsStringAsync();
         }
         catch(HttpRequestException ex)

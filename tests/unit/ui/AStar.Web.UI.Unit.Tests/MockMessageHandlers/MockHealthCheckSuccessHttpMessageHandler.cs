@@ -4,7 +4,7 @@ using AStar.Web.UI.Shared;
 
 namespace AStar.Web.UI.MockMessageHandlers;
 
-public class MockSuccessHttpMessageHandler : HttpMessageHandler
+public class MockHealthCheckSuccessHttpMessageHandler : HttpMessageHandler
 {
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         => Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)

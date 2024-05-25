@@ -45,7 +45,7 @@ public class ImagesApiClientShould
     [Fact]
     public async Task ReturnExpectedMessageFromGetHealthAsyncWhenCheckSucceeds()
     {
-        var handler = new MockSuccessHttpMessageHandler();
+        var handler = new MockHealthCheckSuccessHttpMessageHandler();
 
         var httpClient = new HttpClient(handler)
         {
