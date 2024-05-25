@@ -14,6 +14,10 @@ public class FileInfoDto
         Size = fileDetail.FileSize;
         DetailsLastUpdated = fileDetail.DetailsLastUpdated;
         LastViewed = fileDetail.LastViewed;
+        SoftDeleted = fileDetail.SoftDeleted;
+        SoftDeletePending = fileDetail.SoftDeletePending;
+        NeedsToMove = fileDetail.NeedsToMove;
+        HardDeletePending = fileDetail.HardDeletePending;
     }
 
     public FileInfoDto()

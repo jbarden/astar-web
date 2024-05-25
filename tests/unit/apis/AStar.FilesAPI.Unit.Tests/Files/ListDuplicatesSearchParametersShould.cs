@@ -1,0 +1,18 @@
+﻿using AStar.FilesApi.Config;
+using AStar.FilesApi.Files;
+
+namespace AStar.FilesAPI.Files;
+
+public class ListDuplicatesSearchParametersShould
+{
+    [Fact]
+    public void GenerateTheExpectedToStringOutput()
+    {
+        var sut = new ListDuplicatesSearchParameters().ToString();
+
+        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":"""",""CurrentPage"":1,""ItemsPerPage"":10,""MaximumSizeOfThumbnail"":150,""MaximumSizeOfImage"":1500,""SortOrder"":""SizeDescending"",""SearchType"":""Duplicates""}");
+    }
+
+    [Fact]
+    public void ContainTheSearchTypeSetAsDuplicates() => new ListDuplicatesSearchParameters().SearchType.Should().Be(SearchType.Duplicates);
+}

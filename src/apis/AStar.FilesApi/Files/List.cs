@@ -10,8 +10,8 @@ namespace AStar.FilesApi.Files;
 
 [Route("api/files")]
 public class List(FilesContext context, ILogger<List> logger)
-            : EndpointBaseSync
-                    .WithRequest<SearchParameters>
+            : EndpointBaseAsync
+                    .WithRequest<ListSearchParameters>
                     .WithActionResult<IReadOnlyCollection<FileInfoDto>>
 {
     [HttpGet("list")]
@@ -21,7 +21,7 @@ public class List(FilesContext context, ILogger<List> logger)
         OperationId = "Files_List",
         Tags = ["Files"])
 ]
-    public override ActionResult<IReadOnlyCollection<FileInfoDto>> Handle([FromQuery] SearchParameters request)
+    public override async Task<ActionResult<IReadOnlyCollection<FileInfoDto>>> HandleAsync([FromQuery] ListSearchParameters request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
         if(request.SearchFolder.IsNullOrWhiteSpace())
@@ -32,7 +32,7 @@ public class List(FilesContext context, ILogger<List> logger)
         logger.LogDebug("Starting {SearchType} search...{FullParameters}", request.SearchType, request);
 
         var files = context.Files
-                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, CancellationToken.None)
+                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, cancellationToken)
                            .OrderFiles(request.SortOrder);
 
         var fileList = new List<FileInfoDto>();
@@ -42,8 +42,9 @@ public class List(FilesContext context, ILogger<List> logger)
             fileList.Add(new FileInfoDto(file));
             file.LastViewed = DateTime.UtcNow;
         }
-        
+
         _ = context.SaveChanges();
+        await Task.Delay(1, cancellationToken);
 
         return Ok(fileList);
     }

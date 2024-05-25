@@ -10,7 +10,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnFilteredFilesFromTheRootFolderOnlyWhenRecursiveIsFalse()
     {
-        var response = sut.Files.FilterBySearchFolder("c:\\temp", false);
+        var response = sut.Files.FilterBySearchFolder("c:\\temp", false, CancellationToken.None);
 
         response.Count().Should().Be(10);
         return Verify(response);
@@ -19,7 +19,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnFilteredFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrue()
     {
-        var response = sut.Files.FilterBySearchFolder("c:\\temp", true);
+        var response = sut.Files.FilterBySearchFolder("c:\\temp", true, CancellationToken.None);
 
         response.Count().Should().Be(34);
         return Verify(response);
@@ -28,7 +28,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnFilteredFilesFromTheSubFolderAndSubDirectoriesWhenRecursiveIsTrue()
     {
-        var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", true);
+        var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", true, CancellationToken.None);
 
         response.Count().Should().Be(22);
         return Verify(response);
@@ -37,7 +37,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnFilteredFilesFromTheSubFolderOnlyWhenRecursiveIsFalse()
     {
-        var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", false);
+        var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", false, CancellationToken.None);
 
         response.Count().Should().Be(17);
         return Verify(response);

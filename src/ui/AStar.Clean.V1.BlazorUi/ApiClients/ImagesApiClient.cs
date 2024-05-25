@@ -65,8 +65,10 @@ public class ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClien
 
     private MemoryStream CreateNotFoundMemoryStream(string fileName)
     {
-        _ = filesApiClient.DeleteFileAsync(fileName, true);
+        // Not used by the new UI...
+        _ = filesApiClient.DeleteFileAsync(fileName);
         logger.LogWarning("Could not delete: {FileName}", fileName);
+
         return new(File.ReadAllBytes("404.jpg"));
     }
 }

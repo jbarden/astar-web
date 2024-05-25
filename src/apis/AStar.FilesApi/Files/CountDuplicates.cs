@@ -10,8 +10,8 @@ namespace AStar.FilesApi.Files;
 
 [Route("api/files")]
 public class CountDuplicates(FilesContext context, ILogger<CountDuplicates> logger)
-                    : EndpointBaseSync
-                            .WithRequest<SearchParameters>
+                    : EndpointBaseAsync
+                            .WithRequest<CountDuplicatesSearchParameters>
                             .WithActionResult<int>
 {
     [HttpGet("count-duplicates")]
@@ -21,9 +21,10 @@ public class CountDuplicates(FilesContext context, ILogger<CountDuplicates> logg
         OperationId = "Duplicates_Count",
         Tags = ["Files"])
 ]
-    public override ActionResult<int> Handle([FromQuery] SearchParameters request)
+    public override async Task<ActionResult<int>> HandleAsync([FromQuery] CountDuplicatesSearchParameters request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
+
         if(request.SearchFolder.IsNullOrWhiteSpace())
         {
             return BadRequest("A Search folder must be specified.");
@@ -35,10 +36,11 @@ public class CountDuplicates(FilesContext context, ILogger<CountDuplicates> logg
         }
 
         var matchingFiles = context.Files
-                                   .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, CancellationToken.None)
-                                   .GetDuplicatesCount();
+                                   .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, cancellationToken)
+                                   .GetDuplicatesCount(cancellationToken);
 
         logger.LogDebug("Duplicate File Count: {FileCount}", matchingFiles);
+        await Task.Delay(1, cancellationToken);
 
         return Ok(matchingFiles);
     }

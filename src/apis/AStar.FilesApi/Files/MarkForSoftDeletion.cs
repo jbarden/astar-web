@@ -1,4 +1,5 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using System.Threading;
+using Ardalis.ApiEndpoints;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ namespace AStar.FilesApi.Files;
 
 [Route("api/files")]
 public class MarkForSoftDeletion(FilesContext context, ILogger<MarkForSoftDeletion> logger)
-            : EndpointBaseSync
+            : EndpointBaseAsync
                     .WithRequest<string>
                     .WithActionResult
 {
@@ -19,7 +20,7 @@ public class MarkForSoftDeletion(FilesContext context, ILogger<MarkForSoftDeleti
         OperationId = "Files_MarkForSoftDeletion",
         Tags = ["Files"])
 ]
-    public override ActionResult Handle(string request)
+    public override async Task<ActionResult> HandleAsync(string request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
         if(request.IsNullOrWhiteSpace() || !request.Contains('\\'))
@@ -38,6 +39,7 @@ public class MarkForSoftDeletion(FilesContext context, ILogger<MarkForSoftDeleti
         }
 
         logger.LogDebug("File {FileName} marked for deletion", request);
+        await Task.Delay(1, cancellationToken);
 
         return NoContent();
     }

@@ -10,8 +10,8 @@ namespace AStar.FilesApi.Files;
 
 [Route("api/files")]
 public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger)
-            : EndpointBaseSync
-                    .WithRequest<SearchParameters>
+            : EndpointBaseAsync
+                    .WithRequest<ListDuplicatesSearchParameters>
                     .WithActionResult<IReadOnlyCollection<DuplicateGroup>>
 {
     [HttpGet("list-duplicates")]
@@ -21,7 +21,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
         OperationId = "Files_ListDuplicates",
         Tags = ["Files"])
 ]
-    public override ActionResult<IReadOnlyCollection<DuplicateGroup>> Handle([FromQuery] SearchParameters request)
+    public override async Task<ActionResult<IReadOnlyCollection<DuplicateGroup>>> HandleAsync([FromQuery] ListDuplicatesSearchParameters request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
         if(request.SearchFolder.IsNullOrWhiteSpace())
@@ -32,7 +32,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
         logger.LogDebug("Starting {SearchType} search...{FullParameters}", request.SearchType, request);
 
         var files = context.Files
-                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, CancellationToken.None)
+                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, cancellationToken)
                            .OrderFiles(request.SortOrder)
                            .GetDuplicates();
 
@@ -53,6 +53,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
         }
 
         _ = context.SaveChanges();
+        await Task.Delay(1, cancellationToken);
 
         return Ok(fileList);
     }

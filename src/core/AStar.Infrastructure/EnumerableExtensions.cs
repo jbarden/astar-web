@@ -12,9 +12,17 @@ public static class EnumerableExtensions
     /// </summary>
     /// <param name="files"></param>
     /// <param name="searchType"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static IEnumerable<FileDetail> FilterImagesIfApplicable(this IEnumerable<FileDetail> files, string searchType)
-        => searchType != "Images" ? files : files.Where(file => file.IsImage);
+    public static IEnumerable<FileDetail> FilterImagesIfApplicable(this IEnumerable<FileDetail> files, string searchType, CancellationToken cancellationToken)
+                                    => cancellationToken.IsCancellationRequested 
+                                        ? files
+                                        : NewMethod(files, searchType);
+
+    private static IEnumerable<FileDetail> NewMethod(IEnumerable<FileDetail> files, string searchType) 
+                                    => searchType != "Images" 
+                                                        ? files 
+                                                        : files.Where(file => file.IsImage);
 
     /// <summary>
     ///
@@ -36,9 +44,15 @@ public static class EnumerableExtensions
     /// Gets the count of duplicates, grouped by Size, Height and Width.
     /// </summary>
     /// <param name="files">The files to return grouped together.</param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static int GetDuplicatesCount(this IEnumerable<FileDetail> files)
+    public static int GetDuplicatesCount(this IEnumerable<FileDetail> files, CancellationToken cancellationToken)
     {
+        if(cancellationToken.IsCancellationRequested)
+        {
+            return 0;
+        }
+
         var duplicatesBySize = files.AsEnumerable()
                 .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
                     new FileSizeEqualityComparer()).Where(files => files.Count() > 1)

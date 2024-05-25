@@ -40,6 +40,7 @@ public partial class SearchParameters
         _ = sb.Append($"&{nameof(SortOrder)}={SortOrder}");
         _ = sb.Append($"&{nameof(MaximumSizeOfThumbnail)}={MaximumSizeOfThumbnail}");
         _ = sb.Append($"&{nameof(MaximumSizeOfImage)}={MaximumSizeOfImage}");
+        _ = sb.Append($"&{nameof(SearchText)}={SearchText}");
 
         return sb.ToString();
     }

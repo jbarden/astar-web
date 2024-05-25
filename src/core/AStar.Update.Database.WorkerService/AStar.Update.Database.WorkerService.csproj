@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AStar.FunctionalExtensions\AStar.FunctionalExtensions.csproj" />
     <ProjectReference Include="..\AStar.Infrastructure\AStar.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

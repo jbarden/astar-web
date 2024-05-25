@@ -2,7 +2,6 @@ using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
 using AStar.FilesAPI.Helpers;
 using AStar.Web.Domain;
-using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AStar.FilesAPI.Files;
@@ -15,17 +14,17 @@ public class ListShould : IClassFixture<ListFixture>
     public ListShould(ListFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Fact]
-    public void ReturnBadRequestWhenNoSearchFolderSpecified()
+    public async Task ReturnBadRequestWhenNoSearchFolderSpecified()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){ SearchFolder = string.Empty }).Result as BadRequestObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){ SearchFolder = string.Empty }, CancellationToken.None)).Result as BadRequestObjectResult;
 
         _ = response?.Value.Should().Be("A Search folder must be specified.");
     }
 
     [Fact]
-    public void GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsTopLevelFolderOnlyWhichIsEmpty()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", Recursive=false}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", Recursive=false}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
@@ -33,9 +32,9 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public void GetTheExpectedListOfFilesWhenTheFilterAppliedCapturesAllFiles()
+    public async Task GetTheExpectedListOfFilesWhenTheFilterAppliedCapturesAllFiles()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", SearchType = SearchType.All}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
@@ -43,10 +42,10 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public void GetTheFullListOfFilesWhenTheFilterAppliedCapturesAllFiles()
+    public async Task GetTheFullListOfFilesWhenTheFilterAppliedCapturesAllFiles()
     {
         const int FilesNotSoftDeletedOrPendingDeletionCount = 364;
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
@@ -54,39 +53,19 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public Task GetTheFullListContainingTheExpectedFilesWhenTheFilterAppliedCapturesAllFiles()
+    public async Task GetTheFullListContainingTheExpectedFilesWhenTheFilterAppliedCapturesAllFiles()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", SearchType = SearchType.All, ItemsPerPage = 10_000}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllImageFiles()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
-
-        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
-
-        _ = value.Count.Should().Be(ExpectedResultCountWithDefaultSearchParameters);
-    }
-
-    [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllImageFiles()
-    {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}).Result as OkObjectResult;
-
-        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
-
-        return Verify(value);
-    }
-
-    [Fact]
-    public void GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
-    {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
@@ -94,19 +73,39 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatTargetsSpecificFolderRecursively()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllImageFiles()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"c:\", SearchType = SearchType.Images}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public void GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
+    public async Task GetTheExpectedCountWhenFilterAppliedThatTargetsSpecificFolderRecursively()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}, CancellationToken.None)).Result as OkObjectResult;
+
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
+
+        _ = value.Count.Should().Be(ExpectedResultCountWithDefaultSearchParameters);
+    }
+
+    [Fact]
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatTargetsSpecificFolderRecursively()
+    {
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true}, CancellationToken.None)).Result as OkObjectResult;
+
+        var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
+
+        await Verify(value);
+    }
+
+    [Fact]
+    public async Task GetTheExpectedCountWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
+    {
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
@@ -114,52 +113,52 @@ public class ListShould : IClassFixture<ListFixture>
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeDescendingSortOrder()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeDescendingSortOrder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeDescending}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeDescending}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeAscendingSortOrder()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheSizeAscendingSortOrder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeAscending}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\", Recursive = true, SearchType = SearchType.Images, SortOrder = SortOrder.SizeAscending}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameDescendingSortOrder()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameDescendingSortOrder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameDescending}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameDescending}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 
     [Fact]
-    public Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameAscendingSortOrder()
+    public async Task GetTheExpectedFilesWhenFilterAppliedThatCapturesAllSupportedImageTypesFromStartingSubFolderAnHonourTheNameAscendingSortOrder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameAscending}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous\coats", Recursive = false, SearchType = SearchType.Images, SortOrder = SortOrder.NameAscending}, CancellationToken.None)).Result as OkObjectResult;
 
         var value = (IReadOnlyCollection<FileInfoDto>)response!.Value!;
 
-        return Verify(value);
+        await Verify(value);
     }
 }

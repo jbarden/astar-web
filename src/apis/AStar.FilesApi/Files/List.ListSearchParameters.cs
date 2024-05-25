@@ -5,18 +5,18 @@ using AStar.Web.Domain;
 
 namespace AStar.FilesApi.Files;
 
-public partial class SearchParameters
+public class ListSearchParameters
 {
     [Required]
     public string SearchFolder { get; set; } = string.Empty;
-
-    public SearchType SearchType { get; set; }
 
     public bool Recursive { get; set; } = true;
 
     public bool IncludeSoftDeleted { get; set; }
 
     public bool IncludeMarkedForDeletion { get; set; }
+
+    public string SearchText { get; set; } = string.Empty;
 
     [Required]
     public int CurrentPage { get; set; } = 1;
@@ -33,7 +33,7 @@ public partial class SearchParameters
     [Required]
     public SortOrder SortOrder { get; set; }
 
-    public string SearchText { get; set; } = string.Empty;
+    public SearchType SearchType { get; set; }
 
     public override string ToString() => JsonSerializer.Serialize(this);
 }

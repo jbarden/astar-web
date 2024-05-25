@@ -53,9 +53,10 @@ public partial class SearchDuplicates
         };
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
-        Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, SearchType.Duplicates);
-        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage });
-        var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum });
+        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage };
+        Logger.LogInformation("Searching for files in: {SearchFolder} - {SortOrder}, and of {SearchType} (Full Search Parameters: {SearchParameters})", startingFolder, sortOrderAsEnum, SearchType.Duplicates, searchParameters);
+        FileGroups = await FilesApiClient.GetDuplicateFilesAsync(searchParameters);
+        var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(searchParameters);
         totalPages = (int)Math.Ceiling(filesCount / (decimal)groupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 

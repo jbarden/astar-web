@@ -87,9 +87,9 @@ public class FilesApiClient
         return filesCount;
     }
 
-    public async Task<HttpResponseMessage> DeleteFileAsync(string fullname, bool hardDelete)
+    public async Task<HttpResponseMessage> DeleteFileAsync(string fullname)
     {
-        var requestUri = $"/api/files?filePath={fullname}&hardDelete={hardDelete}";
+        var requestUri = $"/api/mark-for-soft-deletion?filePath={fullname}";
         var response = await httpClient.DeleteAsync(requestUri);
 
         return response;

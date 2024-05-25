@@ -42,13 +42,14 @@
             
              </summary>
         </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.FilterBySearchFolder(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean)">
+        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.FilterBySearchFolder(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.Threading.CancellationToken)">
              <summary>
             
              </summary>
              <param name="files"></param>
              <param name="startingFolder"></param>
              <param name="recursive"></param>
+             <param name="cancellationToken"></param>
              <returns></returns>
         </member>
         <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
@@ -69,12 +70,13 @@
             
              </summary>
         </member>
-        <member name="M:AStar.Infrastructure.EnumerableExtensions.FilterImagesIfApplicable(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},System.String)">
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.FilterImagesIfApplicable(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},System.String,System.Threading.CancellationToken)">
              <summary>
             
              </summary>
              <param name="files"></param>
              <param name="searchType"></param>
+             <param name="cancellationToken"></param>
              <returns></returns>
         </member>
         <member name="M:AStar.Infrastructure.EnumerableExtensions.OrderFiles(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},AStar.Web.Domain.SortOrder)">
@@ -85,11 +87,12 @@
              <param name="sortOrder"></param>
              <returns></returns>
         </member>
-        <member name="M:AStar.Infrastructure.EnumerableExtensions.GetDuplicatesCount(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.GetDuplicatesCount(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},System.Threading.CancellationToken)">
             <summary>
             Gets the count of duplicates, grouped by Size, Height and Width.
             </summary>
             <param name="files">The files to return grouped together.</param>
+            <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="M:AStar.Infrastructure.EnumerableExtensions.GetDuplicates(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail})">

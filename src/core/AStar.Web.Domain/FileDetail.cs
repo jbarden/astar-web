@@ -59,6 +59,9 @@ public class FileDetail
     /// </summary>
     public string DirectoryName { get; set; } = string.Empty;
 
+    [NotMapped]
+    public string FullNameWithPath => Path.Combine(DirectoryName, FileName);
+
     /// <summary>
     /// Gets or sets the height of the image. I know, shocking...
     /// </summary>

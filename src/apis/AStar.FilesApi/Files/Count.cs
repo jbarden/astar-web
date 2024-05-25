@@ -10,11 +10,11 @@ namespace AStar.FilesApi.Files;
 [Route("api/files")]
 public class Count(FilesContext context, ILogger<Count> logger)
             : EndpointBaseAsync
-                    .WithRequest<SearchParameters>
+                    .WithRequest<CountSearchParameters>
                     .WithActionResult<int>
 {
     [HttpGet("count")]
-    [Produces("application/vnd.astar.file-count+json","application/json")]
+    [Produces("application/vnd.astar.file-count+json", "application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [SwaggerOperation(
         Summary = "Get the count of files",
@@ -22,8 +22,7 @@ public class Count(FilesContext context, ILogger<Count> logger)
         OperationId = "Files_Count",
         Tags = ["Files"])
 ]
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public override async Task<ActionResult<int>> HandleAsync([FromQuery] SearchParameters request, CancellationToken cancellationToken = default)
+    public override async Task<ActionResult<int>> HandleAsync([FromQuery] CountSearchParameters request, CancellationToken cancellationToken = default)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
         ArgumentNullException.ThrowIfNull(request);
@@ -42,6 +41,7 @@ public class Count(FilesContext context, ILogger<Count> logger)
                                         .Count();
 
         logger.LogDebug("File Count: {FileCount}", matchingFilesCount);
+        await Task.Delay(1, cancellationToken);
 
         return Ok(matchingFilesCount);
     }

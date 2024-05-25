@@ -11,41 +11,25 @@ public class CountDuplicatesShould : IClassFixture<CountDuplicatesFixture>
     public CountDuplicatesShould(CountDuplicatesFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Fact]
-    public void ReturnBadRequestWhenNoSearchFolderSpecified()
+    public async Task ReturnBadRequestWhenNoSearchFolderSpecified()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){ SearchFolder = string.Empty }).Result as BadRequestObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){ SearchFolder = string.Empty }, CancellationToken.None)).Result as BadRequestObjectResult;
 
         _ = response?.Value.Should().Be("A Search folder must be specified.");
     }
 
     [Fact]
-    public void ReturnBadRequestForImageCount()
+    public async Task GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtTheRootFolder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Images}).Result as BadRequestObjectResult;
-
-        _ = response!.Value.Should().Be("Only Duplicate counts are supported by this endpoint, please call the non-duplicate-specific endpoint.");
-    }
-
-    [Fact]
-    public void ReturnBadRequestForAllFilesCount()
-    {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.All}).Result as BadRequestObjectResult;
-
-        _ = response!.Value.Should().Be("Only Duplicate counts are supported by this endpoint, please call the non-duplicate-specific endpoint.");
-    }
-
-    [Fact]
-    public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtTheRootFolder()
-    {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\", Recursive = true }, CancellationToken.None)).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(36);
     }
 
     [Fact]
-    public void GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtSubFolder()
+    public async Task GetTheExpectedCountOfDuplicateFileGroupsWhenStartingAtSubFolder()
     {
-        var response = mockFilesFixture.SUT.Handle(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true, SearchType = SearchType.Duplicates}).Result as OkObjectResult;
+        var response = (await mockFilesFixture.SUT.HandleAsync(new(){SearchFolder = @"C:\Temp\Famous", Recursive = true }, CancellationToken.None)).Result as OkObjectResult;
 
         _ = response!.Value.Should().Be(16);
     }

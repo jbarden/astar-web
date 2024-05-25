@@ -26,9 +26,9 @@ public partial class FileDelete
     private async Task DeleteAsync(bool deleteHard)
     {
         IsEnabled = false;
-        deleteHard = TemporaryHackToOverrideHardDeleteFromListPage(deleteHard);
+        _ = TemporaryHackToOverrideHardDeleteFromListPage(deleteHard);
 
-        var response = await FilesApiClient.DeleteFileAsync(Fullname!, deleteHard);
+        var response = await FilesApiClient.DeleteFileAsync(Fullname!);
 
         var message = !response.IsSuccessStatusCode ? $"Could not delete the file. Please try again.Error Message: {response.ReasonPhrase}" : "Deleted.";
 

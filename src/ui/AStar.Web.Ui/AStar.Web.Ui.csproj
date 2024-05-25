@@ -28,10 +28,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="Blazorise" Version="1.5.2" />
+		<PackageReference Include="Blazorise.Animate" Version="1.5.2" />
 		<PackageReference Include="Blazorise.Bootstrap5" Version="1.5.2" />
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.2" />
 		<PackageReference Include="Blazorise.DataGrid" Version="1.5.2" />
 		<PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.2" />
+		<PackageReference Include="Blazorise.SpinKit" Version="1.5.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
