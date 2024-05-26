@@ -1,5 +1,4 @@
-﻿using AStar.FilesApi.Config;
-using AStar.FilesApi.Files;
+﻿using AStar.FilesApi.Files;
 
 namespace AStar.FilesAPI.Files;
 
@@ -10,6 +9,6 @@ public class CountDuplicatesSearchParametersShould
     {
         var sut = new CountDuplicatesSearchParameters().ToString();
 
-        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":""""}");
+        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null}");
     }
 }

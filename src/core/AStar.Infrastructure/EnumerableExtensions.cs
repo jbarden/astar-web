@@ -15,14 +15,9 @@ public static class EnumerableExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static IEnumerable<FileDetail> FilterImagesIfApplicable(this IEnumerable<FileDetail> files, string searchType, CancellationToken cancellationToken)
-                                    => cancellationToken.IsCancellationRequested 
+                                    => cancellationToken.IsCancellationRequested
                                         ? files
                                         : NewMethod(files, searchType);
-
-    private static IEnumerable<FileDetail> NewMethod(IEnumerable<FileDetail> files, string searchType) 
-                                    => searchType != "Images" 
-                                                        ? files 
-                                                        : files.Where(file => file.IsImage);
 
     /// <summary>
     ///
@@ -70,4 +65,9 @@ public static class EnumerableExtensions
                                 => files
                                     .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
                                              new FileSizeEqualityComparer()).Where(files => files.Count() > 1);
+
+    private static IEnumerable<FileDetail> NewMethod(IEnumerable<FileDetail> files, string searchType)
+                                                => searchType != "Images"
+                                                        ? files
+                                                        : files.Where(file => file.IsImage);
 }

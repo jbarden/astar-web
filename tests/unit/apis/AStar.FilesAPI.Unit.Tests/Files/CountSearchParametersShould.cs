@@ -10,7 +10,7 @@ public class CountSearchParametersShould
     {
         var sut = new CountSearchParameters().ToString();
 
-        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":"""",""SearchType"":""Images""}");
+        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null,""SearchType"":""Images""}");
     }
 
     [Fact]

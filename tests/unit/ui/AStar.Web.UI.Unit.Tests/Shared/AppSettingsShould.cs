@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using AStar.Utilities;
-using AStar.Web.UI.Configuration;
+using AStar.Web.Configuration;
 
 namespace AStar.Web.UI.Shared;
 

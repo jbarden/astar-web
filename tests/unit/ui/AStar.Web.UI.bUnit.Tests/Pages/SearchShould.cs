@@ -1,5 +1,5 @@
-﻿using AStar.Web.UI.FilesApi;
-using AStar.Web.UI.ImagesApi;
+﻿using AStar.Web.UI.ApiClients.FilesApi;
+using AStar.Web.UI.ApiClients.ImagesApi;
 using AStar.Web.UI.MockMessageHandlers;
 using AStar.Web.UI.Services;
 using Blazorise;

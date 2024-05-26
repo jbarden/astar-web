@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace AStar.Web.UI.Configuration;
+namespace AStar.Web.Configuration;
 
 public partial class Logging
 {

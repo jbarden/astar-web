@@ -21,9 +21,6 @@ public static class FilesContextExtensions
             => cancellationToken.IsCancellationRequested
                                     ? files
                                     : FilterBySearchFolder(files, startingFolder, recursive);
-    private static IEnumerable<FileDetail> FilterBySearchFolder(DbSet<FileDetail> files, string startingFolder, bool recursive) => startingFolder.IsNullOrWhiteSpace()
-                                            ? []
-                                            : GetFiles(files, startingFolder, recursive);
 
     /// <summary>
     ///
@@ -36,14 +33,15 @@ public static class FilesContextExtensions
     /// <param name="includeMarkedForDeletion"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-#pragma warning disable IDE0060 // Remove unused parameter
-    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion, CancellationToken cancellationToken)
-#pragma warning restore IDE0060 // Remove unused parameter
-        => files
+    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion, CancellationToken cancellationToken) => files
                 .FilterBySearchFolder(startingFolder, recursive, cancellationToken)
                 .FilterSoftDeleted(includeSoftDeleted, cancellationToken)
                 .FilterMarkedForDeletion(includeMarkedForDeletion, cancellationToken)
                 .FilterImagesIfApplicable(searchType, cancellationToken);
+
+    private static IEnumerable<FileDetail> FilterBySearchFolder(DbSet<FileDetail> files, string startingFolder, bool recursive) => startingFolder.IsNullOrWhiteSpace()
+                                                ? []
+                                            : GetFiles(files, startingFolder, recursive);
 
     private static IEnumerable<FileDetail> GetFiles(DbSet<FileDetail> files, string startingFolder, bool recursive)
         => recursive

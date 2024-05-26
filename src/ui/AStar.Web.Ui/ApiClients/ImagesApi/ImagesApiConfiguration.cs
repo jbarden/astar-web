@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AStar.Web.UI.ImagesApi;
+namespace AStar.Web.UI.ApiClients.ImagesApi;
 
 public class ImagesApiConfiguration
 {

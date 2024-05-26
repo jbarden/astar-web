@@ -1,4 +1,3 @@
-using AStar.FilesApi.Config;
 using AStar.FilesAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 

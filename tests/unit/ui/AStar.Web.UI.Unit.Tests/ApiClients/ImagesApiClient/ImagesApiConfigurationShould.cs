@@ -1,4 +1,6 @@
-﻿namespace AStar.Web.UI.ImagesApi;
+﻿using AStar.Web.UI.ApiClients.ImagesApi;
+
+namespace AStar.Web.UI.ApiClients.ImagesApiClient;
 
 public class ImagesApiConfigurationShould
 {

@@ -16,7 +16,7 @@ public class ListSearchParameters
 
     public bool IncludeMarkedForDeletion { get; set; }
 
-    public string SearchText { get; set; } = string.Empty;
+    public string? SearchText { get; set; }
 
     [Required]
     public int CurrentPage { get; set; } = 1;

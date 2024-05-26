@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AStar.Web.UI.FilesApi;
+namespace AStar.Web.UI.ApiClients.FilesApi;
 
 public class FilesApiConfiguration
 {

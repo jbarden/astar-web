@@ -1,4 +1,4 @@
-﻿namespace AStar.Web.UI.Configuration;
+﻿namespace AStar.Web.Configuration.Unit.Tests;
 
 public class LoglevelShould
 {

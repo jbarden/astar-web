@@ -4,9 +4,9 @@ using AStar.Web.UI.Models;
 using AStar.Web.UI.Pages;
 using AStar.Web.UI.Shared;
 
-namespace AStar.Web.UI.FilesApi;
+namespace AStar.Web.UI.ApiClients.FilesApi;
 
-public class FilesApiClient
+public class FilesApiClient : IApiClient
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new(JsonSerializerDefaults.Web);
     private readonly HttpClient httpClient;
@@ -64,16 +64,11 @@ public class FilesApiClient
         var response = await httpClient.GetAsync($"api/files/list?{searchParameters}");
 
         logger.LogWarning("Getting the list of files matching the criteria.");
+        var content = await response.Content.ReadAsStringAsync();
 
-        if(response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            return content.FromJson<IEnumerable<FileInfoDto>>(new(JsonSerializerDefaults.Web));
-        }
-        else
-        {
-            throw new InvalidOperationException("God won't give me a break...");
-        }
+        return response.IsSuccessStatusCode
+            ? content.FromJson<IEnumerable<FileInfoDto>>(new(JsonSerializerDefaults.Web))
+            : throw new InvalidOperationException(content);
     }
 
     public async Task<IReadOnlyCollection<DuplicateGroup>> GetDuplicateFilesAsync(SearchParameters searchParameters)

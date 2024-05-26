@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using AStar.FilesApi.Config;
-using AStar.Web.Domain;
 
 namespace AStar.FilesApi.Files;
 
@@ -16,7 +15,7 @@ public class CountDuplicatesSearchParameters
 
     public bool IncludeMarkedForDeletion { get; set; }
 
-    public string SearchText { get; set; } = string.Empty;
+    public string? SearchText { get; set; }
 
     internal SearchType SearchType { get; } = SearchType.Duplicates;
 

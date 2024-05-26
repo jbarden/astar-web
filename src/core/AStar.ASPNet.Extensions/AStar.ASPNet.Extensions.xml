@@ -66,6 +66,16 @@
             <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.</returns>
             <seealso href="ConfigureUi"></seealso>
         </member>
+        <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.OpenApi.Models.OpenApiInfo,System.String)">
+            <summary>
+            The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.ConfigureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/> will do exactly what it says on the tin... just, this time, it is API-specific.
+            </summary>
+            <param name="services">An instance of the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> interface that will be configured with the current methods.</param>
+            <param name="openApiInfo">An instance of <see cref="T:Microsoft.OpenApi.Models.OpenApiInfo"></see> that will be used to configure the SwaggerUI.</param>
+            <param name="apiName">The name of the API to use in the Swagger UI.</param>
+            <returns>The original <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to facilitate method chaining.</returns>
+            <seealso href="ConfigureUi"></seealso>
+        </member>
         <member name="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.AddLogging(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String)">
             <summary>
             The <see cref="M:AStar.ASPNet.Extensions.ServiceCollectionExtensions.ServiceCollectionExtensions.AddLogging(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String)"/> will do exactly what it says on the tin...

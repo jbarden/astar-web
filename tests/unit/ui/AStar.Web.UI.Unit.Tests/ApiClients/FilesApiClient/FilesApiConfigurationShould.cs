@@ -1,4 +1,6 @@
-﻿namespace AStar.Web.UI.FilesApi;
+﻿using AStar.Web.UI.ApiClients.FilesApi;
+
+namespace AStar.Web.UI.ApiClients.FilesApiClient;
 
 public class FilesApiConfigurationShould
 {

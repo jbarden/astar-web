@@ -27,7 +27,7 @@ public partial class SearchParameters
     [Required]
     public SortOrder SortOrder { get; set; } = SortOrder.SizeDescending;
 
-    public string SearchText { get; set; } = string.Empty;
+    public string? SearchText { get; set; }
 
     public override string ToString()
     {

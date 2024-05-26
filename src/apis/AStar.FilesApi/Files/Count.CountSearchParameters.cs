@@ -15,7 +15,7 @@ public class CountSearchParameters
 
     public bool IncludeMarkedForDeletion { get; set; }
 
-    public string SearchText { get; set; } = string.Empty;
+    public string? SearchText { get; set; }
 
     public SearchType SearchType { get; set; }
 

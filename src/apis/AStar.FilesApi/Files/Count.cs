@@ -23,7 +23,6 @@ public class Count(FilesContext context, ILogger<Count> logger)
         Tags = ["Files"])
 ]
     public override async Task<ActionResult<int>> HandleAsync([FromQuery] CountSearchParameters request, CancellationToken cancellationToken = default)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
         ArgumentNullException.ThrowIfNull(request);
         if(request.SearchFolder.IsNullOrWhiteSpace())

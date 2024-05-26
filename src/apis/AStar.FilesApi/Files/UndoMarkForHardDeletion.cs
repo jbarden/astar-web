@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Ardalis.ApiEndpoints;
+﻿using Ardalis.ApiEndpoints;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;

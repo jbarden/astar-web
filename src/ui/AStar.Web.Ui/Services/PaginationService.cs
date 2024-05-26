@@ -19,7 +19,7 @@ public class PaginationService
             var middleList = new List<int>();
             if(currentPage > 5 && currentPage < totalPageCount - 3)
             {
-                middleList.AddRange(Enumerable.Range(currentPage - 4, (requiredPageCount * 2)));
+                middleList.AddRange(Enumerable.Range(currentPage - 4, requiredPageCount * 2));
             }
 
             return Enumerable.Range(1, requiredPageCount)

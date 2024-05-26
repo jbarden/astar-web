@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
-using AStar.Web.UI.FilesApi;
+using AStar.Web.UI.ApiClients.FilesApi;
 using AStar.Web.UI.Shared;
 
-namespace AStar.Web.UI.ImagesApi;
+namespace AStar.Web.UI.ApiClients.ImagesApi;
 
-public class ImagesApiClient
+public class ImagesApiClient : IApiClient
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new(JsonSerializerDefaults.Web);
     private readonly HttpClient httpClient;

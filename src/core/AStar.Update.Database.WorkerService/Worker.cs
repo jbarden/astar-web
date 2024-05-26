@@ -1,7 +1,5 @@
-using AStar.FunctionalExtensions;
 using AStar.Infrastructure.Data;
 using AStar.Update.Database.WorkerService.Models;
-using AStar.Utilities;
 using AStar.Web.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -57,6 +55,7 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
         {
             return;
         }
+
         var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains("New-Subscription-Wallpapers"));
 
         foreach(var fileToMove in filesToMove)
