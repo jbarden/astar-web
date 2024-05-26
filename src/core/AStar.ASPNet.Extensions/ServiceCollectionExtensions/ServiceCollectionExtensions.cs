@@ -4,7 +4,6 @@ using AStar.Logging.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
-using AStar.Utilities;
 
 namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 
