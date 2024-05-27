@@ -1,46 +1,36 @@
-using AStar.Infrastructure.Data;
+using System.Globalization;
 using AStar.Update.Database.WorkerService.Models;
 using AStar.Web.Domain;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SkiaSharp;
 
 namespace AStar.Update.Database.WorkerService;
 
-public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directories) : BackgroundService
+public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger, IOptions<ApiConfiguration> directories) : WorkerServiceBase
 {
-    private static readonly FilesContext Context
-                        = new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
-
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    public override async Task RunServiceAsync(CancellationToken stoppingToken)
     {
-        _ = Context.Database.EnsureCreated();
-        logger.LogInformation("AStar.Update.Database.WorkerService running at: {RunTime}", DateTimeOffset.Now);
+        logger.LogInformation("UpdateDatabaseForAllFiles started at: {RunTime}", DateTimeOffset.Now);
+        var startTime = DateTime.UtcNow;
+        string endTime = "5:00 AM";
+
+        TimeSpan duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
+        if(duration < TimeSpan.Zero)
+        {
+            duration = duration.Add(TimeSpan.FromHours(24));
+        }
+
+        logger.LogInformation("Waiting for: {RunTime} hours before updating the full database.", duration);
+        await Task.Delay(duration, stoppingToken);
+
         while(!stoppingToken.IsCancellationRequested)
         {
-            MoveFilesInNewSubscriptionWallpapersDirectories();
-            ProcessFilesMarkedForDeletion();
             var files = new List<string>();
 
             GetFiles(directories, files);
 
             UpdateDirectoryFiles(files, stoppingToken);
-            await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
-        }
-    }
-
-    private static void SaveChangesSafely(ILogger<Worker> logger)
-    {
-        try
-        {
-            _ = Context.SaveChanges();
-        }
-        catch(Exception ex)
-        {
-            if(!ex.Message.StartsWith("The database operation was expected to affect"))
-            {
-                logger.LogError(ex, "Error: {Error} occurred whilst saving changes - probably 'no records affected'", ex.Message);
-            }
+            await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
         }
     }
 
@@ -49,50 +39,9 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
                             .ToList()
                             .ForEach(dir => GetFilesFromDirectory(dir, files));
 
-    private void MoveFilesInNewSubscriptionWallpapersDirectories(bool run = false)
+    private void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files)
     {
-        if(!run)
-        {
-            return;
-        }
-
-        var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains("New-Subscription-Wallpapers"));
-
-        foreach(var fileToMove in filesToMove)
-        {
-            var newLocation = fileToMove.DirectoryName.Replace("\\New-Subscription-Wallpapers", string.Empty);
-            var newNameAndLocation = Path.Combine(newLocation, fileToMove.FileName);
-            var newFile = Context.Files.FirstOrDefault(file => file.DirectoryName == newLocation && file.FileName == fileToMove.FileName);
-
-            if(File.Exists(fileToMove.FullNameWithPath))
-            {
-                File.Move(fileToMove.FullNameWithPath, newNameAndLocation, true);
-            }
-
-            if(newFile is null)
-            {
-                fileToMove.DirectoryName = newLocation;
-                _ = Context.Files.Update(fileToMove);
-            }
-            else
-            {
-                _ = Context.Files.Remove(fileToMove);
-            }
-
-            Console.WriteLine(fileToMove.FullNameWithPath);
-        }
-
-        SaveChangesSafely(logger);
-    }
-
-    private void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files, bool run = false)
-    {
-        if(!run)
-        {
-            return;
-        }
-
-        logger.LogInformation("Starting removal of deleted files");
+        logger.LogInformation("Starting removal of files deleted from disc outside of the UI.");
         foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.SoftDeletePending))
         {
             if(!files.Contains(Path.Combine(file.DirectoryName, file.FileName)))
@@ -125,41 +74,6 @@ public class Worker(ILogger<Worker> logger, IOptions<ApiConfiguration> directori
         RemoveFilesFromDbThatDoNotExistAnyMore(files);
 
         SaveChangesSafely(logger);
-    }
-
-    private void ProcessFilesMarkedForDeletion()
-    {
-        logger.LogInformation("Starting removal of files marked for hard deletion");
-        foreach(var file in Context.Files.Where(file => file.HardDeletePending))
-        {
-            if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
-            {
-                logger.LogInformation("hard-deleting {File}", file.FileName);
-                File.Delete(Path.Combine(file.DirectoryName, file.FileName));
-            }
-
-            _ = Context.Files.Remove(file);
-            _ = Context.SaveChanges();
-        }
-
-        logger.LogInformation("Starting removal of files marked for soft deletion");
-        Context.Files.Where(file => file.SoftDeletePending)
-                     .ToList()
-                     .ForEach(file =>
-                     {
-                         if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
-                         {
-                             logger.LogInformation("Soft-deleting {File}", file.FileName);
-                             File.Delete(Path.Combine(file.DirectoryName, file.FileName));
-                         }
-
-                         file.SoftDeleted = true;
-                         file.SoftDeletePending = false;
-                         file.DetailsLastUpdated = DateTime.UtcNow;
-                         _ = Context.SaveChanges();
-                     });
-
-        _ = Context.SaveChanges();
     }
 
     private void ProcessMovedFiles(IEnumerable<string> files, string[] directories, bool run = false)

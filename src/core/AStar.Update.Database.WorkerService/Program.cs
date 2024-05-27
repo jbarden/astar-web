@@ -1,4 +1,6 @@
+using AStar.Infrastructure.Data;
 using AStar.Update.Database.WorkerService.Models;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace AStar.Update.Database.WorkerService;
@@ -25,9 +27,14 @@ internal class Program
                     .Bind(configuration.GetSection(ApiConfiguration.SectionLocation))
                     .ValidateOnStart();
 
-        _ = builder.Services.AddHostedService<Worker>();
+        _ = builder.Services.AddHostedService<UpdateDatabaseForAllFiles>();
+        _ = builder.Services.AddHostedService<DeleteMarkedFiles>();
 
         var host = builder.Build();
+
+        using var context = new FilesContext(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
+        _ = context.Database.EnsureCreated();
+
         host.Run();
     }
 }
