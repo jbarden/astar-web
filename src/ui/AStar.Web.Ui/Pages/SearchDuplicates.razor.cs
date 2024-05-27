@@ -10,8 +10,9 @@ public partial class SearchDuplicates
 {
     private const string PREVIOUS = "previous";
     private const string NEXT = "next";
-    private string startingFolder = @"f:\wallhaven\named";
-    private int groupsPerPage = 10;
+    private string startingFolder = @"f:\wallhaven";
+    private int itemsOrGroupsPerPage = 10;
+    private int searchType;
     private int sortOrder;
     private int totalPages;
     private IReadOnlyCollection<int> pagesForPagination = [];
@@ -36,6 +37,9 @@ public partial class SearchDuplicates
     [Inject]
     private ILogger<Search> Logger { get; set; } = default!;
 
+    [Inject]
+    private SearchFilesService SearchFilesService { get; set; } = default!;
+
     private async Task StartSearch() => await SearchForMatchingFiles();
 
     private async Task SearchForMatchingFiles()
@@ -51,13 +55,33 @@ public partial class SearchDuplicates
             3 => SortOrder.NameAscending,
             _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
         };
+
+        if(SearchFilesService is not null)
+        {
+            sortOrderAsEnum = SearchFilesService.SortOrder switch
+            {
+                0 => SortOrder.SizeDescending,
+                1 => SortOrder.SizeAscending,
+                2 => SortOrder.NameDescending,
+                3 => SortOrder.NameAscending,
+                _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
+            };
+        }
+
+        var searchTypeAsEnum = searchType switch
+        {
+            0 => SearchType.Images,
+            1 => SearchType.All,
+            2 => SearchType.Duplicates,
+            _ => throw new ArgumentOutOfRangeException(nameof(searchType)),
+        };
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
-        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = SearchType.Duplicates, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = groupsPerPage };
-        Logger.LogInformation("Searching for files in: {SearchFolder} - {SortOrder}, and of {SearchType} (Full Search Parameters: {SearchParameters})", startingFolder, sortOrderAsEnum, SearchType.Duplicates, searchParameters);
+        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage };
+        Logger.LogInformation("Searching for files in: {SearchFolder} - {SortOrder}, and of {SearchType} (Full Search Parameters: {SearchParameters})", startingFolder, sortOrderAsEnum, searchTypeAsEnum, searchParameters);
         FileGroups = await FilesApiClient.GetDuplicateFilesAsync(searchParameters);
         var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(searchParameters);
-        totalPages = (int)Math.Ceiling(filesCount / (decimal)groupsPerPage);
+        totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsOrGroupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
 
         pages = Enumerable.Range(1, totalPages).ToList();
@@ -80,7 +104,7 @@ public partial class SearchDuplicates
     private bool IsPageNavigationDisabled(string navigation)
         => navigation.Equals(PREVIOUS)
                     ? currentPage.Equals("1")
-                    : navigation.Equals(NEXT) && currentPage.Equals(groupsPerPage.ToString());
+                    : navigation.Equals(NEXT) && currentPage.Equals(itemsOrGroupsPerPage.ToString());
 
     private async Task Previous()
     {
@@ -96,7 +120,7 @@ public partial class SearchDuplicates
     private async Task Next()
     {
         currentPageAsInt = int.Parse(currentPage);
-        if(currentPageAsInt < groupsPerPage)
+        if(currentPageAsInt < itemsOrGroupsPerPage)
         {
             currentPage = (currentPageAsInt + 1).ToString();
         }

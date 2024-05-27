@@ -8,6 +8,7 @@ using AStar.Infrastructure.Data;
 using AStar.Logging.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace AStar.ImagesAPI;
@@ -22,7 +23,8 @@ public static class Program
         {
             _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
                        .AddLogging("astar-logging-settings.json")
-                       .Services.ConfigureApi();
+                       .Services.ConfigureApi(new OpenApiInfo() { }, "AStar Web Images API");
+
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
 
             _ = ConfigureServices(builder.Services, builder.Configuration);

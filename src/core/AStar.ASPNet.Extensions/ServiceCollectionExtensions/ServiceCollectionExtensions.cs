@@ -86,16 +86,13 @@ public static class ServiceCollectionExtensions
     /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.</returns>
     /// <seealso href="ConfigureUi"></seealso>
     public static IServiceCollection ConfigureApi(this IServiceCollection services, OpenApiInfo openApiInfo, string apiName)
-    {
-        services = services.ConfigureApi();
-        _ = services.AddSwaggerGen(c =>
-                                    {
-                                        c.SwaggerDoc(apiName, openApiInfo);
-                                        c.EnableAnnotations();
-                                    });
-
-        return services;
-    }
+        => services
+                .ConfigureApi()
+                .AddSwaggerGen(c =>
+                                {
+                                    c.SwaggerDoc(apiName, openApiInfo);
+                                    c.EnableAnnotations();
+                                });
 
     /// <summary>
     /// The <see cref="AddLogging"/> will do exactly what it says on the tin...

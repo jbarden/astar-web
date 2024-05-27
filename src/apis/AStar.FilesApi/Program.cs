@@ -2,6 +2,7 @@ using AStar.ASPNet.Extensions.PipelineExtensions;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.ASPNet.Extensions.WebApplicationBuilderExtensions;
 using AStar.Logging.Extensions;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace AStar.FilesApi;
@@ -19,7 +20,7 @@ public static class Program
                        .AddLogging("astar-logging-settings.json");
 
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
-            _ = builder.Services.ConfigureApi();
+            _ = builder.Services.ConfigureApi(new OpenApiInfo() { }, "AStar Web Files API");
 
             _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 

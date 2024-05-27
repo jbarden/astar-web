@@ -23,8 +23,7 @@
                                             Search Folder
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <TextEdit Placeholder="Please specify the starting folder"
-                                                      @bind-text="@startingFolder" id="startingFolder" />
+                                            <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" id="startingFolder" />
                                         </FieldBody>
                                     </Field>
                                     <Field Horizontal>
@@ -32,8 +31,8 @@
                                             Items Per Page
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <NumericPicker @bind-Value="@itemsPerPage" ModifyValueOnWheel
-                                                           WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
+                                            <NumericPicker @bind-Value="@itemsOrGroupsPerPage" ModifyValueOnWheel
+                                                           WheelOn="NumericWheelOn.Hover" Step="5" Min="5" Max="50"
                                                            id="itemsPerPage" />
                                         </FieldBody>
                                     </Field>
@@ -95,10 +94,11 @@
             </AccordionHeader>
             <AccordionBody>
                 <Row>
+                    <Column ColumnSize="ColumnSize.Is10">
                     <Pagination Background="Background.Primary">
                         <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">«</span>
+                            <PaginationLink Background="Background.Warning">
+                                <span aria-hidden="true">« Previous</span>
                             </PaginationLink>
                         </PaginationItem>
                         @{
@@ -106,46 +106,72 @@
                             {
                                 var pageNumberAsString = pageOrdinal.ToString();
                                 <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Warning">
                                         @pageNumberAsString
                                     </PaginationLink>
                                 </PaginationItem>
                             }
                         }
                         <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">»</span>
+                                <PaginationLink Background="Background.Warning">
+                                <span aria-hidden="true">Next »</span>
                             </PaginationLink>
                         </PaginationItem>
-                    </Pagination>
+                        </Pagination>
+                    </Column>
+                    <Column ColumnSize="ColumnSize.Is2">
+                        <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
+                            @{
+                                foreach(var pageNumber in pages)
+                                {
+                                    <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                                }
+                            }
+                        </Select>
+                    </Column>
                 </Row>
                 <Row>
                     <CardDeck>
-                    @foreach(var f in Files)
+                    @foreach(var file in Files)
                     {
                         <Card Background="Background.Primary">
                             <CardBody>
                                 <CardTitle Size="4">
-                                        <div>@f.Name</div>
+                                        <div>@file.Name</div>
                                 </CardTitle>
                                     <CardText>
-                                        <div><ImageComponent ImageName="@f.Name" ImageFullName="@f.FullName" ImageSize="850"></ImageComponent></div>
-                                        <div>@f.FullName</div>
-                                        <div>Size: @f.SizeForDisplay</div>
-                                        <div>W x H: @f.Width x @f.Height</div>
-                                        @{
-                                            if(!f.SoftDeletePending)
+                                        <div><ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="850"></ImageComponent></div>
+                                        <div>@file.FullName</div>
+                                        <div>Size: @file.SizeForDisplay</div>
+                                        <div>W x H: @file.Width x @file.Height</div>
+                                        <div>Details Last Updated: @file.DetailsLastUpdated?.ToString("R")</div>
+                                        <div>Previously Viewed: @file.LastViewed?.ToString("R")</div>
+                                        <div>
+                                            @if(file.SoftDeletePending)
                                             {
-                                                <div><Button Clicked="@(()=>MarkForDeletion(f.FullName))" Color="Color.Danger">Delete</Button></div>
+                                                <Button Clicked="@(()=>UndoMarkForSoftDeletion(file.FullName))" Color="Color.Success">Undo Soft Delete</Button>
                                             }
                                             else
                                             {
-                                                <Field Background="Background.Success">
-                                                    <FieldLabel>@DeletionStatus</FieldLabel>
-                                                </Field>
-                                                <Button Clicked="@(()=>UndoMarkForDeletion(f.FullName))" Color="Color.Info">Undo</Button>
+                                                <Button Clicked="@(()=>MarkForSoftDeletion(file.FullName))" Color="Color.Warning">Soft Delete</Button>
                                             }
-                                        }
+                                            @if(file.HardDeletePending)
+                                            {
+                                                <Button Clicked="@(()=>UndoMarkForHardDeletion(file.FullName))" Color="Color.Success">Undo Hard Delete</Button>
+                                            }
+                                            else
+                                            {
+                                                <Button Clicked="@(()=>MarkForHardDeletion(file.FullName))" Color="Color.Danger">Hard Delete</Button>
+                                            }
+                                            @if(file.NeedsToMove)
+                                            {
+                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move</Button>
+                                            }
+                                            else
+                                            {
+                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move</Button>
+                                            }
+                                        </div>
                                 </CardText>
                             </CardBody>
                         </Card>
@@ -153,10 +179,11 @@
                     </CardDeck>
                 </Row>
                 <Row>
+                    <Column ColumnSize="ColumnSize.Is10">
                     <Pagination Background="Background.Primary">
                         <PaginationItem Disabled="@IsPageNavigationDisabled(PREVIOUS)" @onclick="Previous">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">«</span>
+                            <PaginationLink Background="Background.Warning">
+                                <span aria-hidden="true">« Previous</span>
                             </PaginationLink>
                         </PaginationItem>
                         @{
@@ -164,18 +191,29 @@
                             {
                                 var pageNumberAsString = pageOrdinal.ToString();
                                 <PaginationItem @key="pageNumberAsString" Active="@IsActive(pageNumberAsString)">
-                                    <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Success">
+                                        <PaginationLink Page="@pageNumberAsString" Clicked="SetActive" Background="Background.Warning">
                                         @pageNumberAsString
                                     </PaginationLink>
                                 </PaginationItem>
                             }
                         }
                         <PaginationItem Disabled="@IsPageNavigationDisabled(NEXT)" @onclick="Next">
-                            <PaginationLink Background="Background.Success">
-                                <span aria-hidden="true">»</span>
+                                <PaginationLink Background="Background.Warning">
+                                <span aria-hidden="true">Next »</span>
                             </PaginationLink>
                         </PaginationItem>
-                    </Pagination>
+                        </Pagination>
+                    </Column>
+                    <Column ColumnSize="ColumnSize.Is2">
+                        <Select TValue="int" SelectedValue="@currentPageAsInt" SelectedValueChanged="@OnSelectedValueChanged">
+                            @{
+                                foreach(var pageNumber in pages)
+                                {
+                                    <SelectItem Selected="@(pageNumber == currentPageAsInt)" Value="@pageNumber.ToString()">Page @pageNumber.ToString()</SelectItem>
+                                }
+                            }
+                        </Select>
+                    </Column>
                 </Row>
             </AccordionBody>
         </AccordionItem>

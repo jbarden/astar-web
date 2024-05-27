@@ -31,8 +31,8 @@
                                             Groups Per Page
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <NumericPicker @bind-Value="@groupsPerPage" ModifyValueOnWheel
-                                                           WheelOn="NumericWheelOn.Hover" Step="10" Min="10" Max="50"
+                                            <NumericPicker @bind-Value="@itemsOrGroupsPerPage" ModifyValueOnWheel
+                                                           WheelOn="NumericWheelOn.Hover" Step="5" Min="5" Max="50"
                                                            id="itemsPerPage" />
                                         </FieldBody>
                                     </Field>
@@ -40,21 +40,25 @@
                                 <Fields>
                                     <Field Horizontal>
                                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
+                                            Search Type
+                                        </FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                            <Select @bind-SelectedValue="@searchType" id="searchType">
+                                                <SelectItem Value="2">Duplicates</SelectItem>
+                                            </Select>
+                                        </FieldBody>
+                                    </Field>
+                                    <Field Horizontal>
+                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
                                             Sort Order
                                         </FieldLabel>
-                                        <FieldBody ColumnSize="ColumnSize.Is6.OnTablet.Is9.OnDesktop">
+                                        <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
                                             <Select @bind-SelectedValue="@sortOrder" id="sortOrder">
                                                 <SelectItem Value="0">Size Descending</SelectItem>
                                                 <SelectItem Value="1">Size Ascending</SelectItem>
                                                 <SelectItem Value="2">Name Descending</SelectItem>
                                                 <SelectItem Value="3">Name Ascending</SelectItem>
                                             </Select>
-                                        </FieldBody>
-                                    </Field>
-                                    <Field Horizontal>
-                                        <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">
-                                        </FieldLabel>
-                                        <FieldBody ColumnSize="ColumnSize.Is6.OnTablet.Is9.OnDesktop">
                                         </FieldBody>
                                     </Field>
                                 </Fields>

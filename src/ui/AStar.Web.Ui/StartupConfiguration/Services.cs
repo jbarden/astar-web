@@ -23,6 +23,7 @@ public static class Services
         _ = services.AddRazorPages();
         _ = services.AddServerSideBlazor();
         _ = services.AddScoped<PaginationService>();
+        _ = services.AddScoped<SearchFilesService>();
 
         _ = services.AddBlazorise()
                     .AddBootstrap5Providers()
