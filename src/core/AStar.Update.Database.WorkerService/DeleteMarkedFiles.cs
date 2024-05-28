@@ -1,53 +1,72 @@
+using AStar.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace AStar.Update.Database.WorkerService;
 
 public class DeleteMarkedFiles(ILogger<UpdateDatabaseForAllFiles> logger) : WorkerServiceBase
 {
+    protected override FilesContext Context
+        => new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
+
     public override async Task RunServiceAsync(CancellationToken stoppingToken)
     {
         logger.LogInformation("DeleteMarkedFiles started at: {RunTime}", DateTimeOffset.Now);
         while(!stoppingToken.IsCancellationRequested)
         {
-            MoveFilesInNewSubscriptionWallpapersDirectories();
-            ProcessFilesMarkedForDeletion();
-            logger.LogInformation("Waiting for an hour before restarting at: {RunTime}", DateTimeOffset.Now.AddHours(1));
-            await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
+            try
+            {
+                MoveFilesInNewSubscriptionWallpapersDirectories();
+                ProcessFilesMarkedForDeletion();
+                logger.LogInformation("Waiting for an hour before restarting at: {RunTime}", DateTimeOffset.Now.AddHours(1));
+                await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex, "Error occurred in AStar.Update.Database.WorkerService: {ErrorMessage}", ex.Message);
+            }
         }
     }
 
-    private void MoveFilesInNewSubscriptionWallpapersDirectories(bool run = false)
+    private void MoveFilesInNewSubscriptionWallpapersDirectories()
     {
-        if(!run)
-        {
-            return;
-        }
+        var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains("New-Subscription-Wallpapers") && !file.SoftDeleted);
 
-        var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains("New-Subscription-Wallpapers"));
-
+        var fullNameWithPath = string.Empty;
         foreach(var fileToMove in filesToMove)
         {
-            var newLocation = fileToMove.DirectoryName.Replace("\\New-Subscription-Wallpapers", string.Empty);
-            var newNameAndLocation = Path.Combine(newLocation, fileToMove.FileName);
-            var newFile = Context.Files.FirstOrDefault(file => file.DirectoryName == newLocation && file.FileName == fileToMove.FileName);
-
-            if(File.Exists(fileToMove.FullNameWithPath))
+            try
             {
-                File.Move(fileToMove.FullNameWithPath, newNameAndLocation, true);
-            }
+                fullNameWithPath = fileToMove.FullNameWithPath;
+                logger.LogInformation("File to move (including path): {FileName}", fullNameWithPath);
+                var newLocation = fileToMove.DirectoryName.Replace("\\New-Subscription-Wallpapers", string.Empty);
+                var newNameAndLocation = Path.Combine(newLocation, fileToMove.FileName);
+                var newFile = Context.Files.FirstOrDefault(file => file.DirectoryName == newLocation && file.FileName == fileToMove.FileName);
 
-            if(newFile is null)
-            {
-                fileToMove.DirectoryName = newLocation;
-                _ = Context.Files.Update(fileToMove);
-            }
-            else
-            {
-                _ = Context.Files.Remove(fileToMove);
-            }
+                if(File.Exists(fullNameWithPath))
+                {
+                    File.Move(fullNameWithPath, newNameAndLocation, true);
+                }
 
-            Console.WriteLine(fileToMove.FullNameWithPath);
+                if(newFile is null)
+                {
+                    Context.Entry(fileToMove).State = EntityState.Deleted;
+                    SaveChangesSafely(logger);
+                    fileToMove.DirectoryName = newLocation;
+                    _ = Context.Files.Add(fileToMove);
+                    SaveChangesSafely(logger);
+                }
+                else
+                {
+                    _ = Context.Files.Remove(fileToMove);
+                }
+
+                SaveChangesSafely(logger);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex, "Error occurred in AStar.Update.Database.WorkerService: {ErrorMessage} when attempting to update {FullNameWithPath}", ex.Message, fullNameWithPath);
+            }
         }
-
-        SaveChangesSafely(logger);
     }
 
     private void ProcessFilesMarkedForDeletion()

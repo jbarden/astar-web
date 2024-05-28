@@ -1,16 +1,14 @@
 ﻿using AStar.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace AStar.Update.Database.WorkerService;
 
 public abstract class WorkerServiceBase : BackgroundService
 {
-    protected static readonly FilesContext Context
-                        = new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
+    protected abstract FilesContext Context { get; }
 
     public abstract Task RunServiceAsync(CancellationToken stoppingToken);
 
-    protected static void SaveChangesSafely(ILogger<UpdateDatabaseForAllFiles> logger)
+    protected void SaveChangesSafely(ILogger<UpdateDatabaseForAllFiles> logger)
     {
         try
         {

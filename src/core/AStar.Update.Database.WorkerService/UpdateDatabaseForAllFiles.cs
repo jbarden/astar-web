@@ -1,6 +1,8 @@
 using System.Globalization;
+using AStar.Infrastructure.Data;
 using AStar.Update.Database.WorkerService.Models;
 using AStar.Web.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SkiaSharp;
 
@@ -8,29 +10,39 @@ namespace AStar.Update.Database.WorkerService;
 
 public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger, IOptions<ApiConfiguration> directories) : WorkerServiceBase
 {
+    protected override FilesContext Context
+        => new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
+
     public override async Task RunServiceAsync(CancellationToken stoppingToken)
     {
-        logger.LogInformation("UpdateDatabaseForAllFiles started at: {RunTime}", DateTimeOffset.Now);
-        var startTime = DateTime.UtcNow;
-        string endTime = "5:00 AM";
-
-        TimeSpan duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
-        if(duration < TimeSpan.Zero)
+        try
         {
-            duration = duration.Add(TimeSpan.FromHours(24));
+            logger.LogInformation("UpdateDatabaseForAllFiles started at: {RunTime}", DateTimeOffset.Now);
+            var startTime = DateTime.UtcNow;
+            string endTime = "5:00 AM";
+
+            TimeSpan duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
+            if(duration < TimeSpan.Zero)
+            {
+                duration = duration.Add(TimeSpan.FromHours(24));
+            }
+
+            logger.LogInformation("Waiting for: {RunTime} hours before updating the full database.", duration);
+            await Task.Delay(duration, stoppingToken);
+
+            while(!stoppingToken.IsCancellationRequested)
+            {
+                var files = new List<string>();
+
+                GetFiles(directories, files);
+
+                UpdateDirectoryFiles(files, stoppingToken);
+                await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+            }
         }
-
-        logger.LogInformation("Waiting for: {RunTime} hours before updating the full database.", duration);
-        await Task.Delay(duration, stoppingToken);
-
-        while(!stoppingToken.IsCancellationRequested)
+        catch(Exception ex)
         {
-            var files = new List<string>();
-
-            GetFiles(directories, files);
-
-            UpdateDirectoryFiles(files, stoppingToken);
-            await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+            logger.LogError(ex, "Error occurred in AStar.Update.Database.WorkerService: {ErrorMessage}", ex.Message);
         }
     }
 

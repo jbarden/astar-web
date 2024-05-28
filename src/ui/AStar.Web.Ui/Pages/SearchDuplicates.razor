@@ -136,7 +136,7 @@
                         <table>
                             <thead>
                                 <th>
-                                <h2 class="centre"><br />Duplicate Group Details<br />Size: @fileGroup.Group.FileSizeForDisplay, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</h2>
+                                <h2 class="centre"><br />@fileGroup.Files.Count() Duplicate Files in Group<br />Size: @fileGroup.Group.FileSizeForDisplay, Width: @fileGroup.Group.Width, Height: @fileGroup.Group.Height</h2>
                                 </th>
                             </thead>
                             <tbody>
@@ -149,11 +149,11 @@
                                             <br />
                                                 <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="850"></ImageComponent>
                                                 <br />
-                                                <div>@file.FullName</div>
-                                                <div>Size: @file.SizeForDisplay</div>
-                                                <div>W x H: @file.Width x @file.Height</div>
-                                                <div>Details Last Updated: @file.DetailsLastUpdated?.ToString("R")</div>
-                                                <div>Previously Viewed: @file.LastViewed?.ToString("R")</div>
+                                                <div><strong>Directory Name:</strong> @file.DirectoryName</div>
+                                                <div><strong>File Name:</strong> @file.Name</div>
+                                                <div><strong>Size:</strong> <span width="150pt" display: "inline-block;"> @file.SizeForDisplay</span><strong>Width x Height:</strong> @file.Width x @file.Height</div>
+                                                <div><strong>Details Last Updated:</strong> @file.DetailsLastUpdated?.ToString("R")</div>
+                                                <div><strong>Previously Viewed:</strong> @file.LastViewed?.ToString("R")</div>
                                                 <div>
                                                     @if(file.SoftDeletePending)
                                                     {
@@ -173,11 +173,11 @@
                                                     }
                                                     @if(file.NeedsToMove)
                                                     {
-                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move</Button>
+                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move/Rename</Button>
                                                     }
                                                     else
                                                     {
-                                                        <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move</Button>
+                                                        <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move/Rename</Button>
                                                     }
                                                 </div>
                                             </div>

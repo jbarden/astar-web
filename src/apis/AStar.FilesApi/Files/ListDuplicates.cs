@@ -1,4 +1,5 @@
-﻿using Ardalis.ApiEndpoints;
+﻿using System.Diagnostics;
+using Ardalis.ApiEndpoints;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
@@ -24,6 +25,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
     public override async Task<ActionResult<IReadOnlyCollection<DuplicateGroup>>> HandleAsync([FromQuery] ListDuplicatesSearchParameters request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
+        var stopwatch = Stopwatch.StartNew();
         if(request.SearchFolder.IsNullOrWhiteSpace())
         {
             return BadRequest("A Search folder must be specified.");
@@ -40,6 +42,8 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
 
         foreach(var fileGroup in files.Skip((request.CurrentPage - 1) * request.ItemsPerPage).Take(request.ItemsPerPage))
         {
+            logger.LogDebug("Got the results for the {SearchType} search (Total seconds: {TotalSeconds}) and are about to process them for Page {Page}...{FullParameters}", request.SearchType, stopwatch.Elapsed.Seconds, request.CurrentPage, request);
+
             var key = fileGroup.Key;
             var fileDtos = new List<FileInfoDto>();
 
@@ -54,6 +58,7 @@ public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger
 
         _ = context.SaveChanges();
         await Task.Delay(1, cancellationToken);
+        logger.LogDebug("About to return the results for the {SearchType} search (Total seconds: {TotalSeconds})...{FullParameters}", request.SearchType, stopwatch.Elapsed.Seconds, request);
 
         return Ok(fileList);
     }

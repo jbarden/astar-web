@@ -14,10 +14,11 @@ public static class EnumerableExtensions
     /// <param name="searchType"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+
     public static IEnumerable<FileDetail> FilterImagesIfApplicable(this IEnumerable<FileDetail> files, string searchType, CancellationToken cancellationToken)
                                     => cancellationToken.IsCancellationRequested
                                         ? files
-                                        : NewMethod(files, searchType);
+                                        : FilterImagesIfApplicable(files, searchType);
 
     /// <summary>
     ///
@@ -25,6 +26,7 @@ public static class EnumerableExtensions
     /// <param name="files"></param>
     /// <param name="sortOrder"></param>
     /// <returns></returns>
+
     public static IEnumerable<FileDetail> OrderFiles(this IEnumerable<FileDetail> files, SortOrder sortOrder)
                                                 => sortOrder switch
                                                 {
@@ -61,12 +63,13 @@ public static class EnumerableExtensions
     /// </summary>
     /// <param name="files">The files to return grouped together.</param>
     /// <returns></returns>
+
     public static IEnumerable<IGrouping<FileSize, FileDetail>> GetDuplicates(this IEnumerable<FileDetail> files)
                                 => files
                                     .GroupBy(file => FileSize.Create(file.FileSize, file.Height, file.Width),
                                              new FileSizeEqualityComparer()).Where(files => files.Count() > 1);
 
-    private static IEnumerable<FileDetail> NewMethod(IEnumerable<FileDetail> files, string searchType)
+    private static IEnumerable<FileDetail> FilterImagesIfApplicable(IEnumerable<FileDetail> files, string searchType)
                                                 => searchType != "Images"
                                                         ? files
                                                         : files.Where(file => file.IsImage);

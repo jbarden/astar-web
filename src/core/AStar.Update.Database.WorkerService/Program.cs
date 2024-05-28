@@ -19,13 +19,17 @@ internal class Program
         var logger = new LoggerConfiguration()
                     .ReadFrom.Configuration(configuration)
                     .CreateLogger();
-        logger.Information("Starting up");
+
+        Log.Logger = logger;
+        logger.Information("AStar.Update.Database.WorkerService Starting up");
 
         var builder = Host.CreateApplicationBuilder(args);
 
         _ = builder.Services.AddOptions<ApiConfiguration>()
                     .Bind(configuration.GetSection(ApiConfiguration.SectionLocation))
                     .ValidateOnStart();
+
+        _ = builder.Services.AddSerilog(config => config.ReadFrom.Configuration(builder.Configuration));
 
         _ = builder.Services.AddHostedService<UpdateDatabaseForAllFiles>();
         _ = builder.Services.AddHostedService<DeleteMarkedFiles>();

@@ -8,6 +8,8 @@ public class FileInfoDto
 
     public string FullName { get; set; } = string.Empty;
 
+    public string DirectoryName => FullName.Replace(Name, string.Empty);
+
     public long Height { get; set; }
 
     public long Width { get; set; }
