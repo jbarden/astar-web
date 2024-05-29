@@ -1,4 +1,4 @@
-﻿using AStar.FilesApi.Files;
+﻿using AStar.FilesApi.Endpoints.Files;
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Logging.Abstractions;
 
