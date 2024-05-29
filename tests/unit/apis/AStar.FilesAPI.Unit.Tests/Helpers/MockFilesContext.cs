@@ -4,7 +4,7 @@ using AStar.Web.Domain;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace AStar.FilesAPI.Helpers;
+namespace AStar.FilesApi.Helpers;
 
 public class MockFilesContext : IDisposable
 {

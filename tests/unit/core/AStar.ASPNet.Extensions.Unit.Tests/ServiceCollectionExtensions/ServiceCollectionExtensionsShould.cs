@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.OpenApi.Models;
 
 namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
@@ -41,5 +42,13 @@ public class ServiceCollectionExtensionsShould
         SUT.Services.ConfigureApi(new OpenApiInfo());
 
         SUT.Services.Count().Should().BeGreaterThan(initialCount, "the count should have increased if the Swagger Gen UI had been added.");
+    }
+
+    [Fact]
+    public void AddResponseCachingCorrectly()
+    {
+        SUT.Services.ConfigureApi(new OpenApiInfo());
+
+        SUT.Services.Count(c => c.GetType() == typeof(IMemoryCache)).Should().Be(1);
     }
 }

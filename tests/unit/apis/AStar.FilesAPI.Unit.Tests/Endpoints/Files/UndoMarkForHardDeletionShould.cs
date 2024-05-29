@@ -1,13 +1,13 @@
-using AStar.FilesAPI.Helpers;
+using AStar.FilesApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AStar.FilesAPI.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
-public class UndoMarkForSoftDeletionShould : IClassFixture<UndoMarkForSoftDeletionFixture>
+public class UndoMarkForHardDeletionShould : IClassFixture<UndoMarkForHardDeletionFixture>
 {
-    private readonly UndoMarkForSoftDeletionFixture mockFilesFixture;
+    private readonly UndoMarkForHardDeletionFixture mockFilesFixture;
 
-    public UndoMarkForSoftDeletionShould(UndoMarkForSoftDeletionFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
+    public UndoMarkForHardDeletionShould(UndoMarkForHardDeletionFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Theory]
     [InlineData(" ")]
@@ -24,9 +24,11 @@ public class UndoMarkForSoftDeletionShould : IClassFixture<UndoMarkForSoftDeleti
     public async Task GetTheExpectedCountWhenUndoMarkFileForDeletionWasSuccessful()
     {
         var testFile = mockFilesFixture.MockFilesContext.Files.First();
+        testFile.HardDeletePending = true;
+        mockFilesFixture.MockFilesContext.SaveChanges();
 
         _ = await mockFilesFixture.SUT.HandleAsync(Path.Combine(testFile.DirectoryName, testFile.FileName)) as OkObjectResult;
 
-        mockFilesFixture.MockFilesContext.Files.Count(file => file.DirectoryName == testFile.DirectoryName && file.FileName == testFile.FileName && !file.SoftDeletePending).Should().Be(1);
+        mockFilesFixture.MockFilesContext.Files.Count(file => file.DirectoryName == testFile.DirectoryName && file.FileName == testFile.FileName && file.HardDeletePending).Should().Be(0);
     }
 }

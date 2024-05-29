@@ -1,10 +1,10 @@
 using AStar.FilesApi.Config;
 using AStar.FilesApi.Models;
-using AStar.FilesAPI.Helpers;
+using AStar.FilesApi.Helpers;
 using AStar.Web.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AStar.FilesAPI.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 public class ListShould : IClassFixture<ListFixture>
 {

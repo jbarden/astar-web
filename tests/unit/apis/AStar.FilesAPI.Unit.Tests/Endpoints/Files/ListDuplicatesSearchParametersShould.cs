@@ -1,7 +1,7 @@
 ﻿using AStar.FilesApi.Config;
 using AStar.FilesApi.Files;
 
-namespace AStar.FilesAPI.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 public class ListDuplicatesSearchParametersShould
 {

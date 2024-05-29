@@ -1,13 +1,13 @@
-using AStar.FilesAPI.Helpers;
+using AStar.FilesApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AStar.FilesAPI.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
-public class MarkForMovingShould : IClassFixture<MarkForMovingFixture>
+public class UndoMarkForMovingShould : IClassFixture<UndoMarkForMovingFixture>
 {
-    private readonly MarkForMovingFixture mockFilesFixture;
+    private readonly UndoMarkForMovingFixture mockFilesFixture;
 
-    public MarkForMovingShould(MarkForMovingFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
+    public UndoMarkForMovingShould(UndoMarkForMovingFixture mockFilesFixture) => this.mockFilesFixture = mockFilesFixture;
 
     [Theory]
     [InlineData(" ")]
@@ -24,9 +24,11 @@ public class MarkForMovingShould : IClassFixture<MarkForMovingFixture>
     public async Task GetTheExpectedCountWhenMarkFileForMovingWasSuccessful()
     {
         var testFile = mockFilesFixture.MockFilesContext.Files.First();
+        testFile.NeedsToMove = true;
+        mockFilesFixture.MockFilesContext.SaveChanges();
 
         _ = await mockFilesFixture.SUT.HandleAsync(Path.Combine(testFile.DirectoryName, testFile.FileName)) as OkObjectResult;
 
-        mockFilesFixture.MockFilesContext.Files.Count(file => file.DirectoryName == testFile.DirectoryName && file.FileName == testFile.FileName && file.NeedsToMove).Should().Be(1);
+        mockFilesFixture.MockFilesContext.Files.Count(file => file.DirectoryName == testFile.DirectoryName && file.FileName == testFile.FileName && file.NeedsToMove).Should().Be(0);
     }
 }

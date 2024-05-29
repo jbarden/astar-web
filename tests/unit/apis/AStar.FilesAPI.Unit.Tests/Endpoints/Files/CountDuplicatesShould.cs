@@ -1,7 +1,7 @@
-using AStar.FilesAPI.Helpers;
+using AStar.FilesApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AStar.FilesAPI.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 public class CountDuplicatesShould : IClassFixture<CountDuplicatesFixture>
 {

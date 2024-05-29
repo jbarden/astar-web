@@ -2,7 +2,7 @@
 using AStar.Infrastructure.Data;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace AStar.FilesAPI.Helpers;
+namespace AStar.FilesApi.Helpers;
 
 public class CountFixture : IDisposable
 {
