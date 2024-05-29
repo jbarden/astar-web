@@ -165,7 +165,7 @@ public partial class Search
 
         if(file != null)
         {
-            file.NeedsToMove = true;
+            file.HardDeletePending = true;
         }
 
         DeletionStatus = result;

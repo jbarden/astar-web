@@ -165,11 +165,11 @@
                                             }
                                             @if(file.NeedsToMove)
                                             {
-                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move</Button>
+                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move/Rename</Button>
                                             }
                                             else
                                             {
-                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move</Button>
+                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move/Rename</Button>
                                             }
                                         </div>
                                 </CardText>
