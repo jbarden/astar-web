@@ -4,19 +4,19 @@ using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AStar.FilesApi.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 [Route("api/files")]
-public class MarkForHardDeletion(FilesContext context, ILogger<MarkForHardDeletion> logger)
+public class UndoMarkForSoftDeletion(FilesContext context, ILogger<MarkForSoftDeletion> logger)
             : EndpointBaseAsync
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpDelete("mark-for-hard-deletion")]
+    [HttpDelete("undo-mark-for-soft-deletion")]
     [SwaggerOperation(
-        Summary = "Mark the specified file for hard deletion",
-        Description = "Mark the specified file for hard deletion - the file will NOT be deleted, just marked for hard deletion, please run the separate delete method to actually delete the file.",
-        OperationId = "Files_MarkForHardDeletion",
+        Summary = "Undo marking the specified file for soft deletion",
+        Description = "Undo marking the specified file for soft deletion.",
+        OperationId = "Files_UndoMarkForSoftDeletion",
         Tags = ["Files"])
 ]
     public override async Task<ActionResult> HandleAsync(string request, CancellationToken cancellationToken = default)
@@ -33,11 +33,11 @@ public class MarkForHardDeletion(FilesContext context, ILogger<MarkForHardDeleti
         var specifiedFile = context.Files.FirstOrDefault(file => file.DirectoryName == directory && file.FileName == fileName);
         if(specifiedFile != null)
         {
-            specifiedFile.HardDeletePending = true;
+            specifiedFile.SoftDeletePending = false;
             _ = context.SaveChanges();
         }
 
-        logger.LogDebug("File {FileName} marked for deletion", request);
+        logger.LogDebug("File {FileName} mark for deletion has been undone", specifiedFile);
         await Task.Delay(1, cancellationToken);
 
         return NoContent();

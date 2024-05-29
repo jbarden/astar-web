@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Ardalis.ApiEndpoints;
+using AStar.FilesApi.Files;
 using AStar.FilesApi.Models;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using static AStar.Infrastructure.EnumerableExtensions;
 
-namespace AStar.FilesApi.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 [Route("api/files")]
 public class ListDuplicates(FilesContext context, ILogger<ListDuplicates> logger)

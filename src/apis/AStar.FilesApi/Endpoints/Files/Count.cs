@@ -1,11 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
 using AStar.FilesApi.Config;
+using AStar.FilesApi.Files;
 using AStar.Infrastructure.Data;
 using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AStar.FilesApi.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 [Route("api/files")]
 public class Count(FilesContext context, ILogger<Count> logger)

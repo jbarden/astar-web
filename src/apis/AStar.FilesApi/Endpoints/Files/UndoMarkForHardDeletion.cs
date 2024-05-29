@@ -4,19 +4,19 @@ using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AStar.FilesApi.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 [Route("api/files")]
-public class MarkForMoving(FilesContext context, ILogger<MarkForMoving> logger)
+public class UndoMarkForHardDeletion(FilesContext context, ILogger<UndoMarkForHardDeletion> logger)
             : EndpointBaseAsync
                     .WithRequest<string>
                     .WithActionResult
 {
-    [HttpDelete("mark-for-moving")]
+    [HttpDelete("undo-mark-for-hard-deletion")]
     [SwaggerOperation(
-        Summary = "Mark the specified file for moving later",
-        Description = "Mark the specified file for moving - the file will NOT be moved, just marked for moving. Please use the applicable page in the portal to actually perform the move.",
-        OperationId = "Files_MarkForMoving",
+        Summary = "Undo marking the specified file for hard deletion",
+        Description = "Undo marking the specified file for hard deletion - the file will NOT be deleted, just UndoMarked for hard deletion, please run the separate delete method to actually delete the file.",
+        OperationId = "Files_UndoMarkForHardDeletion",
         Tags = ["Files"])
 ]
     public override async Task<ActionResult> HandleAsync(string request, CancellationToken cancellationToken = default)
@@ -33,11 +33,11 @@ public class MarkForMoving(FilesContext context, ILogger<MarkForMoving> logger)
         var specifiedFile = context.Files.FirstOrDefault(file => file.DirectoryName == directory && file.FileName == fileName);
         if(specifiedFile != null)
         {
-            specifiedFile.NeedsToMove = true;
+            specifiedFile.HardDeletePending = false;
             _ = context.SaveChanges();
         }
 
-        logger.LogDebug("File {FileName} marked for deletion", request);
+        logger.LogDebug("File {FileName} UndoMarked for deletion", request);
         await Task.Delay(1, cancellationToken);
 
         return NoContent();

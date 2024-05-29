@@ -4,7 +4,7 @@ using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AStar.FilesApi.Files;
+namespace AStar.FilesApi.Endpoints.Files;
 
 [Route("api/files")]
 public class UndoMarkForMoving(FilesContext context, ILogger<UndoMarkForMoving> logger)
