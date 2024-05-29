@@ -38,7 +38,7 @@ public class ServiceCollectionExtensionsShould
     {
         var initialCount = SUT.Services.Count();
 
-        SUT.Services.ConfigureApi(new OpenApiInfo(), "Test API Name");
+        SUT.Services.ConfigureApi(new OpenApiInfo());
 
         SUT.Services.Count().Should().BeGreaterThan(initialCount, "the count should have increased if the Swagger Gen UI had been added.");
     }

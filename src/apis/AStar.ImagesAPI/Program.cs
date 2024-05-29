@@ -23,7 +23,7 @@ public static class Program
         {
             _ = builder.CreateBootstrapLogger("astar-logging-settings.json")
                        .AddLogging("astar-logging-settings.json")
-                       .Services.ConfigureApi(new OpenApiInfo() { }, "AStar Web Images API");
+                       .Services.ConfigureApi(new OpenApiInfo() { Title = "AStar Web Images API", Version = "v1" });
 
             Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
 

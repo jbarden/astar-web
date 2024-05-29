@@ -34,7 +34,7 @@ public static class ServiceCollectionExtensions
     /// <param name="services">An instance of the <see cref="IServiceCollection"/> interface that will be configured with the current methods.</param>
     /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.</returns>
     /// <seealso href="ConfigureUi"></seealso>
-    /// <seealso href="ConfigureApi(IServiceCollection, OpenApiInfo, string)"></seealso>
+    /// <seealso href="ConfigureApi(IServiceCollection, OpenApiInfo)"></seealso>
     public static IServiceCollection ConfigureApi(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -79,20 +79,19 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// The <see cref="ConfigureApi(IServiceCollection, OpenApiInfo, string)"/> will do exactly what it says on the tin... just, this time, it is API-specific.
+    /// The <see cref="ConfigureApi(IServiceCollection, OpenApiInfo)"/> will do exactly what it says on the tin... just, this time, it is API-specific.
     /// </summary>
     /// <param name="services">An instance of the <see cref="IServiceCollection"/> interface that will be configured with the current methods.</param>
     /// <param name="openApiInfo">An instance of <see cref="OpenApiInfo"></see> that will be used to configure the SwaggerUI.</param>
-    /// <param name="apiName">The name of the API to use in the Swagger UI.</param>
     /// <returns>The original <see cref="IServiceCollection"/> to facilitate method chaining.</returns>
     /// <seealso href="ConfigureUi"></seealso>
     /// <seealso href="ConfigureApi(IServiceCollection)"></seealso>
-    public static IServiceCollection ConfigureApi(this IServiceCollection services, OpenApiInfo openApiInfo, string apiName)
+    public static IServiceCollection ConfigureApi(this IServiceCollection services, OpenApiInfo openApiInfo)
         => services
                 .ConfigureApi()
                 .AddSwaggerGen(c =>
                                 {
-                                    c.SwaggerDoc(apiName, openApiInfo);
+                                    c.SwaggerDoc(openApiInfo.Version, openApiInfo);
                                     c.EnableAnnotations();
                                 });
 

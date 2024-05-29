@@ -21,6 +21,7 @@ public static class PipelineExtensions
 
         _ = webApplication.MapControllers();
         _ = webApplication.ConfigureHealthCheckEndpoints();
+        _ = webApplication.UseExceptionHandler(opt => { });
 
         return webApplication;
     }
