@@ -15,6 +15,7 @@ public class List(FilesContext context, ILogger<List> logger)
                     .WithRequest<ListSearchParameters>
                     .WithActionResult<IReadOnlyCollection<FileInfoDto>>
 {
+    [ResponseCache(Duration = 120)]
     [HttpGet("list")]
     [SwaggerOperation(
         Summary = "List the matching files",

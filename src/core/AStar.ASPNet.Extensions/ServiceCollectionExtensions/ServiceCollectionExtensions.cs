@@ -1,9 +1,14 @@
+using System.Runtime.Serialization;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using AStar.ASPNet.Extensions.Handlers;
 using AStar.Logging.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 
@@ -38,13 +43,33 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection ConfigureApi(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
+        _ = services.AddResponseCaching();
+        _ = services.AddHttpCacheHeaders(
+        //    (expirationModelOptions) =>
+        //{
+        //    expirationModelOptions.MaxAge = 60;
+        //    //expirationModelOptions.CacheLocation = Marvin.Cache.Headers.CacheLocation.Public;
+        //},
+        //    (validationModelOptions) => validationModelOptions.MustRevalidate = true);
+        );
         _ = services.AddControllers(options =>
                     {
                         options.ReturnHttpNotAcceptable = true;
                         options.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
                         options.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+                        for(int i = 0; i < options.OutputFormatters.Count; i++)
+                        {
+                            Log.Information("Formatter: {Formatter}", options.OutputFormatters[i].GetType());
+                            if(options.OutputFormatters[i].GetType() == typeof(StringOutputFormatter))
+                            {
+                                options.OutputFormatters.RemoveAt(i);
+                            }
+                            else if(options.OutputFormatters[i].GetType() == typeof(SystemTextJsonOutputFormatter))
+                            {
+                                _ = ((SystemTextJsonOutputFormatter)options.OutputFormatters[i]).SupportedMediaTypes.Remove("text/json");
+                            }
+                        }
                     })
-                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
                     .ConfigureApiBehaviorOptions(setupAction => setupAction.InvalidModelStateResponseFactory = context =>
                                                 {
                                                     var problemDetailsFactory = context.HttpContext.RequestServices.GetRequiredService<ProblemDetailsFactory>();
@@ -63,17 +88,19 @@ public static class ServiceCollectionExtensions
                                                         ContentTypes = { "application/problem+json" }
                                                     };
                                                 });
-
+        _ = services.Configure<JsonOptions>(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            options.JsonSerializerOptions.WriteIndented = false;
+            options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
+            options.JsonSerializerOptions.AllowTrailingCommas = true;
+            options.JsonSerializerOptions.MaxDepth = 10;
+            options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+        });
         _ = services.AddEndpointsApiExplorer();
 
         _ = services.AddHealthChecks();
-        _ = services.AddResponseCaching();
-        _ = services.AddHttpCacheHeaders((expirationModelOptions) =>
-        {
-            expirationModelOptions.MaxAge = 60;
-            expirationModelOptions.CacheLocation = Marvin.Cache.Headers.CacheLocation.Private;
-        },
-            (validationModelOptions) => validationModelOptions.MustRevalidate = true);
 
         return services;
     }

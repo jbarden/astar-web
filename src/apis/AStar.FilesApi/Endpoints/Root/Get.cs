@@ -1,16 +1,20 @@
 ﻿using System.Reflection;
+using System.Text;
 using Ardalis.ApiEndpoints;
-using AStar.FilesApi.Models;
+using AStar.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace AStar.FilesApi.Endpoints.Root;
 
 [Route("/")]
-public class Get : EndpointBaseAsync
+public class Get(ILogger<Get> logger) : EndpointBaseAsync
                         .WithoutRequest
                         .WithActionResult<IEnumerable<LinkDto>>
 {
+    //[ResponseCache(Duration = 120)]
+    [Produces("application/json")]
     [HttpGet]
     [SwaggerOperation(
         Summary = "Root Document",
@@ -34,14 +38,73 @@ public class Get : EndpointBaseAsync
             return links;
         }
 
-        IEnumerable<Type> derivedTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t=> t?.Namespace?.Contains("Endpoints")==true);
+        var endpoints = Assembly.GetExecutingAssembly().GetTypes().Where(t=> t.Namespace?.Contains("Endpoints")==true && t.BaseType?.Name.Contains("With") == true);
 
-        foreach(var type in derivedTypes)
+        foreach(var endpoint in endpoints)
         {
-            var name = type?.ReflectedType?.Name;
-            if(name is not null)
+            if(endpoint != null)
             {
-                links.Add(new LinkDto() { Name = name });
+                var customAttributes = endpoint.GetCustomAttributes(typeof(RouteAttribute)).FirstOrDefault() as RouteAttribute;
+                var routeBuilder = new StringBuilder();
+                _ = routeBuilder.Append(customAttributes?.Template ?? "");
+                var rel = endpoint.ReflectedType?.Name;
+                var methods = endpoint.GetMethods().Where(f=>f.DeclaringType?.FullName?.Contains("AStar.FilesApi.Endpoints") == true);
+                var httpMethod = "GET";
+                if(methods.Any())
+                {
+                    foreach(var item in methods)
+                    {
+                        var httpMethodAttributes = item?.GetCustomAttributes(typeof(HttpMethodAttribute));
+                        if(httpMethodAttributes is not null)
+                        {
+                            foreach(var httpMethodAttribute in httpMethodAttributes)
+                            {
+                                logger.LogInformation(((HttpMethodAttribute)httpMethodAttribute)?.Template);
+                                var getAttribute = httpMethodAttribute as HttpGetAttribute;
+                                if(getAttribute is not null && getAttribute.Template.IsNotNullOrWhiteSpace())
+                                {
+                                    _ = routeBuilder.Append($"/{getAttribute.Template}");
+                                    httpMethod = "GET";
+                                    rel = getAttribute.Template;
+                                }
+
+                                var postAttribute = httpMethodAttribute as HttpPostAttribute;
+                                if(postAttribute is not null && postAttribute.Template.IsNotNullOrWhiteSpace())
+                                {
+                                    _ = routeBuilder.Append($"/{postAttribute.Template}");
+                                    httpMethod = "POST";
+                                }
+
+                                var deleteAttribute = httpMethodAttribute as HttpDeleteAttribute;
+                                if(deleteAttribute is not null && deleteAttribute.Template.IsNotNullOrWhiteSpace())
+                                {
+                                    _ = routeBuilder.Append($"/{deleteAttribute.Template}");
+                                    httpMethod = "DELETE";
+                                }
+
+                                var putAttribute = httpMethodAttribute as HttpPutAttribute;
+                                if(putAttribute is not null && putAttribute.Template.IsNotNullOrWhiteSpace())
+                                {
+                                    _ = routeBuilder.Append($"/{putAttribute.Template}");
+                                    httpMethod = "PUT";
+                                }
+
+                                var patchAttribute = httpMethodAttribute as HttpPatchAttribute;
+                                if(patchAttribute is not null && patchAttribute.Template.IsNotNullOrWhiteSpace())
+                                {
+                                    _ = routeBuilder.Append($"/{patchAttribute.Template}");
+                                    httpMethod = "PATCH";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var route = routeBuilder.ToString();
+                if(route.IsNotNullOrWhiteSpace())
+                {
+                    links.Add(new LinkDto() { Rel = rel ?? "self", Href = route, Method = httpMethod });
+                }
             }
         }
 
