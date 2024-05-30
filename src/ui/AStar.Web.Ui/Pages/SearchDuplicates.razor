@@ -20,7 +20,7 @@
                                 <Fields>
                                     <Field Horizontal>
                                         <FieldLabel ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">                                            
-                                            <Tooltip Text="This is the folder (aka directory) where you want the search to start from. As a minimum, it must be a valid UNC path - e.g.: 'c:\'." Multiline="true"><span>Search Folder </span><span class="oi oi-question-mark" aria-hidden="true" style="color: blue;"></span></Tooltip>
+                                            <Tooltip Text="This is the folder (aka directory) where you want the search to start from. As a minimum, it must be a valid UNC path - e.g.: 'c:\'." Multiline="true"><span>Search Folder </span><span class="oi oi-question-mark info" aria-hidden="true"></span></Tooltip>
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">                                            
                                                 <TextEdit Placeholder="Please specify the starting folder" @bind-text="@startingFolder" id="startingFolder" />
@@ -43,7 +43,7 @@
                                             Search Type
                                         </FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                            <Select @bind-SelectedValue="@searchType" id="searchType">
+                                            <Select @bind-SelectedValue="@searchType" id="searchType" Disabled>
                                                 <SelectItem Value="2">Duplicates</SelectItem>
                                             </Select>
                                         </FieldBody>
@@ -67,6 +67,9 @@
                                         <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
                                             <Switch TValue="bool" @bind-Checked="@recursiveSearch">
                                                 Recursive Search?
+                                            </Switch>
+                                            <Switch TValue="bool" @bind-Checked="@excludeViewed">
+                                                Exclude Viewed 7 Days?
                                             </Switch>
                                         </FieldBody>
                                     </Field>
@@ -173,11 +176,11 @@
                                                     }
                                                     @if(file.NeedsToMove)
                                                     {
-                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move/Rename</Button>
+                                                        <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Move/Rename</Button>
                                                     }
                                                     else
                                                     {
-                                                        <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move/Rename</Button>
+                                                        <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Move/Rename</Button>
                                                     }
                                                 </div>
                                             </div>

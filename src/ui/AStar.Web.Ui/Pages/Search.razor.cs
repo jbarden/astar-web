@@ -23,6 +23,7 @@ public partial class Search
     private string currentPage = "1";
     private int currentPageAsInt = 1;
     private bool recursiveSearch = true;
+    private bool excludeViewed = true;
     private IEnumerable<int> pages = [];
 
     public IEnumerable<FileInfoDto> Files { get; set; } = [];
@@ -85,7 +86,7 @@ public partial class Search
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
-        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage });
+        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludeViewed = excludeViewed });
         var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum });
         totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsOrGroupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
@@ -157,20 +158,6 @@ public partial class Search
         DeletionStatus = result;
     }
 
-    private async Task MarkForHardDeletion(string fullName)
-    {
-        var result = await FilesApiClient.MarkForHardDeletionAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.HardDeletePending = true;
-        }
-
-        DeletionStatus = result;
-    }
-
     private async Task MarkForSoftDeletion(string fullName)
     {
         var result = await FilesApiClient.MarkForSoftDeletionAsync(fullName);
@@ -194,20 +181,6 @@ public partial class Search
         if(file != null)
         {
             file.SoftDeletePending = false;
-        }
-
-        DeletionStatus = result;
-    }
-
-    private async Task UndoMarkForHardDeletion(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForHardDeletionAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.HardDeletePending = false;
         }
 
         DeletionStatus = result;

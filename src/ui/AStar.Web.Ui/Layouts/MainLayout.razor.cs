@@ -8,7 +8,9 @@ namespace AStar.Web.UI.Layouts;
 public partial class MainLayout
 {
     protected string layoutType = "fixed-header";
-    [Inject] protected ITextLocalizerService? LocalizationService { get; set; }
+
+    [Inject]
+    protected ITextLocalizerService? LocalizationService { get; set; }
 
     [CascadingParameter] protected Theme? Theme { get; set; }
 

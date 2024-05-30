@@ -22,6 +22,7 @@ public partial class SearchDuplicates
     private string currentPage = "1";
     private int currentPageAsInt = 1;
     private bool recursiveSearch = true;
+    private bool excludeViewed = true;
     private IEnumerable<int> pages = [];
 
     public IEnumerable<DuplicateGroup> FileGroups { get; set; } = [];
@@ -77,7 +78,7 @@ public partial class SearchDuplicates
         };
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
-        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage };
+        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludeViewed = excludeViewed };
         Logger.LogInformation("Searching for files in: {SearchFolder} - {SortOrder}, and of {SearchType} (Full Search Parameters: {SearchParameters})", startingFolder, sortOrderAsEnum, searchTypeAsEnum, searchParameters);
         FileGroups = await FilesApiClient.GetDuplicateFilesAsync(searchParameters);
         var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(searchParameters);

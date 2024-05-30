@@ -13,6 +13,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.FilterBySearchFolder("c:\\temp", false, CancellationToken.None);
 
         response.Count().Should().Be(10);
+
         return Verify(response);
     }
 
@@ -22,6 +23,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.FilterBySearchFolder("c:\\temp", true, CancellationToken.None);
 
         response.Count().Should().Be(34);
+
         return Verify(response);
     }
 
@@ -31,6 +33,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", true, CancellationToken.None);
 
         response.Count().Should().Be(22);
+
         return Verify(response);
     }
 
@@ -40,6 +43,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.FilterBySearchFolder("c:\\temp\\1st Year Frame", false, CancellationToken.None);
 
         response.Count().Should().Be(17);
+
         return Verify(response);
     }
 
@@ -49,6 +53,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, true, CancellationToken.None);
 
         response.Count().Should().Be(34);
+
         return Verify(response);
     }
 
@@ -58,6 +63,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, false, CancellationToken.None);
 
         response.Count().Should().Be(28);
+
         return Verify(response);
     }
 
@@ -67,6 +73,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, true, CancellationToken.None);
 
         response.Count().Should().Be(26);
+
         return Verify(response);
     }
 
@@ -76,6 +83,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, false, CancellationToken.None);
 
         response.Count().Should().Be(23);
+
         return Verify(response);
     }
 
@@ -85,6 +93,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, true, CancellationToken.None);
 
         response.Count().Should().Be(22);
+
         return Verify(response);
     }
 
@@ -94,6 +103,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, false, CancellationToken.None);
 
         response.Count().Should().Be(18);
+
         return Verify(response);
     }
 
@@ -103,6 +113,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, true, CancellationToken.None);
 
         response.Count().Should().Be(16);
+
         return Verify(response);
     }
 
@@ -112,6 +123,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
         var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, false, CancellationToken.None);
 
         response.Count().Should().Be(14);
+
         return Verify(response);
     }
 }

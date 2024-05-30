@@ -43,15 +43,19 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection ConfigureApi(this IServiceCollection services)
     {
         _ = services.AddExceptionHandler<GlobalExceptionHandler>();
-        _ = services.AddResponseCaching();
-        _ = services.AddHttpCacheHeaders(
-        //    (expirationModelOptions) =>
-        //{
-        //    expirationModelOptions.MaxAge = 60;
-        //    //expirationModelOptions.CacheLocation = Marvin.Cache.Headers.CacheLocation.Public;
-        //},
-        //    (validationModelOptions) => validationModelOptions.MustRevalidate = true);
-        );
+        //_ = services.AddResponseCaching();
+        //_ = services.AddHttpCacheHeaders(
+        //                                    (expirationModelOptions) =>
+        //                                    {
+        //                                        expirationModelOptions.MaxAge = 60;
+        //                                        expirationModelOptions.CacheLocation = Marvin.Cache.Headers.CacheLocation.Public;
+        //                                    },
+        //                                    (validationModelOptions) =>
+        //                                    {
+        //                                        validationModelOptions.MustRevalidate = true;
+        //                                        validationModelOptions.VaryByAll = true;
+        //                                    }
+        //                                );
         _ = services.AddControllers(options =>
                     {
                         options.ReturnHttpNotAcceptable = true;

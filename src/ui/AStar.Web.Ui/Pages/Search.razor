@@ -69,6 +69,9 @@
                                             <Switch TValue="bool" @bind-Checked="@recursiveSearch">
                                                 Recursive Search?
                                             </Switch>
+                                            <Switch TValue="bool" @bind-Checked="@excludeViewed">
+                                                Exclude Viewed 7 Days?
+                                            </Switch>
                                         </FieldBody>
                                     </Field>
                                     <Field Horizontal JustifyContent="JustifyContent.End">
@@ -155,21 +158,13 @@
                                             {
                                                 <Button Clicked="@(()=>MarkForSoftDeletion(file.FullName))" Color="Color.Warning">Soft Delete</Button>
                                             }
-                                            @if(file.HardDeletePending)
-                                            {
-                                                <Button Clicked="@(()=>UndoMarkForHardDeletion(file.FullName))" Color="Color.Success">Undo Hard Delete</Button>
-                                            }
-                                            else
-                                            {
-                                                <Button Clicked="@(()=>MarkForHardDeletion(file.FullName))" Color="Color.Danger">Hard Delete</Button>
-                                            }
                                             @if(file.NeedsToMove)
                                             {
-                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Needs to Move/Rename</Button>
+                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Move/Rename</Button>
                                             }
                                             else
                                             {
-                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Needs to Move/Rename</Button>
+                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Move/Rename</Button>
                                             }
                                         </div>
                                 </CardText>

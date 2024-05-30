@@ -12,6 +12,8 @@ public class ListSearchParameters
 
     public bool Recursive { get; set; } = true;
 
+    public bool ExcludeViewed { get; internal set; }
+
     public bool IncludeSoftDeleted { get; set; }
 
     public bool IncludeMarkedForDeletion { get; set; }

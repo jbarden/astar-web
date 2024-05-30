@@ -10,3 +10,9 @@
 .centre {
     text-align: center;
 }
+
+.info {
+    color: blue;
+    font-size: 12px;
+    top: -2px;
+}

@@ -16,10 +16,10 @@ public static class PipelineExtensions
     {
         _ = webApplication.UseSwagger()
                           .UseSwaggerUI()
-                          .UseAuthentication()
-                          .UseAuthorization()
-                          .UseResponseCaching()
-                          .UseHttpCacheHeaders();
+                          .UseAuthentication();
+        //.UseAuthorization();
+        //.UseResponseCaching();
+        //.UseHttpCacheHeaders();
 
         _ = webApplication.ConfigureHealthCheckEndpoints();
         _ = webApplication.UseExceptionHandler(opt => { });

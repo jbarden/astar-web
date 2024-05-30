@@ -29,6 +29,8 @@ public partial class SearchParameters
 
     public string? SearchText { get; set; }
 
+    public bool ExcludeViewed { get; internal set; }
+
     public override string ToString()
     {
         var sb = new StringBuilder();
@@ -37,6 +39,7 @@ public partial class SearchParameters
         _ = sb.Append($"&{nameof(ItemsPerPage)}={ItemsPerPage}");
         _ = sb.Append($"&{nameof(SearchType)}={SearchType}");
         _ = sb.Append($"&{nameof(Recursive)}={Recursive}");
+        _ = sb.Append($"&{nameof(ExcludeViewed)}={ExcludeViewed}");
         _ = sb.Append($"&{nameof(SortOrder)}={SortOrder}");
         _ = sb.Append($"&{nameof(MaximumSizeOfThumbnail)}={MaximumSizeOfThumbnail}");
         _ = sb.Append($"&{nameof(MaximumSizeOfImage)}={MaximumSizeOfImage}");
