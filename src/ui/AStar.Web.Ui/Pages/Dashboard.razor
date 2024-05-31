@@ -2,6 +2,7 @@
 <Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">Welcome!</Heading>
 
 <LoadingIndicator @ref="loadingIndicator">
+    <ChildContent>
     <Paragraph>
         Welcome to AStar Development's Web site. This site is intended as a coding playground and is not a serious site!
     </Paragraph>
@@ -32,4 +33,12 @@
             <Button Clicked="CheckApiStatuses" Color="Color.Success">Recheck APIs</Button>
         </Paragraph>
     </Alert>
+    </ChildContent>
+    <IndicatorTemplate>
+        <Animate Animation="Animations.FadeDownRight">
+            <Div>
+                <SpinKit Type="SpinKitType.Wave" Size="100px" />
+            </Div>
+        </Animate>
+    </IndicatorTemplate>
 </LoadingIndicator>

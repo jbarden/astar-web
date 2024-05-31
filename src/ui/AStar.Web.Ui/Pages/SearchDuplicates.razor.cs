@@ -1,4 +1,5 @@
-﻿using AStar.Web.UI.ApiClients.FilesApi;
+﻿using System.Diagnostics;
+using AStar.Web.UI.ApiClients.FilesApi;
 using AStar.Web.UI.Services;
 using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
@@ -232,5 +233,12 @@ public partial class SearchDuplicates
 
             DeletionStatus = result;
         }
+    }
+
+    private Task OnButtonClicked(string fullName)
+    {
+        _ = Process.Start("explorer.exe", fullName);
+
+        return Task.CompletedTask;
     }
 }

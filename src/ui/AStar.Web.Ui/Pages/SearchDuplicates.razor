@@ -5,6 +5,7 @@
 @using static AStar.Utilities.StringExtensions
 
 <LoadingIndicator @ref="loadingIndicator">
+    <ChildContent>
     <Accordion>
         <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
             <AccordionHeader Background="Background.Primary">
@@ -69,7 +70,7 @@
                                                 Recursive Search?
                                             </Switch>
                                             <Switch TValue="bool" @bind-Checked="@excludeViewed">
-                                                Exclude Viewed 7 Days?
+                                                Exclude Viewed within 7 Days?
                                             </Switch>
                                         </FieldBody>
                                     </Field>
@@ -182,6 +183,7 @@
                                                     {
                                                         <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Move/Rename</Button>
                                                     }
+                                                    <Button Color="Color.Primary" Clicked="@(()=>OnButtonClicked(file.FullName))">Open</Button>
                                                 </div>
                                             </div>
 
@@ -232,5 +234,13 @@
                 </Row>
             </AccordionBody>
         </AccordionItem>
-    </Accordion>
+        </Accordion>
+    </ChildContent>
+    <IndicatorTemplate>
+        <Animate Animation="Animations.FadeDownRight">
+            <Div>
+                <SpinKit Type="SpinKitType.Wave" Size="100px" />
+            </Div>
+        </Animate>
+    </IndicatorTemplate>
 </LoadingIndicator>
