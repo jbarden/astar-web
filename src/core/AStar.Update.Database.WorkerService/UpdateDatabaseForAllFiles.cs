@@ -8,20 +8,20 @@ using SkiaSharp;
 
 namespace AStar.Update.Database.WorkerService;
 
-public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger, IOptions<ApiConfiguration> directories) : WorkerServiceBase
+public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger, IOptions<ApiConfiguration> directories) : BackgroundService
 {
-    protected override FilesContext Context
-        => new(new DbContextOptionsBuilder<FilesContext>().UseSqlite("Data Source=F:\\files-db\\files.db").Options);
+    private FilesContext Context
+        => new(new DbContextOptionsBuilder<FilesContext>().UseSqlite(ServiceConstants.SqliteConnectionString).Options);
 
-    public override async Task RunServiceAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
             logger.LogInformation("UpdateDatabaseForAllFiles started at: {RunTime}", DateTimeOffset.Now);
             var startTime = DateTime.UtcNow;
-            string endTime = "5:00 AM";
+            var endTime = "5:00 AM";
 
-            TimeSpan duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
+            var duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
             if(duration < TimeSpan.Zero)
             {
                 duration = duration.Add(TimeSpan.FromHours(24));
@@ -37,12 +37,28 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
                 GetFiles(directories, files);
 
                 UpdateDirectoryFiles(files, stoppingToken);
+                logger.LogInformation("Waiting for: 24 hours before updating the full database again.");
                 await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
             }
         }
         catch(Exception ex)
         {
             logger.LogError(ex, "Error occurred in AStar.Update.Database.WorkerService: {ErrorMessage}", ex.Message);
+        }
+    }
+
+    private void SaveChangesSafely(ILogger<UpdateDatabaseForAllFiles> logger)
+    {
+        try
+        {
+            _ = Context.SaveChanges();
+        }
+        catch(Exception ex)
+        {
+            if(!ex.Message.StartsWith("The database operation was expected to affect"))
+            {
+                logger.LogError(ex, "Error: {Error} occurred whilst saving changes - probably 'no records affected'", ex.Message);
+            }
         }
     }
 
@@ -66,7 +82,7 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
     private void GetFilesFromDirectory(string dir, List<string> files)
     {
         logger.LogInformation("Getting files in {Directory}", dir);
-        files.AddRange(Directory.EnumerateFiles(dir, "*.*",
+        files.AddRange(System.IO.Directory.EnumerateFiles(dir, "*.*",
                             new EnumerationOptions()
                             {
                                 RecurseSubdirectories = true,

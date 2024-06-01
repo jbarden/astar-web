@@ -1,0 +1,69 @@
+using System.Globalization;
+using AStar.Infrastructure.Data;
+using AStar.Update.Database.WorkerService.ApiClients.FilesApi;
+using AStar.Update.Database.WorkerService.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+namespace AStar.Update.Database.WorkerService;
+
+public class MoveFiles(IOptions<DirectoryChanges> directories, FilesApiClient filesApiClient, ILogger<UpdateDatabaseForAllFiles> logger) : BackgroundService
+{
+    private FilesContext Context
+        => new(new DbContextOptionsBuilder<FilesContext>().UseSqlite(ServiceConstants.SqliteConnectionString).Options);
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        logger.LogInformation("MoveFiles started at: {RunTime}", DateTimeOffset.Now);
+        while(!stoppingToken.IsCancellationRequested)
+        {
+            try
+            {
+                logger.LogInformation("MoveFiles started at: {RunTime}", DateTimeOffset.Now);
+                var startTime = DateTime.UtcNow;
+                var endTime = "3:00 AM";
+
+                var duration = DateTime.Parse(endTime, CultureInfo.CurrentCulture).Subtract(startTime);
+                if(duration < TimeSpan.Zero)
+                {
+                    duration = duration.Add(TimeSpan.FromHours(24));
+                }
+
+                logger.LogInformation("MoveFiles Waiting for: {RunTime} hours before updating the marked to move files .", duration);
+                await Task.Delay(duration, stoppingToken);
+
+                await MoveFilesToTheirNewHomeAsync();
+                logger.LogInformation("MoveFiles Waiting for: 24 hours before updating the marked to move files again.");
+                await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex, "Error occurred in AStar.Update.Database.WorkerService: {ErrorMessage}", ex.Message);
+            }
+        }
+    }
+
+    private async Task MoveFilesToTheirNewHomeAsync()
+    {
+        foreach(var directory in directories.Value.Directories)
+        {
+            logger.LogInformation("Getting the files from the database that contain the {DirectoryName}.", directory);
+            var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains(directory.Old) && !file.SoftDeleted);
+
+            foreach(var fileToMove in filesToMove)
+            {
+                var fullNameWithPath = fileToMove.FullNameWithPath;
+                var newLocation = fileToMove.DirectoryName.Replace(directory.Old, directory.New);
+
+                try
+                {
+                    await filesApiClient.UpdateFileAsync(new DirectoryChangeRequest() { OldDirectoryName = fileToMove.DirectoryName, NewDirectoryName = newLocation, FileName = fileToMove.FileName });
+                }
+                catch(Exception ex)
+                {
+                    logger.LogError(ex, "Error: {Error} occurred whilst updating the directory for {FileName}", fullNameWithPath, ex.Message);
+                }
+            }
+        }
+    }
+}
