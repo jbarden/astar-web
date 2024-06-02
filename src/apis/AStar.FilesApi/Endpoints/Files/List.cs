@@ -36,7 +36,7 @@ public class List(FilesContext context, ILogger<List> logger)
         logger.LogDebug("Starting {SearchType} search...{FullParameters}", request.SearchType, request);
 
         var files = context.Files
-                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, cancellationToken)
+                           .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, request.ExcludeViewed, cancellationToken)
                            .OrderFiles(request.SortOrder);
 
         var fileList = new List<FileInfoDto>();

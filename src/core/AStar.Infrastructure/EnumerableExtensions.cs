@@ -24,6 +24,19 @@ public static class EnumerableExtensions
     ///
     /// </summary>
     /// <param name="files"></param>
+    /// <param name="excludeViewed"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+
+    public static IEnumerable<FileDetail> FilterRecentlyViewed(this IEnumerable<FileDetail> files, bool excludeViewed, CancellationToken cancellationToken)
+                                    => cancellationToken.IsCancellationRequested
+                                        ? files
+                                        : FilterRecentlyViewed(files, excludeViewed);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="files"></param>
     /// <param name="sortOrder"></param>
     /// <returns></returns>
 
@@ -73,4 +86,9 @@ public static class EnumerableExtensions
                                                 => searchType != "Images"
                                                         ? files
                                                         : files.Where(file => file.IsImage);
+
+    private static IEnumerable<FileDetail> FilterRecentlyViewed(IEnumerable<FileDetail> files, bool excludeViewed)
+                                                => !excludeViewed
+                                                        ? files
+                                                        : files.Where(file => file.LastViewed is null || file.LastViewed <= DateTime.UtcNow.AddDays(-7));
 }

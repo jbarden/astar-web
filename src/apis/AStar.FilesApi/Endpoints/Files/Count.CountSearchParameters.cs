@@ -11,7 +11,7 @@ public class CountSearchParameters
 
     public bool Recursive { get; set; } = true;
 
-    public bool ExcludeViewed { get; internal set; }
+    public bool ExcludeViewed { get; set; }
 
     public bool IncludeSoftDeleted { get; set; }
 

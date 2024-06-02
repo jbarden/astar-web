@@ -52,7 +52,7 @@
              <param name="cancellationToken"></param>
              <returns></returns>
         </member>
-        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:AStar.Infrastructure.Data.FilesContextExtensions.GetMatchingFiles(Microsoft.EntityFrameworkCore.DbSet{AStar.Web.Domain.FileDetail},System.String,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
              <summary>
             
              </summary>
@@ -62,6 +62,7 @@
              <param name="searchType"></param>
              <param name="includeSoftDeleted"></param>
              <param name="includeMarkedForDeletion"></param>
+             <param name="excludeViewed"></param>
              <param name="cancellationToken"></param>
              <returns></returns>
         </member>
@@ -76,6 +77,15 @@
              </summary>
              <param name="files"></param>
              <param name="searchType"></param>
+             <param name="cancellationToken"></param>
+             <returns></returns>
+        </member>
+        <member name="M:AStar.Infrastructure.EnumerableExtensions.FilterRecentlyViewed(System.Collections.Generic.IEnumerable{AStar.Web.Domain.FileDetail},System.Boolean,System.Threading.CancellationToken)">
+             <summary>
+            
+             </summary>
+             <param name="files"></param>
+             <param name="excludeViewed"></param>
              <param name="cancellationToken"></param>
              <returns></returns>
         </member>

@@ -29,7 +29,7 @@ public partial class SearchParameters
 
     public string? SearchText { get; set; }
 
-    public bool ExcludeViewed { get; internal set; }
+    public bool ExcludeViewed { get; set; }
 
     public override string ToString()
     {

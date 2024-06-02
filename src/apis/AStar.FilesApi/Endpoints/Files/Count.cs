@@ -37,7 +37,7 @@ public class Count(FilesContext context, ILogger<Count> logger)
         }
 
         var matchingFilesCount = context.Files
-                                        .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, cancellationToken)
+                                        .GetMatchingFiles(request.SearchFolder, request.Recursive, request.SearchType.ToString(), request.IncludeSoftDeleted, request.IncludeMarkedForDeletion, request.ExcludeViewed, cancellationToken)
                                         .Count();
 
         logger.LogDebug("File Count: {FileCount}", matchingFilesCount);

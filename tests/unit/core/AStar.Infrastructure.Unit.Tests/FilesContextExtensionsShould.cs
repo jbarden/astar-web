@@ -50,7 +50,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedAndDeletePendingAreTrue()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, true, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, true, true, CancellationToken.None);
 
         response.Count().Should().Be(34);
 
@@ -60,7 +60,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedIsTrueButDeletePendingIsFalse()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, false, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", true, false, true, CancellationToken.None);
 
         response.Count().Should().Be(28);
 
@@ -70,7 +70,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedIsFalseButDeletePendingIsTrue()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, true, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, true, true, CancellationToken.None);
 
         response.Count().Should().Be(26);
 
@@ -80,7 +80,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedAndDeletePendingAreFalse()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, false, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "searchTypeNotRelevant", false, false, true, CancellationToken.None);
 
         response.Count().Should().Be(23);
 
@@ -90,7 +90,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedAndDeletePendingAreTrue_ImagesOnly()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, true, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, true, true, CancellationToken.None);
 
         response.Count().Should().Be(22);
 
@@ -100,7 +100,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedIsTrueButDeletePendingIsFalse_ImagesOnly()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, false, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", true, false, true, CancellationToken.None);
 
         response.Count().Should().Be(18);
 
@@ -110,7 +110,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedIsFalseButDeletePendingIsTrue_ImagesOnly()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, true, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, true, true, CancellationToken.None);
 
         response.Count().Should().Be(16);
 
@@ -120,7 +120,7 @@ public class FilesContextExtensionsShould(FilesContextFixture filesContextFixtur
     [Fact]
     public Task ReturnMatchingFilesFromTheRootFolderAndSubDirectoriesWhenRecursiveIsTrueAndIncludeSoftDeletedAndDeletePendingAreFalse_ImagesOnly()
     {
-        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, false, CancellationToken.None);
+        var response = sut.Files.GetMatchingFiles("c:\\temp", true, "Images", false, false, true, CancellationToken.None);
 
         response.Count().Should().Be(14);
 

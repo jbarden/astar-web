@@ -31,13 +31,15 @@ public static class FilesContextExtensions
     /// <param name="searchType"></param>
     /// <param name="includeSoftDeleted"></param>
     /// <param name="includeMarkedForDeletion"></param>
+    /// <param name="excludeViewed"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion, CancellationToken cancellationToken) => files
+    public static IEnumerable<FileDetail> GetMatchingFiles(this DbSet<FileDetail> files, string startingFolder, bool recursive, string searchType, bool includeSoftDeleted, bool includeMarkedForDeletion, bool excludeViewed, CancellationToken cancellationToken) => files
                 .FilterBySearchFolder(startingFolder, recursive, cancellationToken)
                 .FilterSoftDeleted(includeSoftDeleted, cancellationToken)
                 .FilterMarkedForDeletion(includeMarkedForDeletion, cancellationToken)
-                .FilterImagesIfApplicable(searchType, cancellationToken);
+                .FilterImagesIfApplicable(searchType, cancellationToken)
+                .FilterRecentlyViewed(excludeViewed, cancellationToken);
 
     private static IEnumerable<FileDetail> FilterBySearchFolder(DbSet<FileDetail> files, string startingFolder, bool recursive) => startingFolder.IsNullOrWhiteSpace()
                                                 ? []
