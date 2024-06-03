@@ -1,6 +1,7 @@
 ﻿{
   Name: ,
   FullName: ,
+  DirectoryName: ,
   SizeForDisplay: 0.00 Kb,
   ChecksumHash: ,
   SoftDeleted: false,

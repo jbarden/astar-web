@@ -1,6 +1,7 @@
 ﻿{
   Name: ,
   FullName: ,
+  DirectoryName: ,
   Size: 123456789,
   SizeForDisplay: 117.74 Mb,
   ChecksumHash: ,

@@ -21,7 +21,7 @@ public class MockSuccessHttpMessageHandler(string responseRequired) : HttpMessag
         }
         else if(responseRequired == "ListFiles")
         {
-            content = new StringContent(JsonSerializer.Serialize(new List<FileInfoDto>() { new(), new() }));
+            content = new StringContent(JsonSerializer.Serialize(new List<FileInfoDto>() { new() { Name = "does.not.matter.txt" }, new() }));
         }
         else if(responseRequired == "Count")
         {

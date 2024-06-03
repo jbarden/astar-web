@@ -10,7 +10,7 @@ public class ListSearchParametersShould
     {
         var sut = new ListSearchParameters().ToString();
 
-        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null,""CurrentPage"":1,""ItemsPerPage"":10,""MaximumSizeOfThumbnail"":150,""MaximumSizeOfImage"":1500,""SortOrder"":""SizeDescending"",""SearchType"":""Images""}");
+        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""ExcludeViewed"":false,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null,""CurrentPage"":1,""ItemsPerPage"":10,""MaximumSizeOfThumbnail"":150,""MaximumSizeOfImage"":1500,""SortOrder"":""SizeDescending"",""SearchType"":""Images""}");
     }
 
     [Fact]

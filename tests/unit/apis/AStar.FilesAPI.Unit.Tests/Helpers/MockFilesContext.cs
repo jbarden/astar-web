@@ -61,6 +61,14 @@ public class MockFilesContext : IDisposable
 
         var listFromJson = JsonSerializer.Deserialize<IEnumerable<FileDetail>>(filesAsJson)!;
 
-        mockFilesContext.AddRange(listFromJson);
+        foreach (var item in listFromJson)
+        {
+            if (mockFilesContext.Files.FirstOrDefault(f => f.FileName == item.FileName && f.DirectoryName == item.DirectoryName) == null)
+            {
+                Console.WriteLine($"About to add {item.FullNameWithPath}");
+                mockFilesContext.Files.Add(item);
+                mockFilesContext.SaveChanges();
+            }
+        }
     }
 }

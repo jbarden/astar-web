@@ -9,6 +9,6 @@ public class CountDuplicatesSearchParametersShould
     {
         var sut = new CountDuplicatesSearchParameters().ToString();
 
-        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null}");
+        sut.Should().Be(@"{""SearchFolder"":"""",""Recursive"":true,""ExcludeViewed"":false,""IncludeSoftDeleted"":false,""IncludeMarkedForDeletion"":false,""SearchText"":null}");
     }
 }

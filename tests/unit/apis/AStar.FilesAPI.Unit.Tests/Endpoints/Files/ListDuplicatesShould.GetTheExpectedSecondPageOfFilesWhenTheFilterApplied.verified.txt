@@ -393,6 +393,16 @@
         HardDeletePending: false
       },
       {
+        Name: AStar.Web.UI.RazorAssemblyInfo.cache,
+        FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net7.0\AStar.Web.UI.RazorAssemblyInfo.cache,
+        Size: 66,
+        Extension: cache,
+        SoftDeleted: false,
+        SoftDeletePending: false,
+        NeedsToMove: false,
+        HardDeletePending: false
+      },
+      {
         Name: AStar.Web.UI.AssemblyInfoInputs.cache,
         FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net8.0\AStar.Web.UI.AssemblyInfoInputs.cache,
         Size: 66,
@@ -424,16 +434,6 @@
       },
       {
         Name: AStar.Web.UI.RazorAssemblyInfo.cache,
-        FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net7.0\AStar.Web.UI.RazorAssemblyInfo.cache,
-        Size: 66,
-        Extension: cache,
-        SoftDeleted: false,
-        SoftDeletePending: false,
-        NeedsToMove: false,
-        HardDeletePending: false
-      },
-      {
-        Name: AStar.Web.UI.RazorAssemblyInfo.cache,
         FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net8.0\AStar.Web.UI.RazorAssemblyInfo.cache,
         Size: 66,
         Extension: cache,
@@ -448,6 +448,15 @@
     Group: {},
     Files: [
       {
+        Name: read.lock,
+        FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\.vs\AStar.Web.UI\FileContentIndex\read.lock,
+        Extension: lock,
+        SoftDeleted: false,
+        SoftDeletePending: false,
+        NeedsToMove: false,
+        HardDeletePending: false
+      },
+      {
         Name: AStar.We.C5A7A0FB.Up2Date,
         FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net8.0\AStar.We.C5A7A0FB.Up2Date,
         Extension: Up2Date,
@@ -460,15 +469,6 @@
         Name: AStar.Web.UI.csproj.BuildWithSkipAnalyzers,
         FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\obj\Debug\net8.0\AStar.Web.UI.csproj.BuildWithSkipAnalyzers,
         Extension: BuildWithSkipAnalyzers,
-        SoftDeleted: false,
-        SoftDeletePending: false,
-        NeedsToMove: false,
-        HardDeletePending: false
-      },
-      {
-        Name: read.lock,
-        FullName: c:\temp\Blazor.Bootstrap\AStar.Web\AStar.Web.UI\.vs\AStar.Web.UI\FileContentIndex\read.lock,
-        Extension: lock,
         SoftDeleted: false,
         SoftDeletePending: false,
         NeedsToMove: false,

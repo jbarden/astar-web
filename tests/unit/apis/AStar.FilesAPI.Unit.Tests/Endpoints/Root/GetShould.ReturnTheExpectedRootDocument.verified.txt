@@ -53,5 +53,10 @@
     Rel: self,
     Href: api/files/undo-mark-for-soft-deletion,
     Method: DELETE
+  },
+  {
+    Rel: self,
+    Href: api/files/update-directory,
+    Method: PUT
   }
 ]
