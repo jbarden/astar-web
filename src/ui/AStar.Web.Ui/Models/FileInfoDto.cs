@@ -6,9 +6,9 @@ public class FileInfoDto
 {
     public string Name { get; set; } = string.Empty;
 
-    public string FullName => Path.Combine(DirectoryName, Name);
+    public string FullName { get; set; } = string.Empty;
 
-    public string DirectoryName { get; set; } = string.Empty;
+    public string DirectoryName => FullName.Replace(Name, string.Empty);
 
     public long Height { get; set; }
 

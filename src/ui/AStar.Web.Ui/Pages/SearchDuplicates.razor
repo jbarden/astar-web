@@ -4,8 +4,10 @@
 @using AStar.Web.UI.Components
 @using static AStar.Utilities.StringExtensions
 
+<script src="js/backtotop.js"></script>
 <LoadingIndicator @ref="loadingIndicator">
     <ChildContent>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
     <Accordion>
         <AccordionItem @bind-Visible="@accordionItem1Visible" Background="Background.Primary">
             <AccordionHeader Background="Background.Primary">
@@ -78,7 +80,7 @@
                                         <FieldBody ColumnSize="ColumnSize.Is9.Is3.WithOffset">
                                             <Button Color="Color.Success" Clicked="StartSearch"
                                                     id="startSearch">
-                                                Submit
+                                                Start Search
                                             </Button>
                                         </FieldBody>
                                     </Field>
