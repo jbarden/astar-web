@@ -94,8 +94,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Update.Database.Worke
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utilities", "utilities", "{3E89AA07-3B20-4499-81AB-8CD5CFFAC176}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AStar.Web", "src\ui\AStar.Web\AStar.Web.csproj", "{DB2D8032-191C-414E-B287-E4887E943158}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -214,10 +212,6 @@ Global
 		{F9F8C77A-0B06-4E57-AE9C-F704E0E9CED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F8C77A-0B06-4E57-AE9C-F704E0E9CED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F8C77A-0B06-4E57-AE9C-F704E0E9CED0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB2D8032-191C-414E-B287-E4887E943158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB2D8032-191C-414E-B287-E4887E943158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB2D8032-191C-414E-B287-E4887E943158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB2D8032-191C-414E-B287-E4887E943158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,7 +256,6 @@ Global
 		{5CF0D874-2B7D-4B0C-9C99-21803C9074C1} = {2BBD9AA1-A10D-4B0F-A085-A15AFB8750D4}
 		{F9F8C77A-0B06-4E57-AE9C-F704E0E9CED0} = {3E89AA07-3B20-4499-81AB-8CD5CFFAC176}
 		{3E89AA07-3B20-4499-81AB-8CD5CFFAC176} = {A3A824C5-5362-40BF-8B59-F8E08CB54D50}
-		{DB2D8032-191C-414E-B287-E4887E943158} = {1C50DA4B-0643-49B2-A800-3C8F72DCEE04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A4E9B7A-7302-4CE4-A187-FC4AEEF15AF3}
