@@ -23,7 +23,7 @@
       "Default": "Information",
       "Override": {
         "Microsoft.AspNetCore": "Warning",
-        "System.Net.Http": "Information",
+        "System.Net.Http": "Warning",
         "Marvin.Cache": "Warning",
         "AStar": "Debug"
       }

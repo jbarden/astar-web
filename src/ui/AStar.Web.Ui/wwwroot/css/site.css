@@ -36,6 +36,11 @@
     #myBtn:hover {
         background-color: #555;
     }
+
+header {
+    min-height: 50px;
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -43,12 +48,11 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
-header {
-    min-height: 50px;
-    background: lightcyan;
-}
-
 footer {
     min-height: 50px;
-    background: PapayaWhip;
+    text-align: center;
+}
+
+.button-wide {
+    width: 200px;
 }

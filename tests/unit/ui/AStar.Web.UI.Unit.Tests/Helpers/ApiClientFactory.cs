@@ -1,4 +1,5 @@
-﻿using AStar.Web.UI.ApiClients;
+﻿using AStar.FilesApi.Client.SDK;
+using AStar.Web.UI.ApiClients.ImagesApi;
 using AStar.Web.UI.MockMessageHandlers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;

@@ -1,4 +1,5 @@
 using AStar.Infrastructure.Data;
+using AStar.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AStar.Update.Database.WorkerService;
@@ -29,32 +30,34 @@ public class DeleteMarkedFiles(ILogger<UpdateDatabaseForAllFiles> logger) : Work
     private void ProcessFilesMarkedForDeletion()
     {
         logger.LogInformation("Starting removal of files marked for hard deletion");
-        foreach(var file in Context.Files.Where(file => file.HardDeletePending))
+        foreach(var fileAccessDetail in Context.FileAccessDetails.Where(file => file.HardDeletePending))
         {
-            if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
+            var actualFile = Context.Files.First(file => file.Id == fileAccessDetail.Id);
+            if(File.Exists(Path.Combine(actualFile.DirectoryName, actualFile.FileName)))
             {
-                logger.LogInformation("hard-deleting {File}", file.FileName);
-                File.Delete(Path.Combine(file.DirectoryName, file.FileName));
+                logger.LogInformation("hard-deleting {File}", actualFile.FileName);
+                File.Delete(Path.Combine(actualFile.DirectoryName, actualFile.FileName));
             }
 
-            _ = Context.Files.Remove(file);
+            _ = Context.Files.Remove(actualFile);
             _ = Context.SaveChanges();
         }
 
         logger.LogInformation("Starting removal of files marked for soft deletion");
-        Context.Files.Where(file => file.SoftDeletePending)
+        Context.FileAccessDetails.Where(fileAccessDetail => fileAccessDetail.SoftDeletePending)
                      .ToList()
-                     .ForEach(file =>
+                     .ForEach(fileAccessDetail =>
                      {
-                         if(File.Exists(Path.Combine(file.DirectoryName, file.FileName)))
+                         var actualFile = Context.Files.First(file => file.Id == fileAccessDetail.Id);
+                         if(File.Exists(Path.Combine(actualFile.DirectoryName, actualFile.FileName)))
                          {
-                             logger.LogInformation("Soft-deleting {File}", file.FileName);
-                             File.Delete(Path.Combine(file.DirectoryName, file.FileName));
+                             logger.LogInformation("hard-deleting {File}", actualFile.FileName);
+                             File.Delete(Path.Combine(actualFile.DirectoryName, actualFile.FileName));
                          }
 
-                         file.SoftDeleted = true;
-                         file.SoftDeletePending = false;
-                         file.DetailsLastUpdated = DateTime.UtcNow;
+                         fileAccessDetail.SoftDeleted = true;
+                         fileAccessDetail.SoftDeletePending = false;
+                         fileAccessDetail.DetailsLastUpdated = DateTime.UtcNow;
                          _ = Context.SaveChanges();
                      });
 

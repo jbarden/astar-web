@@ -15,8 +15,8 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
-        var filesApiClient = ApiClientFactory<AStar.Web.UI.ApiClients.FilesApi.FilesApiClient>.CreateInternalServerErrorClient("Health Check failed.");
-        var sut = new AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient(httpClient, filesApiClient, NullLogger<AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient>.Instance);
+
+        var sut = new ImagesApi.ImagesApiClient(httpClient, NullLogger<ImagesApi.ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
@@ -32,8 +32,8 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
-        var filesApiClient = ApiClientFactory<AStar.Web.UI.ApiClients.FilesApi.FilesApiClient>.CreateInternalServerErrorClient("Health Check failed.");
-        var sut = new AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient(httpClient, filesApiClient, NullLogger<AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient>.Instance);
+
+        var sut = new ImagesApi.ImagesApiClient(httpClient, NullLogger<ImagesApi.ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 
@@ -49,8 +49,8 @@ public class ImagesApiClientShould
         {
             BaseAddress = new("https://doesnot.matter.com")
         };
-        var filesApiClient = ApiClientFactory<AStar.Web.UI.ApiClients.FilesApi.FilesApiClient>.CreateInternalServerErrorClient("Health Check failed.");
-        var sut = new AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient(httpClient, filesApiClient, NullLogger<AStar.Web.UI.ApiClients.ImagesApi.ImagesApiClient>.Instance);
+
+        var sut = new ImagesApi.ImagesApiClient(httpClient, NullLogger<ImagesApi.ImagesApiClient>.Instance);
 
         var response = await sut.GetHealthAsync();
 

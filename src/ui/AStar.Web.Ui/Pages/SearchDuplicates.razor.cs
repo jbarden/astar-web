@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
-using AStar.Web.UI.ApiClients.FilesApi;
+using AStar.FilesApi.Client.SDK.FilesApi;
+using AStar.FilesApi.Client.SDK.Models;
 using AStar.Web.UI.Services;
 using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
@@ -79,7 +80,7 @@ public partial class SearchDuplicates
         };
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
-        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludeViewed = excludeViewed };
+        var searchParameters = new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludedViewSettings = new() { ExcludeViewed = excludeViewed } };
         Logger.LogInformation("Searching for files in: {SearchFolder} - {SortOrder}, and of {SearchType} (Full Search Parameters: {SearchParameters})", startingFolder, sortOrderAsEnum, searchTypeAsEnum, searchParameters);
         FileGroups = await FilesApiClient.GetDuplicateFilesAsync(searchParameters);
         var filesCount = await FilesApiClient.GetDuplicateFilesCountAsync(searchParameters);
@@ -137,108 +138,5 @@ public partial class SearchDuplicates
         currentPageAsInt = int.Parse(currentPage);
 
         await SearchForMatchingFiles();
-    }
-
-    private async Task MarkForMoving(string fullName)
-    {
-        var result = await FilesApiClient.MarkForMovingAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.NeedsToMove = true;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private async Task MarkForHardDeletion(string fullName)
-    {
-        var result = await FilesApiClient.MarkForHardDeletionAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.HardDeletePending = true;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private async Task MarkForSoftDeletion(string fullName)
-    {
-        var result = await FilesApiClient.MarkForSoftDeletionAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.SoftDeletePending = true;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private async Task UndoMarkForSoftDeletion(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForSoftDeletionAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.SoftDeletePending = false;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private async Task UndoMarkForHardDeletion(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForHardDeletionAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.HardDeletePending = false;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private async Task UndoMarkForMoving(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForMovingAsync(fullName);
-
-        foreach(var fileGroup in FileGroups)
-        {
-            var file = fileGroup.Files.FirstOrDefault(file => file.FullName == fullName);
-            if(file != null)
-            {
-                file.NeedsToMove = false;
-            }
-
-            DeletionStatus = result;
-        }
-    }
-
-    private Task OnButtonClicked(string fullName)
-    {
-        _ = Process.Start("explorer.exe", fullName);
-
-        return Task.CompletedTask;
     }
 }

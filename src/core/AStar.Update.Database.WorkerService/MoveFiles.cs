@@ -48,16 +48,17 @@ public class MoveFiles(IOptions<DirectoryChanges> directories, FilesApiClient fi
         foreach(var directory in directories.Value.Directories)
         {
             logger.LogInformation("Getting the files from the database that contain the {DirectoryName}.", directory);
-            var filesToMove = Context.Files.Where(file => file.DirectoryName.Contains(directory.Old) && !file.SoftDeleted);
+            var filesToMove = Context.FileAccessDetails.Where(file => !file.SoftDeleted);
 
             foreach(var fileToMove in filesToMove)
             {
-                var fullNameWithPath = fileToMove.FullNameWithPath;
-                var newLocation = fileToMove.DirectoryName.Replace(directory.Old, directory.New);
+                var file = await filesApiClient.GetFileDetail(fileToMove.Id);
+                var fullNameWithPath = file.FullName;
+                var newLocation = file.DirectoryName.Replace(directory.Old, directory.New);
 
                 try
                 {
-                    await filesApiClient.UpdateFileAsync(new DirectoryChangeRequest() { OldDirectoryName = fileToMove.DirectoryName, NewDirectoryName = newLocation, FileName = fileToMove.FileName });
+                    await filesApiClient.UpdateFileAsync(new DirectoryChangeRequest() { OldDirectoryName = file.DirectoryName, NewDirectoryName = newLocation, FileName = file.Name });
                 }
                 catch(Exception ex)
                 {

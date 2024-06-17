@@ -22,31 +22,6 @@ public partial class TopMenu
 
     [CascadingParameter] protected Theme? Theme { get; set; }
 
-    private Task OnThemeColorChanged()
-    {
-        if(Theme is not null)
-        {
-            if(Theme.BackgroundOptions.Primary == SupportedColours.Orange)
-            {
-                Theme.BackgroundOptions.Primary = SupportedColours.Pink;
-                Theme.ColorOptions.Primary = SupportedColours.Black;
-                Theme.BodyOptions.BackgroundColor = SupportedColours.White;
-                Theme.BodyOptions.TextColor = SupportedColours.Black;
-            }
-            else
-            {
-                Theme.BackgroundOptions.Primary = SupportedColours.Orange;
-                Theme.ColorOptions.Primary = SupportedColours.White;
-                Theme.BodyOptions.BackgroundColor = SupportedColours.Black;
-                Theme.BodyOptions.TextColor = SupportedColours.White;
-            }
-        }
-
-        Theme?.ThemeHasChanged();
-
-        return Task.CompletedTask;
-    }
-
     private async Task SwapLightAndDarkThemes()
     {
         if(Theme is not null)

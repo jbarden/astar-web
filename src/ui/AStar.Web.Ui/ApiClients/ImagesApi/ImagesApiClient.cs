@@ -1,22 +1,18 @@
-﻿using System.Text.Json;
-using AStar.Web.UI.ApiClients.FilesApi;
+﻿using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Web;
+using AStar.FilesApi.Client.SDK;
+using AStar.FilesApi.Client.SDK.FilesApi;
+using AStar.FilesApi.Client.SDK.Models;
 using AStar.Web.UI.Shared;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace AStar.Web.UI.ApiClients.ImagesApi;
 
-public class ImagesApiClient : IApiClient
+public class ImagesApiClient(HttpClient httpClient, ILogger<ImagesApiClient> logger) : IApiClient
 {
     private static readonly JsonSerializerOptions JsonSerializerOptions = new(JsonSerializerDefaults.Web);
-    private readonly HttpClient httpClient;
-    private readonly FilesApiClient filesApiClient;
-    private readonly ILogger<ImagesApiClient> logger;
-
-    public ImagesApiClient(HttpClient httpClient, FilesApiClient filesApiClient, ILogger<ImagesApiClient> logger)
-    {
-        this.httpClient = httpClient;
-        this.filesApiClient = filesApiClient;
-        this.logger = logger;
-    }
 
     public async Task<HealthStatusResponse> GetHealthAsync()
     {
@@ -37,18 +33,17 @@ public class ImagesApiClient : IApiClient
 
     public async Task<Stream> GetImageAsync(string imagePath, int maximumSizeInPixels, bool thumbnail)
     {
-        var requestUri = $"/api/image?thumbnail={thumbnail}&imagePath={imagePath}&resize=true&maximumSizeInPixels={maximumSizeInPixels}";
+        var requestUri = $"api/image?thumbnail={thumbnail}&imagePath={Uri.EscapeDataString(imagePath)}&resize=true&maximumSizeInPixels={maximumSizeInPixels}";
         var response = await httpClient.GetAsync(requestUri);
 
         return response.IsSuccessStatusCode
             ? await response.Content.ReadAsStreamAsync()
-            : await CreateNotFoundMemoryStream(imagePath);
+            : CreateNotFoundMemoryStream(imagePath);
     }
 
-    private async Task<MemoryStream> CreateNotFoundMemoryStream(string fileName)
+    private MemoryStream CreateNotFoundMemoryStream(string fileName)
     {
-        logger.LogWarning("Could not find: {FileName}", fileName);
-        _ = await filesApiClient.MarkForSoftDeletionAsync(fileName);
+        logger.LogInformation("Could not find: {FileName}", fileName);
 
         return new(Models.NotFound.Image);
     }

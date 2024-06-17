@@ -1,0 +1,29 @@
+﻿<div><strong>Details Last Updated: </strong>@FileAccessDetails.DetailsLastUpdated?.ToString("R")</div>
+<div><strong>Previously Viewed: </strong>@FileAccessDetails.LastViewed?.ToString("R")</div>
+<div>
+    @if(FileAccessDetails.SoftDeletePending)
+    {
+        <Button Clicked="@(()=>UndoMarkForSoftDeletion(FileAccessDetails.Id))" Color="Color.Success">Undo Soft Delete</Button>
+    }
+    else
+    {
+        <Button Clicked="@(()=>MarkForSoftDeletion(FileAccessDetails.Id))" Color="Color.Warning">Soft Delete</Button>
+    }
+    @if(FileAccessDetails.HardDeletePending)
+    {
+        <Button Clicked="@(()=>UndoMarkForHardDeletion(FileAccessDetails.Id))" Color="Color.Success">Undo Hard Delete</Button>
+    }
+    else
+    {
+        <Button Clicked="@(()=>MarkForHardDeletion(FileAccessDetails.Id))" Color="Color.Danger">Hard Delete</Button>
+    }
+    @if(FileAccessDetails.NeedsToMove)
+    {
+        <Button Clicked="@(()=>UndoMarkForMoving(FileAccessDetails.Id))" Color="Color.Success">Undo Move/Rename</Button>
+    }
+    else
+    {
+        <Button Clicked="@(()=>MarkForMoving(FileAccessDetails.Id))" Color="Color.Info">Move/Rename</Button>
+    }
+    <Button Color="Color.Primary" Clicked="@(()=>OnButtonClicked())">Open</Button>
+</div>

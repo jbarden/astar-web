@@ -1,4 +1,4 @@
-﻿using AStar.Web.UI.ApiClients.FilesApi;
+﻿using AStar.FilesApi.Client.SDK.FilesApi;
 using AStar.Web.UI.ApiClients.ImagesApi;
 using AStar.Web.UI.Services;
 using Blazorise.Bootstrap5;

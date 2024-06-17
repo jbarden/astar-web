@@ -1,7 +1,6 @@
 using System.Globalization;
 using AStar.Infrastructure.Data;
 using AStar.Update.Database.WorkerService.Models;
-using AStar.Web.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SkiaSharp;
@@ -70,11 +69,12 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
     private void RemoveFilesFromDbThatDoNotExistAnyMore(IEnumerable<string> files)
     {
         logger.LogInformation("Starting removal of files deleted from disc outside of the UI.");
-        foreach(var file in Context.Files.Where(file => !file.SoftDeleted && !file.SoftDeletePending))
+        foreach(var file in Context.FileAccessDetails.Where(file => !file.SoftDeleted && !file.SoftDeletePending))
         {
-            if(!files.Contains(Path.Combine(file.DirectoryName, file.FileName)))
+            var fileDetail = Context.Files.Single(f=>f.Id == file.Id);
+            if(!files.Contains(Path.Combine(fileDetail.DirectoryName, fileDetail.FileName)))
             {
-                _ = Context.Files.Remove(file);
+                _ = Context.Files.Remove(fileDetail);
             }
         }
     }
@@ -120,7 +120,7 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
                 var directoryName = file[..lastIndexOf];
                 var fileName = file[++lastIndexOf..];
 
-                var movedFile = Context.Files.FirstOrDefault(f => f.DirectoryName.StartsWith(directory) && f.DirectoryName != directoryName && f.FileName == fileName);
+                Infrastructure.Models.FileDetail? movedFile = Context.Files.FirstOrDefault(f => f.DirectoryName.StartsWith(directory) && f.DirectoryName != directoryName && f.FileName == fileName);
                 if(movedFile != null)
                 {
                     UpdateExistingFile(directoryName, fileName, movedFile);
@@ -155,7 +155,7 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
         }
     }
 
-    private void UpdateExistingFile(string directoryName, string fileName, FileDetail fileFromDatabase)
+    private void UpdateExistingFile(string directoryName, string fileName, Infrastructure.Models.FileDetail fileFromDatabase)
     {
         foreach(var file in Context.Files.Where(file => file.FileName == fileName))
         {
@@ -164,20 +164,24 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
 
         SaveChangesSafely(logger);
 
-        var updatedFile = new FileDetail
+        var updatedFile = new Infrastructure.Models.FileDetail
         {
             DirectoryName = directoryName,
-            SoftDeleted = false,
-            SoftDeletePending = false,
             Height = fileFromDatabase.Height,
             Width = fileFromDatabase.Width,
             FileName = fileName,
-            DetailsLastUpdated = DateTime.UtcNow,
-            LastViewed = fileFromDatabase.LastViewed,
             FileSize = fileFromDatabase.FileSize
         };
-
         _ = Context.Files.Add(updatedFile);
+        var fileAccessDetail = new Infrastructure.Models.FileAccessDetail
+        {
+            SoftDeleted = false,
+            SoftDeletePending = false,
+            DetailsLastUpdated = DateTime.UtcNow,
+            Id = updatedFile.Id
+        };
+
+        _ = Context.FileAccessDetails.Add(fileAccessDetail);
         logger.LogInformation("File: {FileName} ({OriginalLocation}) appears to have moved since being added to the dB - previous location: {DirectoryName}", fileName, directoryName, fileFromDatabase.DirectoryName);
     }
 
@@ -186,9 +190,8 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
         try
         {
             var fileInfo = new FileInfo(file);
-            var fileDetail = new FileDetail(fileInfo)
+            var fileDetail = new Infrastructure.Models.FileDetail(fileInfo)
             {
-                DetailsLastUpdated = DateTime.UtcNow,
                 FileName = fileInfo.Name,
                 DirectoryName = fileInfo.DirectoryName!,
                 FileSize = fileInfo.Length
@@ -208,7 +211,16 @@ public class UpdateDatabaseForAllFiles(ILogger<UpdateDatabaseForAllFiles> logger
                 }
             }
 
+            var fileAccessDetail = new Infrastructure.Models.FileAccessDetail
+            {
+                SoftDeleted = false,
+                SoftDeletePending = false,
+                DetailsLastUpdated = DateTime.UtcNow,
+                Id = fileDetail.Id
+            };
+
             _ = Context.Files.Add(fileDetail);
+            _ = Context.FileAccessDetails.Add(fileAccessDetail);
         }
         catch(Exception ex)
         {

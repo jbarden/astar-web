@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.3.3</Version>
+    <Company>AStar Dev</Company>
+    <Copyright>AStar Dev 2024</Copyright>
+    <PackageIcon>AStar.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <Authors>Jason Barden</Authors>
+    <Description>This package contans the SDK for access the Files AStar API.
+It is not intended for public use but is available if it helps you.</Description>
+    <PackageProjectUrl>https://github.com/jbarden/astar-filesapi-client-sdk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jbarden/astar-filesapi-client-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\AStar.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AStar.Api.HealthChecks" Version="0.3.0" />
+    <PackageReference Include="AStar.Utilities" Version="1.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>

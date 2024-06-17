@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using AStar.FilesApi.Client.SDK.Models;
 using AStar.Web.UI.Models;
 using AStar.Web.UI.Pages;
 using AStar.Web.UI.Shared;
@@ -21,7 +22,7 @@ public class MockSuccessHttpMessageHandler(string responseRequired) : HttpMessag
         }
         else if(responseRequired == "ListFiles")
         {
-            content = new StringContent(JsonSerializer.Serialize(new List<FileInfoDto>() { new() { Name = "does.not.matter.txt" }, new() }));
+            content = new StringContent(JsonSerializer.Serialize(new List<FileDetail>() { new() { Name = "does.not.matter.txt" }, new() }));
         }
         else if(responseRequired == "Count")
         {

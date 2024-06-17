@@ -1,4 +1,4 @@
-﻿using AStar.Web.UI.ApiClients.FilesApi;
+﻿using AStar.FilesApi.Client.SDK.FilesApi;
 
 namespace AStar.Web.UI.ApiClients.FilesApiClient;
 
