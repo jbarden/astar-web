@@ -1,6 +1,4 @@
-﻿using Blazorise.LoadingIndicator;
-
-namespace AStar.Web.UI.Services;
+﻿namespace AStar.Web.UI.Services;
 
 public class SearchFilesService
 {

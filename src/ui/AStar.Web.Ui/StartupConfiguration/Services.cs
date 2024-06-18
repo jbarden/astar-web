@@ -1,5 +1,5 @@
 ﻿using AStar.FilesApi.Client.SDK.FilesApi;
-using AStar.Web.UI.ApiClients.ImagesApi;
+using AStar.ImagesApi.Client.SDK.ImagesApi;
 using AStar.Web.UI.Services;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;

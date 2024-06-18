@@ -56,3 +56,7 @@ footer {
 .button-wide {
     width: 200px;
 }
+
+.pad {
+    padding: 10px;
+}
