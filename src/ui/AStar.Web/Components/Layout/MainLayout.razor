@@ -1,0 +1,24 @@
+﻿@inject IJSRuntime JSRuntime
+
+@inherits LayoutComponentBase
+
+<header>
+    <img src="/brand-logo.png" style="width:32px; height: 32px" />
+    AStar Web
+    <label class="switch">
+        <span style="color: purple;"> <span class="oi oi-sun" aria-hidden="true" />
+        <input type="checkbox" id="theme-switcher">
+        <span class="slider round"></span>
+        <span class="oi oi-moon" aria-hidden="true" /></span>
+    </label>
+</header>
+<main>
+    @Body
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+</main>
+
+<footer>Copyright &copy; AStar Development, 2024</footer>
