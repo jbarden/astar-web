@@ -4,7 +4,7 @@ public class SearchFilesService
 {
     public const string PREVIOUS = "previous";
     public const string NEXT = "next";
-    public string StartingFolder { get; set; } = @"f:\wallhaven";
+    public string StartingFolder { get; set; } = @"c:\wallhaven";
 
     public int ItemsOrGroupsPerPage { get; set; } = 10;
 

@@ -10,7 +10,7 @@ public partial class SearchDuplicates
 {
     private const string PREVIOUS = "previous";
     private const string NEXT = "next";
-    private string startingFolder = @"f:\wallhaven";
+    private string startingFolder = @"c:\wallhaven";
     private int itemsOrGroupsPerPage = 10;
     private int searchType;
     private int sortOrder;
