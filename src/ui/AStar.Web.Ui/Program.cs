@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using AStar.Api.HealthChecks;
 using AStar.ASPNet.Extensions.ServiceCollectionExtensions;
 using AStar.Logging.Extensions;
 using Serilog;
@@ -37,15 +38,12 @@ public class Program
                    .AddLogging("astar-logging-settings.json")
                    .Services.ConfigureUi();
 
-        Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
         _ = StartupConfiguration.Services.Configure(builder.Services, builder.Configuration);
 
-        Log.Information("Starting2 {AppName}", typeof(Program).AssemblyQualifiedName);
         var app = builder.Build();
-        Log.Information("Starting3 {AppName}", typeof(Program).AssemblyQualifiedName);
+        Log.Information("Starting {AppName}", typeof(Program).AssemblyQualifiedName);
         _ = ConfigurePipeline(app);
 
-        Log.Information("Starting4 {AppName}", typeof(Program).AssemblyQualifiedName);
         return app;
     }
 

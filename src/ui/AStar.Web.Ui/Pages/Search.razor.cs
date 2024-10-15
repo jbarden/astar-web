@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using AStar.Web.UI.ApiClients.FilesApi;
-using AStar.Web.UI.Models;
+﻿using AStar.FilesApi.Client.SDK.FilesApi;
+using AStar.FilesApi.Client.SDK.Models;
 using AStar.Web.UI.Services;
-using AStar.Web.UI.Shared;
 using Blazorise.LoadingIndicator;
 using Microsoft.AspNetCore.Components;
 
@@ -12,7 +10,7 @@ public partial class Search
 {
     private const string PREVIOUS = "previous";
     private const string NEXT = "next";
-    private string startingFolder = @"f:\wallhaven";
+    private string startingFolder = @"c:\wallhaven";
     private int itemsOrGroupsPerPage = 10;
     private int searchType;
     private int sortOrder;
@@ -27,7 +25,9 @@ public partial class Search
     private bool excludeViewed = true;
     private IEnumerable<int> pages = [];
 
-    public IEnumerable<FileInfoDto> Files { get; set; } = [];
+    public IEnumerable<AStar.FilesApi.Client.SDK.Models.FileDetail> Files { get; set; } = [];
+
+    public IEnumerable<FileAccessDetail> FileAccessDetails { get; set; } = [];
 
     public string DeletionStatus { get; private set; } = string.Empty;
 
@@ -53,28 +53,14 @@ public partial class Search
         SortOrder sortOrderAsEnum;
 
 #pragma warning disable IDE0045 // Convert to conditional expression
-        if(SearchFilesService is null)
+        sortOrderAsEnum = sortOrder switch
         {
-            sortOrderAsEnum = SearchFilesService?.SortOrder switch
-            {
-                0 => SortOrder.SizeDescending,
-                1 => SortOrder.SizeAscending,
-                2 => SortOrder.NameDescending,
-                3 => SortOrder.NameAscending,
-                _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
-            };
-        }
-        else
-        {
-            sortOrderAsEnum = sortOrder switch
-            {
-                0 => SortOrder.SizeDescending,
-                1 => SortOrder.SizeAscending,
-                2 => SortOrder.NameDescending,
-                3 => SortOrder.NameAscending,
-                _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
-            };
-        }
+            0 => SortOrder.SizeDescending,
+            1 => SortOrder.SizeAscending,
+            2 => SortOrder.NameDescending,
+            3 => SortOrder.NameAscending,
+            _ => throw new ArgumentOutOfRangeException(nameof(sortOrder)),
+        };
 #pragma warning restore IDE0045 // Convert to conditional expression
 
         var searchTypeAsEnum = searchType switch
@@ -87,7 +73,7 @@ public partial class Search
 #pragma warning restore S3928 // Parameter names used in ArgumentException constructors should match an existing one
 
         Logger.LogInformation("Searching for files in: {SortOrder}, and of {SearchType}", sortOrderAsEnum, searchTypeAsEnum);
-        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludeViewed = excludeViewed });
+        Files = await FilesApiClient.GetFilesAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum, CurrentPage = currentPageAsInt, ItemsPerPage = itemsOrGroupsPerPage, ExcludedViewSettings = new() { ExcludeViewed = excludeViewed } });
         var filesCount = await FilesApiClient.GetFilesCountAsync(new SearchParameters() { SearchFolder = startingFolder, Recursive = recursiveSearch, SearchType = searchTypeAsEnum, SortOrder = sortOrderAsEnum });
         totalPages = (int)Math.Ceiling(filesCount / (decimal)itemsOrGroupsPerPage);
         pagesForPagination = PaginationService.GetPaginationInformation(totalPages, currentPageAsInt);
@@ -143,68 +129,5 @@ public partial class Search
         currentPageAsInt = int.Parse(currentPage);
 
         await SearchForMatchingFiles();
-    }
-
-    private async Task MarkForMoving(string fullName)
-    {
-        var result = await FilesApiClient.MarkForMovingAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.NeedsToMove = true;
-        }
-
-        DeletionStatus = result;
-    }
-
-    private async Task MarkForSoftDeletion(string fullName)
-    {
-        var result = await FilesApiClient.MarkForSoftDeletionAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.SoftDeletePending = true;
-        }
-
-        DeletionStatus = result;
-    }
-
-    private async Task UndoMarkForSoftDeletion(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForSoftDeletionAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.SoftDeletePending = false;
-        }
-
-        DeletionStatus = result;
-    }
-
-    private async Task UndoMarkForMoving(string fullName)
-    {
-        var result = await FilesApiClient.UndoMarkForMovingAsync(fullName);
-
-        var file = Files.FirstOrDefault(file => file.FullName == fullName);
-
-        if(file != null)
-        {
-            file.NeedsToMove = false;
-        }
-
-        DeletionStatus = result;
-    }
-
-    private Task OnButtonClicked(string fullName)
-    {
-        _ = Process.Start("explorer.exe", fullName);
-
-        return Task.CompletedTask;
     }
 }

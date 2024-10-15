@@ -1,19 +1,14 @@
 ﻿@using AStar.Web.UI.Components.Layout
 
 @inherits LayoutComponentBase
-
-<Layout Background="Background.Primary">
-    <LayoutHeader Fixed>
-        <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
-                    ThemeGradientChanged="@OnThemeGradientChanged"
-                    ThemeRoundedChanged="@OnThemeRoundedChanged"
-                    ThemeColorChanged="@OnThemeColorChanged"
-                    @bind-LayoutType="@layoutType" />
-    </LayoutHeader>
-    <LayoutContent Padding="Padding.Is4.OnX.Is4.FromTop">
-        @Body
-    </LayoutContent>
-    <LayoutFooter Fixed>
-        <FooterMenu></FooterMenu>
-    </LayoutFooter>
-</Layout>
+<header>
+    <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
+             ThemeGradientChanged="@OnThemeGradientChanged"
+             ThemeRoundedChanged="@OnThemeRoundedChanged"
+             ThemeColorChanged="@OnThemeColorChanged"
+             @bind-LayoutType="@layoutType" />
+</header>
+<main>
+    @Body
+</main>
+<footer>Copyright &copy; AStar Development, 2024</footer>

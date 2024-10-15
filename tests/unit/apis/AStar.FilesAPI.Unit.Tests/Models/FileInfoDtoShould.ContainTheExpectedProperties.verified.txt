@@ -1,9 +1,0 @@
-﻿{
-  Name: ,
-  FullName: ,
-  Extension: ,
-  SoftDeleted: false,
-  SoftDeletePending: false,
-  NeedsToMove: false,
-  HardDeletePending: false
-}

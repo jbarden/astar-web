@@ -1,6 +1,6 @@
-﻿using AStar.Web.UI.ApiClients.FilesApi;
-using AStar.Web.UI.ApiClients.ImagesApi;
-using AStar.Web.UI.Shared;
+﻿using AStar.Api.HealthChecks;
+using AStar.FilesApi.Client.SDK.FilesApi;
+using AStar.ImagesApi.Client.SDK.ImagesApi;
 using Blazorise.LoadingIndicator;
 using Microsoft.AspNetCore.Components;
 

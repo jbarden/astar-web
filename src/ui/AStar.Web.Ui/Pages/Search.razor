@@ -1,5 +1,4 @@
 ﻿@page "/search"
-@using AStar.Web.UI.ApiClients.FilesApi
 @using AStar.Web.UI.Shared
 @using AStar.Web.UI.Components
 @using static AStar.Utilities.StringExtensions
@@ -146,33 +145,14 @@
                                         <div>@file.Name</div>
                                 </CardTitle>
                                     <CardText>
-                                        <div>
                                             <ImageComponent ImageName="@file.Name" ImageFullName="@file.FullName" ImageSize="850"></ImageComponent>
-                                        </div>
-                                        <div>@file.FullName</div>
-                                        <div>Size: @file.SizeForDisplay</div>
-                                        <div>W x H: @file.Width x @file.Height</div>
-                                        <div>Details Last Updated: @file.DetailsLastUpdated?.ToString("R")</div>
-                                        <div>Previously Viewed: @file.LastViewed?.ToString("R")</div>
-                                        <div>
-                                            @if(file.SoftDeletePending)
-                                            {
-                                                <Button Clicked="@(()=>UndoMarkForSoftDeletion(file.FullName))" Color="Color.Success">Undo Soft Delete</Button>
-                                            }
-                                            else
-                                            {
-                                                <Button Clicked="@(()=>MarkForSoftDeletion(file.FullName))" Color="Color.Warning">Soft Delete</Button>
-                                            }
-                                            @if(file.NeedsToMove)
-                                            {
-                                                <Button Clicked="@(()=>UndoMarkForMoving(file.FullName))" Color="Color.Success">Undo Move/Rename</Button>
-                                            }
-                                            else
-                                            {
-                                                <Button Clicked="@(()=>MarkForMoving(file.FullName))" Color="Color.Info">Move/Rename</Button>
-                                            }
-                                            <Button Color="Color.Primary" Clicked="@(()=>OnButtonClicked(file.FullName))">Open</Button>
-                                        </div>
+                                            <br />
+                                            <div><strong>Directory Name:</strong> @file.DirectoryName</div>
+                                            <div><strong>File Name:</strong> @file.Name</div>
+                                            <div><strong>Size:</strong> <span width="150pt" display: "inline-block;"> @file.SizeForDisplay</span><div><strong>Width x Height:</strong> @file.Width x @file.Height</div></div>
+                                            <div>
+                                                <FileAccessDetail FileId="@file.Id" FileNameWithPath="@file.FullName"></FileAccessDetail>
+                                            </div>
                                 </CardText>
                             </CardBody>
                         </Card>

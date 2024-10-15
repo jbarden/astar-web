@@ -36,3 +36,27 @@
     #myBtn:hover {
         background-color: #555;
     }
+
+header {
+    min-height: 50px;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+footer {
+    min-height: 50px;
+    text-align: center;
+}
+
+.button-wide {
+    width: 200px;
+}
+
+.pad {
+    padding: 10px;
+}

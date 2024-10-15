@@ -1,44 +1,47 @@
 ﻿@page "/"
-<Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">Welcome!</Heading>
+<div class="pad">
+    <Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">Welcome!</Heading>
 
-<LoadingIndicator @ref="loadingIndicator">
-    <ChildContent>
-    <Paragraph>
-        Welcome to AStar Development's Web site. This site is intended as a coding playground and is not a serious site!
-    </Paragraph>
+    <LoadingIndicator @ref="loadingIndicator">
+        <ChildContent>
 
-    <Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">API Statuses</Heading>
-    <Alert Visible>
         <Paragraph>
-            Below are the results of some basic checks to the backend APIs. Over time, the checks will be extended.
+            Welcome to AStar Development's Web site. This site is intended as a coding playground and is not a serious site!
         </Paragraph>
 
-        <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Files API Status</Heading>
-        <Paragraph Id="FilesApiHealthStatus">
-            <br />
-            <medium class="@FilesApiHealthCheckClass">
-                Files Api Health Status: @FilesApiHealthStatus
-            </medium>
-        </Paragraph>
+        <Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">API Statuses</Heading>
 
-        <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Images API Status</Heading>
-        <Paragraph Id="ImagesApiHealthStatus">
-            <br />
-            <medium class="@ImagesApiHealthCheckClass">
-                Images Api Health Status: @ImagesApiHealthStatus
-            </medium>
-        </Paragraph>
-        <Paragraph>
-            <br />
-            <Button Clicked="CheckApiStatuses" Color="Color.Success">Recheck APIs</Button>
-        </Paragraph>
-    </Alert>
-    </ChildContent>
-    <IndicatorTemplate>
-        <Animate Animation="Animations.FadeDownRight">
-            <Div>
-                <SpinKit Type="SpinKitType.Wave" Size="100px" />
-            </Div>
-        </Animate>
-    </IndicatorTemplate>
-</LoadingIndicator>
+            <Paragraph>
+                Below are the results of some basic checks to the backend APIs. Over time, the checks will be extended.
+            </Paragraph>
+
+            <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Files API Status</Heading>
+            <Paragraph Id="FilesApiHealthStatus">
+                <br />
+                <medium class="@FilesApiHealthCheckClass">
+                    Files Api Health Status: @FilesApiHealthStatus
+                </medium>
+            </Paragraph>
+
+            <Heading Size="HeadingSize.Is2" Margin="Margin.Is2.FromBottom">Images API Status</Heading>
+            <Paragraph Id="ImagesApiHealthStatus">
+                <br />
+                <medium class="@ImagesApiHealthCheckClass">
+                    Images Api Health Status: @ImagesApiHealthStatus
+                </medium>
+            </Paragraph>
+            <Paragraph>
+                <br />
+                <Button Clicked="CheckApiStatuses" Color="Color.Success">Recheck APIs</Button>
+            </Paragraph>
+
+        </ChildContent>
+        <IndicatorTemplate>
+            <Animate Animation="Animations.FadeDownRight">
+                <Div>
+                    <SpinKit Type="SpinKitType.Wave" Size="100px" />
+                </Div>
+            </Animate>
+        </IndicatorTemplate>
+    </LoadingIndicator>
+</div>
